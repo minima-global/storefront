@@ -1,2 +1,3 @@
-# Storefront-minima
-MiniDapp store for minima
+# Minima Storefront
+
+MiniDapp storefront for minima
