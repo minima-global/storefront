@@ -89,7 +89,7 @@ let theme = createMuiTheme ({
       fontSize: "2.1vh",
       fontWeight: 400,
       fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      lineHeight: "1.5em",
+      lineHeight: "1",
       color: '#000000'
     },
     subtitle2: {
@@ -102,7 +102,8 @@ let theme = createMuiTheme ({
       fontSize: "2vh",
       fontWeight: 400,
       fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      color: '#000000',
+      lineHeight: 'normal'
     },
     body2: {
       fontSize: "2vh",
@@ -157,11 +158,6 @@ const themeStyles = makeStyles({
     width: "100vw",
     position: 'relative'
   },
-  logo: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(0),
-    background: 'linear-gradient(#00abc7, #00abc7)',
-  },
   header: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
@@ -172,6 +168,11 @@ const themeStyles = makeStyles({
     position: 'absolute',
     top: '0'
   },
+  logo: {
+    padding: theme.spacing(0),
+    margin: theme.spacing(0),
+    background: 'linear-gradient(#00abc7, #00abc7)',
+  },
   title: {
     padding: theme.spacing(0),
     margin: theme.spacing(0),
@@ -181,8 +182,9 @@ const themeStyles = makeStyles({
   subTitle: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
-    textAlign: 'left',
-    background: 'linear-gradient(#ff671d, #ff671d)'
+    textAlign: 'center',
+    background: 'linear-gradient(#ff671d, #ff671d)',
+    fontStyle: 'italic'
   },
   content: {
     padding: theme.spacing(1),

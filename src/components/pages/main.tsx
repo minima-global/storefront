@@ -38,7 +38,7 @@ export const Main = () => {
   }
 
   const classes = themeStyles()
-  const tagline = `<i>${App.catchLine}</i>`
+  const tagLine = `${App.catchLine}`
 
   return (
       <div className={classes.root}>
@@ -47,39 +47,45 @@ export const Main = () => {
           <Paper className={classes.header} square={true}>
             <Grid item container xs={12}>
 
-                <Grid item xs={1}>
-                  <Markdown escapeHtml={false} source={tagline} />
-                </Grid>
-                <Grid item xs={3}>
-                  <img className={classes.title} src={appName}/>
+                <Grid className={classes.subTitle}  item xs={1}>
+                  {tagLine}
                 </Grid>
 
-                <Grid item container justify="flex-end" xs={8}>
+                <Grid item container xs={6}>
 
-                  <Grid item xs={2}>
-                    <NavLink to={Local.help} className={classes.link}>
-                        <Tooltip title={Help.helpTip}>
-                          <HelpIcon />
-                        </Tooltip>
-                    </NavLink>
+                  <Grid item xs={4}>
+                    &nbsp;
                   </Grid>
-
                   <Grid item xs={2}>
-                    <NavLink to={Local.contact} className={classes.link}>
-                        <Tooltip title={Help.contactTip}>
-                          <ContactMailIcon />
-                        </Tooltip>
-                    </NavLink>
+                    <img className={classes.title} src={appName}/>
                   </Grid>
+                </Grid>
 
-                  <Grid item xs={2}>
-                    <NavLink to={Local.about} className={classes.link}>
-                        <Tooltip title={Help.aboutTip}>
-                          <InfoIcon />
-                        </Tooltip>
-                    </NavLink>
-                  </Grid>
+                <Grid item container justify="flex-end" xs={5}>
 
+                    <Grid item xs={1}>
+                      <NavLink to={Local.help} className={classes.link}>
+                          <Tooltip title={Help.helpTip}>
+                            <HelpIcon />
+                          </Tooltip>
+                      </NavLink>
+                    </Grid>
+
+                    <Grid item xs={1}>
+                      <NavLink to={Local.contact} className={classes.link}>
+                          <Tooltip title={Help.contactTip}>
+                            <ContactMailIcon />
+                          </Tooltip>
+                      </NavLink>
+                    </Grid>
+
+                    <Grid item xs={1}>
+                      <NavLink to={Local.about} className={classes.link}>
+                          <Tooltip title={Help.aboutTip}>
+                            <InfoIcon />
+                          </Tooltip>
+                      </NavLink>
+                    </Grid>
                 </Grid>
 
             </Grid>
