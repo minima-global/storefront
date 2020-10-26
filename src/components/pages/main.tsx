@@ -38,6 +38,7 @@ export const Main = () => {
   }
 
   const classes = themeStyles()
+  const tagline = `<i>${App.catchLine}</i>`
 
   return (
       <div className={classes.root}>
@@ -47,10 +48,10 @@ export const Main = () => {
             <Grid item container xs={12}>
 
                 <Grid item xs={1}>
-                  <img className={classes.logo} src={minimaLogo}/>
+                  <Markdown escapeHtml={false} source={tagline} />
                 </Grid>
                 <Grid item xs={3}>
-                  <img className={classes.logo} src={appName}/>
+                  <img className={classes.title} src={appName}/>
                 </Grid>
 
                 <Grid item container justify="flex-end" xs={8}>

@@ -151,7 +151,7 @@ theme.spacing(4)
 
 const themeStyles = makeStyles({
   root: {
-    background: 'linear-gradient(#FFFFFF, #FFFFFF)',
+    background: 'linear-gradient(#929396, #929396)',
     color: theme.palette.text.primary,
     height: "100vh",
     width: "100vw",
@@ -159,35 +159,36 @@ const themeStyles = makeStyles({
   },
   logo: {
     padding: theme.spacing(1),
-    margin: theme.spacing(0)
+    margin: theme.spacing(0),
+    background: 'linear-gradient(#00abc7, #00abc7)',
   },
   header: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     textAlign: 'left',
-    background: 'linear-gradient(#27737e, #27737e)',
+    background: 'linear-gradient(#ff671d, #ff671d)',
     height: "75px",
     width: "100vw",
     position: 'absolute',
     top: '0'
   },
   title: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(0),
     margin: theme.spacing(0),
-    textAlign: 'left',
-    background: 'linear-gradient(#27737e, #27737e)'
+    background: 'linear-gradient(#ff671d, #ff671d)',
+    position: 'relative'
   },
   subTitle: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     textAlign: 'left',
-    background: 'linear-gradient(#27737e, #27737e)'
+    background: 'linear-gradient(#ff671d, #ff671d)'
   },
   content: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     color: theme.palette.text.primary,
-    background: 'linear-gradient(#FFFFFF, #FFFFFF)',
+    background: 'linear-gradient(#929396, #929396)',
     overflow: 'auto',
     width: "100vw",
     position: 'absolute',
@@ -198,20 +199,20 @@ const themeStyles = makeStyles({
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     textAlign: 'center',
-    background: 'linear-gradient(#27737e, #27737e)'
+    background: 'linear-gradient(#ff671d, #ff671d)'
   },
   footer: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     textAlign: 'center',
-    background: 'linear-gradient(#27737e, #27737e)',
+    background: 'linear-gradient(#00abc7, #00abc7)',
     height: "120px",
     width: "100vw",
     position: 'absolute',
     bottom: '0'
   },
   footerLinks: {
-    background: 'linear-gradient(#27737e, #27737e)',
+    background: 'linear-gradient(#00abc7, #00abc7)',
     textAlign: 'center',
     fontSize: "2vh",
     fontWeight: 400,
@@ -227,7 +228,7 @@ const themeStyles = makeStyles({
   menu: {
     padding: theme.spacing(1),
     margin: theme.spacing(1),
-    background: 'linear-gradient(#27737e, #27737e)',
+    background: 'linear-gradient(#ff671d, #ff671d)',
   },
   spinner: {
      position: 'absolute',

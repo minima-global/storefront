@@ -2,7 +2,7 @@ class App {
 
   static readonly title = 'Minima'
   static readonly appName = 'Storefront'
-  static readonly catchLine = `${App.title} MiniDapp ${App.appName}`
+  static readonly catchLine = `Powered by ${App.title}`
   static readonly tagline = ''
   static readonly copyright = '© Copyright 2020 Minima GmbH'
   static readonly author = '[Steve Huckle](https://glowkeeper.github.io/)'
@@ -37,7 +37,7 @@ class Home {
 
   static readonly heading = 'Home'
 
-  static readonly info = `<h3>${App.catchLine}</h3>`
+  static readonly info = `<h3>${App.appName}</h3>`
 }
 
 class About {
