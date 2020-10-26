@@ -1,8 +1,8 @@
 class App {
 
+  static readonly title = 'Minima'
   static readonly appName = 'Storefront'
   static readonly catchLine = `${App.title} MiniDapp ${App.appName}`
-  static readonly title = 'Minima'
   static readonly tagline = ''
   static readonly copyright = '© Copyright 2020 Minima GmbH'
   static readonly author = '[Steve Huckle](https://glowkeeper.github.io/)'
@@ -79,6 +79,7 @@ export { App,
          Transaction,
          Home,
          About,
+         Faq,
          Help,
          Contact
        }

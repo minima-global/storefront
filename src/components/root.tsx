@@ -1,7 +1,6 @@
 import React from 'react'
 import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { history } from '../utils/history'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/styles'

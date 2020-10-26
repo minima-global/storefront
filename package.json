@@ -8,9 +8,9 @@
     "url": "git+https://github.com/glowkeeper/MiFi"
   },
   "scripts": {
-    "compile": "./node_modules/.bin/webpack --config ./webpack.dev.js --mode development && rm ./build/app.js && rm ./build/app.js.map && mkdir ./build/images && cp ./images/* ./build/images && cp ./config/minidapp.conf ./build",
+    "compile": "./node_modules/.bin/webpack --config ./webpack.dev.js --mode development && rm ./build/app.js && rm ./build/app.js.map && mkdir ./build/images && cp ./miniDapp/images/* ./build/images && cp ./miniDapp/config/minidapp.conf ./build",
     "watch": "./node_modules/.bin/webpack --config ./webpack.dev.js --watch --mode development",
-    "prod": "./node_modules/.bin/webpack --config ./webpack.prod.js --mode production && rm ./build/app.js && mkdir ./build/images && cp ./images/* ./build/images && cp ./config/manifest.webmanifest ./build && cp ./config/minidapp.conf ./build && zip -r ./dist/provenator.minidapp ./build",
+    "prod": "./node_modules/.bin/webpack --config ./webpack.prod.js --mode production && rm ./build/app.js && mkdir ./build/images && cp ./miniDapp/images/* ./build/images && cp ./miniDapp/config/manifest.webmanifest ./build && cp ./miniDapp/config/minidapp.conf ./build && zip -r ./miniDapp/dist/provenator.minidapp ./build",
     "test": "./node_modules/.bin/mocha",
     "start": "./node_modules/.bin/http-server -p 8080 build/"
   },

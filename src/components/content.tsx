@@ -3,8 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import { InfoTypes } from '../store/types'
 
-import { BlockchainInfo, Home, Info, ListFiles } from '../components/pages'
-import { AddFile, AddCheckedFile, CheckFile } from '../containers/pages/'
+import { Home, Info } from '../components/pages'
 
 import { Paths, Local } from '../config'
 
