@@ -10,14 +10,11 @@ import { Content } from '../content'
 import { App } from '../../config/strings'
 
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone'
-import CheckTwoToneIcon from '@material-ui/icons/CheckTwoTone';
-import AttachFileTwoToneIcon from '@material-ui/icons/AttachFileTwoTone'
-import TocTwoToneIcon from '@material-ui/icons/TocTwoTone'
 import HomeIcon from '@material-ui/icons/Home'
 import InfoIcon from '@material-ui/icons/Info'
 import HelpIcon from '@material-ui/icons/Help'
 import ContactMailIcon from '@material-ui/icons/ContactMail'
-import PermDataSettingIcon from '@material-ui/icons/PermDataSetting'
+import SettingsApplicationsTwoToneIcon from '@material-ui/icons/SettingsApplicationsTwoTone'
 
 import Tooltip from '@material-ui/core/Tooltip'
 
@@ -50,20 +47,13 @@ export const Main = () => {
                 <Grid item xs={1}>
                   <img className={classes.title} src={powered}/>
                 </Grid>
-
-                <Grid item container xs={6}>
-
-                  <Grid item xs={4}>
-                    &nbsp;
-                  </Grid>
-                  <Grid item xs={2}>
-                    <img className={classes.title} src={appName}/>
-                  </Grid>
+                <Grid item xs={5}>
+                  <img className={classes.title} src={appName}/>
                 </Grid>
 
-                <Grid item container justify="flex-end" xs={5}>
+                <Grid item container justify="flex-end" xs={6}>
 
-                    <Grid item xs={1}>
+                    <Grid item xs={2}>
                       <NavLink to={Local.help} className={classes.link}>
                           <Tooltip title={Help.helpTip}>
                             <HelpIcon />
@@ -71,7 +61,7 @@ export const Main = () => {
                       </NavLink>
                     </Grid>
 
-                    <Grid item xs={1}>
+                    <Grid item xs={2}>
                       <NavLink to={Local.contact} className={classes.link}>
                           <Tooltip title={Help.contactTip}>
                             <ContactMailIcon />
@@ -79,7 +69,7 @@ export const Main = () => {
                       </NavLink>
                     </Grid>
 
-                    <Grid item xs={1}>
+                    <Grid item xs={2}>
                       <NavLink to={Local.about} className={classes.link}>
                           <Tooltip title={Help.aboutTip}>
                             <InfoIcon />
@@ -108,7 +98,7 @@ export const Main = () => {
           <Paper className={classes.footer} square={true}>
             <Grid item container xs={12}>
 
-              <Grid item xs={12}>
+              <Grid item xs={6}>
 
                    <NavLink to={Local.home} className={classes.link}>
                        <Grid item>
@@ -119,6 +109,23 @@ export const Main = () => {
                        <Grid item>
                           <Paper className={classes.footerLinks} elevation={0} square={true}>
                               {Paths.home}
+                          </Paper>
+                       </Grid>
+                   </NavLink>
+
+                </Grid>
+
+                <Grid item xs={6}>
+
+                   <NavLink to={Local.settings} className={classes.link}>
+                       <Grid item>
+                          <Paper className={classes.footerLinks} elevation={0} square={true}>
+                            <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
+                          </Paper>
+                       </Grid>
+                       <Grid item>
+                          <Paper className={classes.footerLinks} elevation={0} square={true}>
+                              {Paths.settings}
                           </Paper>
                        </Grid>
                    </NavLink>

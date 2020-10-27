@@ -8,6 +8,8 @@ class Local {
   static readonly about = '/about'
   static readonly help = '/help'
   static readonly contact = '/contact'
+
+  static readonly settings = '/settings'
 }
 
 class Remote {

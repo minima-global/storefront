@@ -17,6 +17,8 @@ class Paths {
   static readonly about = 'About'
   static readonly help = 'Help'
   static readonly contact = 'Contact'
+
+  static readonly settings = 'Settings'
 }
 
 class GeneralError {
@@ -72,14 +74,22 @@ class Contact {
   static readonly info = `${App.email}`
 }
 
+class Settings {
 
-export { App,
-         Paths,
-         GeneralError,
-         Transaction,
-         Home,
-         About,
-         Faq,
-         Help,
-         Contact
-       }
+  static readonly heading = 'Settings'
+
+  static readonly info = `Storefront settings`
+}
+
+export {
+  App,
+  Paths,
+  GeneralError,
+  Transaction,
+  Home,
+  About,
+  Faq,
+  Help,
+  Contact,
+  Settings
+}
