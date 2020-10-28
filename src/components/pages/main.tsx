@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
 import { Content } from '../content'
+import { ServerConfig } from '../fileServer/serverConfig'
 import { App } from '../../config/strings'
 
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone'
@@ -15,6 +16,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import HelpIcon from '@material-ui/icons/Help'
 import ContactMailIcon from '@material-ui/icons/ContactMail'
 import SettingsApplicationsTwoToneIcon from '@material-ui/icons/SettingsApplicationsTwoTone'
+import StorageTwoToneIcon from '@material-ui/icons/StorageTwoTone'
 
 import Tooltip from '@material-ui/core/Tooltip'
 
@@ -46,12 +48,14 @@ export const Main = () => {
 
                 <Grid item xs={1}>
                   <img className={classes.title} src={powered}/>
+                  <ServerConfig />
                 </Grid>
-                <Grid item xs={5}>
+
+                <Grid item xs={3}>
                   <img className={classes.title} src={appName}/>
                 </Grid>
 
-                <Grid item container justify="flex-end" xs={6}>
+                <Grid item container justify="flex-end" xs={8}>
 
                     <Grid item xs={2}>
                       <NavLink to={Local.help} className={classes.link}>
@@ -76,6 +80,15 @@ export const Main = () => {
                           </Tooltip>
                       </NavLink>
                     </Grid>
+
+                    <Grid item xs={2}>
+                      <NavLink to={Local.server} className={classes.link}>
+                          <Tooltip title={Help.serverTip}>
+                            <StorageTwoToneIcon />
+                          </Tooltip>
+                      </NavLink>
+                    </Grid>
+
                 </Grid>
 
             </Grid>

@@ -4,6 +4,7 @@ import { ThunkDispatch } from 'redux-thunk'
 // Store stuff
 export interface ApplicationState {
   info: InfoPageProps
+  fileServer: ServerProps
   tx: TransactionProps
   data: GetProps
 }
@@ -45,6 +46,18 @@ export interface InfoData {
   contact: InfoProps
 }
 
+// Server props
+
+export interface Server {
+  name: string
+  server: string
+  port: string
+}
+
+export interface ServerProps extends PayloadProps {
+  data: Server
+}
+
 // Get stuff
 export interface Data {
   info: string
@@ -66,6 +79,11 @@ export interface TransactionProps extends PayloadProps {
 }
 
 // Action types
+export const enum ServerActionTypes {
+  SERVER_SUCCESS = '@@ServerActionTypes/SERVER_SUCCESS',
+  SERVER_FAILURE = '@@ServerActionTypes/SERVER_FAILURE'
+}
+
 export const enum TransactionActionTypes {
   TRANSACTION_INIT = '@@TransactionActionTypes/TRANSACTION_INIT',
   TRANSACTION_PENDING = '@@TransactionActionTypes/TRANSACTION_PENDING',

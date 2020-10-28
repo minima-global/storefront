@@ -1,0 +1,103 @@
+openapi: "3.0.0"
+
+info:
+  title: "Minima Storefront"
+  description: "Filesystem configuration for the Minima storefront"
+  version: "0.1.0"
+  contact:
+    email: "steve.huckle@minima.global"
+
+servers:
+    url: "localhost"
+    description: "live development server"
+    variables:
+        port:
+            default: ":8888"
+
+paths:
+    /:
+        get:
+            summary:  "/"
+            description: "Storefront homepage"
+            responses:
+                '200':
+                  description: "Success"
+                  content:
+                    application/json:
+                      schema:
+                        type: "array"
+                        items:
+                          type: "string"
+    /finance:
+        get:
+            summary: "finance"
+            description: "Finance"
+            responses:
+                '200':
+                  description: "Success"
+                  content:
+                    application/json:
+                      schema:
+                        type: "array"
+                        items:
+                          type: "string"
+    /fun:
+        get:
+            summary: "fun"
+            description: "Games and fun"
+            responses:
+                '200':
+                  description: "Success"
+                  content:
+                    application/json:
+                      schema:
+                        type: "array"
+                        items:
+                          type: "string"
+    /gambling:
+        get:
+            summary: "gambling"
+            description: "Gambling apps"
+            responses:
+                '200':
+                  description: "Success"
+                  content:
+                    application/json:
+                      schema:
+                        type: "array"
+                        items:
+                          type: "string"
+    /system:
+        get:
+            summary: "system"
+            description: "System applications"
+            responses:
+                '200':
+                  description: "Success"
+                  content:
+                    application/json:
+                      schema:
+                        type: "string"
+                        items:
+                          type: "string"
+    /tools:
+        get:
+            summary: "tools"
+            description: "Minima tools"
+            parameters:
+                name: "entitiesRef"
+                in: "path"
+                required: true
+                description: "The entities reference"
+                schema:
+                    type : "string"
+                    minimum: 1
+            responses:
+                '200':
+                  description: "Success"
+                  content:
+                    application/json:
+                      schema:
+                        type: "string"
+                        items:
+                          type: "string"

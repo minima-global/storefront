@@ -17,6 +17,7 @@ class Paths {
   static readonly about = 'About'
   static readonly help = 'Help'
   static readonly contact = 'Contact'
+  static readonly server = 'Server'
 
   static readonly settings = 'Settings'
 }
@@ -33,6 +34,11 @@ class Transaction {
     static readonly failure = 'Addition Failed'
 
     static readonly errorGettingData = "Error getting data"
+}
+
+class Server {
+
+  static readonly heading = 'Server Info'
 }
 
 class Home {
@@ -58,6 +64,7 @@ class Help {
   static readonly helpTip = 'Help'
   static readonly contactTip = 'Contact'
   static readonly aboutTip = 'About'
+  static readonly serverTip = 'Server'
 }
 
 class Faq {
@@ -79,6 +86,9 @@ class Settings {
   static readonly heading = 'Settings'
 
   static readonly info = `Storefront settings`
+  static readonly getFile = "Load settings"
+  static readonly fileTip = "Load a settings file"
+  static readonly fileName = "Filename"
 }
 
 export {
@@ -86,6 +96,7 @@ export {
   Paths,
   GeneralError,
   Transaction,
+  Server,
   Home,
   About,
   Faq,

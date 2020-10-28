@@ -1,5 +1,7 @@
 class Config {
 
+  static readonly serverConfig = "/server.json"
+
 }
 
 class Local {
@@ -8,6 +10,7 @@ class Local {
   static readonly about = '/about'
   static readonly help = '/help'
   static readonly contact = '/contact'
+  static readonly server = '/server'
 
   static readonly settings = '/settings'
 }

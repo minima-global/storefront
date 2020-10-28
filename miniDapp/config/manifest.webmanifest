@@ -2,12 +2,10 @@
   "short_name": "Storefront",
   "name": "Storefront",
   "description": "Minima MiniDapp Storefront",
-  "start_url": "./"
-  "icons": [
-    {
+  "start_url": "/",
+  "icons": [{
       "src": "./images/storeFrontIcon.png",
       "type": "image/png",
       "sizes": "240x240"
-    }
-  ]
+    }]
 }
