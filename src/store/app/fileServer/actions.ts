@@ -1,3 +1,6 @@
+// @ts-ignore
+import { Minima } from './minima'
+
 import {
   ApplicationState,
   ActionProps,
@@ -22,15 +25,56 @@ export const getServer = () => {
       .then(data => {
         fetch(data.file)
           .then(response => response.json())
-          .then(data => {
+          .then(thisData => {
           	const serverData: Server = {
-              name: data.name,
-              server: data.server,
-              port: data.port
+              configFile: data.file,
+              info: thisData.info,
+              url: thisData.url,
+              port: thisData.port
             }
 
             dispatch(write({data: serverData})(ServerActionTypes.SERVER_SUCCESS))
         })
+        .catch(error => {
+          console.error(error)
+        })
       })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+}
+
+export const setServer = (serverInfo: Server) => {
+  return async (dispatch: AppDispatch) => {
+
+    //console.log("Setting server: ", serverInfo)
+    const serverFile = {
+      file: serverInfo.configFile
+    }
+    const server = {
+      info: serverInfo.info,
+      url: serverInfo.url,
+      port: serverInfo.port
+    }
+    const fileJSON = JSON.stringify(serverFile)
+    const serverJSON = JSON.stringify(server)
+
+    Minima.file.save("{\"file\": \"" + serverInfo.configFile +"\"}", Config.serverConfig, function(resp: any) {
+
+      if(!resp.success) {
+        console.log(resp)
+      } else {
+
+        Minima.file.save(`${serverJSON}`, serverInfo.configFile, function(resp: any) {
+
+          if(!resp.success) {
+            console.log(resp)
+          }
+
+          dispatch(write({data: serverInfo})(ServerActionTypes.SERVER_SUCCESS))
+        })
+      }
+    })
   }
 }

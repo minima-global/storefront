@@ -47,10 +47,10 @@ export interface InfoData {
 }
 
 // Server props
-
 export interface Server {
-  name: string
-  server: string
+  configFile: string
+  info: string
+  url: string
   port: string
 }
 

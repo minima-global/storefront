@@ -9,10 +9,7 @@ const { TsConfigPathsPlugin } = require('awesome-typescript-loader')
 
 var config = {
   node: {
-    console: true,
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty'
+    console: true
   },
   entry: {
     app: [

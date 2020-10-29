@@ -2,8 +2,9 @@ import { ActionProps, ServerActionTypes, ServerProps } from '../../../types'
 
 const initialState: ServerProps = {
   data: {
-    name: "",
-    server: "",
+    configFile: "",
+    info: "",
+    url: "",
     port: ""
   }
 }

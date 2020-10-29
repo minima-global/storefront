@@ -1,5 +1,5 @@
 {
-  "name": "MiniDapp Storefront",
-  "server": "localhost",
+  "info": "MiniDapp Storefront",
+  "url": "localhost",
   "port": "8888"
 }
