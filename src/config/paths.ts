@@ -1,6 +1,6 @@
 class Config {
 
-  static readonly serverConfig = "/defaultServer.json"
+  static readonly serverConfig = "/serverFile.json"
 }
 
 class Local {

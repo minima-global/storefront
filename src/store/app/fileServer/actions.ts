@@ -7,6 +7,9 @@ import {
   ServerActionTypes
 } from '../../types'
 
+// @ts-ignore
+//import { Minima } from './minima'
+
 import { Config } from '../../../config'
 
 import { write } from '../../actions'
@@ -17,13 +20,17 @@ export const getServer = () => {
     fetch(`${Config.serverConfig}`)
       .then(response => response.json())
       .then(data => {
-      	const serverData: Server = {
-          name: data.name,
-          server: data.server,
-          port: data.port
-        }
+        fetch(data.file)
+          .then(response => response.json())
+          .then(data => {
+          	const serverData: Server = {
+              name: data.name,
+              server: data.server,
+              port: data.port
+            }
 
-        dispatch(write({data: serverData})(ServerActionTypes.SERVER_SUCCESS))
+            dispatch(write({data: serverData})(ServerActionTypes.SERVER_SUCCESS))
+        })
       })
   }
 }
