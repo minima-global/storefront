@@ -16,7 +16,6 @@ import InfoIcon from '@material-ui/icons/Info'
 import HelpIcon from '@material-ui/icons/Help'
 import ContactMailIcon from '@material-ui/icons/ContactMail'
 import SettingsApplicationsTwoToneIcon from '@material-ui/icons/SettingsApplicationsTwoTone'
-import StorageTwoToneIcon from '@material-ui/icons/StorageTwoTone'
 
 import Tooltip from '@material-ui/core/Tooltip'
 
@@ -51,11 +50,11 @@ export const Main = () => {
                   <ServerConfig />
                 </Grid>
 
-                <Grid item xs={3}>
+                <Grid item xs={5}>
                   <img className={classes.title} src={appName}/>
                 </Grid>
 
-                <Grid item container justify="flex-end" xs={8}>
+                <Grid item container justify="flex-end" xs={6}>
 
                     <Grid item xs={2}>
                       <NavLink to={Local.help} className={classes.link}>
@@ -77,14 +76,6 @@ export const Main = () => {
                       <NavLink to={Local.about} className={classes.link}>
                           <Tooltip title={Help.aboutTip}>
                             <InfoIcon />
-                          </Tooltip>
-                      </NavLink>
-                    </Grid>
-
-                    <Grid item xs={2}>
-                      <NavLink to={Local.server} className={classes.link}>
-                          <Tooltip title={Help.serverTip}>
-                            <StorageTwoToneIcon />
                           </Tooltip>
                       </NavLink>
                     </Grid>
@@ -130,7 +121,7 @@ export const Main = () => {
 
                 <Grid item xs={6}>
 
-                   <NavLink to={Local.settings} className={classes.link}>
+                   <NavLink to={Local.serverSettings} className={classes.link}>
                        <Grid item>
                           <Paper className={classes.footerLinks} elevation={0} square={true}>
                             <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
@@ -138,7 +129,7 @@ export const Main = () => {
                        </Grid>
                        <Grid item>
                           <Paper className={classes.footerLinks} elevation={0} square={true}>
-                              {Paths.settings}
+                              {Paths.serverSettings}
                           </Paper>
                        </Grid>
                    </NavLink>

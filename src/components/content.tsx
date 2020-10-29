@@ -3,8 +3,8 @@ import { Switch, Route } from 'react-router-dom'
 
 import { InfoTypes } from '../store/types'
 
-import { Home, Info, ServerInfo } from '../components/pages'
-import { Settings } from '../containers/pages'
+import { Home, Info } from '../components/pages'
+import { ServerSettings } from '../containers/pages'
 
 import { Paths, Local } from '../config'
 
@@ -17,9 +17,8 @@ export const Content = () => {
         <Route name={Paths.help} exact path={Local.help} render={() => <Info type={InfoTypes.HELP}/>} />
         <Route name={Paths.contact} exact path={Local.contact} render={() => <Info type={InfoTypes.CONTACT}/>} />
         <Route name={Paths.about} exact path={Local.about} render={() => <Info type={InfoTypes.ABOUT}/>} />
-        <Route name={Paths.server} exact path={Local.server} render= {() => <ServerInfo />} />
 
-        <Route name={Paths.settings} path={Local.settings} render= {() => <Settings />} />
+        <Route name={Paths.serverSettings} path={Local.serverSettings} render= {() => <ServerSettings />} />
         <Route name={Paths.home} path={Local.home} render= {() => <Home />} />
 
       </Switch>

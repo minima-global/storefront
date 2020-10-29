@@ -1,7 +1,6 @@
 class Config {
 
-  static readonly serverConfig = "/server.json"
-
+  static readonly serverConfig = "/defaultServer.json"
 }
 
 class Local {
@@ -12,7 +11,7 @@ class Local {
   static readonly contact = '/contact'
   static readonly server = '/server'
 
-  static readonly settings = '/settings'
+  static readonly serverSettings = '/settings'
 }
 
 class Remote {

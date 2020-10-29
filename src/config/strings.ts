@@ -17,9 +17,8 @@ class Paths {
   static readonly about = 'About'
   static readonly help = 'Help'
   static readonly contact = 'Contact'
-  static readonly server = 'Server'
 
-  static readonly settings = 'Settings'
+  static readonly serverSettings = 'Minidapp Server'
 }
 
 class GeneralError {
@@ -34,11 +33,6 @@ class Transaction {
     static readonly failure = 'Addition Failed'
 
     static readonly errorGettingData = "Error getting data"
-}
-
-class Server {
-
-  static readonly heading = 'Server Info'
 }
 
 class Home {
@@ -83,11 +77,12 @@ class Contact {
 
 class Settings {
 
-  static readonly heading = 'Settings'
+  static readonly heading = 'Server Settings'
+  static readonly currentSettings = 'Current Settings'
 
   static readonly info = `Storefront settings`
-  static readonly getFile = "Load settings"
-  static readonly fileTip = "Load a settings file"
+  static readonly getFile = "Load alternative settings"
+  static readonly fileTip = "Load a server settings file"
   static readonly fileName = "Filename"
 }
 
@@ -96,7 +91,6 @@ export {
   Paths,
   GeneralError,
   Transaction,
-  Server,
   Home,
   About,
   Faq,
