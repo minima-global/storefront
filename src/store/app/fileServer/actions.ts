@@ -17,6 +17,14 @@ import { Config } from '../../../config'
 
 import { write } from '../../actions'
 
+export const init = () => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+      Minima.init()
+      //Minima.logging = true
+  }
+}
+
 export const getServer = () => {
   return async (dispatch: AppDispatch) => {
 
@@ -60,7 +68,7 @@ export const setServer = (serverInfo: Server) => {
     const fileJSON = JSON.stringify(serverFile)
     const serverJSON = JSON.stringify(server)
 
-    Minima.file.save("{\"file\": \"" + serverInfo.configFile +"\"}", Config.serverConfig, function(resp: any) {
+    Minima.file.save(`${fileJSON}`, Config.serverConfig, function(resp: any) {
 
       if(!resp.success) {
         console.log(resp)
