@@ -81,8 +81,9 @@ export const getMiniDapps = () => {
 
     const url = fileServer.url + ":" + fileServer.port + "/"
 
+    //mode: 'no-cors',
     fetch(url, {
-      mode: 'no-cors',
+      mode: 'same-origin',
       headers: {
         'Accept': 'application/json',
       },
