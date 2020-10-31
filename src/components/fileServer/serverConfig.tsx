@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { init, getServer } from '../../store/app/fileServer/actions'
+import { getServer } from '../../store/app/fileServer/actions'
+import { init } from '../../store/app/blockchain/actions'
 
 import { ApplicationState, AppDispatch } from '../../store/types'
 

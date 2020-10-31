@@ -5,14 +5,12 @@ import { ApplicationState, ActionProps } from './types'
 
 import { reducer as infoReducer } from './app/reducers/info/reducer'
 import { reducer as serverReducer } from './app/reducers/server/reducer'
-import { reducer as txReducer } from './app/reducers/tx/reducer'
-import { reducer as dataReducer } from './app/reducers/get/reducer'
+import { reducer as miniDappsReducer } from './app/reducers/miniDapps/reducer'
 
 export const rootReducer: Reducer<ApplicationState, ActionProps> = combineReducers<ApplicationState, ActionProps>({
   info: infoReducer,
   fileServer: serverReducer,
-  tx: txReducer,
-  data: dataReducer
+  miniDapps: miniDappsReducer
 })
 
 export function configureStore(

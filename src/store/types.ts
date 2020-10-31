@@ -5,8 +5,7 @@ import { ThunkDispatch } from 'redux-thunk'
 export interface ApplicationState {
   info: InfoPageProps
   fileServer: ServerProps
-  tx: TransactionProps
-  data: GetProps
+  miniDapps: MiniDappProps
 }
 
 export interface PayloadProps {
@@ -58,24 +57,16 @@ export interface ServerProps extends PayloadProps {
   data: Server
 }
 
-// Get stuff
-export interface Data {
-  info: string
+// MiniDapp stuff
+export interface MiniData {
+  dir: string
+  miniDapp: string
+  conf: string
+  icon: string
 }
 
-export interface GetProps extends PayloadProps {
-    data: Array<Data>
-}
-
-//Tx stuff
-export interface TxData {
-  txId: string
-  summary: string
-  time: string
-}
-
-export interface TransactionProps extends PayloadProps {
-  data: TxData
+export interface MiniDappProps extends PayloadProps {
+    data: Array<MiniData>
 }
 
 // Action types
@@ -84,15 +75,7 @@ export const enum ServerActionTypes {
   SERVER_FAILURE = '@@ServerActionTypes/SERVER_FAILURE'
 }
 
-export const enum TransactionActionTypes {
-  TRANSACTION_INIT = '@@TransactionActionTypes/TRANSACTION_INIT',
-  TRANSACTION_PENDING = '@@TransactionActionTypes/TRANSACTION_PENDING',
-  TRANSACTION_SUCCESS = '@@TransactionActionTypes/TRANSACTION_SUCCESS',
-  TRANSACTION_FAILURE = '@@TransactionActionTypes/TRANSACTION_FAILURE'
-}
-
-export const enum GetActionTypes {
-  GET_INIT = '@@GetActionTypes/GET_INIT',
-  GET_SUCCESS = '@@GetActionTypes/GET_SUCCESS',
-  GET_FAILURE = '@@GetActionTypes/GET_FAILURE'
+export const enum MiniDappActionTypes {
+  MINIDAPP_SUCCESS = '@@MiniDappActionTypes/MINIDAPP_SUCCESS',
+  MINIDAPP_FAILURE = '@@MiniDappActionTypes/MINIDAPP_FAILURE'
 }

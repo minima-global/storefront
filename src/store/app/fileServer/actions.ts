@@ -1,29 +1,15 @@
 // @ts-ignore
-import { Minima } from './minima'
+import { Minima } from '../minima'
 
 import {
-  ApplicationState,
-  ActionProps,
-  PayloadProps,
   AppDispatch,
   Server,
   ServerActionTypes
 } from '../../types'
 
-// @ts-ignore
-//import { Minima } from './minima'
-
 import { Config } from '../../../config'
 
 import { write } from '../../actions'
-
-export const init = () => {
-  return async (dispatch: AppDispatch, getState: Function) => {
-
-      Minima.init()
-      //Minima.logging = true
-  }
-}
 
 export const getServer = () => {
   return async (dispatch: AppDispatch) => {
@@ -84,5 +70,12 @@ export const setServer = (serverInfo: Server) => {
         })
       }
     })
+  }
+}
+
+export const getMiniDapps = () => {
+  return async (dispatch: AppDispatch) => {
+
+      //dispatch(write({data: serverInfo})(MiniDappActionTypes.MINIDAPP_SUCCESS))
   }
 }
