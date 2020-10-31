@@ -7,7 +7,7 @@ import {
   ServerActionTypes
 } from '../../types'
 
-import { Config } from '../../../config'
+import { Config, Remote } from '../../../config'
 
 import { write } from '../../actions'
 
@@ -74,7 +74,37 @@ export const setServer = (serverInfo: Server) => {
 }
 
 export const getMiniDapps = () => {
-  return async (dispatch: AppDispatch) => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    const state = getState()
+    const fileServer = state.fileServer.data
+
+    const url = fileServer.url + ":" + fileServer.port + "/"
+
+    fetch(url, {
+      mode: 'no-cors',
+      headers: {
+        'Accept': 'application/json',
+      },
+    })
+    .then(response => {
+      console.log(response)
+      if (!response.ok) {
+         const statusText = response.statusText
+         throw new Error(response.statusText)
+      }
+      return response.json()
+    })
+    .then(data => {
+
+        console.log(data)
+        //dispatch(write({data: serverInfo})(MiniDappActionTypes.MINIDAPP_SUCCESS))
+    })
+   .catch(error => {
+      console.log(error)
+      //console.log(`${Transaction.errorGettingData}: ${error.message} at ${dateText}`)
+      //dispatch(write({data: serverInfo})(MiniDappActionTypes.MINIDAPP_FAILURE))
+   })
 
       //dispatch(write({data: serverInfo})(MiniDappActionTypes.MINIDAPP_SUCCESS))
   }
