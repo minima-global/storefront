@@ -113,7 +113,7 @@ export const getDapps = (data: []) => {
             if (thisDappData.Entries) {
 
               let newDappData: MiniData = {
-                dir: dappData.FullPath,
+                dir: url,
                 miniDapp: "",
                 conf: "",
                 icon: ""
@@ -124,11 +124,11 @@ export const getDapps = (data: []) => {
                 const thisData = thisDappData.Entries[j] as ServerDappsData
 
                 if (/conf$/.test(thisData.FullPath)) {
-                  newDappData.conf = thisData.FullPath
+                  newDappData.conf = fileServer.url + thisData.FullPath
                 } else if (/png$/.test(thisData.FullPath)) {
-                  newDappData.icon = thisData.FullPath
+                  newDappData.icon = fileServer.url + thisData.FullPath
                 } else if (/minidapp$/.test(thisData.FullPath)) {
-                  newDappData.miniDapp = thisData.FullPath
+                  newDappData.miniDapp = fileServer.url + thisData.FullPath
                 } else {
                   throw new Error("Unknown entry " + thisData.FullPath)
                 }
@@ -136,7 +136,10 @@ export const getDapps = (data: []) => {
 
               dappInfo.push(newDappData)
               //console.log("This dapp: ", newDappData)
-            }
+            }            
+
+            //console.log("dapps: ", dappInfo)
+            dispatch(write({data: dappInfo})(MiniDappActionTypes.MINIDAPP_SUCCESS))
 
             //dispatch(write({data: serverInfo})(MiniDappActionTypes.MINIDAPP_SUCCESS))
         })
@@ -147,9 +150,6 @@ export const getDapps = (data: []) => {
       }
 
     }
-
-    console.log("dapps: ", dappInfo)
-    dispatch(write({data: dappInfo})(MiniDappActionTypes.MINIDAPP_SUCCESS))
 
   }
 }

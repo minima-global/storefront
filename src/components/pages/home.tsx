@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import Markdown from 'react-markdown'
+//import Markdown from 'react-markdown'
+import { SimpleArrayRenderer } from '../simpleRenderer'
 import { Home as HomeConfig } from '../../config'
 
 import { ApplicationState, AppDispatch, ServerProps, MiniDappProps, MiniData } from '../../store'
@@ -21,44 +22,75 @@ type Props =  HomeStateProps & HomeDispatchProps
 const get = (props: Props) => {
 
   let isFirstRun = useRef(true)
-  const [dapps, setDapps] = useState([])
+  const [dapps, setDapps] = useState([] as any[])
   //const themeClasses = themeStyles()
 
   useEffect(() => {
 
-      /*if ((props.serverData.data.url) && (!dapps.length)) {
+    //console.log("minidapps!: ", props.miniDapps)
 
-          console.log("getting dapps")
-          props.getDapps()
+    if ( props.miniDapps.data ) {
 
-      } else {*/
+        if (props.miniDapps.data.length > 0) {
 
-        console.log("minidapps!: ", props.miniDapps)
+          let dappInfo: any[] = []
 
-        let dappInfo: any[] = []
+          //console.log("got how many?: ", props.miniDapps.data.length)
 
-      //}
+          for ( var i = 0; i < props.miniDapps.data.length; i++) {
 
-            /*for ( var i = 0; i < props.files.data.length; i++) {
+            console.log("icon: ", props.miniDapps.data[i].icon)
 
-                  const renderHTML = (
-                      <React.Fragment key={props.files.data[i].hash}>
-                      <p>
-                          {Files.hash}: {props.files.data[i].hash}<br/>{Files.fileName}: {props.files.data[i].name}<br/>
-                          {Files.block}: {props.files.data[i].block}
-                      </p>
-                      </React.Fragment>
-                  )
-                  fileInfo.push(renderHTML)
-              }
-              setHashes(fileInfo)*/
+            const iconURL = props.miniDapps.data[i].icon
+            const dirURL = props.miniDapps.data[i].dir
 
-  //}, [props.serverData, props.miniDapps])
+            fetch(iconURL)
+              .then( response => response.blob() )
+              .then( blob => {
+
+                 var reader = new FileReader();
+                 reader.readAsDataURL(blob);
+                 reader.onloadend = function() {
+                     const base64data: string = reader.result as string
+                     const strippedData = base64data.replace(/^.*,/,"")
+                     const renderString = "data:image/png;base64," + strippedData
+                     console.log(renderString)
+                     //console.log(base64data)
+                     const renderHTML = (
+                         <React.Fragment key={dirURL}>
+                         <p>
+                          <img src={renderString}/>
+                         </p>
+                         </React.Fragment>
+                     )
+                     dappInfo.push(renderHTML)
+                 }
+                 /*
+                const renderHTML = (
+                    <React.Fragment key={dirURL}>
+                    <p>
+                        <img src={img}/>
+                    </p>
+                    </React.Fragment>
+                )
+                dappInfo.push(renderHTML)*/
+              })
+          }
+
+          //console.log(dappInfo)
+          setDapps(dappInfo)
+        }
+    }
+
   }, [props.miniDapps])
 
   return (
     <>
-        <Markdown escapeHtml={false} source={HomeConfig.info} />
+      <h2>{HomeConfig.heading}</h2>
+      <hr />
+      <p>
+        <SimpleArrayRenderer data={dapps} />
+      </p>
     </>
   )
 }
