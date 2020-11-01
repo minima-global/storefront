@@ -136,10 +136,10 @@ export const getDapps = (data: []) => {
 
               dappInfo.push(newDappData)
               //console.log("This dapp: ", newDappData)
-            }            
+            }
 
             //console.log("dapps: ", dappInfo)
-            dispatch(write({data: dappInfo})(MiniDappActionTypes.MINIDAPP_SUCCESS))
+            //dispatch(write({data: dappInfo})(MiniDappActionTypes.MINIDAPP_SUCCESS))
 
             //dispatch(write({data: serverInfo})(MiniDappActionTypes.MINIDAPP_SUCCESS))
         })
@@ -150,6 +150,8 @@ export const getDapps = (data: []) => {
       }
 
     }
+
+    dispatch(write({data: dappInfo})(MiniDappActionTypes.MINIDAPP_SUCCESS))
 
   }
 }

@@ -44,36 +44,26 @@ const get = (props: Props) => {
             const iconURL = props.miniDapps.data[i].icon
             const dirURL = props.miniDapps.data[i].dir
 
-            fetch(iconURL)
-              .then( response => response.blob() )
-              .then( blob => {
+            fetch(iconURL, {
+              method: 'GET'
+            })
+            .then( response => response.blob() )
+            .then( blob => {
 
-                 var reader = new FileReader();
-                 reader.readAsDataURL(blob);
-                 reader.onloadend = function() {
-                     const base64data: string = reader.result as string
-                     const strippedData = base64data.replace(/^.*,/,"")
-                     const renderString = "data:image/png;base64," + strippedData
-                     console.log(renderString)
-                     //console.log(base64data)
-                     const renderHTML = (
-                         <React.Fragment key={dirURL}>
-                         <p>
-                          <img src={renderString}/>
-                         </p>
-                         </React.Fragment>
-                     )
-                     dappInfo.push(renderHTML)
-                 }
-                 /*
-                const renderHTML = (
-                    <React.Fragment key={dirURL}>
-                    <p>
-                        <img src={img}/>
-                    </p>
-                    </React.Fragment>
-                )
-                dappInfo.push(renderHTML)*/
+               var reader = new FileReader();
+               reader.readAsDataURL(blob);
+               reader.onloadend = function() {
+                   const base64data: string = reader.result as string
+                   //console.log(base64data)
+                   const renderHTML = (
+                     <React.Fragment key={dirURL}>
+                     <p>
+                      <a href={base64data}></a>
+                     </p>
+                     </React.Fragment>
+                   )
+                   dappInfo.push(renderHTML)
+               }
               })
           }
 
