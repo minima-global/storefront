@@ -67,8 +67,7 @@ const settings = (props: Props) => {
               const thisServerJson: Server = {
                 configFile: files[0].name,
                 info: serverJSON.info,
-                url: serverJSON.url,
-                port: serverJSON.port
+                url: serverJSON.url
               }
               props.setConfig(thisServerJson)
             } else {

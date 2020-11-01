@@ -23,8 +23,7 @@ export const getServer = () => {
           	const serverData: Server = {
               configFile: data.file,
               info: thisData.info,
-              url: thisData.url,
-              port: thisData.port
+              url: thisData.url
             }
 
             dispatch(write({data: serverData})(ServerActionTypes.SERVER_SUCCESS))
@@ -48,8 +47,7 @@ export const setServer = (serverInfo: Server) => {
     }
     const server = {
       info: serverInfo.info,
-      url: serverInfo.url,
-      port: serverInfo.port
+      url: serverInfo.url
     }
     const fileJSON = JSON.stringify(serverFile)
     const serverJSON = JSON.stringify(server)
@@ -79,11 +77,8 @@ export const getMiniDapps = () => {
     const state = getState()
     const fileServer = state.fileServer.data
 
-    const url = fileServer.url + ":" + fileServer.port + "/"
-
     //mode: 'no-cors',
-    fetch(url, {
-      mode: 'same-origin',
+    fetch(fileServer.url, {
       headers: {
         'Accept': 'application/json',
       },

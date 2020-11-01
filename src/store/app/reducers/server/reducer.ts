@@ -4,8 +4,7 @@ const initialState: ServerProps = {
   data: {
     configFile: "",
     info: "",
-    url: "",
-    port: ""
+    url: ""
   }
 }
 

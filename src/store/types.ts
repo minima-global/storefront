@@ -50,7 +50,6 @@ export interface Server {
   configFile: string
   info: string
   url: string
-  port: string
 }
 
 export interface ServerProps extends PayloadProps {
