@@ -1,37 +1,70 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { getServer } from '../../store/app/fileServer/actions'
+import { getServer, getMiniDapps } from '../../store/app/fileServer/actions'
 import { init } from '../../store/app/blockchain/actions'
 
-import { ApplicationState, AppDispatch } from '../../store/types'
+import { ApplicationState, AppDispatch, ServerProps } from '../../store/types'
+
+interface ServerInitStateProps {
+  serverData: ServerProps
+}
 
 interface ServerInitDispatchProps {
     init: () => void
     getConfig: () => void
+    getDapps: () => void
 }
 
-const defaultProps: ServerInitDispatchProps = {
+/*const defaultProps: ServerInitDispatchProps = {
     init: () => {},
-    getConfig: () => {}
+    getConfig: () => {},
+    getDapps: () => {}
+}*/
+
+type Props =  ServerInitStateProps & ServerInitDispatchProps
+
+const fileServer = ( props: Props ) => {
+
+  let isFirstRun = useRef(true)
+
+  useEffect(() => {
+
+      if ( isFirstRun.current ) {
+
+        isFirstRun.current = false
+        props.init()
+        props.getConfig()
+
+      } else {
+
+        //only call this once we have server info from above
+        //console.log("server info: ", props.serverData)
+        props.getDapps()
+      }
+
+  }, [props.serverData])
+
+  return null
 }
 
-const fileServer = ( props: ServerInitDispatchProps = defaultProps ) => {
+const mapStateToProps = (state: ApplicationState): ServerInitStateProps => {
 
-    props.init()
-    props.getConfig()
-
-    return null
- }
-
- const mapDispatchToProps = (dispatch: AppDispatch): ServerInitDispatchProps => {
+   const info = state.fileServer as ServerProps
    return {
-     init: () => dispatch(init()),
-     getConfig: () => dispatch(getServer())
+     serverData: info
    }
- }
+}
 
- export const ServerConfig = connect<{}, ServerInitDispatchProps, {}, ApplicationState>(
-   null,
+const mapDispatchToProps = (dispatch: AppDispatch): ServerInitDispatchProps => {
+ return {
+   init: () => dispatch(init()),
+   getConfig: () => dispatch(getServer()),
+   getDapps: () => dispatch(getMiniDapps())
+ }
+}
+
+ export const ServerConfig = connect<ServerInitStateProps, ServerInitDispatchProps, {}, ApplicationState>(
+   mapStateToProps,
    mapDispatchToProps
  )(fileServer)

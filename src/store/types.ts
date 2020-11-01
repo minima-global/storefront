@@ -65,7 +65,16 @@ export interface MiniData {
 }
 
 export interface MiniDappProps extends PayloadProps {
-    data: Array<MiniData>
+  data: Array<MiniData>
+}
+
+export interface ServerDappData {
+  Path: string
+  Entries: []
+}
+
+export interface ServerDappsData {
+  FullPath: string
 }
 
 // Action types
