@@ -17,8 +17,9 @@ export const init = () => {
   }
 }
 
-
 export const installDapp = () => {
   return async (dispatch: AppDispatch) => {
+
+    console.log("install!")
   }
 }

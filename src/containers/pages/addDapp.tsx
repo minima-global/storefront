@@ -53,6 +53,7 @@ const dapp = (props: Props) => {
 
           const iconURL = props.miniDapps.data[i].icon
           const confURL = props.miniDapps.data[i].conf
+          const miniDappURL = props.miniDapps.data[i].miniDapp
 
           const response = await fetch(confURL)
           const text = await response.text()
@@ -68,12 +69,36 @@ const dapp = (props: Props) => {
             <React.Fragment key={thisDir}>
               <Paper className={classes.home} square={true}>
                 <Grid container>
-                  <Grid item justify="center" alignItems="center" xs={6}>
+                  <Grid item xs={3}>
+                    &nbsp;
+                  </Grid>
+                  <Grid item justify="center" alignItems="center" xs={2}>
                     <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
                   </Grid>
-                  <Grid item justify="center" alignItems="center" xs={6}>
+                  <Grid item justify="center" alignItems="center" xs={4}>
                    <b>{confJson.name}</b> - {confJson.description}<br/>
                    <i>{confJson.category}</i>
+                  </Grid>
+                  <Grid item xs={3}>
+                    &nbsp;
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={3}>
+                    &nbsp;
+                  </Grid>
+                  <Grid item xs={3}>
+                    <form method="get" action={miniDappURL}>
+                       <button type="submit">{AddDappConfig.download}</button>
+                    </form>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <button onClick={() => props.installDapp()}>
+                      {AddDappConfig.install}
+                    </button>
+                  </Grid>
+                  <Grid item xs={3}>
+                    &nbsp;
                   </Grid>
                 </Grid>
               </Paper>
