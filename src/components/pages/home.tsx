@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 
 import Grid from '@material-ui/core/Grid'
@@ -6,7 +7,7 @@ import Paper from '@material-ui/core/Paper'
 
 //import Markdown from 'react-markdown'
 import { SimpleArrayRenderer } from '../simpleRenderer'
-import { Home as HomeConfig, Misc } from '../../config'
+import { Home as HomeConfig, Misc, Local } from '../../config'
 
 import { themeStyles } from '../../styles'
 
@@ -21,22 +22,23 @@ import {
 import { getMiniDapps } from '../../store/app/fileServer/actions'
 
 interface HomeStateProps {
-  //serverData: ServerProps
   miniDapps: MiniDappProps
 }
 
+/*
 interface HomeDispatchProps {
   getDapps: () => void
-}
+}*/
 
-type Props =  HomeStateProps & HomeDispatchProps
+type Props = HomeStateProps
 
 const get = (props: Props) => {
 
-  let isFirstRun = useRef(true)
   const [dapps, setDapps] = useState([] as any[])
 
   const classes = themeStyles()
+
+  let history = useHistory()
 
   const setDappInfo = async () => {
 
@@ -53,6 +55,11 @@ const get = (props: Props) => {
         const dirURL = props.miniDapps.data[i].dir
         const confURL = props.miniDapps.data[i].conf
 
+        const indexOf = dirURL.indexOf("/0x")
+        const key = dirURL.substr(indexOf + 1)
+
+        const pathAddDapp = `${Local.addDapp}/${key}`
+
         const response = await fetch(confURL)
         const text = await response.text()
         const thisConfJSON = JSON.parse(text)
@@ -64,12 +71,14 @@ const get = (props: Props) => {
         }
 
         const renderHTML = (
-          <React.Fragment key={dirURL}>
-            <Grid item justify="flex-start" alignItems="flex-start" xs={6} sm={2}>
-              <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
+          <React.Fragment key={key}>
+            <Grid item justify="center" alignItems="center" xs={6} sm={2}>
+              <button onClick={() => history.push(`${pathAddDapp}`)}>
+                <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
+               </button>
             </Grid>
-            <Grid item justify="flex-start" alignItems="center" xs={6} sm={4}>
-             {confJson.name} - {confJson.description}<br/>
+            <Grid item justify="center" alignItems="center" xs={6} sm={4}>
+             <b>{confJson.name}</b> - {confJson.description}<br/>
              <i>{confJson.category}</i>
             </Grid>
           </React.Fragment>
@@ -120,13 +129,13 @@ const mapStateToProps = (state: ApplicationState): HomeStateProps => {
     }
 }
 
+/*
 const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
  return {
    getDapps: () => dispatch(getMiniDapps())
  }
-}
+}*/
 
-export const Home = connect<HomeStateProps, HomeDispatchProps, {}, ApplicationState>(
-  mapStateToProps,
-  mapDispatchToProps
+export const Home = connect<HomeStateProps, {}, {}, ApplicationState>(
+  mapStateToProps
 )(get)

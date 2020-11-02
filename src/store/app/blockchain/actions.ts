@@ -16,3 +16,9 @@ export const init = () => {
       //Minima.logging = true
   }
 }
+
+
+export const installDapp = () => {
+  return async (dispatch: AppDispatch) => {
+  }
+}

@@ -19,6 +19,7 @@ class Paths {
   static readonly contact = 'Contact'
 
   static readonly serverSettings = 'Minidapp Server'
+  static readonly addDapp = 'Add MiniDapp'
 }
 
 class GeneralError {
@@ -40,6 +41,11 @@ class Home {
   static readonly heading = 'Home'
 
   static readonly info = `<h3>${App.appName}</h3>`
+}
+
+class AddDapp {
+
+  static readonly heading = 'Add MiniDapp'
 }
 
 class About {
@@ -92,6 +98,7 @@ export {
   GeneralError,
   Transaction,
   Home,
+  AddDapp,
   About,
   Faq,
   Help,

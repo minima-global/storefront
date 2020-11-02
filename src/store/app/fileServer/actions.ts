@@ -91,7 +91,7 @@ export const getDapps = (data: []) => {
       if ( ( dappData.FullPath ) && (/0x/.test(dappData.FullPath))) {
 
         const url = fileServer.url + dappData.FullPath
-        console.log("getting dapp: ", url)
+        //console.log("getting dapp: ", url)
 
         fetch(url, {
           headers: {
