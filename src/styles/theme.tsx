@@ -197,6 +197,12 @@ const themeStyles = makeStyles({
     bottom: '120px',
     top: '75px'
   },
+  home: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(0),
+    color: theme.palette.text.primary,
+    background: 'linear-gradient(#929396, #929396)'
+  },
   caption: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),

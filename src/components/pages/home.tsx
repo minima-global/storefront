@@ -1,11 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+
 //import Markdown from 'react-markdown'
 import { SimpleArrayRenderer } from '../simpleRenderer'
-import { Home as HomeConfig } from '../../config'
+import { Home as HomeConfig, Misc } from '../../config'
 
-import { ApplicationState, AppDispatch, ServerProps, MiniDappProps, MiniData } from '../../store'
+import { themeStyles } from '../../styles'
+
+import {
+  ApplicationState,
+  AppDispatch,
+  ServerProps,
+  MiniDappProps,
+  MiniData
+} from '../../store'
+
 import { getMiniDapps } from '../../store/app/fileServer/actions'
 
 interface HomeStateProps {
@@ -23,53 +35,61 @@ const get = (props: Props) => {
 
   let isFirstRun = useRef(true)
   const [dapps, setDapps] = useState([] as any[])
-  //const themeClasses = themeStyles()
+
+  const classes = themeStyles()
+
+  const setDappInfo = async () => {
+
+    if (props.miniDapps.data.length > 0) {
+
+        let dappInfo: any[] = []
+
+        for ( var i = 0; i < props.miniDapps.data.length; i++) {
+
+          //console.log("icon: ", props.miniDapps.data[i].icon)
+
+          const iconURL = props.miniDapps.data[i].icon
+          const dirURL = props.miniDapps.data[i].dir
+          const confURL = props.miniDapps.data[i].conf
+
+          const response = await fetch(confURL)
+          const text = await response.text()
+          const thisConfJSON = JSON.parse(text)
+          //console.log("JSON: ", thisConfJSON)
+          const confJson = {
+            name: thisConfJSON.name,
+            description: thisConfJSON.description,
+            category: thisConfJSON.category
+          }
+
+          const renderHTML = (
+            <React.Fragment key={dirURL}>
+              <Paper className={classes.home} square={true}>
+                <Grid item container xs={12}>
+                  <Grid item xs={4}>
+                    <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
+                  </Grid>
+                  <Grid item xs={8}>
+                   {confJson.name} - {confJson.description}<br/>
+                   {confJson.category}
+                  </Grid>
+                </Grid>
+              </Paper>
+            </React.Fragment>
+          )
+          dappInfo.push(renderHTML)
+        }
+
+        //console.log(dappInfo)
+        setDapps(dappInfo)
+      }
+  }
 
   useEffect(() => {
 
-    //console.log("minidapps!: ", props.miniDapps)
-
     if ( props.miniDapps.data ) {
 
-        if (props.miniDapps.data.length > 0) {
-
-          let dappInfo: any[] = []
-
-          //console.log("got how many?: ", props.miniDapps.data.length)
-
-          for ( var i = 0; i < props.miniDapps.data.length; i++) {
-
-            console.log("icon: ", props.miniDapps.data[i].icon)
-
-            const iconURL = props.miniDapps.data[i].icon
-            const dirURL = props.miniDapps.data[i].dir
-
-            fetch(iconURL, {
-              method: 'GET'
-            })
-            .then( response => response.blob() )
-            .then( blob => {
-
-               var reader = new FileReader();
-               reader.readAsDataURL(blob);
-               reader.onloadend = function() {
-                   const base64data: string = reader.result as string
-                   //console.log(base64data)
-                   const renderHTML = (
-                     <React.Fragment key={dirURL}>
-                     <p>
-                      <a href={base64data}></a>
-                     </p>
-                     </React.Fragment>
-                   )
-                   dappInfo.push(renderHTML)
-               }
-              })
-          }
-
-          //console.log(dappInfo)
-          setDapps(dappInfo)
-        }
+        setDappInfo()
     }
 
   }, [props.miniDapps])

@@ -40,12 +40,10 @@ const settings = (props: Props) => {
   const serverInfo = get(props.serverData.data)
 
   const checkFile = (fileText: string): boolean => {
+
     let contains = /"info":/.test(fileText)
     if (contains) {
       contains = /"url":/.test(fileText)
-      if (contains) {
-        contains = /"port":/.test(fileText)
-      }
     }
 
     return contains
