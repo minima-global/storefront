@@ -83,21 +83,16 @@ const dapp = (props: Props) => {
                     &nbsp;
                   </Grid>
                 </Grid>
-                <Grid container>
-                  <Grid item xs={3}>
+                <Grid item container xs={12}>
+                  <Grid item xs={5}>
                     &nbsp;
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item justify="center" alignItems="center" xs={2}>
                     <form method="get" action={miniDappURL}>
                        <button type="submit">{AddDappConfig.download}</button>
                     </form>
                   </Grid>
-                  <Grid item xs={3}>
-                    <button onClick={() => props.installDapp()}>
-                      {AddDappConfig.install}
-                    </button>
-                  </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={5}>
                     &nbsp;
                   </Grid>
                 </Grid>
