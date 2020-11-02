@@ -42,47 +42,54 @@ const get = (props: Props) => {
 
     if (props.miniDapps.data.length > 0) {
 
-        let dappInfo: any[] = []
+      let dappInfo: any[] = []
+      let content: any[] = []
 
-        for ( var i = 0; i < props.miniDapps.data.length; i++) {
+      for ( var i = 0; i < props.miniDapps.data.length; i++) {
 
-          //console.log("icon: ", props.miniDapps.data[i].icon)
+        //console.log("icon: ", props.miniDapps.data[i].icon)
 
-          const iconURL = props.miniDapps.data[i].icon
-          const dirURL = props.miniDapps.data[i].dir
-          const confURL = props.miniDapps.data[i].conf
+        const iconURL = props.miniDapps.data[i].icon
+        const dirURL = props.miniDapps.data[i].dir
+        const confURL = props.miniDapps.data[i].conf
 
-          const response = await fetch(confURL)
-          const text = await response.text()
-          const thisConfJSON = JSON.parse(text)
-          //console.log("JSON: ", thisConfJSON)
-          const confJson = {
-            name: thisConfJSON.name,
-            description: thisConfJSON.description,
-            category: thisConfJSON.category
-          }
-
-          const renderHTML = (
-            <React.Fragment key={dirURL}>
-              <Paper className={classes.home} square={true}>
-                <Grid item container xs={12}>
-                  <Grid item xs={4}>
-                    <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
-                  </Grid>
-                  <Grid item xs={8}>
-                   {confJson.name} - {confJson.description}<br/>
-                   {confJson.category}
-                  </Grid>
-                </Grid>
-              </Paper>
-            </React.Fragment>
-          )
-          dappInfo.push(renderHTML)
+        const response = await fetch(confURL)
+        const text = await response.text()
+        const thisConfJSON = JSON.parse(text)
+        //console.log("JSON: ", thisConfJSON)
+        const confJson = {
+          name: thisConfJSON.name,
+          description: thisConfJSON.description,
+          category: thisConfJSON.category
         }
 
-        //console.log(dappInfo)
-        setDapps(dappInfo)
+        const renderHTML = (
+          <React.Fragment key={dirURL}>
+            <Grid item justify="flex-start" alignItems="flex-start" xs={6} sm={2}>
+              <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
+            </Grid>
+            <Grid item justify="flex-start" alignItems="center" xs={6} sm={4}>
+             {confJson.name} - {confJson.description}<br/>
+             <i>{confJson.category}</i>
+            </Grid>
+          </React.Fragment>
+        )
+        content.push(renderHTML)
       }
+
+      const dapps = (
+        <>
+          <Paper className={classes.home} square={true}>
+            <Grid container>
+              {content}
+            </Grid>
+          </Paper>
+        </>
+      )
+
+      dappInfo.push(dapps)
+      setDapps(dappInfo)
+    }
   }
 
   useEffect(() => {
