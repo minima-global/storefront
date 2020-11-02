@@ -56,9 +56,9 @@ const get = (props: Props) => {
         const confURL = props.miniDapps.data[i].conf
 
         const indexOf = dirURL.indexOf("/0x")
-        const key = dirURL.substr(indexOf + 1)
+        const dir = dirURL.substr(indexOf + 1)
 
-        const pathAddDapp = `${Local.addDapp}/${key}`
+        const pathAddDapp = `${Local.addDapp}/${dir}`
 
         const response = await fetch(confURL)
         const text = await response.text()
@@ -71,7 +71,7 @@ const get = (props: Props) => {
         }
 
         const renderHTML = (
-          <React.Fragment key={key}>
+          <React.Fragment key={dir}>
             <Grid item justify="center" alignItems="center" xs={6} sm={2}>
               <button onClick={() => history.push(`${pathAddDapp}`)}>
                 <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />

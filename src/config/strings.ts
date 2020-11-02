@@ -20,6 +20,7 @@ class Paths {
 
   static readonly serverSettings = 'Minidapp Server'
   static readonly addDapp = 'Add MiniDapp'
+  static readonly addDappDir = Paths.addDapp
 }
 
 class GeneralError {

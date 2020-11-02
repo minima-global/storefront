@@ -46,8 +46,8 @@ const dapp = (props: Props) => {
         const thisDirURL = props.miniDapps.data[i].dir
 
         const indexOf = thisDirURL.indexOf("/0x")
-        const key = thisDirURL.substr(indexOf + 1)
-        if (dir == key ) {
+        const thisDir = thisDirURL.substr(indexOf + 1)
+        if (dir == thisDir ) {
 
           let dappInfo: any[] = []
 
@@ -65,7 +65,7 @@ const dapp = (props: Props) => {
           }
 
           const renderHTML = (
-            <React.Fragment key={key}>
+            <React.Fragment key={thisDir}>
               <Paper className={classes.home} square={true}>
                 <Grid container>
                   <Grid item justify="center" alignItems="center" xs={6}>
