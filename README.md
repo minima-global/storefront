@@ -3,7 +3,7 @@
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](/docs/COPYING.txt)
 
-This is a MiniDapp storefront for [Minima](https://github.com/minima-global).
+This is a MiniDapp Storefront for [Minima](https://github.com/minima-global).
 
 ## Table of Contents
 
@@ -119,9 +119,9 @@ That will create a proxy at `http://localhost:8010/proxy`, which you can use to 
 
 8. Open [/miniDapp/config/defaultServer.json](/miniDapp/config/defaultServer.json), and make sure it says `"url": "http://localhost:8010/proxy/"` (the default shipped with this repo' should say that already).
 
-## Accessing a storefront
+## Accessing a Storefront
 
-Having [installed](#install) the MiniDapp storefront, open the [MiniDapp homepage](http://localhost:9004), and load the storefront. The available MiniDapps should be displayed on the homepage - you can click on their icons, download them, then use the [MiniDapp homepage](http://localhost:9004) to install them.
+Having [installed](#install) the Storefront MiniDapp, open the [MiniDapp homepage](http://localhost:9004), and load the Storefront. The available MiniDapps should be displayed on the homepage - you can click on their icons, download them, then use the [MiniDapp homepage](http://localhost:9004) to install them.
 
 A colleague could host their own store, using the steps above, and you could access that through the following steps.
 
@@ -138,7 +138,7 @@ A colleague could host their own store, using the steps above, and you could acc
 3. Click on `MiniDapp Server` in the bottom righthand corner of the screen.
 4. `Browse` for _alternative settings_, then load the file saved above.
 
-Now, the storefront's home screen should display the MiniDapps hosted by your colleague.
+Now, the Storefront's home screen should display the MiniDapps hosted by your colleague.
 
 ## Maintainer
 
