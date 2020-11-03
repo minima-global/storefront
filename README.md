@@ -129,7 +129,7 @@ A colleague could host their own store, using the steps above, and you could acc
 
 ```
 {
-  "info": "Their MiniDapp Storefront",
+  "info": "An Awesome MiniDapp Storefront",
   "url": "http://their.server.url/"
 }
 ```
