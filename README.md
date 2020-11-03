@@ -47,7 +47,7 @@ You should now be able to open the MiniDapp and use it to access a MiniDapp stor
 
 ## Creating a Storefront
 
-The example below creates a MiniDapp store on a local machine, using [SeaweedFS](https://github.com/chrislusf/seaweedfs). However, the Storefront minidapp frontend takes advantage of the fact that [SeaweedFS](https://github.com/chrislusf/seaweedfs) supports file access via a HTTP RESTful API, so you _could_ host the MiniDapp store on any platform that supports such access. For example, a webserver would work, too.
+The example below creates a MiniDapp store on a local machine, using [SeaweedFS](https://github.com/chrislusf/seaweedfs). However, the Storefront MiniDapp frontend takes advantage of the fact that [SeaweedFS](https://github.com/chrislusf/seaweedfs) supports file access via a HTTP RESTful API, so you _could_ host the MiniDapp store on any platform that supports such access. For example, a webserver would work, too.
 
 First, setup a [SeaweedFS](https://github.com/chrislusf/seaweedfs) file server for hosting the [Minima MiniDapps](https://github.com/minima-global/MiniDAPP):
 
@@ -117,11 +117,11 @@ lcp --proxyUrl http://localhost:8888
 
 That will create a proxy at `http://localhost:8010/proxy`, which you can use to access the MiniDapps.
 
-8. Open [/miniDapp/config/defaultServer.json](//miniDapp/config/defaultServer.json), and make sure it says `"url": "http://localhost:8010/proxy/"` (the default shipped with this repo' should say that already).
+8. Open [/miniDapp/config/defaultServer.json](/miniDapp/config/defaultServer.json), and make sure it says `"url": "http://localhost:8010/proxy/"` (the default shipped with this repo' should say that already).
 
 ## Accessing a storefront
 
-Having [installed](#install) this app', open the [MiniDapp homepage](http://localhost:9004), and load the storefront. The available minidapps should be displayed on the homepage - you can click on their icons, download them, then use the [MiniDapp homepage](http://localhost:9004) to install them.
+Having [installed](#install) the MiniDapp storefront, open the [MiniDapp homepage](http://localhost:9004), and load the storefront. The available MiniDapps should be displayed on the homepage - you can click on their icons, download them, then use the [MiniDapp homepage](http://localhost:9004) to install them.
 
 A colleague could host their own store, using the steps above, and you could access that through the following steps.
 
@@ -138,7 +138,7 @@ A colleague could host their own store, using the steps above, and you could acc
 3. Click on `MiniDapp Server` in the bottom righthand corner of the screen.
 4. `Browse` for _alternative settings_, then load the file saved above.
 
-Now, the storefront's home screen should display the minidapps hosted by your colleague.
+Now, the storefront's home screen should display the MiniDapps hosted by your colleague.
 
 ## Maintainer
 
