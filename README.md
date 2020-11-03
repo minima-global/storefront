@@ -10,6 +10,7 @@ This is a MiniDapp storefront for [Minima](https://github.com/minima-global).
 - [Built Using](#built-using)  
 - [Install](#install)
   - [Dependencies](#dependencies)
+- [Using the Storefront](#using-the-storefront)
 - [Maintainer](#maintainer)
 - [Contributing](#contributing)
 - [License](#license)
@@ -21,7 +22,6 @@ This is a MiniDapp storefront for [Minima](https://github.com/minima-global).
 - [node](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
 - [React](https://reactjs.org/)
-- [SeaweedFS](https://github.com/chrislusf/seaweedfs)
 
 ## Install
 
@@ -43,6 +43,12 @@ You should now be able to open the MiniDapp and use it to access a [Minima](http
 - [Minima MiniDapps](https://github.com/minima-global/MiniDAPP)
 - [node](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
+
+## Using the Storefront
+
+The example below runs a MiniDapp store on [SeaweedFS](https://github.com/chrislusf/seaweedfs).
+
+More coming soon...
 
 ## Maintainer
 
