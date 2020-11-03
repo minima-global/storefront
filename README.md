@@ -21,17 +21,28 @@ This is a MiniDapp storefront for [Minima](https://github.com/minima-global).
 - [node](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
 - [React](https://reactjs.org/)
-- [dat](https://docs.dat.foundation)
-- [dat sdk](https://github.com/datproject/sdk)
+- [SeaweedFS](https://github.com/chrislusf/seaweedfs)
 
 ## Install
 
-...
+The instructions below will install this app' as a [Minima MiniDapps](https://github.com/minima-global/MiniDAPP).
+
+1. Clone this repo', then, from a command-line, change to the same directory as this README
+ and type `npm install`. That will install everything listed in [package.json](/package.json), which are the components of the [React](https://reactjs.org/) frontend to this application
+2. Build the app' by typing `npm run prod`. That will create the [Minima MiniDapp](https://github.com/minima-global/MiniDAPP) inside the `dist` directory.
+
+Now run the [Minima blockchain](https://github.com/minima-global/Minima). That creates a MiniDapp Server, which is accessible via [http://localhost:9004](http://localhost:9004). So start a browser, and load [http://localhost:9004](http://localhost:9004). You should see the MiniDapp homepage.
+
+Click on `Install`, then go find the `app.minidapp` you created in Step 2, above.
+
+You should now be able to open the MiniDapp and use it to access a [Minima](https://github.com/minima-global/Minima) MiniDapp store.
 
 ### Dependencies
 
-- [dat sdk](https://github.com/datproject/sdk)
-- [dat](https://docs.dat.foundation)
+- [Minima](https://github.com/minima-global/Minima)
+- [Minima MiniDapps](https://github.com/minima-global/MiniDAPP)
+- [node](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/)
 
 ## Maintainer
 
