@@ -33,7 +33,7 @@ The instructions below will install this app' as a [Minima MiniDapp](https://git
 
 Now run the [Minima blockchain](https://github.com/minima-global/Minima). That creates a MiniDapp Server, which is accessible via [http://localhost:9004](http://localhost:9004). So start a browser, and load [http://localhost:9004](http://localhost:9004). You should see the MiniDapp homepage.
 
-Click on `Install`, then go find the `storefront.minidapp` you created in the [miniDapp/dist](./miniDapp/dist) directory in Step 2, above.
+Click on `Install`, then go find the `storefront.minidapp` in the [miniDapp/dist](./miniDapp/dist) directory, which the build created in Step 2, above.
 
 You should now be able to open the MiniDapp and use it to access a [Minima](https://github.com/minima-global/Minima) MiniDapp store. More details about how to do that are described in '[Using the Storefront](#using-the-storefront)', described below.
 
