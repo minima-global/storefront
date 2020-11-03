@@ -26,7 +26,7 @@ This is a MiniDapp Storefront for [Minima](https://github.com/minima-global).
 
 ## Install
 
-The instructions below will install this app' as a [Minima MiniDapp](https://github.com/minima-global/MiniDAPP).
+The instructions below will install the Storefront as a [Minima MiniDapp](https://github.com/minima-global/MiniDAPP).
 
 1. Clone this repo', then, from a command-line, change to the same directory as this README
  and type `npm install`. That will install everything listed in [package.json](/package.json), which are the components of the [React](https://reactjs.org/) frontend to this application
@@ -47,7 +47,7 @@ You should now be able to open the MiniDapp and use it to access a MiniDapp stor
 
 ## Creating a Storefront
 
-The example below creates a MiniDapp store on a local machine, using [SeaweedFS](https://github.com/chrislusf/seaweedfs). However, the Storefront MiniDapp frontend takes advantage of the fact that [SeaweedFS](https://github.com/chrislusf/seaweedfs) supports file access via a HTTP RESTful API, so you _could_ host the MiniDapp store on any platform that supports such access. For example, a webserver would work, too.
+The example below creates a MiniDapp store on a local machine, using [SeaweedFS](https://github.com/chrislusf/seaweedfs). However, the Storefront MiniDapp frontend takes advantage of the fact that [SeaweedFS](https://github.com/chrislusf/seaweedfs) supports file access via a HTTP RESTful API, so you _could_ host the MiniDapp store on any platform that supports such access. For example, a webserver should work, as should [GitHub](https://developer.github.com/v3/).
 
 First, setup a [SeaweedFS](https://github.com/chrislusf/seaweedfs) file server for hosting the [Minima MiniDapps](https://github.com/minima-global/MiniDAPP):
 
@@ -135,7 +135,7 @@ A colleague could host their own store, using the steps above, and you could acc
 ```
 
 2. Save that file
-3. Click on `MiniDapp Server` in the bottom righthand corner of the screen.
+3. Click on `MiniDapp Server` in the bottom righthand corner of the Storefront home screen.
 4. `Browse` for _alternative settings_, then load the file saved above.
 
 Now, the Storefront's home screen should display the MiniDapps hosted by your colleague.
