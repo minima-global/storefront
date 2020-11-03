@@ -30,13 +30,13 @@ The instructions below will install this app' as a [Minima MiniDapp](https://git
 
 1. Clone this repo', then, from a command-line, change to the same directory as this README
  and type `npm install`. That will install everything listed in [package.json](/package.json), which are the components of the [React](https://reactjs.org/) frontend to this application
-2. Build the app' by typing `npm run prod`. That will create the [Minima MiniDapp](https://github.com/minima-global/MiniDAPP) inside the [miniDapp/dist](./miniDapp/dist) directory.
+2. Build the app' by typing `npm run prod`. That will create the MiniDapp inside the [miniDapp/dist](./miniDapp/dist) directory.
 
 Now run the [Minima blockchain](https://github.com/minima-global/Minima). That creates a MiniDapp Server, which is accessible via [http://localhost:9004](http://localhost:9004). So start a browser, and load [http://localhost:9004](http://localhost:9004). You should see the MiniDapp homepage.
 
-Click on `Install`, then go find the `storefront.minidapp` in the [miniDapp/dist](./miniDapp/dist) directory, which the build created in Step 2, above.
+Click on `Install`, then go find the `storefront.minidapp` in the [miniDapp/dist](./miniDapp/dist) directory, which was created in Step 2, above.
 
-You should now be able to open the MiniDapp and use it to access a MiniDapp store. More details about how to do that are described below.
+You should now be able to open the MiniDapp and use it to access a MiniDapp store. More details about how to [create a storefront](#creating-a-storefront) are described below.
 
 ### Dependencies
 
@@ -78,7 +78,7 @@ enabled = true
 dir = "."					# directory to store level db files
 ```
 
-4. Start weed's _filer_:
+4. Start the [SeaweedFS](https://github.com/chrislusf/seaweedfs) _filer_:
 
 ```
 weed server -filer=true
@@ -101,7 +101,7 @@ weed server -filer=true
 ./0x42C2FE1E9887E54CFE0ADBDD923F58602AE4D503/terminal.minidapp
 ```
 
-6. Copy the MiniDapps from the dorectory above to [SeaweedFS](https://github.com/chrislusf/seaweedfs), thus:
+6. Copy the MiniDapps from the directory above to [SeaweedFS](https://github.com/chrislusf/seaweedfs), thus:
 
 ```
 weed filer.copy -include *.conf . http://localhost:8888/
@@ -115,15 +115,13 @@ weed filer.copy -include *.minidapp . http://localhost:8888/
 lcp --proxyUrl http://localhost:8888
 ```
 
-That will create a proxy at `http://localhost:8010/proxy`, which you can access the _filer_ resources on.
+That will create a proxy at `http://localhost:8010/proxy`, which you can use to access the MiniDapps.
 
-8. Point at that proxy - open [/miniDapp/config/defaultServer.json](//miniDapp/config/defaultServer.json), and make sure it says `"url": "http://localhost:8010/proxy/"` (the default shipped with this repo' should say that already).
-
-Your MiniDapp store is available for the frontend, described below.
+8. Open [/miniDapp/config/defaultServer.json](//miniDapp/config/defaultServer.json), and make sure it says `"url": "http://localhost:8010/proxy/"` (the default shipped with this repo' should say that already).
 
 ## Accessing a storefront
 
-Having [installed](#install) this app', open it via the Minihub - if you have followed the steps [described above](#creating-the-storefront), the available minidapps should be displayed on the homepage - you can click on the icon, download the minidapps, then use the Minihub to install them.
+Having [installed](#install) this app', open the [MiniDapp homepage](http://localhost:9004), and load the storefront. The available minidapps should be displayed on the homepage - you can click on their icons, download them, then use the [MiniDapp homepage](http://localhost:9004) to install them.
 
 A colleague could host their own store, using the steps above, and you could access that through the following steps.
 
