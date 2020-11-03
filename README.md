@@ -11,6 +11,7 @@ This is a MiniDapp storefront for [Minima](https://github.com/minima-global).
 - [Install](#install)
   - [Dependencies](#dependencies)
 - [Creating the Storefront](#creating-the-storefront)
+- [Accessing a Storefront](#accessing-a-storefront)
 - [Maintainer](#maintainer)
 - [Contributing](#contributing)
 - [License](#license)
@@ -35,7 +36,7 @@ Now run the [Minima blockchain](https://github.com/minima-global/Minima). That c
 
 Click on `Install`, then go find the `storefront.minidapp` in the [miniDapp/dist](./miniDapp/dist) directory, which the build created in Step 2, above.
 
-You should now be able to open the MiniDapp and use it to access a [Minima](https://github.com/minima-global/Minima) MiniDapp store. More details about how to do that are described below.
+You should now be able to open the MiniDapp and use it to access a MiniDapp store. More details about how to do that are described below.
 
 ### Dependencies
 
@@ -46,9 +47,13 @@ You should now be able to open the MiniDapp and use it to access a [Minima](http
 
 ## Creating a Storefront
 
-The example below creates a MiniDapp store on a local machine, using [SeaweedFS](https://github.com/chrislusf/seaweedfs).
+The example below creates a MiniDapp store on a local machine, using [SeaweedFS](https://github.com/chrislusf/seaweedfs). However, the Storefront minidapp frontend takes advantage of the fact that [SeaweedFS](https://github.com/chrislusf/seaweedfs) supports file access via a HTTP RESTful API, so you _could_ host the MiniDapp store on any platform that supports such access. For example, a webserver would work, too.
 
-First, setup a [SeaweedFS](https://github.com/chrislusf/seaweedfs) file server for hosting the [Minima MiniDapps](https://github.com/minima-global/MiniDAPP). So, download a [SeaweedFS](https://github.com/chrislusf/seaweedfs) image for your system ([SeaweedFS releases](https://github.com/chrislusf/seaweedfs/releases)), then create a directory the the MiniDapps, and create a file called `filer.toml` there, which contains the following:
+First, setup a [SeaweedFS](https://github.com/chrislusf/seaweedfs) file server for hosting the [Minima MiniDapps](https://github.com/minima-global/MiniDAPP):
+
+1. Download a [SeaweedFS](https://github.com/chrislusf/seaweedfs) image for your system ([SeaweedFS releases](https://github.com/chrislusf/seaweedfs/releases))
+2. Create a directory for the MiniDapps
+3. Create a file called `filer.toml` in that directory, which contains the following:
 
 ```
 [filer.options]
@@ -73,13 +78,13 @@ enabled = true
 dir = "."					# directory to store level db files
 ```
 
-Then start weed's _filer_, thus:
+4. Start weed's _filer_:
 
 ```
 weed server -filer=true
 ```
 
-Then create a separate directory that hosts the MiniDapps you want to serve. Each MiniDapp _must be in a separate directory_. For example:
+5. Create a separate directory that contains a copy of the MiniDapps you want to serve via _filer_. Each MiniDapp _must be in a separate directory_, which contains the MiniDapp's _conf_ and _icon_ (which must be a _png_), and the MiniDapp itself. For example:
 
 ```
 ./0x62916EDC6334B2A7EE9AF139E3971189F2794B35
@@ -96,7 +101,7 @@ Then create a separate directory that hosts the MiniDapps you want to serve. Eac
 ./0x42C2FE1E9887E54CFE0ADBDD923F58602AE4D503/terminal.minidapp
 ```
 
-Now you can copy the [Minima MiniDapps](https://github.com/minima-global/MiniDAPP) to [SeaweedFS](https://github.com/chrislusf/seaweedfs), thus:
+6. Copy the MiniDapps from the dorectory above to [SeaweedFS](https://github.com/chrislusf/seaweedfs), thus:
 
 ```
 weed filer.copy -include *.conf . http://localhost:8888/
@@ -104,13 +109,38 @@ weed filer.copy -include *.png . http://localhost:8888/
 weed filer.copy -include *.minidapp . http://localhost:8888/
 ```
 
-That _should_ have been enough for the Storefront to access the MiniDapps. Unfortunately, currently, _filer_ appears to throw a CORS error when it is accessed via javascript's [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) (there is an [issue](https://github.com/chrislusf/seaweedfs/issues/1595) open for that).  To bypass the error, use [local cors proxy](https://github.com/garmeeh/local-cors-proxy):
+7. That _should_ have been enough for the Storefront to access the MiniDapps. Unfortunately, currently, _filer_ appears to throw a CORS error when it is accessed via javascript's [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) (there is an [issue](https://github.com/chrislusf/seaweedfs/issues/1595) open for that).  To bypass the error, use [local cors proxy](https://github.com/garmeeh/local-cors-proxy) to create a proxy in front of _filer_ :
 
 ```
 lcp --proxyUrl http://localhost:8888
 ```
 
-That will create a proxy on `http://localhost:8010/proxy`, which you can access the _filer_ resources on. The final step, then, is to point at that proxy, so open [/miniDapp/config/defaultServer.json](//miniDapp/config/defaultServer.json), and make sure it says `"url": "http://localhost:8010/proxy/"` (the default shipped with this repo' should say that already).
+That will create a proxy at `http://localhost:8010/proxy`, which you can access the _filer_ resources on.
+
+8. Point at that proxy - open [/miniDapp/config/defaultServer.json](//miniDapp/config/defaultServer.json), and make sure it says `"url": "http://localhost:8010/proxy/"` (the default shipped with this repo' should say that already).
+
+Your MiniDapp store is available for the frontend, described below.
+
+## Accessing a storefront
+
+Having [installed](#install) this app', open it via the Minihub - if you have followed the steps [described above](#creating-the-storefront), the available minidapps should be displayed on the homepage - you can click on the icon, download the minidapps, then use the Minihub to install them.
+
+A colleague could host their own store, using the steps above, and you could access that through the following steps.
+
+1. Ask them to send you a _config.json_ that contains their server's details:
+
+```
+{
+  "info": "Their MiniDapp Storefront",
+  "url": "http://their.server.url/"
+}
+```
+
+2. Save that file
+3. Click on `MiniDapp Server` in the bottom righthand corner of the screen.
+4. `Browse` for _alternative settings_, then load the file saved above.
+
+Now, the storefront's home screen should display the minidapps hosted by your colleague.
 
 ## Maintainer
 
