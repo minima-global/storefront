@@ -10,7 +10,7 @@ This is a MiniDapp storefront for [Minima](https://github.com/minima-global).
 - [Built Using](#built-using)  
 - [Install](#install)
   - [Dependencies](#dependencies)
-- [Creating the Storefront](#creating-the-storefront)
+- [Creating a Storefront](#creating-a-storefront)
 - [Accessing a Storefront](#accessing-a-storefront)
 - [Maintainer](#maintainer)
 - [Contributing](#contributing)
