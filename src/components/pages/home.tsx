@@ -19,6 +19,9 @@ import {
   MiniData
 } from '../../store'
 
+// @ts-ignore
+import { Minima } from '../../store/app/blockchain/minima'
+
 import { getMiniDapps } from '../../store/app/fileServer/actions'
 
 interface HomeStateProps {
@@ -49,41 +52,42 @@ const get = (props: Props) => {
 
       for ( var i = 0; i < props.miniDapps.data.length; i++) {
 
-        //console.log("icon: ", props.miniDapps.data[i].icon)
-
         const iconURL = props.miniDapps.data[i].icon
-        const dirURL = props.miniDapps.data[i].dir
+        const dir = props.miniDapps.data[i].dir
+        const pathAddDapp = `${Local.addDapp}/${dir}`
         const confURL = props.miniDapps.data[i].conf
 
-        const indexOf = dirURL.indexOf("/0x")
-        const dir = dirURL.substr(indexOf + 1)
+        console.log(confURL)
 
-        const pathAddDapp = `${Local.addDapp}/${dir}`
+        Minima.net.GET(confURL, function(resp: any) {
 
-        const response = await fetch(confURL)
-        const text = await response.text()
-        const thisConfJSON = JSON.parse(text)
-        //console.log("JSON: ", thisConfJSON)
-        const confJson = {
-          name: thisConfJSON.name,
-          description: thisConfJSON.description,
-          category: thisConfJSON.category
-        }
+          console.log(resp)
 
-        const renderHTML = (
-          <React.Fragment key={dir}>
-            <Grid item justify="center" alignItems="center" xs={6} sm={2}>
-              <button onClick={() => history.push(`${pathAddDapp}`)}>
-                <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
-               </button>
-            </Grid>
-            <Grid item justify="center" alignItems="center" xs={6} sm={4}>
-             <b>{confJson.name}</b> - {confJson.description}<br/>
-             <i>{confJson.category}</i>
-            </Grid>
-          </React.Fragment>
-        )
-        content.push(renderHTML)
+          const plainResponse = decodeURIComponent(resp.result)
+          const plusLess = plainResponse.replace(/\+/g,' ')
+          const thisConfJSON = JSON.parse(plusLess)
+
+          const confJson = {
+            name: thisConfJSON.name,
+            description: thisConfJSON.description,
+            category: thisConfJSON.category
+          }
+
+          const renderHTML = (
+            <React.Fragment key={dir}>
+              <Grid item justify="center" alignItems="center" xs={6} sm={2}>
+                <button onClick={() => history.push(`${pathAddDapp}`)}>
+                  <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
+                 </button>
+              </Grid>
+              <Grid item justify="center" alignItems="center" xs={6} sm={4}>
+               <b>{confJson.name}</b> - {confJson.description}<br/>
+               <i>{confJson.category}</i>
+              </Grid>
+            </React.Fragment>
+          )
+          content.push(renderHTML)
+        })
       }
 
       const dapps = (
@@ -128,13 +132,6 @@ const mapStateToProps = (state: ApplicationState): HomeStateProps => {
       miniDapps: dapps
     }
 }
-
-/*
-const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
- return {
-   getDapps: () => dispatch(getMiniDapps())
- }
-}*/
 
 export const Home = connect<HomeStateProps, {}, {}, ApplicationState>(
   mapStateToProps

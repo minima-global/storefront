@@ -26,6 +26,7 @@ class Paths {
 class GeneralError {
 
     static readonly required = "Required"
+    static readonly miniDappsConfig = "MiniDapps config file error"
 }
 
 class Transaction {

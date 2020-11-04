@@ -1,6 +1,7 @@
 class Config {
 
   static readonly serverConfig = "serverFile.json"
+  static readonly miniDappsConfig = "dapps.json"
 }
 
 class Local {

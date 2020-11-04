@@ -1,5 +1,5 @@
 // @ts-ignore
-import { Minima } from '../minima'
+import { Minima } from './minima'
 
 import {
   AppDispatch

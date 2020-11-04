@@ -43,10 +43,8 @@ const dapp = (props: Props) => {
 
       for ( var i = 0; i < props.miniDapps.data.length; i++) {
 
-        const thisDirURL = props.miniDapps.data[i].dir
-
-        const indexOf = thisDirURL.indexOf("/0x")
-        const thisDir = thisDirURL.substr(indexOf + 1)
+        const thisDir = props.miniDapps.data[i].dir
+        
         if (dir == thisDir ) {
 
           let dappInfo: any[] = []

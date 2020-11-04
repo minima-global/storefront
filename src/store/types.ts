@@ -68,15 +68,6 @@ export interface MiniDappProps extends PayloadProps {
   data: Array<MiniData>
 }
 
-export interface ServerDappData {
-  Path: string
-  Entries: []
-}
-
-export interface ServerDappsData {
-  FullPath: string
-}
-
 // Action types
 export const enum ServerActionTypes {
   SERVER_SUCCESS = '@@ServerActionTypes/SERVER_SUCCESS',
