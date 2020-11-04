@@ -55,39 +55,29 @@ const get = (props: Props) => {
         const iconURL = props.miniDapps.data[i].icon
         const dir = props.miniDapps.data[i].dir
         const pathAddDapp = `${Local.addDapp}/${dir}`
-        const confURL = props.miniDapps.data[i].conf
 
-        console.log(confURL)
+        const confJson = {
+          name: props.miniDapps.data[i].conf.name,
+          description: props.miniDapps.data[i].conf.description,
+          category: props.miniDapps.data[i].conf.category
+        }
 
-        Minima.net.GET(confURL, function(resp: any) {
+        console.log("conf: ", confJson)
 
-          console.log(resp)
-
-          const plainResponse = decodeURIComponent(resp.result)
-          const plusLess = plainResponse.replace(/\+/g,' ')
-          const thisConfJSON = JSON.parse(plusLess)
-
-          const confJson = {
-            name: thisConfJSON.name,
-            description: thisConfJSON.description,
-            category: thisConfJSON.category
-          }
-
-          const renderHTML = (
-            <React.Fragment key={dir}>
-              <Grid item justify="center" alignItems="center" xs={6} sm={2}>
-                <button onClick={() => history.push(`${pathAddDapp}`)}>
-                  <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
-                 </button>
-              </Grid>
-              <Grid item justify="center" alignItems="center" xs={6} sm={4}>
-               <b>{confJson.name}</b> - {confJson.description}<br/>
-               <i>{confJson.category}</i>
-              </Grid>
-            </React.Fragment>
-          )
-          content.push(renderHTML)
-        })
+        const renderHTML = (
+          <React.Fragment key={dir}>
+            <Grid item justify="center" alignItems="center" xs={6} sm={2}>
+              <button onClick={() => history.push(`${pathAddDapp}`)}>
+                <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
+               </button>
+            </Grid>
+            <Grid item justify="center" alignItems="center" xs={6} sm={4}>
+             <b>{confJson.name}</b> - {confJson.description}<br/>
+             <i>{confJson.category}</i>
+            </Grid>
+          </React.Fragment>
+        )
+        content.push(renderHTML)
       }
 
       const dapps = (
@@ -106,6 +96,8 @@ const get = (props: Props) => {
   }
 
   useEffect(() => {
+
+    console.log(props.miniDapps.data)
 
     if ( props.miniDapps.data ) {
 

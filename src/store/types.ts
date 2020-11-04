@@ -60,7 +60,11 @@ export interface ServerProps extends PayloadProps {
 export interface MiniData {
   dir: string
   miniDapp: string
-  conf: string
+  conf: {
+    name: string,
+    description: string,
+    category: string
+  }
   icon: string
 }
 

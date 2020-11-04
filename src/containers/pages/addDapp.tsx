@@ -44,23 +44,18 @@ const dapp = (props: Props) => {
       for ( var i = 0; i < props.miniDapps.data.length; i++) {
 
         const thisDir = props.miniDapps.data[i].dir
-        
+
         if (dir == thisDir ) {
 
           let dappInfo: any[] = []
 
           const iconURL = props.miniDapps.data[i].icon
-          const confURL = props.miniDapps.data[i].conf
           const miniDappURL = props.miniDapps.data[i].miniDapp
 
-          const response = await fetch(confURL)
-          const text = await response.text()
-          const thisConfJSON = JSON.parse(text)
-          //console.log("JSON: ", thisConfJSON)
           const confJson = {
-            name: thisConfJSON.name,
-            description: thisConfJSON.description,
-            category: thisConfJSON.category
+            name: props.miniDapps.data[i].conf.name,
+            description: props.miniDapps.data[i].conf.description,
+            category: props.miniDapps.data[i].conf.category
           }
 
           const renderHTML = (
