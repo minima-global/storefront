@@ -194,6 +194,7 @@ const getDapps = (url: string, data: [string, any][]) => {
 export const getMiniDapps = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
+    dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_SUCCESS))
     const state = getState()
     const fileServers = state.fileServers.data
 
