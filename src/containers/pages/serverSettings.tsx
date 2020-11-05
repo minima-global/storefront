@@ -15,7 +15,7 @@ import Input from '@material-ui/core/Input'
 import { Settings as SettingsConfig } from '../../config'
 
 import { ApplicationState, AppDispatch, ServerProps, Server } from '../../store'
-import { setServer } from '../../store/app/fileServer/actions'
+import { setServers } from '../../store/app/fileServer/actions'
 
 import { get } from '../../utils/list'
 
@@ -24,58 +24,19 @@ interface ServerStateProps {
 }
 
 interface ServerDispatchProps {
-  setConfig: (values: any) => void
+  setConfig: (file: any) => void
 }
 
 type Props =  ServerStateProps & ServerDispatchProps
 
 const settings = (props: Props) => {
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [fileEnabled, setFileEnabled] = useState(true)
-
-  const [fileName, setFileName] = useState("")
-  const [info, setInfo] = useState("")
-
   const serverInfo = get(props.serverData.data)
-
-  const checkFile = (fileText: string): boolean => {
-
-    let contains = /"info":/.test(fileText)
-    if (contains) {
-      contains = /"url":/.test(fileText)
-    }
-
-    return contains
-  }
 
   const getFile = (e: any) => {
 
-    let files = e.target.files
-    let reader = new FileReader()
-
-    //console.log(files[0].name)
-    reader.readAsText(files[0])
-    reader.onloadend = e => {
-        if(e.target) {
-            //console.log(e.target.result)
-            const serverInfo: string = e.target.result as string
-            if(checkFile(serverInfo)) {
-              const serverJSON = JSON.parse(serverInfo)
-              const thisServerJson: Server = {
-                configFile: files[0].name,
-                info: serverJSON.info,
-                url: serverJSON.url
-              }
-              props.setConfig(thisServerJson)
-            } else {
-                console.log("Incorrect server file format!")
-            }
-        }
-    }
-
-      /*const [load, file] = results[0]
-      setFileName(file.name)*/
+    const files = e.target.files
+    props.setConfig(files[0])
   }
 
   return (
@@ -99,7 +60,7 @@ const settings = (props: Props) => {
 
 const mapStateToProps = (state: ApplicationState): ServerStateProps => {
 
-    const info = state.fileServer as ServerProps
+    const info = state.fileServers as ServerProps
     return {
       serverData: info
     }
@@ -107,7 +68,7 @@ const mapStateToProps = (state: ApplicationState): ServerStateProps => {
 
 const mapDispatchToProps = (dispatch: AppDispatch): ServerDispatchProps => {
  return {
-   setConfig: (values: any) => dispatch(setServer(values))
+   setConfig: (file: any) => dispatch(setServers(file))
  }
 }
 

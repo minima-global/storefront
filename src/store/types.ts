@@ -4,7 +4,7 @@ import { ThunkDispatch } from 'redux-thunk'
 // Store stuff
 export interface ApplicationState {
   info: InfoPageProps
-  fileServer: ServerProps
+  fileServers: ServerProps
   miniDapps: MiniDappProps
 }
 
@@ -47,13 +47,17 @@ export interface InfoData {
 
 // Server props
 export interface Server {
-  configFile: string
   info: string
   url: string
 }
 
+export interface Servers {
+  configFile: string
+  servers: Array<Server>
+}
+
 export interface ServerProps extends PayloadProps {
-  data: Server
+  data: Servers
 }
 
 // MiniDapp stuff

@@ -1,4 +1,8 @@
 {
-  "info": "MiniDapp Storefront",
-  "url": "http://localhost:8888/"
+  "Steves Store": {
+    "url": "http://localhost:8888/"
+  },
+  "Steves Decentralised Store": {
+    "url": "http://localhost:9005/"
+  }
 }

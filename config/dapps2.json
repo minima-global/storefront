@@ -1,0 +1,22 @@
+{
+  "0x62916EDC6334B2A7EE9AF139E3971189F2794B35": {
+    "miniDapp": "provenator.minidapp",
+    "icon": "provenatorIcon.png",
+    "conf": "minidapp.conf"
+  },
+  "0x555D39602F9047B4D26F8381ACB84476D7DBDAF7": {
+    "miniDapp": "cowsay.minidapp",
+    "icon": "cowsayIcon.png",
+    "conf": "minidapp.conf"
+  },
+  "0x016EDD387B62F949284ED6579CEE175AD68B46D4": {
+    "miniDapp": "futurecash.minidapp",
+    "icon": "clock.png",
+    "conf": "minidapp.conf"
+  },
+  "0x544BC24E11D1FA42EBC247D36A4D8B7C4B4F30A6": {
+    "miniDapp": "dexxed.minidapp",
+    "icon": "stocks.png",
+    "conf": "minidapp.conf"
+  }
+}

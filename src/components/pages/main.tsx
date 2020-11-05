@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
 import { Content } from '../content'
-import { ServerConfig } from '../fileServer/serverConfig'
+import { ServerConfig } from '../fileServers/serverConfig'
 import { App } from '../../config/strings'
 
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone'

@@ -75,13 +75,13 @@ buckets_fsync = [          # a list of buckets with all write requests fsync=tru
 # local on disk, mostly for simple single-machine setup, fairly scalable
 # faster than previous leveldb, recommended.
 enabled = true
-dir = "."					# directory to store level db files
+dir = "/Users/you/yourMiniDappsDir"					# directory to store level db files
 ```
 
 4. Start the [SeaweedFS](https://github.com/chrislusf/seaweedfs) _filer_:
 
 ```
-weed server -filer=true
+weed server -dir="/Users/you/yourMiniDappsDir" -filer=true
 ```
 
 5. Create a separate directory that contains a copy of the MiniDapps you want to serve via _filer_. Each MiniDapp _must be in a separate directory_, which contains the MiniDapp's _conf_ and _icon_ (which must be a _png_), and the MiniDapp itself. For example:
