@@ -28,11 +28,6 @@ interface HomeStateProps {
   miniDapps: MiniDappProps
 }
 
-/*
-interface HomeDispatchProps {
-  getDapps: () => void
-}*/
-
 type Props = HomeStateProps
 
 const get = (props: Props) => {
@@ -47,13 +42,33 @@ const get = (props: Props) => {
 
     if (props.miniDapps.data.length > 0) {
 
+      //console.log("here with stuff: ", props.miniDapps)
+
       let dappInfo: any[] = []
       let content: any[] = []
+      let storeName = ""
 
       for ( var i = 0; i < props.miniDapps.data.length; i++) {
 
-        const iconURL = props.miniDapps.data[i].icon
+        const thisStoreName =  props.miniDapps.data[i].server.info
+        if( thisStoreName != storeName) {
+          const title = (
+            <>
+              <Grid item justify="center" alignItems="center" xs={12}>
+                <Grid>
+                  <h3>
+                    {thisStoreName}
+                  </h3>
+                </Grid>
+              </Grid>
+            </>
+          )
+          content.push(title)
+          storeName = thisStoreName
+        }
+
         const dir = props.miniDapps.data[i].dir
+        const iconURL = props.miniDapps.data[i].server.url + dir + "/" + props.miniDapps.data[i].icon
         const pathAddDapp = `${Local.addDapp}/${dir}`
 
         const confJson = {
@@ -62,9 +77,7 @@ const get = (props: Props) => {
           category: props.miniDapps.data[i].conf.category
         }
 
-        //console.log("conf: ", confJson)
-
-        const renderHTML = (
+        const dappHTML = (
           <React.Fragment key={dir}>
             <Grid item justify="center" alignItems="center" xs={6} sm={2}>
               <button onClick={() => history.push(`${pathAddDapp}`)}>
@@ -77,7 +90,7 @@ const get = (props: Props) => {
             </Grid>
           </React.Fragment>
         )
-        content.push(renderHTML)
+        content.push(dappHTML)
       }
 
       const dapps = (

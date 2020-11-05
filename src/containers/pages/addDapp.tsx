@@ -48,9 +48,8 @@ const dapp = (props: Props) => {
         if (dir == thisDir ) {
 
           let dappInfo: any[] = []
-
-          const iconURL = props.miniDapps.data[i].icon
-          const miniDappURL = props.miniDapps.data[i].miniDapp
+          const iconURL = props.miniDapps.data[i].server.url + dir + "/" + props.miniDapps.data[i].icon
+          const miniDappURL = props.miniDapps.data[i].server.url + dir + "/" + props.miniDapps.data[i].miniDapp
 
           const confJson = {
             name: props.miniDapps.data[i].conf.name,

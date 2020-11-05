@@ -140,7 +140,7 @@ const checkDappConfig = (dir: string, dappData: MiniData): boolean => {
   }
 }
 
-const getDapps = (url: string, data: [string, any][]) => {
+const getDapps = (serverInfo: Server, data: [string, any][]) => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
     const state = getState()
@@ -152,7 +152,7 @@ const getDapps = (url: string, data: [string, any][]) => {
 
       if ( checkDappConfig(dir, dappData) ) {
 
-        const dappConfURL = url + dir + "/" + dappData.conf
+        const dappConfURL = serverInfo.url + dir + "/" + dappData.conf
 
         Minima.net.GET(dappConfURL, function(resp: any) {
 
@@ -162,23 +162,25 @@ const getDapps = (url: string, data: [string, any][]) => {
 
           } else {
 
-            const miniDapps: MiniData[] = state.miniDapps.data
             const plainResponse = decodeURIComponent(resp.result)
             const plusLess = plainResponse.replace(/\+/g,' ')
             const thisConfJSON = JSON.parse(plusLess)
+            const miniDapps = state.miniDapps.data
 
             let newDappData: MiniData = {
+                server: serverInfo,
                 dir: dir,
-                miniDapp: url + dir + "/" + dappData.miniDapp,
+                miniDapp: dappData.miniDapp,
                 conf: {
                   name: thisConfJSON.name,
                   description: thisConfJSON.description,
                   category: thisConfJSON.category
                 },
-                icon: url + dir + "/" + dappData.icon
+                icon: dappData.icon
             }
 
             miniDapps.push(newDappData)
+            //console.log("this minidapps: ", miniDapps)
             dispatch(write({data: miniDapps})(MiniDappActionTypes.MINIDAPP_SUCCESS))
           }
 
@@ -218,7 +220,7 @@ export const getMiniDapps = () => {
 
           if ( dapps.length ) {
 
-            dispatch(getDapps(fileServers.servers[i].url, dapps))
+            dispatch(getDapps(fileServers.servers[i], dapps))
 
           } else {
 
