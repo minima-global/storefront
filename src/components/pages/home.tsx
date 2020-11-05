@@ -62,7 +62,7 @@ const get = (props: Props) => {
           category: props.miniDapps.data[i].conf.category
         }
 
-        console.log("conf: ", confJson)
+        //console.log("conf: ", confJson)
 
         const renderHTML = (
           <React.Fragment key={dir}>
@@ -97,7 +97,7 @@ const get = (props: Props) => {
 
   useEffect(() => {
 
-    console.log(props.miniDapps.data)
+    //console.log(props.miniDapps.data)
 
     if ( props.miniDapps.data ) {
 

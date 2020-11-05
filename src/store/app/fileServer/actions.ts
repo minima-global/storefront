@@ -75,14 +75,14 @@ export const setServer = (serverInfo: Server) => {
   }
 }
 
-const checkDappConfig = (data: MiniData): boolean => {
+const checkDappConfig = (dir: string, dappData: MiniData): boolean => {
 
-  if ( (data.hasOwnProperty("dir") )
-  && (data.hasOwnProperty("miniDapp") )
-  && (data.hasOwnProperty("conf") )
-  && (data.hasOwnProperty("icon") ) ) {
+  if ( ( dir )
+  && ( dappData.hasOwnProperty("miniDapp") )
+  && ( dappData.hasOwnProperty("conf") )
+  && ( dappData.hasOwnProperty("icon") ) ) {
 
-    if ( (data.dir) && (data.miniDapp) && (data.conf) && (data.icon) ) {
+    if ( (dappData.miniDapp) && (dappData.conf) && (dappData.icon) ) {
       return true
     } else {
       return false
@@ -93,7 +93,7 @@ const checkDappConfig = (data: MiniData): boolean => {
   }
 }
 
-const getDapps = (data: []) => {
+const getDapps = (data: [string, any][]) => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
     const state = getState()
@@ -102,35 +102,40 @@ const getDapps = (data: []) => {
 
     for ( let i = 0; i < data.length; i++) {
 
-      const dappData = data[i] as MiniData
+      const dir = data[i][0]
+      const dappData: MiniData = data[i][1] as MiniData
 
-      if ( checkDappConfig(dappData) ) {
+      if ( checkDappConfig(dir, dappData) ) {
 
-        const confURL = fileServer.url + dappData.dir + "/" + dappData.conf
+        const dappConfURL = fileServer.url + dir + "/" + dappData.conf
 
-        console.log("Getting conf url: ", confURL)
+        Minima.net.GET(dappConfURL, function(resp: any) {
 
-        Minima.net.GET(confURL, function(resp: any) {
+          if( !resp.result ) {
 
-          const miniDapps: MiniData[] = state.miniDapps.data
-          const plainResponse = decodeURIComponent(resp.result)
-          const plusLess = plainResponse.replace(/\+/g,' ')
-          const thisConfJSON = JSON.parse(plusLess)
+            console.error(resp.error)
 
-          let newDappData: MiniData = {
-              dir: dappData.dir,
-              miniDapp: fileServer.url + dappData.dir + "/" + dappData.miniDapp,
-              conf: {
-                name: thisConfJSON.name,
-                description: thisConfJSON.description,
-                category: thisConfJSON.category
-              },
-              icon: fileServer.url + dappData.dir + "/" + dappData.icon
+          } else {
+
+            const miniDapps: MiniData[] = state.miniDapps.data
+            const plainResponse = decodeURIComponent(resp.result)
+            const plusLess = plainResponse.replace(/\+/g,' ')
+            const thisConfJSON = JSON.parse(plusLess)
+
+            let newDappData: MiniData = {
+                dir: dir,
+                miniDapp: fileServer.url + dir + "/" + dappData.miniDapp,
+                conf: {
+                  name: thisConfJSON.name,
+                  description: thisConfJSON.description,
+                  category: thisConfJSON.category
+                },
+                icon: fileServer.url + dir + "/" + dappData.icon
+            }
+
+            miniDapps.push(newDappData)
+            dispatch(write({data: miniDapps})(MiniDappActionTypes.MINIDAPP_SUCCESS))
           }
-
-          miniDapps.push(newDappData)
-          //console.log("dapps: ", newDappData)
-          dispatch(write({data: miniDapps})(MiniDappActionTypes.MINIDAPP_SUCCESS))
 
         })
 
@@ -150,18 +155,28 @@ export const getMiniDapps = () => {
 
     Minima.net.GET(dappsListing, function(resp: any) {
 
-      const plainResponse = decodeURIComponent(resp.result)
-      const plusLess = plainResponse.replace(/\+/g,' ')
-      const thisConfJSON = JSON.parse(plusLess)
+      if( !resp.result ) {
 
-      if ( thisConfJSON.hasOwnProperty("dapps") ) {
-
-        dispatch(getDapps(thisConfJSON.dapps))
+        console.error(resp.error)
+        dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
 
       } else {
 
-        console.error(`${GeneralError.miniDappsConfig}`)
-        dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
+        const plainResponse = decodeURIComponent(resp.result)
+        const plusLess = plainResponse.replace(/\+/g,' ')
+        const thisConfJSON = JSON.parse(plusLess)
+        const dapps = Object.entries(thisConfJSON)
+
+        if ( dapps.length ) {
+
+          dispatch(getDapps(dapps))
+
+        } else {
+
+          console.error(`${GeneralError.miniDappsConfig}`)
+          dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
+        }
+
       }
     })
   }
