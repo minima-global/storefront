@@ -1,8 +1,8 @@
 {
   "Minima Head Office": {
-    "url": "http://localhost:8888/"
+    "url": "http://www.reportaid.org/miniDapps/"
   },
   "Minima Provincial Office": {
-    "url": "http://localhost:9005/"
+    "url": "http://web.default.glowkeeper.uk0.bigv.io:8888/"
   }
 }
