@@ -1,8 +1,8 @@
 {
-  "Steves Store": {
+  "Minima Head Office": {
     "url": "http://localhost:8888/"
   },
-  "Steves Decentralised Store": {
+  "Minima Provincial Office": {
     "url": "http://localhost:9005/"
   }
 }
