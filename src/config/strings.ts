@@ -96,6 +96,11 @@ class Settings {
   static readonly getFile = "Load alternative settings"
   static readonly fileTip = "Load a server settings file"
   static readonly fileName = "Filename"
+
+  static readonly configFile = "Config File"
+  static readonly server = "Server"
+  static readonly serverInfo = "Name"
+  static readonly serverURL = "URL"
 }
 
 export {

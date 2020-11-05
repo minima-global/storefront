@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import Markdown from 'react-markdown'
@@ -31,7 +31,25 @@ type Props =  ServerStateProps & ServerDispatchProps
 
 const settings = (props: Props) => {
 
-  const serverInfo = get(props.serverData.data)
+  const [serverInfo, setServerInfo] = useState("")
+
+  useEffect(() => {
+
+    if ( props.serverData.data ) {
+
+      //console.log(props.serverData.data)
+      let xs = `<p><b>${SettingsConfig.configFile}: ${props.serverData.data.configFile}</b><p>`
+      const serverInfo = props.serverData.data.servers
+      for (let i = 0; i < serverInfo.length; i++) {
+        xs += `<h3>${SettingsConfig.server}</h3>`
+        xs += `<p>${SettingsConfig.serverInfo}: ${serverInfo[i].info}<br/>`
+        xs += `${SettingsConfig.serverURL}: ${serverInfo[i].url}<p>`
+      }
+      //console.log("Serverinfo: ", serverInfo)
+      setServerInfo(xs)
+    }
+
+  }, [props.serverData])
 
   const getFile = (e: any) => {
 
