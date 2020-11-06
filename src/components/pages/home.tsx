@@ -38,11 +38,26 @@ const get = (props: Props) => {
 
   let history = useHistory()
 
+  const compare = (a: MiniData, b: MiniData) => {
+
+    const thisA = a.server.url
+    const thisB = b.server.url
+    if (thisA < thisB) {
+      return -1;
+    }
+    if (thisA > thisB) {
+      return 1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+
   const setDappInfo = async () => {
 
     if (props.miniDapps.data.length > 0) {
 
       //console.log("here with stuff: ", props.miniDapps)
+      props.miniDapps.data.sort(compare)
 
       let dappInfo: any[] = []
       let content: any[] = []
@@ -109,8 +124,6 @@ const get = (props: Props) => {
   }
 
   useEffect(() => {
-
-    //console.log(props.miniDapps.data)
 
     if ( props.miniDapps.data ) {
 
