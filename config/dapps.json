@@ -18,5 +18,15 @@
     "miniDapp": "walletv98.06.minidapp",
     "icon": "icon.png",
     "conf": "minidapp.conf"
+  },  
+  "0x016EDD387B62F949284ED6579CEE175AD68B46D4": {
+    "miniDapp": "futurecash.minidapp",
+    "icon": "clock.png",
+    "conf": "minidapp.conf"
+  },
+  "0x544BC24E11D1FA42EBC247D36A4D8B7C4B4F30A6": {
+    "miniDapp": "dexxed.minidapp",
+    "icon": "stocks.png",
+    "conf": "minidapp.conf"
   }
 }

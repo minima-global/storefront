@@ -57,6 +57,7 @@ const get = (props: Props) => {
     if (props.miniDapps.data.length > 0) {
 
       //console.log("here with stuff: ", props.miniDapps)
+      // Sort the dapps so srtore items appear under their store headings
       props.miniDapps.data.sort(compare)
 
       let dappInfo: any[] = []
