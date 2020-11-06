@@ -1,0 +1,42 @@
+{
+  "0xaae22e060bde649ad600321490e3fe06f505d7a1f239dd2cca86ba0efa358f37": {
+    "miniDapp": "CalculatorDApp.minidapp",
+    "icon": "CalculatorDApp/images/calculator.png",
+    "conf": "CalculatorDApp/minidapp.conf"
+  },
+  "0xd42d7ffe01ddf5d1e9547deca0370251714ff7929c656f5cf709b42892ceec9e": {
+    "miniDapp": "Sci-CalculatorDApp.minidapp",
+    "icon": "Sci-CalculatorDApp/images/sci-calculator.png",
+    "conf": "Sci-CalculatorDApp/minidapp.conf"
+  },
+  "0x16d3cb83fcaea0edf478c92680e0a6b95d3c8b9cc2e4e6775769270779515168": {
+    "miniDapp": "miniAlienInvasion.minidapp",
+    "icon": "miniAlienInvasion/images/AlienInvasion.png",
+    "conf": "miniAlienInvasion/minidapp.conf"
+  },
+  "0x28331b54a742fff96aac13530d1443b9a58e5c3c1056917ca6bea5d2e0921811": {
+    "miniDapp": "infiniteTetris.minidapp",
+    "icon": "infiniteTetris/images/tetris.png",
+    "conf": "infiniteTetris/minidapp.conf"
+  },
+  "0xb7a35c70b0f4bbf54d8d84bbb8898a0769fd61af51e82d682a4073415ad3b74b": {
+    "miniDapp": "BIP39.minidapp",
+    "icon": "BIP39/images/brainBTC.png",
+    "conf": "BIP39/minidapp.conf"
+  },
+  "0x8555d81abe6d951a9e95a2bb70a0497f5629a45e52b88ef773cb3c632374b496": {
+    "miniDapp": "miniBreaklock.minidapp",
+    "icon": "miniBreaklock/images/breaklock.png",
+    "conf": "miniBreaklock/minidapp.conf"
+  },
+  "0xb56b8b28b90529f2480cba6b1dd3be911ee0b9d923d0fbe6263ec57043d4dd4c": {
+    "miniDapp": "miniBrainDApp.minidapp",
+    "icon": "miniBrainDApp/images/helloWorldIcon.png",
+    "conf": "miniBrainDApp/minidapp.conf"
+  },
+  "0x1f3b16b0193819d79613337f0aadd3090f1406c0d967d67da412a975d4cda47f": {
+    "miniDapp": "aMiniDarkRoom.minidapp",
+    "icon": "aMiniDarkRoom/images/adarkroom.png",
+    "conf": "aMiniDarkRoom/minidapp.conf"
+  }
+}
