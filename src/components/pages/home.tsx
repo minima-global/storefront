@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
+import Spinner from 'react-spinner-material'
+
 //import Markdown from 'react-markdown'
 import { SimpleArrayRenderer } from '../simpleRenderer'
 import { Home as HomeConfig, Misc, Local } from '../../config'
@@ -33,6 +35,7 @@ type Props = HomeStateProps
 const get = (props: Props) => {
 
   const [dapps, setDapps] = useState([] as any[])
+  const [isLoading, setLoading] = useState(true)
 
   const classes = themeStyles()
 
@@ -121,14 +124,21 @@ const get = (props: Props) => {
 
       dappInfo.push(dapps)
       setDapps(dappInfo)
+      setLoading(false)
     }
   }
 
   useEffect(() => {
 
+
     if ( props.miniDapps.data ) {
 
-        setDappInfo()
+      setLoading(true)
+      setDappInfo()
+
+    } else {
+
+      setLoading(false)
     }
 
   }, [props.miniDapps])
@@ -138,7 +148,10 @@ const get = (props: Props) => {
       <h2>{HomeConfig.heading}</h2>
       <hr />
       <p>
-        <SimpleArrayRenderer data={dapps} />
+          {isLoading ?
+          <div className={classes.spinner}>
+            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+          </div> : <SimpleArrayRenderer data={dapps} /> }
       </p>
     </>
   )

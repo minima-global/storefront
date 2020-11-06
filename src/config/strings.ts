@@ -18,8 +18,8 @@ class Paths {
   static readonly help = 'Help'
   static readonly contact = 'Contact'
 
-  static readonly serverSettings = 'Minidapp Server'
-  static readonly addDapp = 'Install MiniDapp'
+  static readonly serverSettings = 'Settings'
+  static readonly addDapp = 'Get MiniDapp'
   static readonly addDappDir = Paths.addDapp
 }
 
