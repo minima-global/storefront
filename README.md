@@ -126,7 +126,7 @@ If you used the config' file described above, your Storefront's homepage should 
   "Baz's Bazaar": {
     "url": "https://raw.githubusercontent.com/eurobuddha/BazsBazaar/main/miniDapps/"
   },
-  "An Awesome MiniDapp Storefront": {
+  "A Colleague's Awesome MiniDapp Storefront": {
     "url": "http://their.server.url/"
   }
 }
