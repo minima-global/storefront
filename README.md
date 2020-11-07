@@ -172,7 +172,7 @@ weed server -dir="/Users/you/yourMiniDappsDir" -filer=true
 ```
 
 5. As above, create a `dapps.json` file that points at separate directories that contain copies of the MiniDapps you want to serve via _filer_.
-6. Copy the MiniDapps from the directories above to _filer_:
+6. Copy the MiniDapps from those directories to _filer_:
 
 ```
 weed filer.copy -include *.conf . http://localhost:8888/
