@@ -10,8 +10,8 @@ This is a MiniDapp Storefront for [Minima](https://github.com/minima-global).
 - [Built Using](#built-using)  
 - [Install](#install)
   - [Dependencies](#dependencies)
-- [Creating a Storefront](#creating-a-storefront)
-- [Accessing a Storefront](#accessing-a-storefront)
+- [Creating a Minima Storefront](#creating-a-minima- storefront)
+- [Using the Storefront](#using-the-minima-storefront)
 - [Maintainer](#maintainer)
 - [Contributing](#contributing)
 - [License](#license)
@@ -45,7 +45,7 @@ You should now be able to open the MiniDapp and use it to access a MiniDapp stor
 - [node](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
 
-## Creating a Storefront
+## Creating a Minima Storefront
 
 The Minima Storefront supports any platform that hosts content which is web-addressable. Hence, it will be able to retrieve MiniDapps from websites or any distributed filesystems that support  [URL](https://en.wikipedia.org/wiki/URL)-based schemas.
 
@@ -196,7 +196,7 @@ Now imagine that your [SeaweedFS](https://github.com/chrislusf/seaweedfs) instal
 }
 ```
 
-## Using the Storefront
+## Using the Minima Storefront
 
 Having [installed](#install) the Storefront MiniDapp, open the [MiniDapp homepage](http://localhost:9004), and load the Storefront. The available MiniDapps should be displayed on the homepage - you can click on their icons, download them, then use the [MiniDapp homepage](http://localhost:9004) to install them.
 
