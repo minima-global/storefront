@@ -36,7 +36,7 @@ Now run the [Minima blockchain](https://github.com/minima-global/Minima). That c
 
 Click on `Install`, then go find the `storefront.minidapp` in the [miniDapp/dist](./miniDapp/dist) directory, which was created in Step 2, above.
 
-You should now be able to open the MiniDapp and use it to access a MiniDapp store. More details about how to [create a storefront](#creating-a-storefront) are described below.
+You should now be able to open the MiniDapp and use it to access a MiniDapp store. More details about how to [create a storefront](#creating-a-minima-storefront) are described below.
 
 ### Dependencies
 
@@ -56,16 +56,16 @@ A [JSON](https://en.wikipedia.org/wiki/JSON) configuration file controls which s
 The instructions below demonstrate how to host MiniDapps on a website.
 
 1. In a publicly-available webserver directory, create a separate directory for each MiniDapp.
-2. That directory should contain a file called `dapps.json`, which describes all the MiniDapps to be made available.
-3. That directory must also contain a unique directory for each MiniDapp that contains the MiniDapp itself (e.g `storefront.minidapp`), it's configuration file (e.g. `storefront.conf`) and its icon (e.g `storeFrontIcon.png` (currently, the icon must be a _png_)).
+2. That directory should contain a file called `dapps.json`, which describes all the MiniDapps that are available.
+3. That directory must also contain a unique directory for each MiniDapp. Those directories should contain the MiniDapp itself (e.g `storefront.minidapp`), it's configuration file (e.g. `storefront.conf`) and its icon (e.g `storeFrontIcon.png` (currently, the icon must be a _png_)).
 
-For example, imagine the MiniDapp directory layout shown in Figure 1, below.
+For example, imagine a MiniDapp store with the directory layout shown in Figure 1, below.
 
 ![](/images/miniDappListing.png)
 
 _Figure 1: A MiniDapp web-directory listing_
 
-Given that listing, the store's `dapps.json` would look like this:
+The store's `dapps.json` would look like this:
 
 ```
 {
@@ -97,7 +97,7 @@ Now imagine that `dapps.json` is hosted at the web location _your.webserver.url/
 }
 ```
 
-Furthermore, a configuration file can point at multiple stores; that shown below is a live example that you could copy and past into a file on your local machine and upload to your Storefront via the Settings link in the application's footer (if you did that, your Storefront homepage should display MiniDapps for three stores):
+Furthermore, a configuration file can point at multiple stores; that shown below is a live example that you could _copy and paste_ into a file on your local machine and upload to your Storefront via the Settings link in the application's footer:
 
 ```
 {
@@ -113,7 +113,7 @@ Furthermore, a configuration file can point at multiple stores; that shown below
 }
 ```
 
-A colleague could host their own store, using the steps above, and send you their server's details. Then you could add that to the stores your Storefront displays:
+If you used the config' file described above, your Storefront's homepage should display MiniDapps for three stores. Furthermore, a colleague could host their own store, using the steps above, and send you its details. Then you could add that to the stores your Storefront displays:
 
 ```
 {
@@ -136,7 +136,7 @@ A colleague could host their own store, using the steps above, and send you thei
 
 The example below creates a MiniDapp store on a server using [SeaweedFS](https://github.com/chrislusf/seaweedfs).
 
-First, setup a [SeaweedFS](https://github.com/chrislusf/seaweedfs) file server for hosting the [Minima MiniDapps](https://github.com/minima-global/MiniDAPP):
+First, setup a SeaweedFS file server:
 
 1. Download a [SeaweedFS](https://github.com/chrislusf/seaweedfs) image for your system ([SeaweedFS releases](https://github.com/chrislusf/seaweedfs/releases))
 2. Create a directory for the MiniDapps
@@ -165,14 +165,14 @@ enabled = true
 dir = "/Users/you/yourMiniDappsDir"					# directory to store level db files
 ```
 
-4. Start the [SeaweedFS](https://github.com/chrislusf/seaweedfs) _filer_:
+4. Start the SeaweedFS _filer_, which runs on port _8888_:
 
 ```
 weed server -dir="/Users/you/yourMiniDappsDir" -filer=true
 ```
 
 5. As above, create a `dapps.json` file that points at separate directories that contain copies of the MiniDapps you want to serve via _filer_.
-6. Copy the MiniDapps from the directories above to [SeaweedFS](https://github.com/chrislusf/seaweedfs):
+6. Copy the MiniDapps from the directories above to _filer_:
 
 ```
 weed filer.copy -include *.conf . http://localhost:8888/
@@ -186,7 +186,7 @@ weed filer.copy -include *.minidapp . http://localhost:8888/
 weed filer.copy -include dapps.json . http://localhost:8888/
 ```
 
-Now imagine that your [SeaweedFS](https://github.com/chrislusf/seaweedfs) installation is available at  _your.seaweedserver.url_. Seaweed's _filer_ runs on port `8888`, so the Storefront's `json` configuration file might look like this:
+Now imagine the SeaweedFS installation is available at  _your.seaweedserver.url_ - the Storefront's `json` configuration file might look like this:
 
 ```
 {
@@ -195,6 +195,8 @@ Now imagine that your [SeaweedFS](https://github.com/chrislusf/seaweedfs) instal
   }
 }
 ```
+
+fyi: "Minima Head Office", described in the json above, is running on SeaweedFS.
 
 ## Using the Minima Storefront
 
