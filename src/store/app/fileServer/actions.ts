@@ -45,7 +45,10 @@ export const getServers = () => {
             for ( let i = 0; i < servers.length; i++) {
 
               const info: string = servers[i][0]
-              const thisServerData: Server = servers[i][1] as Server
+              let thisServerData: Server = servers[i][1] as Server
+              thisServerData.url += thisServerData.url.endsWith("/") ? "" : "/"
+
+              console.log(info, thisServerData)
 
               if ( checkServer(info, thisServerData.url) ) {
 
