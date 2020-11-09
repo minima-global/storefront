@@ -69,6 +69,7 @@ const settings = (props: Props) => {
           <Input
               name="getFile"
               type="file"
+              inputProps={{ accept: '.json' }}
               onChange={getFile}
           />
         </Tooltip>
