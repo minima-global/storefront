@@ -15,17 +15,46 @@ import { Config, Remote, GeneralError } from '../../../config'
 
 import { write } from '../../actions'
 
-const checkServer = (info: string, url: string): boolean => {
+/*Can't get Minima.net.GET to wait...
+const checkServer = async (info: string, url: string): Promise<boolean | undefined> => {
 
   if (info && url) {
-    return true
+
+    const dappsListing = url + Config.miniDappsConfig
+    await Minima.net.GET(dappsListing, function(resp: any) {
+
+      if( !resp.result ) {
+
+        console.error(resp.error)
+        return false
+
+      } else {
+
+        return true
+      }
+    })
   } else {
     return false
   }
 }
+*/
+
+const initServers = () => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    const servers: Servers = {
+      hasLoaded: false,
+      configFile: "",
+      servers: []
+    }
+    dispatch(write({data: servers})(ServerActionTypes.SERVER_SUCCESS))
+  }
+}
 
 export const getServers = () => {
-  return async (dispatch: AppDispatch) => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    const state = getState()
 
     fetch(`${Config.serverConfig}`)
       .then(response => response.json())
@@ -34,13 +63,8 @@ export const getServers = () => {
           .then(response => response.json())
           .then(thisData => {
 
-            const serverData: Servers = {
-              configFile: data.file,
-              servers: []
-            }
-
             const servers = Object.entries(thisData)
-            //console.log("servers: ", servers)
+            //dispatch(initServers())
 
             for ( let i = 0; i < servers.length; i++) {
 
@@ -48,21 +72,34 @@ export const getServers = () => {
               let thisServerData: Server = servers[i][1] as Server
               thisServerData.url += thisServerData.url.endsWith("/") ? "" : "/"
 
-              console.log(info, thisServerData)
+              if (info && thisServerData.url) {
 
-              if ( checkServer(info, thisServerData.url) ) {
+                const dappsListing = thisServerData.url + Config.miniDappsConfig
+                Minima.net.GET(dappsListing, function(resp: any) {
 
-                const thisServer: Server = {
-                  info: servers[i][0],
-                  url: thisServerData.url
-                }
-                serverData.servers.push(thisServer)
+                  let loadedServers = state.fileServers.data
+                  loadedServers.hasLoaded = i == (servers.length -1) ? true : false
+                  loadedServers.configFile = data.file
 
+                  if( !resp.result ) {
+
+                    console.error(resp.error)
+
+                  } else {
+
+                    const thisServer: Server = {
+                      info: info,
+                      url: thisServerData.url
+                    }
+                    loadedServers.servers.push(thisServer)
+                  }
+                  dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
+                })
+
+              } else {
+                console.error(GeneralError.serverConfig)
               }
             }
-            //console.log("serverData: ", serverData)
-
-            dispatch(write({data: serverData})(ServerActionTypes.SERVER_SUCCESS))
         })
         .catch(error => {
           console.error(error)
@@ -148,6 +185,8 @@ const getDapps = (serverInfo: Server, data: [string, any][]) => {
 
     const state = getState()
 
+    //console.log(state.fileServers.data)
+
     for ( let i = 0; i < data.length; i++) {
 
       const dir = data[i][0]
@@ -205,9 +244,13 @@ export const getMiniDapps = () => {
 
     for (let i = 0; i < fileServers.servers.length; i++) {
 
+      //console.log("in here")
+
       const dappsListing = fileServers.servers[i].url + Config.miniDappsConfig
 
       Minima.net.GET(dappsListing, function(resp: any) {
+
+        //console.log("but here? ", dappsListing, resp)
 
         if( !resp.result ) {
 

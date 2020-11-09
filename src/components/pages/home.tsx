@@ -130,7 +130,6 @@ const get = (props: Props) => {
 
   useEffect(() => {
 
-
     if ( props.miniDapps.data ) {
 
       setLoading(true)

@@ -33,8 +33,11 @@ const fileServers = ( props: Props ) => {
       } else {
 
         //only call this once we have server info from above
-        //console.log("server info: ", props.serverData)
-        props.getDapps()
+        console.log("server info: ", props.serverData)
+        if(props.serverData.data.hasLoaded) {
+          console.log("server info loaded!", props.serverData)
+          props.getDapps()
+        }
       }
 
   }, [props.serverData])
