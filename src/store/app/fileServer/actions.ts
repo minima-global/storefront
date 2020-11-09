@@ -39,7 +39,7 @@ const checkServer = async (info: string, url: string): Promise<boolean | undefin
 }
 */
 
-const initServers = () => {
+export const initServers = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
     const servers: Servers = {
@@ -64,7 +64,6 @@ export const getServers = () => {
           .then(thisData => {
 
             const servers = Object.entries(thisData)
-            //dispatch(initServers())
 
             for ( let i = 0; i < servers.length; i++) {
 

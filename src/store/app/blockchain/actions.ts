@@ -9,7 +9,7 @@ import { Config } from '../../../config'
 
 import { write } from '../../actions'
 
-export const init = () => {
+export const initBlockchain = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
       Minima.init()
