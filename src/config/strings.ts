@@ -43,6 +43,7 @@ class Home {
 
   static readonly heading = 'Home'
 
+  static readonly noServers = 'No live servers'
   static readonly info = `<h3>${App.appName}</h3>`
 }
 
