@@ -43,6 +43,9 @@ class Home {
 
   static readonly heading = 'Home'
 
+  static readonly address = 'Store Address'
+  static readonly noServers = `Trying to find ${App.appName} MiniDapp Servers`
+  static readonly servers = 'Servers Loaded'
   static readonly info = `<h3>${App.appName}</h3>`
 }
 

@@ -52,6 +52,7 @@ export interface Server {
 }
 
 export interface Servers {
+  hasLoaded: boolean
   configFile: string
   servers: Array<Server>
 }
