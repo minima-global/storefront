@@ -59,50 +59,57 @@ export const getServers = () => {
     fetch(`${Config.serverConfig}`)
       .then(response => response.json())
       .then(data => {
-        fetch(data.file)
-          .then(response => response.json())
-          .then(thisData => {
 
-            const servers = Object.entries(thisData)
+        let thisServers: any[] = data.files as any[]
+        for (let i = 0; i < thisServers.length; i++) {
 
-            for ( let i = 0; i < servers.length; i++) {
+          fetch(thisServers[i])
+            .then(response => response.json())
+            .then(thisData => {
 
-              const info: string = servers[i][0]
-              let thisServerData: Server = servers[i][1] as Server
-              thisServerData.url += thisServerData.url.endsWith("/") ? "" : "/"
+              console.log(thisData)
 
-              if (info && thisServerData.url) {
+              const servers = Object.entries(thisData)
 
-                const dappsListing = thisServerData.url + Config.miniDappsConfig
-                Minima.net.GET(dappsListing, function(resp: any) {
+              for ( let j = 0; j < servers.length; j++) {
 
-                  let loadedServers = state.fileServers.data
-                  loadedServers.hasLoaded = i == (servers.length -1) ? true : false
-                  loadedServers.configFile = data.file
+                const info: string = servers[j][0]
+                let thisServerData: Server = servers[j][1] as Server
+                thisServerData.url += thisServerData.url.endsWith("/") ? "" : "/"
 
-                  if( !resp.result ) {
+                if (info && thisServerData.url) {
 
-                    console.error(resp.error)
+                  const dappsListing = thisServerData.url + Config.miniDappsConfig
+                  Minima.net.GET(dappsListing, function(resp: any) {
 
-                  } else {
+                    let loadedServers = state.fileServers.data
+                    loadedServers.hasLoaded = j == (servers.length - 1) ? true : false
+                    loadedServers.configFile = data.file
 
-                    const thisServer: Server = {
-                      info: info,
-                      url: thisServerData.url
+                    if( !resp.result ) {
+
+                      console.error(resp.error)
+
+                    } else {
+
+                      const thisServer: Server = {
+                        info: info,
+                        url: thisServerData.url
+                      }
+                      loadedServers.servers.push(thisServer)
                     }
-                    loadedServers.servers.push(thisServer)
-                  }
-                  dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
-                })
+                    dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
+                  })
 
-              } else {
-                console.error(GeneralError.serverConfig)
+                } else {
+                  console.error(GeneralError.serverConfig)
+                }
               }
-            }
-        })
-        .catch(error => {
-          console.error(error)
-        })
+          })
+          .catch(error => {
+            console.error(error)
+          })
+        }
       })
       .catch(error => {
         console.error(error)
@@ -116,14 +123,23 @@ export const setServers = (file: any) => {
     let reader = new FileReader()
     reader.readAsText(file)
     reader.onloadend = e => {
-        if(e.target) {
-            //console.log("file result :", e.target.result)
-            const serverInfo: string = e.target.result as string
+      if(e.target) {
 
-            const serverFile = {
-              file: file.name
+        const serverInfo: string = e.target.result as string
+
+        fetch(`${Config.serverConfig}`)
+          .then(response => response.json())
+          .then(data => {
+
+            //console.log("serverfile: ", data)
+
+            let thisServers: any[] = data.files as any[]
+            thisServers.push(file.name)
+
+            const serversJSON = {
+              files: thisServers
             }
-            const fileJSON = JSON.stringify(serverFile)
+            const fileJSON = JSON.stringify(serversJSON)
 
             Minima.file.save(`${fileJSON}`, Config.serverConfig, function(resp: any) {
 
@@ -136,7 +152,7 @@ export const setServers = (file: any) => {
 
               } else {
 
-                Minima.file.save(serverInfo, file.name, function(resp: any) {
+                  Minima.file.save(serverInfo, file.name, function(resp: any) {
 
                   //console.log("second save success: ", resp)
 
@@ -151,12 +167,16 @@ export const setServers = (file: any) => {
                 })
               }
             })
-        } else {
+          })
+          .catch(error => {
+            console.error(error)
+          })
+      } else {
 
-          console.error(GeneralError.serverConfig)
-          dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
+        console.error(GeneralError.serverConfig)
+        dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
 
-        }
+      }
     }
   }
 }

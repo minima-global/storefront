@@ -1,3 +1,5 @@
 {
-  "file": "defaultServer.json"
+  "files": [
+    "defaultServer.json"
+  ]
 }
