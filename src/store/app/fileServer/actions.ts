@@ -44,7 +44,6 @@ export const initServers = () => {
 
     const servers: Servers = {
       hasLoaded: false,
-      configFile: "",
       servers: []
     }
     dispatch(write({data: servers})(ServerActionTypes.SERVER_SUCCESS))
@@ -67,7 +66,7 @@ export const getServers = () => {
             .then(response => response.json())
             .then(thisData => {
 
-              console.log(thisData)
+              //console.log(thisData)
 
               const servers = Object.entries(thisData)
 
@@ -84,7 +83,6 @@ export const getServers = () => {
 
                     let loadedServers = state.fileServers.data
                     loadedServers.hasLoaded = j == (servers.length - 1) ? true : false
-                    loadedServers.configFile = data.file
 
                     if( !resp.result ) {
 
@@ -217,6 +215,8 @@ const getDapps = (serverInfo: Server, data: [string, any][]) => {
 
         Minima.net.GET(dappConfURL, function(resp: any) {
 
+          //console.log(dappConfURL, resp)
+
           if( !resp.result ) {
 
             console.error(resp.error)
@@ -260,6 +260,7 @@ export const getMiniDapps = () => {
     dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_SUCCESS))
     const state = getState()
     const fileServers = state.fileServers.data
+    console.log("servers: ", fileServers)
 
     for (let i = 0; i < fileServers.servers.length; i++) {
 

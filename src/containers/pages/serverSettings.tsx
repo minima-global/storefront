@@ -39,7 +39,7 @@ const settings = (props: Props) => {
     if ( props.serverData.data ) {
 
       //console.log(props.serverData.data)
-      let xs = `<p><b>${SettingsConfig.configFile}: ${props.serverData.data.configFile}</b><p>`
+      let xs = ""
       const serverInfo = props.serverData.data.servers
       for (let i = 0; i < serverInfo.length; i++) {
         xs += `<h3>${SettingsConfig.server}</h3>`

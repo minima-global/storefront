@@ -136,6 +136,7 @@ const get = (props: Props) => {
 
       setLoading(true)
       setDappInfo()
+      
     } else {
 
       let info: any[] = []
