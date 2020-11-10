@@ -34,7 +34,7 @@ type Props = HomeStateProps
 
 const get = (props: Props) => {
 
-  const [dapps, setDapps] = useState([] as any[])
+  const [info, setInfo] = useState([] as any[])
   const [isLoading, setLoading] = useState(false)
 
   const classes = themeStyles()
@@ -121,30 +121,31 @@ const get = (props: Props) => {
     )
 
     dappInfo.push(dapps)
-    setDapps(dappInfo)
+    setInfo(dappInfo)
     setTimeout(function(){ setLoading(false) }, Misc.homeSpinnerDelay)
 
   }
 
   useEffect(() => {
 
-    let info: any[] = []
-    const noServers = (
-      <>
-        <Paper className={classes.home} square={true}>
-          <Grid container>
-            {HomeConfig.noServers}
-          </Grid>
-        </Paper>
-      </>
-    )
-    info.push(noServers)
-    setDapps(info)
-
     if ( props.miniDapps.data.length ) {
 
       setLoading(true)
       setDappInfo()
+    } else {
+      
+      let info: any[] = []
+      const noServers = (
+        <>
+          <Paper className={classes.home} square={true}>
+            <Grid container>
+              {HomeConfig.noServers}
+            </Grid>
+          </Paper>
+        </>
+      )
+      info.push(noServers)
+      setInfo(info)
     }
 
   }, [props.miniDapps])
@@ -157,7 +158,7 @@ const get = (props: Props) => {
           {isLoading ?
           <div className={classes.spinner}>
             <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-          </div> : <SimpleArrayRenderer data={dapps} /> }
+          </div> : <SimpleArrayRenderer data={info} /> }
       </p>
     </>
   )
