@@ -68,6 +68,7 @@ const get = (props: Props) => {
     for ( var i = 0; i < props.miniDapps.data.length; i++) {
 
       const thisStoreName =  props.miniDapps.data[i].server.info
+      const thisStoreURL =  props.miniDapps.data[i].server.url
       if( thisStoreName != storeName) {
         const title = (
           <>
@@ -76,6 +77,9 @@ const get = (props: Props) => {
                 <h3>
                   {thisStoreName}
                 </h3>
+                <h4>
+                  {HomeConfig.address}: {thisStoreURL}
+                </h4>
               </Grid>
             </Grid>
           </>
@@ -133,7 +137,7 @@ const get = (props: Props) => {
       setLoading(true)
       setDappInfo()
     } else {
-      
+
       let info: any[] = []
       const noServers = (
         <>
