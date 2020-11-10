@@ -43,11 +43,37 @@ export const initServers = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
     const servers: Servers = {
-      hasLoaded: false,
       servers: []
     }
     dispatch(write({data: servers})(ServerActionTypes.SERVER_SUCCESS))
   }
+}
+
+const serverEntries = async (): Promise<Server[]> => {
+
+  let servers: any[] = []
+
+  try {
+
+    const response = await fetch(`${Config.serverConfig}`)
+    const serverFiles = await response.json()
+    let configFiles: any[] = serverFiles.files as any[]
+
+    for (let i = 0; i < configFiles.length; i++) {
+
+      const file = await fetch(configFiles[i])
+      const thisFile = await file.json()
+
+      for (const [info, url] of Object.entries(thisFile)) {
+        servers.push([info, url])
+      }
+    }
+
+  } catch (error) {
+    console.error(error)
+  }
+
+  return servers
 }
 
 export const getServers = () => {
@@ -55,68 +81,52 @@ export const getServers = () => {
 
     const state = getState()
 
-    fetch(`${Config.serverConfig}`)
-      .then(response => response.json())
-      .then(data => {
+    const servers: any[] = await serverEntries()
+    //console.log("this servers: ", servers)
 
-        let thisServers: any[] = data.files as any[]
-        for (let i = 0; i < thisServers.length; i++) {
+    for ( let i = 0; i < servers.length; i++) {
 
-          fetch(thisServers[i])
-            .then(response => response.json())
-            .then(thisData => {
+      const info: string = servers[i][0]
+      let thisServerData: Server = servers[i][1] as Server
 
-              //console.log(thisData)
+      thisServerData.url += thisServerData.url.endsWith("/") ? "" : "/"
+      //const hasLoaded = i == (servers.length - 1) ? true : false
 
-              const servers = Object.entries(thisData)
+      if (info && thisServerData.url) {
 
-              for ( let j = 0; j < servers.length; j++) {
+        const dappsListing = thisServerData.url + Config.miniDappsConfig
 
-                const info: string = servers[j][0]
-                let thisServerData: Server = servers[j][1] as Server
-                thisServerData.url += thisServerData.url.endsWith("/") ? "" : "/"
+        //console.log(info, thisServerData.url, dappsListing)
+        Minima.net.GET(dappsListing, function(resp: any) {
 
-                if (info && thisServerData.url) {
+          let loadedServers = state.fileServers.data
 
-                  const dappsListing = thisServerData.url + Config.miniDappsConfig
-                  Minima.net.GET(dappsListing, function(resp: any) {
+          if( !resp.result ) {
 
-                    let loadedServers = state.fileServers.data
-                    loadedServers.hasLoaded = j == (servers.length - 1) ? true : false
+            console.error(resp.error)
 
-                    if( !resp.result ) {
+          } else {
 
-                      console.error(resp.error)
+            const thisServer: Server = {
+              info: info,
+              url: thisServerData.url
+            }
+            loadedServers.servers.push(thisServer)
+          }
+          dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
+        })
 
-                    } else {
-
-                      const thisServer: Server = {
-                        info: info,
-                        url: thisServerData.url
-                      }
-                      loadedServers.servers.push(thisServer)
-                    }
-                    dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
-                  })
-
-                } else {
-                  console.error(GeneralError.serverConfig)
-                }
-              }
-          })
-          .catch(error => {
-            console.error(error)
-          })
-        }
-      })
-      .catch(error => {
-        console.error(error)
-      })
+      } else {
+        console.error(GeneralError.serverConfig)
+      }
+    }
   }
 }
 
 export const setServers = (file: any) => {
   return async (dispatch: AppDispatch) => {
+
+    console.log("Am i here? ", file)
 
     let reader = new FileReader()
     reader.readAsText(file)

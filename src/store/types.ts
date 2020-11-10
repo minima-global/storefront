@@ -52,7 +52,6 @@ export interface Server {
 }
 
 export interface Servers {
-  hasLoaded: boolean
   servers: Array<Server>
 }
 

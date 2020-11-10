@@ -57,7 +57,7 @@ const get = (props: Props) => {
 
   const setDappInfo = async () => {
 
-    //console.log("here with stuff: ", props.miniDapps)
+    console.log("here with stuff: ", props.miniDapps)
     // Sort the dapps so srtore items appear under their store headings
     props.miniDapps.data.sort(compare)
 
@@ -132,11 +132,12 @@ const get = (props: Props) => {
 
   useEffect(() => {
 
+    setLoading(true)
+
     if ( props.miniDapps.data.length ) {
 
-      setLoading(true)
       setDappInfo()
-      
+
     } else {
 
       let info: any[] = []
@@ -151,6 +152,7 @@ const get = (props: Props) => {
       )
       info.push(noServers)
       setInfo(info)
+      setLoading(false)
     }
 
   }, [props.miniDapps])

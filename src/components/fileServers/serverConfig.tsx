@@ -35,7 +35,7 @@ const fileServers = ( props: Props ) => {
       } else {
 
         //only call this once we have server info from above
-        if(props.serverData.data.hasLoaded) {
+        if(props.serverData.data) {
           props.getDapps()
         }
       }
