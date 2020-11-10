@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 
@@ -30,10 +30,15 @@ interface HomeStateProps {
   miniDapps: MiniDappProps
 }
 
-type Props = HomeStateProps
+interface HomeDispatchProps {
+  getDapps: () => void
+}
+
+type Props = HomeStateProps & HomeDispatchProps
 
 const get = (props: Props) => {
 
+  let isFirstRun = useRef(true)
   const [info, setInfo] = useState([] as any[])
   const [isLoading, setLoading] = useState(false)
 
@@ -57,7 +62,7 @@ const get = (props: Props) => {
 
   const setDappInfo = async () => {
 
-    console.log("here with stuff: ", props.miniDapps)
+    //console.log("here with stuff: ", props.miniDapps)
     // Sort the dapps so srtore items appear under their store headings
     props.miniDapps.data.sort(compare)
 
@@ -132,14 +137,9 @@ const get = (props: Props) => {
 
   useEffect(() => {
 
-    setLoading(true)
+    if ( isFirstRun.current ) {
 
-    if ( props.miniDapps.data.length ) {
-
-      setDappInfo()
-
-    } else {
-
+      isFirstRun.current = false
       let info: any[] = []
       const noServers = (
         <>
@@ -152,7 +152,20 @@ const get = (props: Props) => {
       )
       info.push(noServers)
       setInfo(info)
-      setLoading(false)
+      //setTimeout(function(){ props.getDapps() }, 10000)
+
+    } else {
+
+      setLoading(true)
+
+      if ( props.miniDapps.data.length ) {
+
+        setDappInfo()
+
+      } else {
+
+        setLoading(false)
+      }
     }
 
   }, [props.miniDapps])
@@ -179,6 +192,13 @@ const mapStateToProps = (state: ApplicationState): HomeStateProps => {
     }
 }
 
-export const Home = connect<HomeStateProps, {}, {}, ApplicationState>(
-  mapStateToProps
+const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
+ return {
+   getDapps: () => dispatch(getMiniDapps())
+ }
+}
+
+export const Home = connect<HomeStateProps, HomeDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
+  mapDispatchToProps
 )(get)
