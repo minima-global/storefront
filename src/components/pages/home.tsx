@@ -39,11 +39,20 @@ type Props = HomeStateProps
 
 const get = (props: Props) => {
 
-  let isFirstRun = useRef(true)
-  const [info, setInfo] = useState([] as any[])
-  const [isLoading, setLoading] = useState(false)
-
   const classes = themeStyles()
+  const noServers = (
+    <>
+      <Paper className={classes.home} square={true}>
+        <Grid container>
+          {HomeConfig.noServers}
+        </Grid>
+      </Paper>
+    </>
+  )
+
+  let isFirstRun = useRef(true)
+  const [info, setInfo] = useState([noServers] as any[])
+  const [isLoading, setLoading] = useState(false)
 
   let history = useHistory()
 
@@ -138,35 +147,15 @@ const get = (props: Props) => {
 
   useEffect(() => {
 
-    if ( isFirstRun.current ) {
+    setLoading(true)
+    console.log("miniDapps: ", props.miniDapps.data)
+    if ( props.miniDapps.data.length ) {
 
-      isFirstRun.current = false
-      let info: any[] = []
-      const noServers = (
-        <>
-          <Paper className={classes.home} square={true}>
-            <Grid container>
-              {HomeConfig.noServers}
-            </Grid>
-          </Paper>
-        </>
-      )
-      info.push(noServers)
-      setInfo(info)
-      //setTimeout(function(){ props.getDapps() }, 10000)
+      setDappInfo()
 
     } else {
 
-      setLoading(true)
-      console.log("miniDapps: ", props.miniDapps.data)
-      if ( props.miniDapps.data.length ) {
-
-        setDappInfo()
-
-      } else {
-
-        setLoading(false)
-      }
+      setLoading(false)
     }
 
   }, [props.miniDapps])
