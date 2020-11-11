@@ -53,7 +53,8 @@ export interface Server {
 }
 
 export interface Servers {
-  hasLoaded: boolean
+  numAvailable: number
+  numLoaded: number
   servers: Array<Server>
 }
 

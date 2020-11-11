@@ -158,6 +158,7 @@ const get = (props: Props) => {
     } else {
 
       setLoading(true)
+      console.log("miniDapps: ", props.miniDapps.data)
       if ( props.miniDapps.data.length ) {
 
         setDappInfo()

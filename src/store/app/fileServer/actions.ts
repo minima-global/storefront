@@ -43,7 +43,8 @@ export const initServers = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
     const servers: Servers = {
-      hasLoaded: false,
+      numAvailable: 0,
+      numLoaded: 0,
       servers: []
     }
     dispatch(write({data: servers})(ServerActionTypes.SERVER_SUCCESS))
@@ -70,10 +71,8 @@ const serverEntries = async (): Promise<Server[]> => {
         const thisInfo: any = info
         const thisURL: any = url
         if ( thisURL.hasOwnProperty('url')) {
-
-          let myURL: string = thisURL.url as string
-          myURL += myURL.endsWith("/") ? "" : "/"
-          console.log(myURL)
+          thisURL.url += thisURL.url.endsWith("/") ? "" : "/"
+          console.log(thisURL)
           servers.push([info, thisURL, isOnline])
 
         }
@@ -105,7 +104,8 @@ export const getServers = () => {
       Minima.net.GET(dappsListing, function(resp: any) {
 
         let loadedServers = state.fileServers.data
-        loadedServers.hasLoaded = i == (servers.length -1) ? true : false
+        loadedServers.numAvailable = servers.length
+        loadedServers.numLoaded += 1
         let thisServer: Server = {
           info: info,
           url: thisServerData.url,
@@ -272,7 +272,7 @@ export const getMiniDapps = () => {
     dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_SUCCESS))
     const state = getState()
     const fileServers = state.fileServers.data
-    console.log("servers: ", fileServers)
+    //console.log("servers: ", fileServers)
 
     for (let i = 0; i < fileServers.servers.length; i++) {
 

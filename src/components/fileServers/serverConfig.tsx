@@ -34,7 +34,7 @@ const fileServers = ( props: Props ) => {
 
     } else {
 
-      if(props.serverData.data.hasLoaded) {
+      if ( props.serverData.data.numLoaded == props.serverData.data.numAvailable )  {
 
         props.getDapps()
       }
