@@ -43,6 +43,7 @@ export const initServers = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
     const servers: Servers = {
+      hasLoaded: false,
       servers: []
     }
     dispatch(write({data: servers})(ServerActionTypes.SERVER_SUCCESS))
@@ -71,8 +72,8 @@ const serverEntries = async (): Promise<Server[]> => {
         if ( thisURL.hasOwnProperty('url')) {
 
           let myURL: string = thisURL.url as string
-          //console.log(myURL)
           myURL += myURL.endsWith("/") ? "" : "/"
+          console.log(myURL)
           servers.push([info, thisURL, isOnline])
 
         }
@@ -104,6 +105,7 @@ export const getServers = () => {
       Minima.net.GET(dappsListing, function(resp: any) {
 
         let loadedServers = state.fileServers.data
+        loadedServers.hasLoaded = i == (servers.length -1) ? true : false
         let thisServer: Server = {
           info: info,
           url: thisServerData.url,
@@ -118,7 +120,7 @@ export const getServers = () => {
         }
 
         loadedServers.servers.push(thisServer)
-        //console.log(loadedServers)
+        //console.log("servers: ", loadedServers)
         dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
       })
     }

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { initServers, getServers } from '../../store/app/fileServer/actions'
+import { initServers, getServers, getMiniDapps } from '../../store/app/fileServer/actions'
 import { initBlockchain } from '../../store/app/blockchain/actions'
 
 import { ApplicationState, AppDispatch, ServerProps } from '../../store/types'
@@ -14,19 +14,33 @@ interface ServerInitDispatchProps {
   initBlockchain: () => void
   initServers: () => void
   getConfig: () => void
+  getDapps: () => void
 }
 
 type Props =  ServerInitStateProps & ServerInitDispatchProps
 
 const fileServers = ( props: Props ) => {
 
+  let isFirstRun = useRef(true)
+
   useEffect(() => {
 
-    props.initBlockchain()
-    props.initServers()
-    props.getConfig()
+    if ( isFirstRun.current ) {
 
-  },[])
+      isFirstRun.current = false
+      props.initBlockchain()
+      props.initServers()
+      props.getConfig()
+
+    } else {
+
+      if(props.serverData.data.hasLoaded) {
+
+        props.getDapps()
+      }
+    }
+
+  },[props.serverData])
 
   return null
 }
@@ -43,7 +57,8 @@ const mapDispatchToProps = (dispatch: AppDispatch): ServerInitDispatchProps => {
  return {
    initBlockchain: () => dispatch(initBlockchain()),
    initServers: () => dispatch(initServers()),
-   getConfig: () => dispatch(getServers())
+   getConfig: () => dispatch(getServers()),
+   getDapps: () => dispatch(getMiniDapps())
  }
 }
 
