@@ -71,10 +71,10 @@ const serverEntries = async (): Promise<Server[]> => {
         const thisInfo: any = info
         const thisURL: any = url
         if ( thisURL.hasOwnProperty('url')) {
-          thisURL.url += thisURL.url.endsWith("/") ? "" : "/"
-          console.log(thisURL)
-          servers.push([info, thisURL, isOnline])
 
+          thisURL.url += thisURL.url.endsWith("/") ? "" : "/"
+          //console.log(thisURL)
+          servers.push([info, thisURL, isOnline])
         }
       }
     }

@@ -52,8 +52,8 @@ const settings = (props: Props) => {
       //console.log("Serverinfo: ", serverInfo)
       setServerInfo(xs)
 
-      /*console.log("but am I in here?")
-      props.getDapps()*/
+      //don't need to call this here - serverConfig takes care of it
+      //props.getDapps()
     }
 
   }, [props.serverData])

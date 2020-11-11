@@ -70,20 +70,41 @@ const get = (props: Props) => {
     return 0;
   }
 
+  const unique = (elements: MiniData[]): MiniData[] => {
+
+    const uniqElements = elements.reduce((element: MiniData[], current: MiniData) => {
+
+      const x = element.find( (item: MiniData) => {
+        return ( item.dir === current.dir &&  item.conf.name === current.conf.name )
+      })
+
+      if (!x) {
+        return element.concat([current])
+      } else {
+        return element
+      }
+    }, [])
+
+    return uniqElements
+  }
+
   const setDappInfo = async () => {
 
     //console.log("here with stuff: ", props.miniDapps)
-    // Sort the dapps so srtore items appear under their store headings
+    // Sort the dapps so store items appear under their store headings
     props.miniDapps.data.sort(compare)
+    // Ensure no duplicates
+    const elements = unique(props.miniDapps.data)
+    //console.log("and with uniq stuff: ", elements)
 
     let dappInfo: any[] = []
     let content: any[] = []
     let storeName = ""
 
-    for ( var i = 0; i < props.miniDapps.data.length; i++) {
+    for ( var i = 0; i < elements.length; i++) {
 
-      const thisStoreName =  props.miniDapps.data[i].server.info
-      const thisStoreURL =  props.miniDapps.data[i].server.url
+      const thisStoreName = elements[i].server.info
+      const thisStoreURL = elements[i].server.url
       if( thisStoreName != storeName) {
         const title = (
           <>
@@ -103,14 +124,14 @@ const get = (props: Props) => {
         storeName = thisStoreName
       }
 
-      const dir = props.miniDapps.data[i].dir
-      const iconURL = props.miniDapps.data[i].server.url + dir + "/" + props.miniDapps.data[i].icon
+      const dir = elements[i].dir
+      const iconURL = elements[i].server.url + dir + "/" + elements[i].icon
       const pathAddDapp = `${Local.addDapp}/${dir}`
 
       const confJson = {
-        name: props.miniDapps.data[i].conf.name,
-        description: props.miniDapps.data[i].conf.description,
-        category: props.miniDapps.data[i].conf.category
+        name: elements[i].conf.name,
+        description: elements[i].conf.description,
+        category: elements[i].conf.category
       }
 
       const dappHTML = (
@@ -148,7 +169,7 @@ const get = (props: Props) => {
   useEffect(() => {
 
     setLoading(true)
-    console.log("miniDapps: ", props.miniDapps.data)
+    //console.log("miniDapps: ", props.miniDapps.data)
     if ( props.miniDapps.data.length ) {
 
       setDappInfo()
