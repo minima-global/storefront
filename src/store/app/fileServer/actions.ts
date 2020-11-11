@@ -64,8 +64,18 @@ const serverEntries = async (): Promise<Server[]> => {
       const file = await fetch(configFiles[i])
       const thisFile = await file.json()
 
-      for (const [info, url] of Object.entries(thisFile)) {
-        servers.push([info, url])
+      for (let [info, url] of Object.entries(thisFile)) {
+        const isOnline = false
+        const thisInfo: any = info
+        const thisURL: any = url
+        if ( thisURL.hasOwnProperty('url')) {
+
+          let myURL: string = thisURL.url as string
+          //console.log(myURL)
+          myURL += myURL.endsWith("/") ? "" : "/"
+          servers.push([info, thisURL, isOnline])
+
+        }
       }
     }
 
@@ -82,51 +92,42 @@ export const getServers = () => {
     const state = getState()
 
     const servers: any[] = await serverEntries()
-    //console.log("this servers: ", servers)
 
+    // Are they online?
     for ( let i = 0; i < servers.length; i++) {
 
       const info: string = servers[i][0]
       let thisServerData: Server = servers[i][1] as Server
+      const dappsListing = thisServerData.url + Config.miniDappsConfig
 
-      thisServerData.url += thisServerData.url.endsWith("/") ? "" : "/"
-      //const hasLoaded = i == (servers.length - 1) ? true : false
+      //console.log(info, thisServerData.url, dappsListing)
+      Minima.net.GET(dappsListing, function(resp: any) {
 
-      if (info && thisServerData.url) {
+        let loadedServers = state.fileServers.data
+        let thisServer: Server = {
+          info: info,
+          url: thisServerData.url,
+          isOnline: true
+        }
 
-        const dappsListing = thisServerData.url + Config.miniDappsConfig
+        if( !resp.result ) {
 
-        //console.log(info, thisServerData.url, dappsListing)
-        Minima.net.GET(dappsListing, function(resp: any) {
+          console.error(resp.error)
+          thisServer.isOnline = false
 
-          let loadedServers = state.fileServers.data
+        }
 
-          if( !resp.result ) {
-
-            console.error(resp.error)
-
-          } else {
-
-            const thisServer: Server = {
-              info: info,
-              url: thisServerData.url
-            }
-            loadedServers.servers.push(thisServer)
-          }
-          dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
-        })
-
-      } else {
-        console.error(GeneralError.serverConfig)
-      }
+        loadedServers.servers.push(thisServer)
+        console.log(loadedServers)
+        dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
+        dispatch(getMiniDapps())
+      })
     }
   }
 }
 
 export const setServers = (file: any) => {
   return async (dispatch: AppDispatch) => {
-
-    console.log("Am i here? ", file)
 
     let reader = new FileReader()
     reader.readAsText(file)

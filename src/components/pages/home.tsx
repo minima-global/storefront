@@ -24,17 +24,18 @@ import {
 // @ts-ignore
 import { Minima } from '../../store/app/blockchain/minima'
 
-import { getMiniDapps } from '../../store/app/fileServer/actions'
+//import { getMiniDapps } from '../../store/app/fileServer/actions'
 
 interface HomeStateProps {
   miniDapps: MiniDappProps
 }
 
-interface HomeDispatchProps {
+/*interface HomeDispatchProps {
   getDapps: () => void
-}
+}*/
 
-type Props = HomeStateProps & HomeDispatchProps
+//type Props = HomeStateProps & HomeDispatchProps
+type Props = HomeStateProps
 
 const get = (props: Props) => {
 
@@ -157,7 +158,6 @@ const get = (props: Props) => {
     } else {
 
       setLoading(true)
-
       if ( props.miniDapps.data.length ) {
 
         setDappInfo()
@@ -192,13 +192,14 @@ const mapStateToProps = (state: ApplicationState): HomeStateProps => {
     }
 }
 
+/*
 const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
  return {
    getDapps: () => dispatch(getMiniDapps())
  }
 }
+*/
 
-export const Home = connect<HomeStateProps, HomeDispatchProps, {}, ApplicationState>(
-  mapStateToProps,
-  mapDispatchToProps
+export const Home = connect<HomeStateProps, {}, {}, ApplicationState>(
+  mapStateToProps
 )(get)

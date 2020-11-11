@@ -49,6 +49,7 @@ export interface InfoData {
 export interface Server {
   info: string
   url: string
+  isOnline: boolean
 }
 
 export interface Servers {

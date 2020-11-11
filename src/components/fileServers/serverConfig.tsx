@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { initServers, getServers } from '../../store/app/fileServer/actions'
@@ -20,9 +20,13 @@ type Props =  ServerInitStateProps & ServerInitDispatchProps
 
 const fileServers = ( props: Props ) => {
 
-  props.initBlockchain()
-  props.initServers()
-  props.getConfig()
+  useEffect(() => {
+
+    props.initBlockchain()
+    props.initServers()
+    props.getConfig()
+
+  },[])
 
   return null
 }
