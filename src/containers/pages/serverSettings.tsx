@@ -44,7 +44,8 @@ const settings = (props: Props) => {
       for (let i = 0; i < serverInfo.length; i++) {
         xs += `<h3>${SettingsConfig.server}</h3>`
         xs += `<p>${SettingsConfig.serverInfo}: ${serverInfo[i].info}<br/>`
-        xs += `${SettingsConfig.serverURL}: ${serverInfo[i].url}<p>`
+        xs += `${SettingsConfig.serverURL}: ${serverInfo[i].url}<br/>`
+        xs += `${SettingsConfig.serverOnline}: ${serverInfo[i].isOnline}<br/>`
       }
       //console.log("Serverinfo: ", serverInfo)
       setServerInfo(xs)

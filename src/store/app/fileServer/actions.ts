@@ -118,9 +118,8 @@ export const getServers = () => {
         }
 
         loadedServers.servers.push(thisServer)
-        console.log(loadedServers)
+        //console.log(loadedServers)
         dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
-        dispatch(getMiniDapps())
       })
     }
   }
@@ -276,37 +275,38 @@ export const getMiniDapps = () => {
     for (let i = 0; i < fileServers.servers.length; i++) {
 
       //console.log("in here")
+      if ( fileServers.servers[i].isOnline ) {
 
-      const dappsListing = fileServers.servers[i].url + Config.miniDappsConfig
+        const dappsListing = fileServers.servers[i].url + Config.miniDappsConfig
 
-      Minima.net.GET(dappsListing, function(resp: any) {
+        Minima.net.GET(dappsListing, function(resp: any) {
 
-        //console.log("but here? ", dappsListing, resp)
+          //console.log("but here? ", dappsListing, resp)
+          if( !resp.result ) {
 
-        if( !resp.result ) {
-
-          console.error(resp.error)
-          dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
-
-        } else {
-
-          const plainResponse = decodeURIComponent(resp.result)
-          const plusLess = plainResponse.replace(/\+/g,' ')
-          const thisConfJSON = JSON.parse(plusLess)
-          const dapps = Object.entries(thisConfJSON)
-
-          if ( dapps.length ) {
-
-            dispatch(getDapps(fileServers.servers[i], dapps))
+            console.error(resp.error)
+            dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
 
           } else {
 
-            console.error(`${GeneralError.miniDappsConfig}`)
-            dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
-          }
+            const plainResponse = decodeURIComponent(resp.result)
+            const plusLess = plainResponse.replace(/\+/g,' ')
+            const thisConfJSON = JSON.parse(plusLess)
+            const dapps = Object.entries(thisConfJSON)
 
-        }
-      })
+            if ( dapps.length ) {
+
+              dispatch(getDapps(fileServers.servers[i], dapps))
+
+            } else {
+
+              console.error(`${GeneralError.miniDappsConfig}`)
+              dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
+            }
+
+          }
+        })
+      }
     }
   }
 }

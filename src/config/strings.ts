@@ -103,6 +103,7 @@ class Settings {
   static readonly server = "Server"
   static readonly serverInfo = "Name"
   static readonly serverURL = "URL"
+  static readonly serverOnline = "Online"
 }
 
 export {
