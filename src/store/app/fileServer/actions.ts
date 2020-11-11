@@ -1,3 +1,5 @@
+import shortid from 'shortid'
+
 // @ts-ignore
 import { Minima } from '../blockchain/minima'
 
@@ -51,6 +53,43 @@ export const initServers = () => {
   }
 }
 
+const uniqueServers = (elements: any[]): any[] => {
+
+  const uniqElements = elements.reduce((element: any[], current: any) => {
+
+    if ( current.length == 3 ) {
+
+      if ( current[1].hasOwnProperty('url') ) {
+
+        const x = element.find( (item: any) => {
+          if( item[1].hasOwnProperty('url') ) {
+            return ( item[0] === current[0] && item[1].url === current[1].url )
+          } else {
+            return false
+          }
+        })
+
+        if (!x) {
+          return element.concat([current])
+        } else {
+          return element
+        }
+      } else {
+
+        return element
+
+      }
+
+    } else {
+
+      return element
+
+    }
+  }, [])
+
+  return uniqElements
+}
+
 const serverEntries = async (): Promise<Server[]> => {
 
   let servers: any[] = []
@@ -91,7 +130,10 @@ export const getServers = () => {
 
     const state = getState()
 
-    const servers: any[] = await serverEntries()
+    const serverList: any[] = await serverEntries()
+    //console.log(serverList)
+    const servers = uniqueServers(serverList)
+    //console.log(servers)
 
     // Are they online?
     for ( let i = 0; i < servers.length; i++) {
@@ -142,9 +184,12 @@ export const setServers = (file: any) => {
           .then(data => {
 
             //console.log("serverfile: ", data)
+            // ensure the filename is unique
+            const fileKey = shortid.generate()
+            const fileName = fileKey + ".json"
 
             let thisServers: any[] = data.files as any[]
-            thisServers.push(file.name)
+            thisServers.push(fileName)
 
             const serversJSON = {
               files: thisServers
@@ -162,7 +207,7 @@ export const setServers = (file: any) => {
 
               } else {
 
-                  Minima.file.save(serverInfo, file.name, function(resp: any) {
+                  Minima.file.save(serverInfo, fileName, function(resp: any) {
 
                   //console.log("second save success: ", resp)
 
