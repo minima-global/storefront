@@ -11,10 +11,10 @@ interface ServerInitStateProps {
 }
 
 interface ServerInitDispatchProps {
-    initBlockchain: () => void
-    initServers: () => void
-    getConfig: () => void
-    getDapps: () => void
+  initBlockchain: () => void
+  initServers: () => void
+  getConfig: () => void
+  getDapps: () => void
 }
 
 type Props =  ServerInitStateProps & ServerInitDispatchProps
@@ -25,22 +25,22 @@ const fileServers = ( props: Props ) => {
 
   useEffect(() => {
 
-      if ( isFirstRun.current ) {
+    if ( isFirstRun.current ) {
 
-        isFirstRun.current = false
-        props.initBlockchain()
-        props.initServers()
-        props.getConfig()
+      isFirstRun.current = false
+      props.initBlockchain()
+      props.initServers()
+      props.getConfig()
 
-      } else {
+    } else {
 
-        //only call this once we have server info from above
-        if(props.serverData.data.hasLoaded) {
-          props.getDapps()
-        }
+      if ( props.serverData.data.numLoaded == props.serverData.data.numAvailable )  {
+
+        props.getDapps()
       }
+    }
 
-  }, [props.serverData])
+  },[props.serverData])
 
   return null
 }

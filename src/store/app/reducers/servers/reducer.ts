@@ -2,8 +2,8 @@ import { ActionProps, ServerActionTypes, ServerProps } from '../../../types'
 
 const initialState: ServerProps = {
   data: {
-    hasLoaded: false,
-    configFile: "",
+    numAvailable: 0,
+    numLoaded: 0,
     servers: []
   }
 }

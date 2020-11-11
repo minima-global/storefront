@@ -15,7 +15,7 @@ import Input from '@material-ui/core/Input'
 import { Settings as SettingsConfig } from '../../config'
 
 import { ApplicationState, AppDispatch, ServerProps, Server } from '../../store'
-import { initServers, setServers } from '../../store/app/fileServer/actions'
+import { initServers, setServers, getMiniDapps } from '../../store/app/fileServer/actions'
 
 import { get } from '../../utils/list'
 
@@ -26,6 +26,7 @@ interface ServerStateProps {
 interface ServerDispatchProps {
   initServers: () => void
   setConfig: (file: any) => void
+  getDapps: () => void
 }
 
 type Props =  ServerStateProps & ServerDispatchProps
@@ -36,18 +37,23 @@ const settings = (props: Props) => {
 
   useEffect(() => {
 
-    if ( props.serverData.data ) {
+    if ( ( props.serverData.data )
+    && ( props.serverData.data.numLoaded == props.serverData.data.numAvailable ) ) {
 
       //console.log(props.serverData.data)
-      let xs = `<p><b>${SettingsConfig.configFile}: ${props.serverData.data.configFile}</b><p>`
+      let xs = ""
       const serverInfo = props.serverData.data.servers
       for (let i = 0; i < serverInfo.length; i++) {
         xs += `<h3>${SettingsConfig.server}</h3>`
         xs += `<p>${SettingsConfig.serverInfo}: ${serverInfo[i].info}<br/>`
-        xs += `${SettingsConfig.serverURL}: ${serverInfo[i].url}<p>`
+        xs += `${SettingsConfig.serverURL}: ${serverInfo[i].url}<br/>`
+        xs += `${SettingsConfig.serverOnline}: ${serverInfo[i].isOnline}<br/>`
       }
       //console.log("Serverinfo: ", serverInfo)
       setServerInfo(xs)
+
+      //don't need to call this here - serverConfig takes care of it
+      //props.getDapps()
     }
 
   }, [props.serverData])
@@ -90,7 +96,8 @@ const mapStateToProps = (state: ApplicationState): ServerStateProps => {
 const mapDispatchToProps = (dispatch: AppDispatch): ServerDispatchProps => {
  return {
    initServers: () => dispatch(initServers()),
-   setConfig: (file: any) => dispatch(setServers(file))
+   setConfig: (file: any) => dispatch(setServers(file)),
+   getDapps: () => dispatch(getMiniDapps())
  }
 }
 

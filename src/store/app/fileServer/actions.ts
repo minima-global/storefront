@@ -43,12 +43,47 @@ export const initServers = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
     const servers: Servers = {
-      hasLoaded: false,
-      configFile: "",
+      numAvailable: 0,
+      numLoaded: 0,
       servers: []
     }
     dispatch(write({data: servers})(ServerActionTypes.SERVER_SUCCESS))
   }
+}
+
+const serverEntries = async (): Promise<Server[]> => {
+
+  let servers: any[] = []
+
+  try {
+
+    const response = await fetch(`${Config.serverConfig}`)
+    const serverFiles = await response.json()
+    let configFiles: any[] = serverFiles.files as any[]
+
+    for (let i = 0; i < configFiles.length; i++) {
+
+      const file = await fetch(configFiles[i])
+      const thisFile = await file.json()
+
+      for (let [info, url] of Object.entries(thisFile)) {
+        const isOnline = false
+        const thisInfo: any = info
+        const thisURL: any = url
+        if ( thisURL.hasOwnProperty('url')) {
+
+          thisURL.url += thisURL.url.endsWith("/") ? "" : "/"
+          //console.log(thisURL)
+          servers.push([info, thisURL, isOnline])
+        }
+      }
+    }
+
+  } catch (error) {
+    console.error(error)
+  }
+
+  return servers
 }
 
 export const getServers = () => {
@@ -56,57 +91,39 @@ export const getServers = () => {
 
     const state = getState()
 
-    fetch(`${Config.serverConfig}`)
-      .then(response => response.json())
-      .then(data => {
-        fetch(data.file)
-          .then(response => response.json())
-          .then(thisData => {
+    const servers: any[] = await serverEntries()
 
-            const servers = Object.entries(thisData)
+    // Are they online?
+    for ( let i = 0; i < servers.length; i++) {
 
-            for ( let i = 0; i < servers.length; i++) {
+      const info: string = servers[i][0]
+      let thisServerData: Server = servers[i][1] as Server
+      const dappsListing = thisServerData.url + Config.miniDappsConfig
 
-              const info: string = servers[i][0]
-              let thisServerData: Server = servers[i][1] as Server
-              thisServerData.url += thisServerData.url.endsWith("/") ? "" : "/"
+      //console.log(info, thisServerData.url, dappsListing)
+      Minima.net.GET(dappsListing, function(resp: any) {
 
-              if (info && thisServerData.url) {
+        let loadedServers = state.fileServers.data
+        loadedServers.numAvailable = servers.length
+        loadedServers.numLoaded += 1
+        let thisServer: Server = {
+          info: info,
+          url: thisServerData.url,
+          isOnline: true
+        }
 
-                const dappsListing = thisServerData.url + Config.miniDappsConfig
-                Minima.net.GET(dappsListing, function(resp: any) {
+        if( !resp.result ) {
 
-                  let loadedServers = state.fileServers.data
-                  loadedServers.hasLoaded = i == (servers.length -1) ? true : false
-                  loadedServers.configFile = data.file
+          console.error(resp.error)
+          thisServer.isOnline = false
 
-                  if( !resp.result ) {
+        }
 
-                    console.error(resp.error)
-
-                  } else {
-
-                    const thisServer: Server = {
-                      info: info,
-                      url: thisServerData.url
-                    }
-                    loadedServers.servers.push(thisServer)
-                  }
-                  dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
-                })
-
-              } else {
-                console.error(GeneralError.serverConfig)
-              }
-            }
-        })
-        .catch(error => {
-          console.error(error)
-        })
+        loadedServers.servers.push(thisServer)
+        //console.log("servers: ", loadedServers)
+        dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
       })
-      .catch(error => {
-        console.error(error)
-      })
+    }
   }
 }
 
@@ -116,14 +133,23 @@ export const setServers = (file: any) => {
     let reader = new FileReader()
     reader.readAsText(file)
     reader.onloadend = e => {
-        if(e.target) {
-            //console.log("file result :", e.target.result)
-            const serverInfo: string = e.target.result as string
+      if(e.target) {
 
-            const serverFile = {
-              file: file.name
+        const serverInfo: string = e.target.result as string
+
+        fetch(`${Config.serverConfig}`)
+          .then(response => response.json())
+          .then(data => {
+
+            //console.log("serverfile: ", data)
+
+            let thisServers: any[] = data.files as any[]
+            thisServers.push(file.name)
+
+            const serversJSON = {
+              files: thisServers
             }
-            const fileJSON = JSON.stringify(serverFile)
+            const fileJSON = JSON.stringify(serversJSON)
 
             Minima.file.save(`${fileJSON}`, Config.serverConfig, function(resp: any) {
 
@@ -136,7 +162,7 @@ export const setServers = (file: any) => {
 
               } else {
 
-                Minima.file.save(serverInfo, file.name, function(resp: any) {
+                  Minima.file.save(serverInfo, file.name, function(resp: any) {
 
                   //console.log("second save success: ", resp)
 
@@ -151,12 +177,16 @@ export const setServers = (file: any) => {
                 })
               }
             })
-        } else {
+          })
+          .catch(error => {
+            console.error(error)
+          })
+      } else {
 
-          console.error(GeneralError.serverConfig)
-          dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
+        console.error(GeneralError.serverConfig)
+        dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
 
-        }
+      }
     }
   }
 }
@@ -196,6 +226,8 @@ const getDapps = (serverInfo: Server, data: [string, any][]) => {
         const dappConfURL = serverInfo.url + dir + "/" + dappData.conf
 
         Minima.net.GET(dappConfURL, function(resp: any) {
+
+          //console.log(dappConfURL, resp)
 
           if( !resp.result ) {
 
@@ -240,41 +272,43 @@ export const getMiniDapps = () => {
     dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_SUCCESS))
     const state = getState()
     const fileServers = state.fileServers.data
+    //console.log("servers: ", fileServers)
 
     for (let i = 0; i < fileServers.servers.length; i++) {
 
       //console.log("in here")
+      if ( fileServers.servers[i].isOnline ) {
 
-      const dappsListing = fileServers.servers[i].url + Config.miniDappsConfig
+        const dappsListing = fileServers.servers[i].url + Config.miniDappsConfig
 
-      Minima.net.GET(dappsListing, function(resp: any) {
+        Minima.net.GET(dappsListing, function(resp: any) {
 
-        //console.log("but here? ", dappsListing, resp)
+          //console.log("but here? ", dappsListing, resp)
+          if( !resp.result ) {
 
-        if( !resp.result ) {
-
-          console.error(resp.error)
-          dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
-
-        } else {
-
-          const plainResponse = decodeURIComponent(resp.result)
-          const plusLess = plainResponse.replace(/\+/g,' ')
-          const thisConfJSON = JSON.parse(plusLess)
-          const dapps = Object.entries(thisConfJSON)
-
-          if ( dapps.length ) {
-
-            dispatch(getDapps(fileServers.servers[i], dapps))
+            console.error(resp.error)
+            dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
 
           } else {
 
-            console.error(`${GeneralError.miniDappsConfig}`)
-            dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
-          }
+            const plainResponse = decodeURIComponent(resp.result)
+            const plusLess = plainResponse.replace(/\+/g,' ')
+            const thisConfJSON = JSON.parse(plusLess)
+            const dapps = Object.entries(thisConfJSON)
 
-        }
-      })
+            if ( dapps.length ) {
+
+              dispatch(getDapps(fileServers.servers[i], dapps))
+
+            } else {
+
+              console.error(`${GeneralError.miniDappsConfig}`)
+              dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
+            }
+
+          }
+        })
+      }
     }
   }
 }

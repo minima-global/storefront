@@ -49,11 +49,12 @@ export interface InfoData {
 export interface Server {
   info: string
   url: string
+  isOnline: boolean
 }
 
 export interface Servers {
-  hasLoaded: boolean
-  configFile: string
+  numAvailable: number
+  numLoaded: number
   servers: Array<Server>
 }
 

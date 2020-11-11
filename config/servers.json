@@ -5,10 +5,7 @@
   "Baz's Bazaar": {
     "url": "https://raw.githubusercontent.com/eurobuddha/BazsBazaar/main/miniDapps/"
   },
-  "Steves Store": {
-    "url": "http://127.0.0.1:8888/"
-  },
-  "Steves Decentralised Store": {
-    "url": "http://127.0.0.1:9005"
+  "Minima Head Office": {
+    "url": "http://web.default.glowkeeper.uk0.bigv.io:8888/"
   }
 }
