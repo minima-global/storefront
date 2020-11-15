@@ -92,6 +92,16 @@ const get = (props: Props) => {
 
     //console.log("here with stuff: ", props.miniDapps)
     // Sort the dapps so store items appear under their store headings
+    /*
+    var dataStuff = [{ Name: 'Apple', Tag: 'Fruit', Price: '2,5' }, { Name: 'Bike', Tag: 'Sport', Price: '150' }, { Name: 'Kiwi', Tag: 'Fruit', Price: '1,5' }, { Name: 'Knife', Tag: 'Kitchen', Price: '8' }, { Name: 'Fork', Tag: 'Kitchen', Price: '7' }],
+    grouped = Object.create(null);
+
+    dataStuff.forEach(function (a) {
+        grouped[a.Tag] = grouped[a.Tag] || [];
+        grouped[a.Tag].push(a);
+    });
+    */
+
     props.miniDapps.data.sort(compare)
     // Ensure no duplicates
     const elements = unique(props.miniDapps.data)
