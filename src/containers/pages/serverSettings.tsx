@@ -25,8 +25,7 @@ interface ServerStateProps {
 
 interface ServerDispatchProps {
   initServers: () => void
-  setConfig: (file: any) => void
-  getDapps: () => void
+  setServers: (file: any) => void
 }
 
 type Props =  ServerStateProps & ServerDispatchProps
@@ -62,7 +61,7 @@ const settings = (props: Props) => {
 
     props.initServers()
     const files = e.target.files
-    props.setConfig(files[0])
+    props.setServers(files[0])
   }
 
   return (
@@ -96,7 +95,7 @@ const mapStateToProps = (state: ApplicationState): ServerStateProps => {
 const mapDispatchToProps = (dispatch: AppDispatch): ServerDispatchProps => {
  return {
    initServers: () => dispatch(initServers()),
-   setConfig: (file: any) => dispatch(setServers(file))
+   setServers: (file: any) => dispatch(setServers(file))
  }
 }
 

@@ -225,17 +225,20 @@ export const getServers = () => {
     //console.log("server list: ", serverList)
 
     const servers = uniqueServers(serverList)
-    dispatch(write({data: Array.of(servers.length)})(ServerActionTypes.SERVER_TOTAL))
-    //console.log("servers: ", servers)
 
-    let loadedServers = state.fileServers.data
-    loadedServers.numAvailable = servers.length
+    let serverData: Servers = {
+      numAvailable: servers.length,
+      numLoaded: 0,
+      servers: []
+    }
+    dispatch(write({data: servers})(ServerActionTypes.SERVER_TOTAL))
+    //console.log("servers: ", servers)
 
     // Are they online?
     for ( let i = 0; i < servers.length; i++) {
 
-
-      dispatch(write({data: Array.of(i + 1)})(ServerActionTypes.SERVER_LOADED))
+      serverData.numLoaded += 1
+      dispatch(write({data: servers})(ServerActionTypes.SERVER_LOADED))
 
       const thisServerData: Server = servers[i] as Server
       const dappsListing = thisServerData.url + Config.miniDappsConfig
@@ -259,9 +262,9 @@ export const getServers = () => {
 
         }
 
-        loadedServers.servers.push(thisServer)
+        serverData.servers.push(thisServer)
         //console.log("servers: ", loadedServers)
-        dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
+        dispatch(write({data: serverData})(ServerActionTypes.SERVER_SUCCESS))
 
         //console.log(loadedServers)
       })

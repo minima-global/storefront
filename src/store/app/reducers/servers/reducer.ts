@@ -18,8 +18,14 @@ export const reducer = (state: ServerProps = initialState, action: ActionProps):
       return state
     }
     case ServerActionTypes.SERVER_SUCCESS: {
-      const data = (action.payload as ServerProps)
-      return {...state, ...data}
+      const serverData = (action.payload.data as Server)
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          servers: [...state.data.servers, serverData]
+        }
+      }
     }
     case ServerActionTypes.SERVER_TOTAL: {
       const serverData = (action.payload.data as Servers)
