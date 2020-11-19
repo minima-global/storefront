@@ -80,6 +80,7 @@ export const enum ServerActionTypes {
   SERVER_INIT = '@@ServerActionTypes/SERVER_INIT',
   SERVER_SUCCESS = '@@ServerActionTypes/SERVER_SUCCESS',
   SERVER_FAILURE = '@@ServerActionTypes/SERVER_FAILURE',
-  MINIDAPP_SUCCESS = '@@ServerActionTypes/MINIDAPP_SUCCESS',
-  MINIDAPP_FAILURE = '@@ServerActionTypes/MINIDAPP_FAILURE'
+  SERVER_TOTAL = '@@ServerActionTypes/SERVER_TOTAL',
+  SERVER_LOADED = '@@ServerActionTypes/SERVER_LOADED',
+  SERVER_DAPPSUCCESS = '@@ServerActionTypes/SERVER_DAPPSUCCESS'
 }

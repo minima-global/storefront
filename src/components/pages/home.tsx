@@ -23,8 +23,6 @@ import {
 // @ts-ignore
 import { Minima } from '../../store/app/blockchain/minima'
 
-//import { getMiniDapps } from '../../store/app/fileServer/actions'
-
 interface HomeStateProps {
   serverData: Servers
 }
@@ -177,7 +175,9 @@ const get = (props: Props) => {
 
   useEffect(() => {
 
-    setLoading(true)
+    console.log("server stuff: ", props.serverData )
+
+    /*setLoading(true)
     //console.log("miniDapps: ", props.miniDapps.data)
     if ( props.serverData.servers.length ) {
 
@@ -186,7 +186,7 @@ const get = (props: Props) => {
     } else {
 
       setLoading(false)
-    }
+    }*/
 
   }, [props.serverData])
 
@@ -211,14 +211,6 @@ const mapStateToProps = (state: ApplicationState): HomeStateProps => {
       serverData: servers
     }
 }
-
-/*
-const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
- return {
-   getDapps: () => dispatch(getMiniDapps())
- }
-}
-*/
 
 export const Home = connect<HomeStateProps, {}, {}, ApplicationState>(
   mapStateToProps

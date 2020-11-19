@@ -24,31 +24,27 @@ export const initServers = () => {
 
 const uniqueServers = (elements: any[]): any[] => {
 
+  console.log("unique first: ", elements)
+
   const uniqElements = elements.reduce((element: any[], current: any) => {
 
-    if ( current.length == 3 ) {
+    console.log("unique: ", element, current)
 
-      if ( current[1].hasOwnProperty('url') ) {
+    if ( current.hasOwnProperty('url') && current.hasOwnProperty('title') ) {
 
-        const x = element.find( (item: any) => {
-          if( item[1].hasOwnProperty('url') ) {
-            return ( item[0] === current[0] && item[1].url === current[1].url )
-          } else {
-            return false
-          }
-        })
-
-        if (!x) {
-          return element.concat([current])
+      const x = element.find( (item: any) => {
+        if( item.hasOwnProperty('url') && item.hasOwnProperty('title') ) {
+          return ( item.title === current.title && item.url === current.url )
         } else {
-          return element
+          return false
         }
+      })
+
+      if (!x) {
+        return element.concat([current])
       } else {
-
         return element
-
       }
-
     } else {
 
       return element
@@ -57,6 +53,125 @@ const uniqueServers = (elements: any[]): any[] => {
   }, [])
 
   return uniqElements
+}
+
+
+const checkDappConfig = (dir: string, dappData: MiniData): boolean => {
+
+  if ( ( dir )
+  && ( dappData.hasOwnProperty("miniDapp") )
+  && ( dappData.hasOwnProperty("conf") )
+  && ( dappData.hasOwnProperty("icon") ) ) {
+
+    if ( (dappData.miniDapp) && (dappData.conf) && (dappData.icon) ) {
+      return true
+    } else {
+      return false
+    }
+
+  } else {
+    return false
+  }
+}
+
+const getDapps = (serverInfo: Server, data: [string, any][]) => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    //const state = getState()
+
+    console.log("blah: ", serverInfo, data)
+
+    for ( let i = 0; i < data.length; i++) {
+
+      const dir = data[i][0]
+      const dappData: MiniData = data[i][1] as MiniData
+
+      if ( checkDappConfig(dir, dappData) ) {
+
+        const dappConfURL = serverInfo.url + dir + "/" + dappData.conf
+
+        Minima.net.GET(dappConfURL, function(resp: any) {
+
+          //console.log(dappConfURL, resp)
+
+          if( !resp.result ) {
+
+            console.error(resp.error)
+
+          } else {
+
+            const plainResponse = decodeURIComponent(resp.result)
+            const plusLess = plainResponse.replace(/\+/g,' ')
+            const thisConfJSON = JSON.parse(plusLess)
+            //const miniDapps = state.miniDapps.data
+
+            let newDappData: MiniData = {
+                dir: dir,
+                miniDapp: dappData.miniDapp,
+                conf: {
+                  name: thisConfJSON.name,
+                  description: thisConfJSON.description,
+                  category: thisConfJSON.category
+                },
+                icon: dappData.icon
+            }
+            console.log("this minidapps: ", newDappData)
+          }
+
+        })
+
+      } else {
+        console.error(`${GeneralError.miniDappsConfig}`)
+      }
+    }
+  }
+}
+
+export const getMiniDapps = ( server: Server ) => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    //dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_SUCCESS))
+    const state = getState()
+    const fileServers = state.fileServers.data
+    //console.log("servers: ", fileServers)
+
+    for (let i = 0; i < fileServers.servers.length; i++) {
+
+      //console.log("in here")
+      if ( fileServers.servers[i].isOnline ) {
+
+        const dappsListing = fileServers.servers[i].url + Config.miniDappsConfig
+
+        Minima.net.GET(dappsListing, function(resp: any) {
+
+          //console.log("but here? ", dappsListing, resp)
+          if( !resp.result ) {
+
+            console.error(resp.error)
+            dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
+
+          } else {
+
+            const plainResponse = decodeURIComponent(resp.result)
+            const plusLess = plainResponse.replace(/\+/g,' ')
+            const thisConfJSON = JSON.parse(plusLess)
+            const dapps = Object.entries(thisConfJSON)
+
+            if ( dapps.length ) {
+
+              dispatch(getDapps(fileServers.servers[i], dapps))
+
+            } else {
+
+              console.error(`${GeneralError.miniDappsConfig}`)
+              dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
+            }
+
+          }
+        })
+      }
+    }
+  }
 }
 
 const serverEntries = async (): Promise<Server[]> => {
@@ -78,6 +193,8 @@ const serverEntries = async (): Promise<Server[]> => {
 
         let thisConfig: Server = config as Server
         thisConfig.title = title
+
+        //console.log("this config: ", thisConfig)
         if ( thisConfig.hasOwnProperty('url') ) {
 
           thisConfig.url += thisConfig.url.endsWith("/") ? "" : "/"
@@ -105,22 +222,26 @@ export const getServers = () => {
     const state = getState()
 
     const serverList: any[] = await serverEntries()
-    //console.log(serverList)
+    //console.log("server list: ", serverList)
+
     const servers = uniqueServers(serverList)
-    //console.log(servers)
+    dispatch(write({data: Array.of(servers.length)})(ServerActionTypes.SERVER_TOTAL))
+    //console.log("servers: ", servers)
+
+    let loadedServers = state.fileServers.data
+    loadedServers.numAvailable = servers.length
 
     // Are they online?
     for ( let i = 0; i < servers.length; i++) {
 
+
+      dispatch(write({data: Array.of(i + 1)})(ServerActionTypes.SERVER_LOADED))
+
       const thisServerData: Server = servers[i] as Server
       const dappsListing = thisServerData.url + Config.miniDappsConfig
 
-      //console.log(info, thisServerData.url, dappsListing)
+      //console.log("server info: ", thisServerData, dappsListing)
       Minima.net.GET(dappsListing, function(resp: any) {
-
-        let loadedServers = state.fileServers.data
-        loadedServers.numAvailable = servers.length
-        loadedServers.numLoaded += 1
 
         let thisServer: Server = {
           title: thisServerData.title,
@@ -141,6 +262,8 @@ export const getServers = () => {
         loadedServers.servers.push(thisServer)
         //console.log("servers: ", loadedServers)
         dispatch(write({data: loadedServers})(ServerActionTypes.SERVER_SUCCESS))
+
+        //console.log(loadedServers)
       })
     }
   }
@@ -208,125 +331,6 @@ export const setServers = (file: any) => {
         console.error(GeneralError.serverConfig)
         dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
 
-      }
-    }
-  }
-}
-
-const checkDappConfig = (dir: string, dappData: MiniData): boolean => {
-
-  if ( ( dir )
-  && ( dappData.hasOwnProperty("miniDapp") )
-  && ( dappData.hasOwnProperty("conf") )
-  && ( dappData.hasOwnProperty("icon") ) ) {
-
-    if ( (dappData.miniDapp) && (dappData.conf) && (dappData.icon) ) {
-      return true
-    } else {
-      return false
-    }
-
-  } else {
-    return false
-  }
-}
-
-const getDapps = (serverInfo: Server, data: [string, any][]) => {
-  return async (dispatch: AppDispatch, getState: Function) => {
-
-    //const state = getState()
-
-    //console.log(state.fileServers.data)
-
-    for ( let i = 0; i < data.length; i++) {
-
-      const dir = data[i][0]
-      const dappData: MiniData = data[i][1] as MiniData
-
-      if ( checkDappConfig(dir, dappData) ) {
-
-        const dappConfURL = serverInfo.url + dir + "/" + dappData.conf
-
-        Minima.net.GET(dappConfURL, function(resp: any) {
-
-          //console.log(dappConfURL, resp)
-
-          if( !resp.result ) {
-
-            console.error(resp.error)
-
-          } else {
-
-            const plainResponse = decodeURIComponent(resp.result)
-            const plusLess = plainResponse.replace(/\+/g,' ')
-            const thisConfJSON = JSON.parse(plusLess)
-            //const miniDapps = state.miniDapps.data
-
-            let newDappData: MiniData = {
-                dir: dir,
-                miniDapp: dappData.miniDapp,
-                conf: {
-                  name: thisConfJSON.name,
-                  description: thisConfJSON.description,
-                  category: thisConfJSON.category
-                },
-                icon: dappData.icon
-            }
-            //console.log("this minidapps: ", miniDapps)
-            dispatch(write({data: Array.of(newDappData)})(ServerActionTypes.MINIDAPP_SUCCESS))
-          }
-
-        })
-
-      } else {
-        console.error(`${GeneralError.miniDappsConfig}`)
-      }
-    }
-  }
-}
-
-export const getMiniDapps = () => {
-  return async (dispatch: AppDispatch, getState: Function) => {
-
-    //dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_SUCCESS))
-    const state = getState()
-    const fileServers = state.fileServers.data
-    //console.log("servers: ", fileServers)
-
-    for (let i = 0; i < fileServers.servers.length; i++) {
-
-      //console.log("in here")
-      if ( fileServers.servers[i].isOnline ) {
-
-        const dappsListing = fileServers.servers[i].url + Config.miniDappsConfig
-
-        Minima.net.GET(dappsListing, function(resp: any) {
-
-          //console.log("but here? ", dappsListing, resp)
-          if( !resp.result ) {
-
-            console.error(resp.error)
-            dispatch(write({data: []})(ServerActionTypes.MINIDAPP_FAILURE))
-
-          } else {
-
-            const plainResponse = decodeURIComponent(resp.result)
-            const plusLess = plainResponse.replace(/\+/g,' ')
-            const thisConfJSON = JSON.parse(plusLess)
-            const dapps = Object.entries(thisConfJSON)
-
-            if ( dapps.length ) {
-
-              dispatch(getDapps(fileServers.servers[i], dapps))
-
-            } else {
-
-              console.error(`${GeneralError.miniDappsConfig}`)
-              dispatch(write({data: []})(ServerActionTypes.MINIDAPP_FAILURE))
-            }
-
-          }
-        })
       }
     }
   }

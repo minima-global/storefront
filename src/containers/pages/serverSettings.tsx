@@ -15,7 +15,7 @@ import Input from '@material-ui/core/Input'
 import { Settings as SettingsConfig } from '../../config'
 
 import { ApplicationState, AppDispatch, ServerProps, Server } from '../../store'
-import { initServers, setServers, getMiniDapps } from '../../store/app/fileServer/actions'
+import { initServers, setServers } from '../../store/app/fileServer/actions'
 
 import { get } from '../../utils/list'
 
@@ -96,8 +96,7 @@ const mapStateToProps = (state: ApplicationState): ServerStateProps => {
 const mapDispatchToProps = (dispatch: AppDispatch): ServerDispatchProps => {
  return {
    initServers: () => dispatch(initServers()),
-   setConfig: (file: any) => dispatch(setServers(file)),
-   getDapps: () => dispatch(getMiniDapps())
+   setConfig: (file: any) => dispatch(setServers(file))
  }
 }
 
