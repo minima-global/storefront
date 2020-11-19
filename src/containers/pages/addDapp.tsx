@@ -10,7 +10,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
-import { ApplicationState, AppDispatch, MiniDappProps } from '../../store'
+import { ApplicationState, AppDispatch, Servers } from '../../store'
 
 import { SimpleArrayRenderer } from '../../components/simpleRenderer'
 import { AddDapp as AddDappConfig, Misc } from '../../config'
@@ -20,8 +20,7 @@ import { themeStyles } from '../../styles'
 import { installDapp } from '../../store/app/blockchain/actions'
 
 interface AddDappStateProps {
-  //serverData: ServerProps
-  miniDapps: MiniDappProps
+  serverData: Servers
 }
 
 interface AddDappDispatchProps {
@@ -39,7 +38,7 @@ const dapp = (props: Props) => {
 
   const setDappInfo = async () => {
 
-    if (props.miniDapps.data.length > 0) {
+    /*if (props.miniDapps.data.length > 0) {
 
       for ( var i = 0; i < props.miniDapps.data.length; i++) {
 
@@ -97,17 +96,17 @@ const dapp = (props: Props) => {
 
         }
       }
-    }
+    }*/
   }
 
   useEffect(() => {
 
-    if ( props.miniDapps.data ) {
+    if ( props.serverData.servers.length ) {
 
         setDappInfo()
     }
 
-  }, [props.miniDapps])
+  }, [props.serverData])
 
   return (
     <>
@@ -122,10 +121,10 @@ const dapp = (props: Props) => {
 
 const mapStateToProps = (state: ApplicationState): AddDappStateProps => {
 
-    const dapps = state.miniDapps as MiniDappProps
-    return {
-      miniDapps: dapps
-    }
+  const servers = state.fileServers.data as Servers
+  return {
+    serverData: servers
+  }
 }
 
 const mapDispatchToProps = (dispatch: AppDispatch): AddDappDispatchProps => {

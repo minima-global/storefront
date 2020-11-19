@@ -16,8 +16,7 @@ import { themeStyles } from '../../styles'
 import {
   ApplicationState,
   AppDispatch,
-  ServerProps,
-  MiniDappProps,
+  Servers,
   MiniData
 } from '../../store'
 
@@ -27,7 +26,7 @@ import { Minima } from '../../store/app/blockchain/minima'
 //import { getMiniDapps } from '../../store/app/fileServer/actions'
 
 interface HomeStateProps {
-  miniDapps: MiniDappProps
+  serverData: Servers
 }
 
 /*interface HomeDispatchProps {
@@ -56,7 +55,7 @@ const get = (props: Props) => {
 
   let history = useHistory()
 
-  const compare = (a: MiniData, b: MiniData) => {
+  /*const compare = (a: MiniData, b: MiniData) => {
 
     const thisA = a.server.url
     const thisB = b.server.url
@@ -86,7 +85,7 @@ const get = (props: Props) => {
     }, [])
 
     return uniqElements
-  }
+  }*/
 
   const setDappInfo = async () => {
 
@@ -102,7 +101,7 @@ const get = (props: Props) => {
     });
     */
 
-    props.miniDapps.data.sort(compare)
+    /*props.miniDapps.data.sort(compare)
     // Ensure no duplicates
     const elements = unique(props.miniDapps.data)
     //console.log("and with uniq stuff: ", elements)
@@ -172,7 +171,7 @@ const get = (props: Props) => {
 
     dappInfo.push(dapps)
     setInfo(dappInfo)
-    setTimeout(function(){ setLoading(false) }, Misc.homeSpinnerDelay)
+    setTimeout(function(){ setLoading(false) }, Misc.homeSpinnerDelay)*/
 
   }
 
@@ -180,7 +179,7 @@ const get = (props: Props) => {
 
     setLoading(true)
     //console.log("miniDapps: ", props.miniDapps.data)
-    if ( props.miniDapps.data.length ) {
+    if ( props.serverData.servers.length ) {
 
       setDappInfo()
 
@@ -189,7 +188,7 @@ const get = (props: Props) => {
       setLoading(false)
     }
 
-  }, [props.miniDapps])
+  }, [props.serverData])
 
   return (
     <>
@@ -207,9 +206,9 @@ const get = (props: Props) => {
 
 const mapStateToProps = (state: ApplicationState): HomeStateProps => {
 
-    const dapps = state.miniDapps as MiniDappProps
+    const servers = state.fileServers.data as Servers
     return {
-      miniDapps: dapps
+      serverData: servers
     }
 }
 

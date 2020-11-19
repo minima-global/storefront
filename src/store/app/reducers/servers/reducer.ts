@@ -1,4 +1,4 @@
-import { ActionProps, ServerActionTypes, ServerProps } from '../../../types'
+import { ActionProps, ServerActionTypes, ServerProps, Server } from '../../../types'
 
 const initialState: ServerProps = {
   data: {
@@ -11,9 +11,11 @@ const initialState: ServerProps = {
 export const reducer = (state: ServerProps = initialState, action: ActionProps): ServerProps => {
 
   switch (action.type) {
+    case ServerActionTypes.SERVER_INIT: {
+      return initialState
+    }
     case ServerActionTypes.SERVER_FAILURE: {
-      const data = (action.payload as ServerProps)
-      return data
+      return state
     }
     case ServerActionTypes.SERVER_SUCCESS: {
       const data = (action.payload as ServerProps)

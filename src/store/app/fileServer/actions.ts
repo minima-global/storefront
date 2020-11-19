@@ -7,8 +7,6 @@ import {
   AppDispatch,
   Servers,
   Server,
-  MiniDappActionTypes,
-  MiniDappProps,
   MiniData,
   ServerActionTypes
 } from '../../types'
@@ -17,39 +15,10 @@ import { Config, Remote, GeneralError } from '../../../config'
 
 import { write } from '../../actions'
 
-/*Can't get Minima.net.GET to wait...
-const checkServer = async (info: string, url: string): Promise<boolean | undefined> => {
-
-  if (info && url) {
-
-    const dappsListing = url + Config.miniDappsConfig
-    await Minima.net.GET(dappsListing, function(resp: any) {
-
-      if( !resp.result ) {
-
-        console.error(resp.error)
-        return false
-
-      } else {
-
-        return true
-      }
-    })
-  } else {
-    return false
-  }
-}
-*/
-
 export const initServers = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
-    const servers: Servers = {
-      numAvailable: 0,
-      numLoaded: 0,
-      servers: []
-    }
-    dispatch(write({data: servers})(ServerActionTypes.SERVER_SUCCESS))
+    dispatch(write({data: []})(ServerActionTypes.SERVER_INIT))
   }
 }
 
@@ -105,15 +74,20 @@ const serverEntries = async (): Promise<Server[]> => {
       const file = await fetch(configFiles[i])
       const thisFile = await file.json()
 
-      for (let [info, url] of Object.entries(thisFile)) {
-        const isOnline = false
-        const thisInfo: any = info
-        const thisURL: any = url
-        if ( thisURL.hasOwnProperty('url')) {
+      for (let [title, config] of Object.entries(thisFile)) {
 
-          thisURL.url += thisURL.url.endsWith("/") ? "" : "/"
+        let thisConfig: Server = config as Server
+        thisConfig.title = title
+        if ( thisConfig.hasOwnProperty('url') ) {
+
+          thisConfig.url += thisConfig.url.endsWith("/") ? "" : "/"
           //console.log(thisURL)
-          servers.push([info, thisURL, isOnline])
+          thisConfig.info = thisConfig.info.hasOwnProperty('info') ? thisConfig.info : ""
+          thisConfig.icon = thisConfig.icon.hasOwnProperty('icon') ? thisConfig.icon : ""
+          servers.push(thisConfig)
+        } else {
+
+          console.error(GeneralError.serverConfig)
         }
       }
     }
@@ -138,8 +112,7 @@ export const getServers = () => {
     // Are they online?
     for ( let i = 0; i < servers.length; i++) {
 
-      const info: string = servers[i][0]
-      let thisServerData: Server = servers[i][1] as Server
+      const thisServerData: Server = servers[i] as Server
       const dappsListing = thisServerData.url + Config.miniDappsConfig
 
       //console.log(info, thisServerData.url, dappsListing)
@@ -148,10 +121,14 @@ export const getServers = () => {
         let loadedServers = state.fileServers.data
         loadedServers.numAvailable = servers.length
         loadedServers.numLoaded += 1
+
         let thisServer: Server = {
-          info: info,
+          title: thisServerData.title,
           url: thisServerData.url,
-          isOnline: true
+          info: thisServerData.info,
+          icon: thisServerData.icon,
+          isOnline: true,
+          dapps: []
         }
 
         if( !resp.result ) {
@@ -257,7 +234,7 @@ const checkDappConfig = (dir: string, dappData: MiniData): boolean => {
 const getDapps = (serverInfo: Server, data: [string, any][]) => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
-    const state = getState()
+    //const state = getState()
 
     //console.log(state.fileServers.data)
 
@@ -283,10 +260,9 @@ const getDapps = (serverInfo: Server, data: [string, any][]) => {
             const plainResponse = decodeURIComponent(resp.result)
             const plusLess = plainResponse.replace(/\+/g,' ')
             const thisConfJSON = JSON.parse(plusLess)
-            const miniDapps = state.miniDapps.data
+            //const miniDapps = state.miniDapps.data
 
             let newDappData: MiniData = {
-                server: serverInfo,
                 dir: dir,
                 miniDapp: dappData.miniDapp,
                 conf: {
@@ -296,10 +272,8 @@ const getDapps = (serverInfo: Server, data: [string, any][]) => {
                 },
                 icon: dappData.icon
             }
-
-            miniDapps.push(newDappData)
             //console.log("this minidapps: ", miniDapps)
-            dispatch(write({data: miniDapps})(MiniDappActionTypes.MINIDAPP_SUCCESS))
+            dispatch(write({data: Array.of(newDappData)})(ServerActionTypes.MINIDAPP_SUCCESS))
           }
 
         })
@@ -314,7 +288,7 @@ const getDapps = (serverInfo: Server, data: [string, any][]) => {
 export const getMiniDapps = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
-    dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_SUCCESS))
+    //dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_SUCCESS))
     const state = getState()
     const fileServers = state.fileServers.data
     //console.log("servers: ", fileServers)
@@ -332,7 +306,7 @@ export const getMiniDapps = () => {
           if( !resp.result ) {
 
             console.error(resp.error)
-            dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
+            dispatch(write({data: []})(ServerActionTypes.MINIDAPP_FAILURE))
 
           } else {
 
@@ -348,7 +322,7 @@ export const getMiniDapps = () => {
             } else {
 
               console.error(`${GeneralError.miniDappsConfig}`)
-              dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_FAILURE))
+              dispatch(write({data: []})(ServerActionTypes.MINIDAPP_FAILURE))
             }
 
           }
