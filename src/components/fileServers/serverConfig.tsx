@@ -1,29 +1,62 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 
+import { getMiniDapps } from '../../store/app/fileServer/actions'
 import { init } from '../../store/app/actions'
 
 import { ApplicationState, AppDispatch, ServerProps } from '../../store/types'
 
-interface ServerInitDispatchProps {
-  init: () => void
+interface ServerInitStateProps {
+  serverData: ServerProps
 }
 
-type Props =  ServerInitDispatchProps
+interface ServerInitDispatchProps {
+  init: () => void
+  getMiniDapps: () => void
+}
+
+type Props =  ServerInitStateProps & ServerInitDispatchProps
 
 const fileServers = ( props: Props ) => {
 
-  props.init()
+  let isFirstRun = useRef(true)
+
+  useEffect(() => {
+
+    if ( isFirstRun.current ) {
+
+      isFirstRun.current = false
+      props.init()
+
+    } else {
+
+      if ( props.serverData.data.numLoaded == props.serverData.data.numAvailable )  {
+
+        props.getMiniDapps()
+      }
+    }
+
+  },[props.serverData])
+
   return null
+}
+
+const mapStateToProps = (state: ApplicationState): ServerInitStateProps => {
+
+   const info = state.fileServers as ServerProps
+   return {
+     serverData: info
+   }
 }
 
 const mapDispatchToProps = (dispatch: AppDispatch): ServerInitDispatchProps => {
  return {
-   init: () => dispatch(init())
+   init: () => dispatch(init()),
+   getMiniDapps: () => dispatch(getMiniDapps())
  }
 }
 
- export const ServerConfig = connect<{}, ServerInitDispatchProps, {}, ApplicationState>(
-   null,
+ export const ServerConfig = connect<ServerInitStateProps, ServerInitDispatchProps, {}, ApplicationState>(
+   mapStateToProps,
    mapDispatchToProps
  )(fileServers)
