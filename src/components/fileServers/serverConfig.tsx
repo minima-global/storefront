@@ -33,8 +33,7 @@ const fileServers = ( props: Props ) => {
 
       //console.log("made it here? ", props.serverData)
 
-      if ( ( props.serverData.data.numLoaded == props.serverData.data.numAvailable )
-      && ( props.serverData.data.servers.length ) ) {
+      if ( props.serverData.data.servers.length == props.serverData.data.numAvailable ) {
 
         props.initMiniDapps()
         props.getMiniDapps()

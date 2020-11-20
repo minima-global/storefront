@@ -36,8 +36,7 @@ const settings = (props: Props) => {
 
   useEffect(() => {
 
-    if ( ( props.serverData.data )
-    && ( props.serverData.data.numLoaded == props.serverData.data.numAvailable ) ) {
+    if ( props.serverData.data.servers.length == props.serverData.data.numAvailable ) {
 
       //console.log(props.serverData.data)
       let xs = ""
@@ -50,9 +49,6 @@ const settings = (props: Props) => {
       }
       //console.log("Serverinfo: ", serverInfo)
       setServerInfo(xs)
-
-      //don't need to call this here - serverConfig takes care of it
-      //props.getDapps()
     }
 
   }, [props.serverData])

@@ -57,7 +57,6 @@ export interface Server {
 
 export interface Servers {
   numAvailable: number
-  numLoaded: number
   servers: Array<Server>
 }
 
@@ -87,8 +86,7 @@ export const enum ServerActionTypes {
   SERVER_INIT = '@@ServerActionTypes/SERVER_INIT',
   SERVER_SUCCESS = '@@ServerActionTypes/SERVER_SUCCESS',
   SERVER_FAILURE = '@@ServerActionTypes/SERVER_FAILURE',
-  SERVER_TOTAL = '@@ServerActionTypes/SERVER_TOTAL',
-  SERVER_LOADED = '@@ServerActionTypes/SERVER_LOADED'
+  SERVER_TOTAL = '@@ServerActionTypes/SERVER_TOTAL'
 }
 
 export const enum MiniDappActionTypes {

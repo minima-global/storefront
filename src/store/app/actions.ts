@@ -14,11 +14,11 @@ import { write } from '../actions'
 export const init = () => {
   return async (dispatch: AppDispatch) => {
 
+    dispatch(initServers())
     Minima.init( function( msg: any ) {
 
       if ( msg.event == "connected" ) {
 
-        dispatch(initServers())
         dispatch(getServers())
       }
     })

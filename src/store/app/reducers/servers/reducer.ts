@@ -3,7 +3,6 @@ import { ActionProps, ServerActionTypes, ServerProps, Servers, Server } from '..
 const initialState: ServerProps = {
   data: {
     numAvailable: 0,
-    numLoaded: 0,
     servers: []
   }
 }
@@ -35,17 +34,6 @@ export const reducer = (state: ServerProps = initialState, action: ActionProps):
         data: {
           ...state.data,
           numAvailable: total
-        }
-      }
-    }
-    case ServerActionTypes.SERVER_LOADED: {
-      const serverData = (action.payload.data as Servers)
-      const loaded = serverData.numLoaded
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          numLoaded: loaded
         }
       }
     }

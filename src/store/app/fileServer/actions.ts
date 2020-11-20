@@ -19,7 +19,8 @@ import { write } from '../../actions'
 export const initServers = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
-    dispatch(write({data: []})(ServerActionTypes.SERVER_INIT))
+    //console.log("Initialising servers")
+    await dispatch(write({data: []})(ServerActionTypes.SERVER_INIT))
   }
 }
 
@@ -79,7 +80,7 @@ const serverEntries = async (): Promise<Server[]> => {
         //console.log("this config: ", thisConfig)
         if ( thisConfig.hasOwnProperty('url') ) {
 
-          console.log("here: ", thisConfig)
+          //console.log("here: ", thisConfig)
 
           thisConfig.url += thisConfig.url.endsWith("/") ? "" : "/"
           //console.log(thisURL)
@@ -112,7 +113,6 @@ export const getServers = () => {
 
     let serverData: Servers = {
       numAvailable: servers.length,
-      numLoaded: 0,
       servers: []
     }
     dispatch(write({data: serverData})(ServerActionTypes.SERVER_TOTAL))
@@ -120,9 +120,6 @@ export const getServers = () => {
 
     // Are they online?
     for ( let i = 0; i < servers.length; i++) {
-
-      serverData.numLoaded += 1
-      dispatch(write({data: serverData})(ServerActionTypes.SERVER_LOADED))
 
       const thisServerData: Server = servers[i] as Server
       const dappsListing = thisServerData.url + Config.miniDappsConfig
@@ -249,7 +246,7 @@ const checkDappConfig = (dir: string, dappData: MiniData): boolean => {
 const getDapps = (serverInfo: Server, data: [string, any][]) => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
-    //const state = getState()
+    //console.log("minidapps: ", serverInfo, data)
 
     for ( let i = 0; i < data.length; i++) {
 
@@ -309,7 +306,7 @@ export const getMiniDapps = () => {
 
     for (let i = 0; i < fileServers.servers.length; i++) {
 
-      //console.log("in here")
+      //console.log("in here: ", i, fileServers.servers[i])
       if ( fileServers.servers[i].isOnline ) {
 
         const dappsListing = fileServers.servers[i].url + Config.miniDappsConfig
