@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { getMiniDapps } from '../../store/app/fileServer/actions'
+import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 import { init } from '../../store/app/actions'
 
 import { ApplicationState, AppDispatch, ServerProps } from '../../store/types'
@@ -12,6 +12,7 @@ interface ServerInitStateProps {
 
 interface ServerInitDispatchProps {
   init: () => void
+  initMiniDapps: () => void
   getMiniDapps: () => void
 }
 
@@ -30,8 +31,12 @@ const fileServers = ( props: Props ) => {
 
     } else {
 
-      if ( props.serverData.data.numLoaded == props.serverData.data.numAvailable )  {
+      //console.log("made it here? ", props.serverData)
 
+      if ( ( props.serverData.data.numLoaded == props.serverData.data.numAvailable )
+      && ( props.serverData.data.servers.length ) ) {
+
+        props.initMiniDapps()
         props.getMiniDapps()
       }
     }
@@ -52,6 +57,7 @@ const mapStateToProps = (state: ApplicationState): ServerInitStateProps => {
 const mapDispatchToProps = (dispatch: AppDispatch): ServerInitDispatchProps => {
  return {
    init: () => dispatch(init()),
+   initMiniDapps: () => dispatch(initMiniDapps()),
    getMiniDapps: () => dispatch(getMiniDapps())
  }
 }

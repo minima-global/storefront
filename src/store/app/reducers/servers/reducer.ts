@@ -49,16 +49,6 @@ export const reducer = (state: ServerProps = initialState, action: ActionProps):
         }
       }
     }
-    case ServerActionTypes.SERVER_DAPPSUCCESS: {
-      const server = (action.payload.data as Server)
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          servers: [ ...state.data.servers, server ]
-        }
-      }
-    }
     default:
       return state
   }

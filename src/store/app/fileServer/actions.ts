@@ -7,8 +7,9 @@ import {
   AppDispatch,
   Servers,
   Server,
-  MiniData,
-  ServerActionTypes
+  ServerActionTypes,
+  MiniDappActionTypes,
+  MiniData
 } from '../../types'
 
 import { Config, Remote, GeneralError } from '../../../config'
@@ -24,11 +25,11 @@ export const initServers = () => {
 
 const uniqueServers = (elements: any[]): any[] => {
 
-  console.log("unique first: ", elements)
+  //console.log("unique first: ", elements)
 
   const uniqElements = elements.reduce((element: any[], current: any) => {
 
-    console.log("unique: ", element, current)
+    //console.log("unique: ", element, current)
 
     if ( current.hasOwnProperty('url') && current.hasOwnProperty('title') ) {
 
@@ -78,10 +79,12 @@ const serverEntries = async (): Promise<Server[]> => {
         //console.log("this config: ", thisConfig)
         if ( thisConfig.hasOwnProperty('url') ) {
 
+          console.log("here: ", thisConfig)
+
           thisConfig.url += thisConfig.url.endsWith("/") ? "" : "/"
           //console.log(thisURL)
-          thisConfig.info = thisConfig.info.hasOwnProperty('info') ? thisConfig.info : ""
-          thisConfig.icon = thisConfig.icon.hasOwnProperty('icon') ? thisConfig.icon : ""
+          thisConfig.info = thisConfig.hasOwnProperty('info') ? thisConfig.info : ""
+          thisConfig.icon = thisConfig.hasOwnProperty('icon') ? thisConfig.icon : ""
           servers.push(thisConfig)
         } else {
 
@@ -112,14 +115,14 @@ export const getServers = () => {
       numLoaded: 0,
       servers: []
     }
-    dispatch(write({data: servers})(ServerActionTypes.SERVER_TOTAL))
+    dispatch(write({data: serverData})(ServerActionTypes.SERVER_TOTAL))
     //console.log("servers: ", servers)
 
     // Are they online?
     for ( let i = 0; i < servers.length; i++) {
 
       serverData.numLoaded += 1
-      dispatch(write({data: servers})(ServerActionTypes.SERVER_LOADED))
+      dispatch(write({data: serverData})(ServerActionTypes.SERVER_LOADED))
 
       const thisServerData: Server = servers[i] as Server
       const dappsListing = thisServerData.url + Config.miniDappsConfig
@@ -128,12 +131,12 @@ export const getServers = () => {
       Minima.net.GET(dappsListing, function(resp: any) {
 
         let thisServer: Server = {
+          index: i,
           title: thisServerData.title,
           url: thisServerData.url,
           info: thisServerData.info,
           icon: thisServerData.icon,
-          isOnline: true,
-          dapps: []
+          isOnline: true
         }
 
         if( !resp.result ) {
@@ -143,9 +146,7 @@ export const getServers = () => {
 
         }
 
-        serverData.servers.push(thisServer)
-        //console.log("servers: ", loadedServers)
-        dispatch(write({data: serverData})(ServerActionTypes.SERVER_SUCCESS))
+        dispatch(write({data: thisServer})(ServerActionTypes.SERVER_SUCCESS))
 
         //console.log(loadedServers)
       })
@@ -220,6 +221,13 @@ export const setServers = (file: any) => {
   }
 }
 
+export const initMiniDapps = () => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_INIT))
+  }
+}
+
 const checkDappConfig = (dir: string, dappData: MiniData): boolean => {
 
   if ( ( dir )
@@ -268,16 +276,18 @@ const getDapps = (serverInfo: Server, data: [string, any][]) => {
             //const miniDapps = state.miniDapps.data
 
             let newDappData: MiniData = {
-                dir: dir,
-                miniDapp: dappData.miniDapp,
-                conf: {
-                  name: thisConfJSON.name,
-                  description: thisConfJSON.description,
-                  category: thisConfJSON.category
-                },
-                icon: dappData.icon
+              serverIndex: serverInfo.index,
+              dir: dir,
+              miniDapp: dappData.miniDapp,
+              conf: {
+                name: thisConfJSON.name,
+                description: thisConfJSON.description,
+                category: thisConfJSON.category
+              },
+              icon: dappData.icon
             }
-            console.log("this minidapps: ", newDappData)
+
+            dispatch(write({data: newDappData})(MiniDappActionTypes.MINIDAPP_SUCCESS))
           }
 
         })
