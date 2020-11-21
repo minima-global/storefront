@@ -15,7 +15,7 @@ class Local {
   static readonly serverSettings = '/settings'
 
   static readonly addDapp = '/add-dapp'
-  static readonly addDappDir = `${Local.addDapp}/:dir`
+  static readonly addDappDir = `${Local.addDapp}/:index`
 }
 
 class Remote {

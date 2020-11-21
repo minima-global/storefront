@@ -243,6 +243,18 @@ const themeStyles = makeStyles({
      left: '50%',
      top: '50%',
      transform: 'translate(-50%, -50%)'
+  },
+  appIconContainer: {
+    width: "75px",
+    height: "75px",
+    border: 2,
+    borderRadius: "50px",
+    borderColor: "#ff671d"
+  },
+  appIcon: {
+    height: "100%",
+    width: "100%",
+    objectFit: "cover"
   }
 })
 

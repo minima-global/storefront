@@ -10,9 +10,8 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
-import { ApplicationState, AppDispatch, Servers } from '../../store'
+import { ApplicationState, AppDispatch, MiniDappProps, Servers, MiniData } from '../../store'
 
-import { SimpleArrayRenderer } from '../../components/simpleRenderer'
 import { AddDapp as AddDappConfig, Misc } from '../../config'
 
 import { themeStyles } from '../../styles'
@@ -21,6 +20,7 @@ import { installDapp } from '../../store/app/blockchain/actions'
 
 interface AddDappStateProps {
   serverData: Servers
+  miniDappData: MiniDappProps
 }
 
 interface AddDappDispatchProps {
@@ -31,90 +31,63 @@ type Props =  AddDappStateProps & AddDappDispatchProps
 
 const dapp = (props: Props) => {
 
-  const [dapp, setDapp] = useState([] as any[])
-  const {dir} = useParams()
+  const {index} = useParams()
 
   const classes = themeStyles()
 
-  const setDappInfo = async () => {
+  const miniDapp: MiniData = props.miniDappData.data[index]
 
-    /*if (props.miniDapps.data.length > 0) {
-
-      for ( var i = 0; i < props.miniDapps.data.length; i++) {
-
-        const thisDir = props.miniDapps.data[i].dir
-
-        if (dir == thisDir ) {
-
-          let dappInfo: any[] = []
-          const iconURL = props.miniDapps.data[i].server.url + dir + "/" + props.miniDapps.data[i].icon
-          const miniDappURL = props.miniDapps.data[i].server.url + dir + "/" + props.miniDapps.data[i].miniDapp
-
-          const confJson = {
-            name: props.miniDapps.data[i].conf.name,
-            description: props.miniDapps.data[i].conf.description,
-            category: props.miniDapps.data[i].conf.category
-          }
-
-          const renderHTML = (
-            <React.Fragment key={thisDir}>
-              <Paper className={classes.home} square={true}>
-                <Grid container>
-                  <Grid item xs={3}>
-                    &nbsp;
-                  </Grid>
-                  <Grid item justify="center" alignItems="center" xs={2}>
-                    <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
-                  </Grid>
-                  <Grid item justify="center" alignItems="center" xs={4}>
-                   <b>{confJson.name}</b> - {confJson.description}<br/>
-                   <i>{confJson.category}</i>
-                  </Grid>
-                  <Grid item xs={3}>
-                    &nbsp;
-                  </Grid>
-                </Grid>
-                <Grid item container xs={12}>
-                  <Grid item xs={5}>
-                    &nbsp;
-                  </Grid>
-                  <Grid item justify="center" alignItems="center" xs={2}>
-                    <form method="get" action={miniDappURL}>
-                       <button type="submit">{AddDappConfig.download}</button>
-                    </form>
-                  </Grid>
-                  <Grid item xs={5}>
-                    &nbsp;
-                  </Grid>
-                </Grid>
-              </Paper>
-            </React.Fragment>
-          )
-
-          dappInfo.push(renderHTML)
-          setDapp(dappInfo)
-
-        }
-      }
-    }*/
-  }
-
-  useEffect(() => {
-
-    if ( props.serverData.servers.length ) {
-
-        setDappInfo()
-    }
-
-  }, [props.serverData])
+  const serverIndex = miniDapp.serverIndex
+  const dappHome = props.serverData.servers[serverIndex].url
+  const dir = miniDapp.dir
+  const icon = miniDapp.icon
+  const iconURL = dappHome + dir + "/" + icon
+  const name = miniDapp.conf.name
+  const description = miniDapp.conf.description
+  const category = miniDapp.conf.category
+  const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
 
   return (
     <>
       <h2>{AddDappConfig.heading}</h2>
       <hr />
-      <p>
-        <SimpleArrayRenderer data={dapp} />
-      </p>
+      <Paper className={classes.home} square={true}>
+        <Grid container>
+            <Grid>
+              <Grid item xs={3}>
+                &nbsp;
+              </Grid>
+              <Grid item justify="center" alignItems="center" xs={2}>
+                <Paper className={classes.appIconContainer}>
+                  <img
+                    className={classes.appIcon}
+                    src={iconURL}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item justify="center" alignItems="center" xs={4}>
+               <b>{name}</b> - {description}<br/>
+               <i>{category}</i>
+              </Grid>
+              <Grid item xs={3}>
+                &nbsp;
+              </Grid>
+            </Grid>
+            <Grid item container xs={12}>
+              <Grid item xs={5}>
+                &nbsp;
+              </Grid>
+              <Grid item justify="center" alignItems="center" xs={2}>
+                <form method="get" action={miniDappURL}>
+                   <button type="submit">{AddDappConfig.download}</button>
+                </form>
+              </Grid>
+              <Grid item xs={5}>
+                &nbsp;
+              </Grid>
+            </Grid>
+        </Grid>
+      </Paper>
     </>
   )
 }
@@ -122,8 +95,10 @@ const dapp = (props: Props) => {
 const mapStateToProps = (state: ApplicationState): AddDappStateProps => {
 
   const servers = state.fileServers.data as Servers
+  const miniDapps = state.miniDapps as MiniDappProps
   return {
-    serverData: servers
+    serverData: servers,
+    miniDappData: miniDapps
   }
 }
 

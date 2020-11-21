@@ -40,7 +40,6 @@ const get = (props: Props) => {
 
   const classes = themeStyles()
   const [isLoading, setLoading] = useState(false)
-
   let history = useHistory()
 
   /*const compare = (a: MiniData, b: MiniData) => {
@@ -75,98 +74,11 @@ const get = (props: Props) => {
     return uniqElements
   }*/
 
-  const setDappInfo = async () => {
-
-    //console.log("here with stuff: ", props.miniDapps)
-    // Sort the dapps so store items appear under their store headings
-    /*
-    var dataStuff = [{ Name: 'Apple', Tag: 'Fruit', Price: '2,5' }, { Name: 'Bike', Tag: 'Sport', Price: '150' }, { Name: 'Kiwi', Tag: 'Fruit', Price: '1,5' }, { Name: 'Knife', Tag: 'Kitchen', Price: '8' }, { Name: 'Fork', Tag: 'Kitchen', Price: '7' }],
-    grouped = Object.create(null);
-
-    dataStuff.forEach(function (a) {
-        grouped[a.Tag] = grouped[a.Tag] || [];
-        grouped[a.Tag].push(a);
-    });
-    */
-
-    /*props.miniDapps.data.sort(compare)
-    // Ensure no duplicates
-    const elements = unique(props.miniDapps.data)
-    //console.log("and with uniq stuff: ", elements)
-
-    let dappInfo: any[] = []
-    let content: any[] = []
-    let storeName = ""
-
-    for ( var i = 0; i < elements.length; i++) {
-
-      const thisStoreName = elements[i].server.info
-      const thisStoreURL = elements[i].server.url
-      if( thisStoreName != storeName) {
-        const title = (
-          <>
-            <Grid item justify="center" alignItems="center" xs={12}>
-              <Grid>
-                <h3>
-                  {thisStoreName}
-                </h3>
-                <h4>
-                  {HomeConfig.address}: {thisStoreURL}
-                </h4>
-              </Grid>
-            </Grid>
-          </>
-        )
-        content.push(title)
-        storeName = thisStoreName
-      }
-
-      const dir = elements[i].dir
-      const iconURL = elements[i].server.url + dir + "/" + elements[i].icon
-      const pathAddDapp = `${Local.addDapp}/${dir}`
-
-      const confJson = {
-        name: elements[i].conf.name,
-        description: elements[i].conf.description,
-        category: elements[i].conf.category
-      }
-
-      const dappHTML = (
-        <React.Fragment key={dir}>
-          <Grid item justify="center" alignItems="center" xs={6} sm={2}>
-            <button onClick={() => history.push(`${pathAddDapp}`)}>
-              <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
-             </button>
-          </Grid>
-          <Grid item justify="center" alignItems="center" xs={6} sm={4}>
-           <b>{confJson.name}</b> - {confJson.description}<br/>
-           <i>{confJson.category}</i>
-          </Grid>
-        </React.Fragment>
-      )
-      content.push(dappHTML)
-    }
-
-    const dapps = (
-      <>
-        <Paper className={classes.home} square={true}>
-          <Grid container>
-            {content}
-          </Grid>
-        </Paper>
-      </>
-    )
-
-    dappInfo.push(dapps)
-    setInfo(dappInfo)
-    setTimeout(function(){ setLoading(false) }, Misc.homeSpinnerDelay)*/
-
-  }
-
   useEffect(() => {
 
     console.log("server stuff: ", props.miniDappData, props.serverData)
-
+    setLoading(true)
+    setTimeout(function(){ setLoading(false) }, Misc.homeSpinnerDelay)
     /*if ( props.miniDappData.data.length ) {
 
       const info = props.miniDappData.data.map( ( miniDapp: MiniData, i: number ) => (<div key={i}>{miniDapp.icon}</div>))
@@ -198,7 +110,7 @@ const get = (props: Props) => {
               <Paper className={classes.home} square={true}>
                 <Grid container>
                   {
-                    props.miniDappData.data.map( ( miniDapp: MiniData ) => {
+                    props.miniDappData.data.map( ( miniDapp: MiniData, i: number ) => {
 
                       const serverIndex = miniDapp.serverIndex
                       const dappHome = props.serverData.servers[serverIndex].url
@@ -208,14 +120,19 @@ const get = (props: Props) => {
                       const name = miniDapp.conf.name
                       const description = miniDapp.conf.description
                       const category = miniDapp.conf.category
-                      const pathAddDapp = `${Local.addDapp}/${dir}`
+                      const pathAddDapp = `${Local.addDapp}/${i}`
 
                       return (
                         <>
                           <Grid item justify="center" alignItems="center" xs={12}  sm={4}>
-                            <button onClick={() => history.push(`${pathAddDapp}`)}>
-                              <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
-                            </button>
+                            <Paper className={classes.appIconContainer}>
+                              <button onClick={() => history.push(`${pathAddDapp}`)}>
+                                <img
+                                  className={classes.appIcon}
+                                  src={iconURL}
+                                />
+                              </button>
+                            </Paper>
                           </Grid>
                           <Grid item justify="center" alignItems="center" xs={12} sm={8}>
                            <b>{name}</b><br/>
