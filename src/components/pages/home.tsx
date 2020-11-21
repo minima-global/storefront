@@ -39,18 +39,6 @@ type Props = HomeStateProps
 const get = (props: Props) => {
 
   const classes = themeStyles()
-  const noServers = (
-    <>
-      <Paper className={classes.home} square={true}>
-        <Grid container>
-          {HomeConfig.noServers}
-        </Grid>
-      </Paper>
-    </>
-  )
-
-  let isFirstRun = useRef(true)
-  const [info, setInfo] = useState([noServers] as any[])
   const [isLoading, setLoading] = useState(false)
 
   let history = useHistory()
@@ -177,7 +165,13 @@ const get = (props: Props) => {
 
   useEffect(() => {
 
-    console.log("server stuff: ", props.miniDappData, props.serverData )
+    console.log("server stuff: ", props.miniDappData, props.serverData)
+
+    /*if ( props.miniDappData.data.length ) {
+
+      const info = props.miniDappData.data.map( ( miniDapp: MiniData, i: number ) => (<div key={i}>{miniDapp.icon}</div>))
+      setInfo(Array.of(info))
+    }*/
 
     /*setLoading(true)
     //console.log("miniDapps: ", props.miniDapps.data)
@@ -198,9 +192,43 @@ const get = (props: Props) => {
       <hr />
       <p>
           {isLoading ?
-          <div className={classes.spinner}>
-            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-          </div> : <SimpleArrayRenderer data={info} /> }
+            <div className={classes.spinner}>
+              <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+            </div> : (
+              <Paper className={classes.home} square={true}>
+                <Grid container>
+                  {
+                    props.miniDappData.data.map( ( miniDapp: MiniData ) => {
+
+                      const serverIndex = miniDapp.serverIndex
+                      const dappHome = props.serverData.servers[serverIndex].url
+                      const dir = miniDapp.dir
+                      const icon = miniDapp.icon
+                      const iconURL = dappHome + dir + "/" + icon
+                      const name = miniDapp.conf.name
+                      const description = miniDapp.conf.description
+                      const category = miniDapp.conf.category
+                      const pathAddDapp = `${Local.addDapp}/${dir}`
+
+                      return (
+                        <>
+                          <Grid item justify="center" alignItems="center" xs={12}  sm={4}>
+                            <button onClick={() => history.push(`${pathAddDapp}`)}>
+                              <img src={iconURL} width={Misc.homeIconSize} height={Misc.homeIconSize} />
+                            </button>
+                          </Grid>
+                          <Grid item justify="center" alignItems="center" xs={12} sm={8}>
+                           <b>{name}</b><br/>
+                           <i>{category}</i>
+                          </Grid>
+                        </>
+                      )
+                    })
+                  }
+                </Grid>
+              </Paper>
+            )
+          }
       </p>
     </>
   )
@@ -208,12 +236,12 @@ const get = (props: Props) => {
 
 const mapStateToProps = (state: ApplicationState): HomeStateProps => {
 
-    const servers = state.fileServers.data as Servers
-    const miniDapps = state.miniDapps as MiniDappProps
-    return {
-      serverData: servers,
-      miniDappData: miniDapps
-    }
+  const servers = state.fileServers.data as Servers
+  const miniDapps = state.miniDapps as MiniDappProps
+  return {
+    serverData: servers,
+    miniDappData: miniDapps
+  }
 }
 
 export const Home = connect<HomeStateProps, {}, {}, ApplicationState>(
