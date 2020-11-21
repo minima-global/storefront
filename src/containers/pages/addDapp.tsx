@@ -35,6 +35,8 @@ const dapp = (props: Props) => {
 
   const classes = themeStyles()
 
+  console.log("blah: ", props, index)
+
   const miniDapp: MiniData = props.miniDappData.data[index]
 
   const serverIndex = miniDapp.serverIndex

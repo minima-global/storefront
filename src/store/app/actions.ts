@@ -14,6 +14,8 @@ import { write } from '../actions'
 export const init = () => {
   return async (dispatch: AppDispatch) => {
 
+    console.log("cor missusaSDsad")
+
     dispatch(initServers())
     Minima.init( function( msg: any ) {
 

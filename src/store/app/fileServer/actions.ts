@@ -221,6 +221,7 @@ export const setServers = (file: any) => {
 export const initMiniDapps = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
+    //console.log("init dapps")
     dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_INIT))
   }
 }

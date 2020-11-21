@@ -24,8 +24,11 @@ const fileServers = ( props: Props ) => {
 
   useEffect(() => {
 
+    console.log("why am I here? ")
+
     if ( isFirstRun.current ) {
 
+      console.log("here? ")
       isFirstRun.current = false
       props.init()
 
@@ -35,6 +38,7 @@ const fileServers = ( props: Props ) => {
 
       if ( props.serverData.data.servers.length == props.serverData.data.numAvailable ) {
 
+        console.log("or here? ")
         props.initMiniDapps()
         props.getMiniDapps()
       }
