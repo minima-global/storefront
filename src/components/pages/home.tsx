@@ -32,6 +32,7 @@ interface HomeStateProps {
 }
 
 interface HomeDispatchProps {
+  initMiniDapps: () => void
   getMiniDapps: () => void
 }
 
@@ -82,6 +83,7 @@ const get = ( props: Props ) => {
     if ( props.serverData.servers.length
     && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
 
+      props.initMiniDapps()
       setLoading(true)
       setTimeout(function(){ setLoading(false) }, Misc.homeSpinnerDelay)
       props.getMiniDapps()
@@ -154,6 +156,7 @@ const mapStateToProps = (state: ApplicationState): HomeStateProps => {
 
 const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
  return {
+   initMiniDapps: () => dispatch(initMiniDapps()),
    getMiniDapps: () => dispatch(getMiniDapps())
  }
 }
