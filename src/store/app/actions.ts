@@ -14,15 +14,13 @@ import { write } from '../actions'
 export const init = () => {
   return async (dispatch: AppDispatch) => {
 
-    console.log("cor missusaSDsad")
-
     dispatch(initServers())
-    Minima.init( function( msg: any ) {
+    dispatch(getServers())
+    Minima.init()
+    /*Minima.init( function( msg: any ) {
 
       if ( msg.event == "connected" ) {
-
-        dispatch(getServers())
       }
-    })
+    })*/
   }
 }

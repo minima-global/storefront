@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 
@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
 import Spinner from 'react-spinner-material'
+
+import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 
 //import Markdown from 'react-markdown'
 import { SimpleArrayRenderer } from '../simpleRenderer'
@@ -29,17 +31,18 @@ interface HomeStateProps {
   miniDappData: MiniDappProps
 }
 
-/*interface HomeDispatchProps {
-  getDapps: () => void
-}*/
+interface HomeDispatchProps {
+  getMiniDapps: () => void
+}
 
 //type Props = HomeStateProps & HomeDispatchProps
-type Props = HomeStateProps
+type Props = HomeStateProps & HomeDispatchProps
 
-const get = (props: Props) => {
+const get = ( props: Props ) => {
+
+  const [isLoading, setLoading] = useState(false)
 
   const classes = themeStyles()
-  const [isLoading, setLoading] = useState(false)
   let history = useHistory()
 
   /*const compare = (a: MiniData, b: MiniData) => {
@@ -76,27 +79,15 @@ const get = (props: Props) => {
 
   useEffect(() => {
 
-    console.log("server stuff: ", props.miniDappData, props.serverData)
-    setLoading(true)
-    setTimeout(function(){ setLoading(false) }, Misc.homeSpinnerDelay)
-    /*if ( props.miniDappData.data.length ) {
+    if ( props.serverData.servers.length
+    && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
 
-      const info = props.miniDappData.data.map( ( miniDapp: MiniData, i: number ) => (<div key={i}>{miniDapp.icon}</div>))
-      setInfo(Array.of(info))
-    }*/
+      setLoading(true)
+      setTimeout(function(){ setLoading(false) }, Misc.homeSpinnerDelay)
+      props.getMiniDapps()
+    }
 
-    /*setLoading(true)
-    //console.log("miniDapps: ", props.miniDapps.data)
-    if ( props.serverData.servers.length ) {
-
-      setDappInfo()
-
-    } else {
-
-      setLoading(false)
-    }*/
-
-  }, [props.miniDappData, props.serverData])
+  }, [props.serverData])
 
   return (
     <>
@@ -161,6 +152,13 @@ const mapStateToProps = (state: ApplicationState): HomeStateProps => {
   }
 }
 
-export const Home = connect<HomeStateProps, {}, {}, ApplicationState>(
-  mapStateToProps
+const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
+ return {
+   getMiniDapps: () => dispatch(getMiniDapps())
+ }
+}
+
+export const Home = connect<HomeStateProps, HomeDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
+  mapDispatchToProps
 )(get)
