@@ -10,7 +10,7 @@ do
 	#create unique dir for minidapp
 	DIR=$(echo $DAPP | cut -d. -f1)
 	unzip -q -o $DAPP -d $DIR && mv $DAPP $DIR
-	
+
 	# find conf and icon
 	CONF=$(find $DIR -name minidapp.conf | sed "s/$DIR\///")
 	ICONREGEX='\"icon\"\:'
@@ -21,8 +21,8 @@ do
 
 	# Output JSON
 	echo "  \"$DIR\": {"
-	echo "    \"miniDapp\": \"$DAPP\""
-	echo "    \"icon\": \"$ICON\""
+	echo "    \"miniDapp\": \"$DAPP\","
+	echo "    \"icon\": \"$ICON\","
 	echo "    \"conf\": \"$CONF\""
 
 	let COUNTER=COUNTER+1
