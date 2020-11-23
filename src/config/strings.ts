@@ -20,7 +20,9 @@ class Paths {
 
   static readonly serverSettings = 'Settings'
   static readonly addDapp = 'Get MiniDapp'
-  static readonly addDappDir = Paths.addDapp
+  static readonly addDappIndex = Paths.addDapp
+  static readonly showStoreDapps = 'My Storefronts'
+  static readonly showStoreDappsIndex = Paths.showStoreDapps
 }
 
 class GeneralError {
@@ -55,6 +57,11 @@ class AddDapp {
 
   static readonly download = 'Download'
   static readonly install = 'Install'
+}
+
+class Storefronts {
+
+  static readonly heading = 'Storefronts'
 }
 
 class About {
@@ -113,6 +120,7 @@ export {
   Transaction,
   Home,
   AddDapp,
+  Storefronts,
   About,
   Faq,
   Help,

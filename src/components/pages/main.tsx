@@ -16,6 +16,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import HelpIcon from '@material-ui/icons/Help'
 import ContactMailIcon from '@material-ui/icons/ContactMail'
 import SettingsApplicationsTwoToneIcon from '@material-ui/icons/SettingsApplicationsTwoTone'
+import StorefrontTwoToneIcon from '@material-ui/icons/StorefrontTwoTone';
 
 import Tooltip from '@material-ui/core/Tooltip'
 
@@ -102,7 +103,7 @@ export const Main = () => {
           <Paper className={classes.footer} square={true}>
             <Grid item container xs={12}>
 
-              <Grid item xs={6}>
+              <Grid item xs={4}>
 
                    <NavLink to={Local.home} className={classes.link}>
                        <Grid item>
@@ -119,7 +120,24 @@ export const Main = () => {
 
                 </Grid>
 
-                <Grid item xs={6}>
+                <Grid item xs={4}>
+
+                   <NavLink to={Local.showStoreDapps} className={classes.link}>
+                       <Grid item>
+                          <Paper className={classes.footerLinks} elevation={0} square={true}>
+                            <StorefrontTwoToneIcon fontSize={'large'}/>
+                          </Paper>
+                       </Grid>
+                       <Grid item>
+                          <Paper className={classes.footerLinks} elevation={0} square={true}>
+                              {Paths.showStoreDapps}
+                          </Paper>
+                       </Grid>
+                   </NavLink>
+
+                </Grid>
+
+                <Grid item xs={4}>
 
                    <NavLink to={Local.serverSettings} className={classes.link}>
                        <Grid item>
