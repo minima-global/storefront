@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
 import { Content } from '../content'
-import { ServerConfig } from '../fileServers/serverConfig'
+import { AppInit } from '../appInit'
 import { App } from '../../config/strings'
 
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone'
@@ -47,7 +47,7 @@ export const Main = () => {
 
                 <Grid item xs={1}>
                   <img className={classes.title} src={powered}/>
-                  <ServerConfig />
+                  <AppInit />
                 </Grid>
 
                 <Grid item xs={5}>
