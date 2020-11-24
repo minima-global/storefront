@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 
@@ -7,11 +8,11 @@ import Paper from '@material-ui/core/Paper'
 
 import Spinner from 'react-spinner-material'
 
-//import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
+import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 
 //import Markdown from 'react-markdown'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
-import { Home as HomeConfig, Misc, Local } from '../../config'
+import { Storefronts as StorefrontConfig, Misc, Local } from '../../config'
 
 import { themeStyles } from '../../styles'
 
@@ -26,22 +27,24 @@ import {
 // @ts-ignore
 import { Minima } from '../../store/app/blockchain/minima'
 
-interface HomeStateProps {
+interface StorefrontStateProps {
   serverData: Servers
   miniDappData: MiniDappProps
 }
 
-/*interface HomeDispatchProps {
+interface StorefrontDispatchProps {
   initMiniDapps: () => void
   getMiniDapps: () => void
-}*/
+}
 
-//type Props = HomeStateProps & HomeDispatchProps
-type Props = HomeStateProps
+//type Props = StorefrontStateProps & StorefrontDispatchProps
+type Props = StorefrontStateProps & StorefrontDispatchProps
 
 const get = ( props: Props ) => {
 
   const [isLoading, setLoading] = useState(false)
+
+  const {index} = useParams()
 
   const classes = themeStyles()
   let history = useHistory()
@@ -76,7 +79,7 @@ const get = ( props: Props ) => {
     }, [])
 
     return uniqElements
-  }
+  }*/
 
   useEffect(() => {
 
@@ -89,11 +92,11 @@ const get = ( props: Props ) => {
       props.getMiniDapps()
     }
 
-  }, [props.serverData])*/
+  }, [props.serverData])
 
   return (
     <>
-      <h2>{HomeConfig.heading}</h2>
+      <h2>{StorefrontConfig.heading}</h2>
       <hr />
       <p>
           {isLoading ?
@@ -106,10 +109,10 @@ const get = ( props: Props ) => {
                     props.miniDappData.data.map( ( miniDapp: MiniData, i: number ) => {
 
                       const serverIndex = miniDapp.serverIndex
-                      const dappHome = props.serverData.servers[serverIndex].url
+                      const dappStorefront = props.serverData.servers[serverIndex].url
                       const dir = miniDapp.dir
                       const icon = miniDapp.icon
-                      const iconURL = dappHome + dir + "/" + icon
+                      const iconURL = dappStorefront + dir + "/" + icon
                       const name = miniDapp.conf.name
                       const description = miniDapp.conf.description
                       const category = miniDapp.conf.category
@@ -144,7 +147,7 @@ const get = ( props: Props ) => {
   )
 }
 
-const mapStateToProps = (state: ApplicationState): HomeStateProps => {
+const mapStateToProps = (state: ApplicationState): StorefrontStateProps => {
 
   const servers = state.fileServers.data as Servers
   const miniDapps = state.miniDapps as MiniDappProps
@@ -154,14 +157,14 @@ const mapStateToProps = (state: ApplicationState): HomeStateProps => {
   }
 }
 
-/*
-const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
+const mapDispatchToProps = (dispatch: AppDispatch): StorefrontDispatchProps => {
  return {
    initMiniDapps: () => dispatch(initMiniDapps()),
    getMiniDapps: () => dispatch(getMiniDapps())
  }
-}*/
+}
 
-export const Home = connect<HomeStateProps, {}, {}, ApplicationState>(
-  mapStateToProps
+export const Storefront = connect<StorefrontStateProps, StorefrontDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
+  mapDispatchToProps
 )(get)

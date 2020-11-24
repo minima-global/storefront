@@ -17,7 +17,7 @@ import { Config, Remote, GeneralError } from '../../../config'
 import { write } from '../../actions'
 
 export const initServers = () => {
-  return async (dispatch: AppDispatch, getState: Function) => {
+  return async (dispatch: AppDispatch) => {
 
     //console.log("Initialising servers")
     await dispatch(write({data: []})(ServerActionTypes.SERVER_INIT))
@@ -102,9 +102,7 @@ const serverEntries = async (): Promise<Server[]> => {
 }
 
 export const getServers = () => {
-  return async (dispatch: AppDispatch, getState: Function) => {
-
-    const state = getState()
+  return async (dispatch: AppDispatch) => {
 
     const serverList: any[] = await serverEntries()
     //console.log("server list: ", serverList)
@@ -299,6 +297,8 @@ const getDapps = (serverInfo: Server, data: [string, any][]) => {
 
 export const getMiniDapps = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
+
+    console.log("I'm in here")
 
     //dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_SUCCESS))
     const state = getState()

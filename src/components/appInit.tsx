@@ -1,12 +1,13 @@
 import React, { useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { init } from '../store/app/actions'
+import { init, poll } from '../store/app/actions'
 
 import { ApplicationState, AppDispatch } from '../store/types'
 
 interface InitDispatchProps {
   init: () => void
+  poll: () => void
 }
 
 type Props = InitDispatchProps
@@ -16,6 +17,7 @@ const initialise = ( props: Props ) => {
   useEffect(() => {
 
     props.init()
+    props.poll()
 
   },[])
 
@@ -24,7 +26,8 @@ const initialise = ( props: Props ) => {
 
 const mapDispatchToProps = (dispatch: AppDispatch): InitDispatchProps => {
  return {
-   init: () => dispatch(init())
+   init: () => dispatch(init()),
+   poll: () => dispatch(poll())
  }
 }
 
