@@ -116,13 +116,13 @@ export const getServers = () => {
     dispatch(write({data: serverData})(ServerActionTypes.SERVER_TOTAL))
     //console.log("servers: ", servers)
 
-    // Are they online?
     for ( let i = 0; i < servers.length; i++) {
 
       const thisServerData: Server = servers[i] as Server
       const dappsListing = thisServerData.url + Config.miniDappsConfig
 
       //console.log("server info: ", thisServerData, dappsListing)
+      // Are they online?
       Minima.net.GET(dappsListing, function(resp: any) {
 
         let thisServer: Server = {
@@ -142,13 +142,12 @@ export const getServers = () => {
         }
 
         dispatch(write({data: thisServer})(ServerActionTypes.SERVER_SUCCESS))
-
-        //console.log(loadedServers)
       })
     }
   }
 }
 
+// This is called if a user uploads a new server file
 export const setServers = (file: any) => {
   return async (dispatch: AppDispatch) => {
 
@@ -298,7 +297,7 @@ const getDapps = (serverInfo: Server, data: [string, any][]) => {
 export const getMiniDapps = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
-    console.log("I'm in here")
+    //console.log("I'm in here")
 
     //dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_SUCCESS))
     const state = getState()
@@ -337,6 +336,44 @@ export const getMiniDapps = () => {
               dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
             }
 
+          }
+        })
+      }
+    }
+  }
+}
+
+export const countMiniDapps = () => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    const state = getState()
+    const fileServers = state.fileServers.data
+
+    for (let i = 0; i < fileServers.servers.length; i++) {
+
+      if ( fileServers.servers[i].isOnline ) {
+
+        const dappsListing = fileServers.servers[i].url + Config.miniDappsConfig
+
+        Minima.net.GET(dappsListing, function(resp: any) {
+
+          //console.log("but here? ", dappsListing, resp)
+          if( !resp.result ) {
+
+            console.error(resp.error)
+            //dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
+
+          } else {
+
+            const plainResponse = decodeURIComponent(resp.result)
+            const plusLess = plainResponse.replace(/\+/g,' ')
+            const thisConfJSON = JSON.parse(plusLess)
+            const dapps = Object.entries(thisConfJSON)
+
+            if ( dapps.length ) {
+                //dispatch(write({data: serverData})(ServerActionTypes.SERVER_TOTAL))
+              console.log("this dapps length: ", dapps.length)
+            }
           }
         })
       }

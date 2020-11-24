@@ -3,7 +3,8 @@ import { Minima } from './blockchain/minima'
 
 import {
   AppDispatch,
-  Servers
+  Servers,
+  MiniDappProps
 } from '../types'
 
 import { initBlockchain } from './blockchain/actions'
@@ -12,7 +13,8 @@ import {
   initMiniDapps,
   initServers,
   getServers,
-  getMiniDapps
+  getMiniDapps,
+  countMiniDapps
 } from './fileServer/actions'
 
 import { waitFor, wait } from '../../utils'
@@ -23,8 +25,10 @@ export const init = () => {
   return async (dispatch: AppDispatch) => {
 
     dispatch(initBlockchain())
+    dispatch(initMiniDapps())
     dispatch(initServers())
     dispatch(getServers())
+    //can't get minidapps until we have the servers
   }
 }
 
@@ -35,13 +39,17 @@ export const poll = () => {
 
       const state = getState()
       const serverData = state.fileServers.data as Servers
-
-      console.log("here: ", serverData)
+      //console.log("here: ", serverData)
 
       if ( serverData.servers.length > 0
       && serverData.servers.length == serverData.numAvailable ) {
-        await dispatch(initMiniDapps())
-        dispatch(getMiniDapps())
+
+        const miniDappData = state.miniDapps as MiniDappProps
+        if ( miniDappData.data.length === 0 ) {
+          //console.log("getting minidapps")
+          await dispatch(getMiniDapps())
+          dispatch(countMiniDapps())
+        }
       }
       dispatch(poll())
 
