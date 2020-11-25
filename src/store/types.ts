@@ -99,6 +99,6 @@ export const enum MiniDappActionTypes {
   MINIDAPP_INIT = '@@MiniDappActionTypes/MINIDAPP_INIT',
   MINIDAPP_SUCCESS = '@@MiniDappActionTypes/MINIDAPP_SUCCESS',
   MINIDAPP_FAILURE = '@@MiniDappActionTypes/MINIDAPP_FAILURE',
-  MINIDAPP_TOTAL = '@@MiniDappActionTypes/MINIDAPP_TOTAL',  
+  MINIDAPP_TOTAL = '@@MiniDappActionTypes/MINIDAPP_TOTAL',
   MINIDAPP_COUNT = '@@MiniDappActionTypes/MINIDAPP_COUNT'
 }

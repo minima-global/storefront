@@ -242,59 +242,6 @@ const checkDappConfig = (dir: string, dappData: MiniData): boolean => {
   }
 }
 
-const getDapps = (serverInfo: Server, data: [string, any][]) => {
-  return async (dispatch: AppDispatch, getState: Function) => {
-
-    //console.log("minidapps: ", serverInfo, data)
-
-    for ( let i = 0; i < data.length; i++) {
-
-      const dir = data[i][0]
-      const dappData: MiniData = data[i][1] as MiniData
-
-      if ( checkDappConfig(dir, dappData) ) {
-
-        const dappConfURL = serverInfo.url + dir + "/" + dappData.conf
-
-        Minima.net.GET(dappConfURL, function(resp: any) {
-
-          //console.log(dappConfURL, resp)
-
-          if( !resp.result ) {
-
-            console.error(resp.error)
-
-          } else {
-
-            const plainResponse = decodeURIComponent(resp.result)
-            const plusLess = plainResponse.replace(/\+/g,' ')
-            const thisConfJSON = JSON.parse(plusLess)
-            //const miniDapps = state.miniDapps.data
-
-            let newDappData: MiniData = {
-              serverIndex: serverInfo.index,
-              dir: dir,
-              miniDapp: dappData.miniDapp,
-              conf: {
-                name: thisConfJSON.name,
-                description: thisConfJSON.description,
-                category: thisConfJSON.category
-              },
-              icon: dappData.icon
-            }
-
-            dispatch(write({data: newDappData})(MiniDappActionTypes.MINIDAPP_SUCCESS))
-          }
-
-        })
-
-      } else {
-        console.error(`${GeneralError.miniDappsConfig}`)
-      }
-    }
-  }
-}
-
 export const getMiniDapps = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
@@ -322,21 +269,56 @@ export const getMiniDapps = () => {
 
           } else {
 
-            const plainResponse = decodeURIComponent(resp.result)
-            const plusLess = plainResponse.replace(/\+/g,' ')
-            const thisConfJSON = JSON.parse(plusLess)
-            const dapps = Object.entries(thisConfJSON)
+            let plainResponse = decodeURIComponent(resp.result)
+            let plusLess = plainResponse.replace(/\+/g,' ')
+            let thisConfJSON = JSON.parse(plusLess)
+            const data = Object.entries(thisConfJSON)
 
-            if ( dapps.length ) {
+            for ( let j = 0; j < data.length; j++) {
 
-              dispatch(getDapps(fileServers.servers[i], dapps))
+              const dir = data[j][0]
+              const dappData: MiniData = data[j][1] as MiniData
 
-            } else {
+              if ( checkDappConfig(dir, dappData) ) {
 
-              console.error(`${GeneralError.miniDappsConfig}`)
-              dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
+                const dappConfURL = fileServers.servers[i].url + dir + "/" + dappData.conf
+
+                Minima.net.GET(dappConfURL, function(resp: any) {
+
+                  //console.log(dappConfURL, resp)
+
+                  if( !resp.result ) {
+
+                    console.error(resp.error)
+
+                  } else {
+
+                    plainResponse = decodeURIComponent(resp.result)
+                    plusLess = plainResponse.replace(/\+/g,' ')
+                    thisConfJSON = JSON.parse(plusLess)
+                    //const miniDapps = state.miniDapps.data
+
+                    let newDappData: MiniData = {
+                      serverIndex: fileServers.servers[i].index,
+                      dir: dir,
+                      miniDapp: dappData.miniDapp,
+                      conf: {
+                        name: thisConfJSON.name,
+                        description: thisConfJSON.description,
+                        category: thisConfJSON.category
+                      },
+                      icon: dappData.icon
+                    }
+
+                    dispatch(write({data: newDappData})(MiniDappActionTypes.MINIDAPP_SUCCESS))
+                  }
+
+                })
+
+              } else {
+                console.error(`${GeneralError.miniDappsConfig}`)
+              }
             }
-
           }
         })
       }
@@ -361,7 +343,6 @@ export const initCountMiniDapps = () => {
   }
 }
 
-// role getMiniDapps, getDapps above into one, just to count what dapps are available
 export const countMiniDapps = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
