@@ -55,6 +55,7 @@ export const poll = () => {
 
           if ( pollCount == 0 ) {
 
+              // Count minindapps
               await dispatch(initCountMiniDapps())
               dispatch(getMiniDapps(true))
               pollCount = 1
@@ -68,7 +69,8 @@ export const poll = () => {
               const count = state.miniDapps.data.numAvailable
               const listed = state.miniDapps.data.numListed
               //console.log("minidapp count: ", count, listed)
-              if ( count != listed ) {
+              // if count == 0, we've just got a new set of minidapps, so ignore that
+              if ( count && count != listed ) {
 
                   // refresh what dapps we display
                   // console.log("Getting minidapps")
