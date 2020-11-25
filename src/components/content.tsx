@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import { InfoTypes } from '../store/types'
 
 import { Home, Info, Storefronts } from '../components/pages'
-import { ServerSettings, AddDapp } from '../containers/pages'
+import { ServerSettings, AddDapp, Storefront } from '../containers/pages'
 
 import { Paths, Local } from '../config'
 
@@ -21,6 +21,7 @@ export const Content = () => {
         <Route name={Paths.serverSettings} path={Local.serverSettings} render= {() => <ServerSettings />} />
         <Route name={Paths.addDappIndex} exact path={Local.addDappIndex} render= {() => <AddDapp />} />
         <Route name={Paths.showStoreDapps} exact path={Local.showStoreDapps} render= {() => <Storefronts />} />
+        <Route name={Paths.showStoreDappsIndex} exact path={Local.showStoreDappsIndex} render= {() => <Storefront />} />
 
         <Route name={Paths.home} path={Local.home} render= {() => <Home />} />
 

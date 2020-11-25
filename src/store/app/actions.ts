@@ -69,7 +69,9 @@ export const poll = () => {
               const count = state.miniDapps.data.numAvailable
               const listed = state.miniDapps.data.numListed
               //console.log("minidapp count: ", count, listed)
-              // if count == 0, we've just got a new set of minidapps, so ignore that
+
+              // if count == 0, we've just got a new set of minidapps, so ignore that,
+              // otherwise we'll just reload what we've just reloaded
               if ( count && count != listed ) {
 
                   // refresh what dapps we display

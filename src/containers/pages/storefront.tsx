@@ -32,13 +32,8 @@ interface StorefrontStateProps {
   miniDappData: MiniDapps
 }
 
-interface StorefrontDispatchProps {
-  initMiniDapps: () => void
-  getMiniDapps: () => void
-}
-
 //type Props = StorefrontStateProps & StorefrontDispatchProps
-type Props = StorefrontStateProps & StorefrontDispatchProps
+type Props = StorefrontStateProps
 
 const get = ( props: Props ) => {
 
@@ -48,51 +43,6 @@ const get = ( props: Props ) => {
 
   const classes = themeStyles()
   let history = useHistory()
-
-  /*const compare = (a: MiniData, b: MiniData) => {
-
-    const thisA = a.server.url
-    const thisB = b.server.url
-    if (thisA < thisB) {
-      return -1;
-    }
-    if (thisA > thisB) {
-      return 1;
-    }
-    // a must be equal to b
-    return 0;
-  }
-
-  const unique = (elements: MiniData[]): MiniData[] => {
-
-    const uniqElements = elements.reduce((element: MiniData[], current: MiniData) => {
-
-      const x = element.find( (item: MiniData) => {
-        return ( item.dir === current.dir &&  item.conf.name === current.conf.name )
-      })
-
-      if (!x) {
-        return element.concat([current])
-      } else {
-        return element
-      }
-    }, [])
-
-    return uniqElements
-  }*/
-
-  useEffect(() => {
-
-    if ( props.serverData.servers.length
-    && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
-
-      props.initMiniDapps()
-      setLoading(true)
-      setTimeout(function(){ setLoading(false) }, Misc.homeSpinnerDelay)
-      props.getMiniDapps()
-    }
-
-  }, [props.serverData])
 
   return (
     <>
@@ -109,33 +59,39 @@ const get = ( props: Props ) => {
                     props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
                       const serverIndex = miniDapp.serverIndex
-                      const dappStorefront = props.serverData.servers[serverIndex].url
-                      const dir = miniDapp.dir
-                      const icon = miniDapp.icon
-                      const iconURL = dappStorefront + dir + "/" + icon
-                      const name = miniDapp.conf.name
-                      const description = miniDapp.conf.description
-                      const category = miniDapp.conf.category
-                      const pathAddDapp = `${Local.addDapp}/${i}`
+                      //console.log("indexes: ", index, serverIndex)
+                      if ( index == serverIndex ) {
 
-                      return (
-                        <>
-                          <Grid item justify="center" alignItems="center" xs={12}  sm={4}>
-                            <Paper className={classes.appIconContainer}>
-                              <button onClick={() => history.push(`${pathAddDapp}`)}>
-                                <img
-                                  className={classes.appIcon}
-                                  src={iconURL}
-                                />
-                              </button>
-                            </Paper>
-                          </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={8}>
-                           <b>{name}</b><br/>
-                           <i>{category}</i>
-                          </Grid>
-                        </>
-                      )
+                          //console.log("made it here")
+
+                          const dappStorefront = props.serverData.servers[serverIndex].url
+                          const dir = miniDapp.dir
+                          const icon = miniDapp.icon
+                          const iconURL = dappStorefront + dir + "/" + icon
+                          const name = miniDapp.conf.name
+                          const description = miniDapp.conf.description
+                          const category = miniDapp.conf.category
+                          const pathAddDapp = `${Local.addDapp}/${i}`
+
+                          return (
+                            <>
+                              <Grid item justify="center" alignItems="center" xs={12}  sm={4}>
+                                <Paper className={classes.appIconContainer}>
+                                  <button onClick={() => history.push(`${pathAddDapp}`)}>
+                                    <img
+                                      className={classes.appIcon}
+                                      src={iconURL}
+                                    />
+                                  </button>
+                                </Paper>
+                              </Grid>
+                              <Grid item justify="center" alignItems="center" xs={12} sm={8}>
+                               <b>{name}</b><br/>
+                               <i>{category}</i>
+                              </Grid>
+                            </>
+                          )
+                      }
                     })
                   }
                 </Grid>
@@ -157,14 +113,6 @@ const mapStateToProps = (state: ApplicationState): StorefrontStateProps => {
   }
 }
 
-const mapDispatchToProps = (dispatch: AppDispatch): StorefrontDispatchProps => {
- return {
-   initMiniDapps: () => dispatch(initMiniDapps()),
-   getMiniDapps: () => dispatch(getMiniDapps())
- }
-}
-
-export const Storefront = connect<StorefrontStateProps, StorefrontDispatchProps, {}, ApplicationState>(
-  mapStateToProps,
-  mapDispatchToProps
+export const Storefront = connect<StorefrontStateProps, {}, {}, ApplicationState>(
+  mapStateToProps
 )(get)
