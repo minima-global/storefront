@@ -19,7 +19,7 @@ import {
   ApplicationState,
   AppDispatch,
   Servers,
-  MiniDappProps,
+  MiniDapps,
   MiniData
 } from '../../store'
 
@@ -28,7 +28,7 @@ import { Minima } from '../../store/app/blockchain/minima'
 
 interface HomeStateProps {
   serverData: Servers
-  miniDappData: MiniDappProps
+  miniDappData: MiniDapps
 }
 
 /*interface HomeDispatchProps {
@@ -103,7 +103,7 @@ const get = ( props: Props ) => {
               <Paper className={classes.home} square={true}>
                 <Grid container>
                   {
-                    props.miniDappData.data.map( ( miniDapp: MiniData, i: number ) => {
+                    props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
                       const serverIndex = miniDapp.serverIndex
                       const dappHome = props.serverData.servers[serverIndex].url
@@ -147,7 +147,7 @@ const get = ( props: Props ) => {
 const mapStateToProps = (state: ApplicationState): HomeStateProps => {
 
   const servers = state.fileServers.data as Servers
-  const miniDapps = state.miniDapps as MiniDappProps
+  const miniDapps = state.miniDapps.data as MiniDapps
   return {
     serverData: servers,
     miniDappData: miniDapps

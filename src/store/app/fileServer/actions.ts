@@ -343,11 +343,9 @@ export const getMiniDapps = () => {
   }
 }
 
-export const countMiniDapps = () => {
+// role getMiniDapps, getDapps above into one, just to count what dapps are available
+export const countMiniDapps = (fileServers: Servers) => {
   return async (dispatch: AppDispatch, getState: Function) => {
-
-    const state = getState()
-    const fileServers = state.fileServers.data
 
     for (let i = 0; i < fileServers.servers.length; i++) {
 
@@ -368,11 +366,35 @@ export const countMiniDapps = () => {
             const plainResponse = decodeURIComponent(resp.result)
             const plusLess = plainResponse.replace(/\+/g,' ')
             const thisConfJSON = JSON.parse(plusLess)
-            const dapps = Object.entries(thisConfJSON)
+            const data = Object.entries(thisConfJSON)
 
-            if ( dapps.length ) {
-                //dispatch(write({data: serverData})(ServerActionTypes.SERVER_TOTAL))
-              console.log("this dapps length: ", dapps.length)
+            for ( let j = 0; j < data.length; j++) {
+
+              const dir = data[j][0]
+              const dappData: MiniData = data[j][1] as MiniData
+
+              if ( checkDappConfig(dir, dappData) ) {
+
+                const dappConfURL = fileServers.servers[i].url + dir + "/" + dappData.conf
+
+                Minima.net.GET(dappConfURL, function(resp: any) {
+
+                  //console.log(dappConfURL, resp)
+
+                  if( !resp.result ) {
+
+                    console.error(resp.error)
+
+                  } else {
+
+                    // don't really care about the data - the reducer simply adds 1 to the number
+                    dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_ADDAVAILABLE))
+                  }
+                })
+
+              } else {
+                console.error(`${GeneralError.miniDappsConfig}`)
+              }
             }
           }
         })

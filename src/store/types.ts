@@ -77,8 +77,14 @@ export interface MiniData {
   icon: string
 }
 
+export interface MiniDapps {
+  numListed: number
+  numAvailable: number
+  miniDapps: Array<MiniData>
+}
+
 export interface MiniDappProps extends PayloadProps {
-  data: Array<MiniData>
+  data: MiniDapps
 }
 
 // Action types
@@ -92,5 +98,6 @@ export const enum ServerActionTypes {
 export const enum MiniDappActionTypes {
   MINIDAPP_INIT = '@@MiniDappActionTypes/MINIDAPP_INIT',
   MINIDAPP_SUCCESS = '@@MiniDappActionTypes/MINIDAPP_SUCCESS',
-  MINIDAPP_FAILURE = '@@MiniDappActionTypes/MINIDAPP_FAILURE'
+  MINIDAPP_FAILURE = '@@MiniDappActionTypes/MINIDAPP_FAILURE',
+  MINIDAPP_ADDAVAILABLE = '@@MiniDappActionTypes/MINIDAPP_ADDAVAILABLE'
 }

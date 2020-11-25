@@ -4,7 +4,7 @@ import { Minima } from './blockchain/minima'
 import {
   AppDispatch,
   Servers,
-  MiniDappProps
+  MiniDapps
 } from '../types'
 
 import { initBlockchain } from './blockchain/actions'
@@ -37,20 +37,26 @@ export const poll = () => {
 
     setTimeout( async () => {
 
-      const state = getState()
+      let state = getState()
       const serverData = state.fileServers.data as Servers
-      //console.log("here: ", serverData)
+      console.log("here: ", serverData)
 
       if ( serverData.servers.length > 0
       && serverData.servers.length == serverData.numAvailable ) {
 
-        const miniDappData = state.miniDapps as MiniDappProps
-        if ( miniDappData.data.length === 0 ) {
-          //console.log("getting minidapps")
-          await dispatch(getMiniDapps())
-          dispatch(countMiniDapps())
+        const miniDappData = state.miniDapps.data as MiniDapps
+        if ( miniDappData.miniDapps.length === 0 ) {
+
+          console.log("getting minidapps")
+          dispatch(getMiniDapps())
+        } else {
+
+          await dispatch(countMiniDapps(serverData))
+          state = getState()
+          const count = state.miniDapps.data.numAvailable
+          console.log("minidapp count: ", count)
         }
-      }
+      }      
       dispatch(poll())
 
     }, Misc.pollDelay)

@@ -10,7 +10,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
-import { ApplicationState, AppDispatch, MiniDappProps, Servers, MiniData } from '../../store'
+import { ApplicationState, AppDispatch, MiniDapps, Servers, MiniData } from '../../store'
 
 import { AddDapp as AddDappConfig, Misc } from '../../config'
 
@@ -20,7 +20,7 @@ import { installDapp } from '../../store/app/blockchain/actions'
 
 interface AddDappStateProps {
   serverData: Servers
-  miniDappData: MiniDappProps
+  miniDappData: MiniDapps
 }
 
 interface AddDappDispatchProps {
@@ -37,7 +37,7 @@ const dapp = (props: Props) => {
 
   console.log("blah: ", props, index)
 
-  const miniDapp: MiniData = props.miniDappData.data[index]
+  const miniDapp: MiniData = props.miniDappData.miniDapps[index]
 
   const serverIndex = miniDapp.serverIndex
   const dappHome = props.serverData.servers[serverIndex].url
@@ -97,7 +97,7 @@ const dapp = (props: Props) => {
 const mapStateToProps = (state: ApplicationState): AddDappStateProps => {
 
   const servers = state.fileServers.data as Servers
-  const miniDapps = state.miniDapps as MiniDappProps
+  const miniDapps = state.miniDapps.data as MiniDapps
   return {
     serverData: servers,
     miniDappData: miniDapps

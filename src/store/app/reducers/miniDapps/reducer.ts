@@ -1,7 +1,11 @@
 import { ActionProps, MiniDappActionTypes, MiniDappProps, MiniData } from '../../../types'
 
 const initialState: MiniDappProps = {
-  data: []
+    data: {
+      numListed: 0,
+      numAvailable: 0,
+      miniDapps: []
+    }
 }
 
 export const reducer = (state: MiniDappProps = initialState, action: ActionProps): MiniDappProps => {
@@ -18,7 +22,20 @@ export const reducer = (state: MiniDappProps = initialState, action: ActionProps
       const miniDappData = (action.payload.data as MiniData)
       return {
         ...state,
-        data: [...state.data, miniDappData]
+        data: {
+            numListed: state.data.numListed + 1,
+            numAvailable: state.data.numAvailable,
+            miniDapps: [...state.data.miniDapps, miniDappData]
+        }
+      }
+    }
+    case MiniDappActionTypes.MINIDAPP_ADDAVAILABLE: {
+      return {
+        ...state,
+        data: {
+            ...state.data,
+            numAvailable: state.data.numAvailable + 1
+        }
       }
     }
     default:
