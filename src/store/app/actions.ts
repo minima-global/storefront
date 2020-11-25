@@ -61,20 +61,20 @@ export const poll = () => {
               pollCount = 1
 
           // We don't need to check dapps available each pollDelay
-          // In fact - doing so might not work, since it may take a considerable
+          // In fact - doing so probably wont work because it may take a considerable
           // amount of time to check online resources...
           } else if ( pollCount == Misc.dappCheckInterval ) {
 
               state = getState()
               const count = state.miniDapps.data.numAvailable
               const listed = state.miniDapps.data.numListed
-              console.log("minidapp count: ", count, listed)
+              //console.log("minidapp count: ", count, listed)
               if ( count != listed ) {
 
                   // refresh what dapps we display
-                  console.log("Getting minidapps")
+                  // console.log("Getting minidapps")
                   await dispatch(initMiniDapps())
-                  await dispatch(getMiniDapps())
+                  dispatch(getMiniDapps())
               }
               pollCount = 0
 
