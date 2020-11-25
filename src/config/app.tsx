@@ -1,6 +1,7 @@
 class Misc {
 
-  static readonly pollDelay = 1000
+  static readonly pollInterval = 1000
+  static readonly dappCheckInterval = 10
   static readonly homeSpinnerDelay = 200
   static readonly maxStatusLength = 80
 

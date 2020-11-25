@@ -14,12 +14,15 @@ import {
   initServers,
   getServers,
   getMiniDapps,
+  initCountMiniDapps,
   countMiniDapps
 } from './fileServer/actions'
 
 import { waitFor, wait } from '../../utils'
 
 import { Misc } from '../../config'
+
+let pollCount = 0
 
 export const init = () => {
   return async (dispatch: AppDispatch) => {
@@ -39,7 +42,7 @@ export const poll = () => {
 
       let state = getState()
       const serverData = state.fileServers.data as Servers
-      console.log("here: ", serverData)
+      //console.log("here: ", serverData, thisCount, CHECKCOUNT)
 
       if ( serverData.servers.length > 0
       && serverData.servers.length == serverData.numAvailable ) {
@@ -47,18 +50,42 @@ export const poll = () => {
         const miniDappData = state.miniDapps.data as MiniDapps
         if ( miniDappData.miniDapps.length === 0 ) {
 
-          console.log("getting minidapps")
+          //console.log("getting minidapps")
           dispatch(getMiniDapps())
         } else {
 
-          await dispatch(countMiniDapps(serverData))
-          state = getState()
-          const count = state.miniDapps.data.numAvailable
-          console.log("minidapp count: ", count)
+          if ( pollCount == 0 ) {
+
+              await dispatch(initCountMiniDapps())
+              dispatch(countMiniDapps())
+              pollCount = 1
+
+          // We don't need to check dapps available each pollDelay
+          // In fact - doing so might not work, since it may take a considerable
+          // amount of time to check online resources...
+          } else if ( pollCount == Misc.dappCheckInterval ) {
+
+              state = getState()
+              const count = state.miniDapps.data.numAvailable
+              const listed = state.miniDapps.data.numListed
+              console.log("minidapp count: ", count, listed)
+              if ( count != listed ) {
+
+                  // refresh what dapps we display
+                  console.log("Getting minidapps")
+                  await dispatch(initMiniDapps())
+                  await dispatch(getMiniDapps())
+              }
+              pollCount = 0
+
+          } else {
+
+              pollCount += 1
+          }
         }
-      }      
+      }
       dispatch(poll())
 
-    }, Misc.pollDelay)
+    }, Misc.pollInterval)
   }
 }

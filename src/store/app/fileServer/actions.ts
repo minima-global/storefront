@@ -9,6 +9,7 @@ import {
   Server,
   ServerActionTypes,
   MiniDappActionTypes,
+  MiniDapps,
   MiniData
 } from '../../types'
 
@@ -343,9 +344,29 @@ export const getMiniDapps = () => {
   }
 }
 
-// role getMiniDapps, getDapps above into one, just to count what dapps are available
-export const countMiniDapps = (fileServers: Servers) => {
+export const initCountMiniDapps = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
+
+    const state = getState()
+    const fileServers = state.fileServers.data
+    const miniDapps = state.miniDapps.data
+
+    let miniData: MiniDapps = {
+      numListed: miniDapps.numListed,
+      numAvailable: 0,
+      miniDapps: miniDapps.miniDapps
+    }
+
+    dispatch(write({data: miniData})(MiniDappActionTypes.MINIDAPP_TOTAL))
+  }
+}
+
+// role getMiniDapps, getDapps above into one, just to count what dapps are available
+export const countMiniDapps = () => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    const state = getState()
+    const fileServers = state.fileServers.data
 
     for (let i = 0; i < fileServers.servers.length; i++) {
 
@@ -379,8 +400,6 @@ export const countMiniDapps = (fileServers: Servers) => {
 
                 Minima.net.GET(dappConfURL, function(resp: any) {
 
-                  //console.log(dappConfURL, resp)
-
                   if( !resp.result ) {
 
                     console.error(resp.error)
@@ -388,7 +407,7 @@ export const countMiniDapps = (fileServers: Servers) => {
                   } else {
 
                     // don't really care about the data - the reducer simply adds 1 to the number
-                    dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_ADDAVAILABLE))
+                    dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_COUNT))
                   }
                 })
 
