@@ -14,8 +14,7 @@ import {
   initServers,
   getServers,
   getMiniDapps,
-  initCountMiniDapps,
-  countMiniDapps
+  initCountMiniDapps
 } from './fileServer/actions'
 
 import { waitFor, wait } from '../../utils'
@@ -57,7 +56,7 @@ export const poll = () => {
           if ( pollCount == 0 ) {
 
               await dispatch(initCountMiniDapps())
-              dispatch(countMiniDapps())
+              dispatch(getMiniDapps(true))
               pollCount = 1
 
           // We don't need to check dapps available each pollDelay

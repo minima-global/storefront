@@ -242,7 +242,7 @@ const checkDappConfig = (dir: string, dappData: MiniData): boolean => {
   }
 }
 
-export const getMiniDapps = () => {
+export const getMiniDapps = (isCountOnly: boolean = false) => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
     //console.log("I'm in here")
@@ -293,24 +293,33 @@ export const getMiniDapps = () => {
 
                   } else {
 
-                    plainResponse = decodeURIComponent(resp.result)
-                    plusLess = plainResponse.replace(/\+/g,' ')
-                    thisConfJSON = JSON.parse(plusLess)
-                    //const miniDapps = state.miniDapps.data
+                    if (isCountOnly) {
 
-                    let newDappData: MiniData = {
-                      serverIndex: fileServers.servers[i].index,
-                      dir: dir,
-                      miniDapp: dappData.miniDapp,
-                      conf: {
-                        name: thisConfJSON.name,
-                        description: thisConfJSON.description,
-                        category: thisConfJSON.category
-                      },
-                      icon: dappData.icon
+                        // don't really care about the data - the reducer simply adds 1 to the number
+                        dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_COUNT))
+
+                    } else {
+
+                        // loading up minidapp data
+                        plainResponse = decodeURIComponent(resp.result)
+                        plusLess = plainResponse.replace(/\+/g,' ')
+                        thisConfJSON = JSON.parse(plusLess)
+                        //const miniDapps = state.miniDapps.data
+
+                        let newDappData: MiniData = {
+                          serverIndex: fileServers.servers[i].index,
+                          dir: dir,
+                          miniDapp: dappData.miniDapp,
+                          conf: {
+                            name: thisConfJSON.name,
+                            description: thisConfJSON.description,
+                            category: thisConfJSON.category
+                          },
+                          icon: dappData.icon
+                        }
+
+                        dispatch(write({data: newDappData})(MiniDappActionTypes.MINIDAPP_SUCCESS))
                     }
-
-                    dispatch(write({data: newDappData})(MiniDappActionTypes.MINIDAPP_SUCCESS))
                   }
 
                 })
@@ -340,65 +349,5 @@ export const initCountMiniDapps = () => {
     }
 
     dispatch(write({data: miniData})(MiniDappActionTypes.MINIDAPP_TOTAL))
-  }
-}
-
-export const countMiniDapps = () => {
-  return async (dispatch: AppDispatch, getState: Function) => {
-
-    const state = getState()
-    const fileServers = state.fileServers.data
-
-    for (let i = 0; i < fileServers.servers.length; i++) {
-
-      if ( fileServers.servers[i].isOnline ) {
-
-        const dappsListing = fileServers.servers[i].url + Config.miniDappsConfig
-
-        Minima.net.GET(dappsListing, function(resp: any) {
-
-          //console.log("but here? ", dappsListing, resp)
-          if( !resp.result ) {
-
-            console.error(resp.error)
-            //dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
-
-          } else {
-
-            const plainResponse = decodeURIComponent(resp.result)
-            const plusLess = plainResponse.replace(/\+/g,' ')
-            const thisConfJSON = JSON.parse(plusLess)
-            const data = Object.entries(thisConfJSON)
-
-            for ( let j = 0; j < data.length; j++) {
-
-              const dir = data[j][0]
-              const dappData: MiniData = data[j][1] as MiniData
-
-              if ( checkDappConfig(dir, dappData) ) {
-
-                const dappConfURL = fileServers.servers[i].url + dir + "/" + dappData.conf
-
-                Minima.net.GET(dappConfURL, function(resp: any) {
-
-                  if( !resp.result ) {
-
-                    console.error(resp.error)
-
-                  } else {
-
-                    // don't really care about the data - the reducer simply adds 1 to the number
-                    dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_COUNT))
-                  }
-                })
-
-              } else {
-                console.error(`${GeneralError.miniDappsConfig}`)
-              }
-            }
-          }
-        })
-      }
-    }
   }
 }
