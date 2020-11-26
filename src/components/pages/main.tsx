@@ -129,7 +129,7 @@ const mainNav = (props: Props) => {
 
               <Grid item xs={4}>
 
-                   <NavLink to={Local.home} className={classes.link}>
+                   <NavLink to={Local.home}>
                        <Grid item>
                           <Paper className={classes.footerLinks} elevation={0} square={true}>
                             <HomeTwoToneIcon fontSize={'large'}/>
@@ -141,7 +141,7 @@ const mainNav = (props: Props) => {
 
                 <Grid item xs={4}>
 
-                   <NavLink to={Local.showStoreDapps} className={classes.link}>
+                   <NavLink to={Local.showStoreDapps}>
                        <Grid item>
                           <Paper className={classes.footerLinks} elevation={0} square={true}>
                             <StorefrontTwoToneIcon fontSize={'large'}/>
