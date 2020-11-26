@@ -85,7 +85,7 @@ const serverEntries = async (): Promise<Server[]> => {
 
           thisConfig.url += thisConfig.url.endsWith("/") ? "" : "/"
           //console.log(thisURL)
-          thisConfig.description = thisConfig.hasOwnProperty('info') ? thisConfig.description : ""
+          thisConfig.description = thisConfig.hasOwnProperty('description') ? thisConfig.description : ""
           thisConfig.icon = thisConfig.hasOwnProperty('icon') ? thisConfig.icon : ""
           servers.push(thisConfig)
         } else {

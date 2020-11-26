@@ -43,7 +43,7 @@ class Transaction {
 
 class Home {
 
-  static readonly heading = 'Home'
+  static readonly heading = 'All MiniDapps'
 
   static readonly address = 'Store Address'
   static readonly noServers = `Trying to find ${App.appName} MiniDapp Servers`
@@ -62,6 +62,7 @@ class AddDapp {
 class Storefronts {
 
   static readonly heading = 'Storefronts'
+  static readonly storefrontHeading = 'MiniDapps'
 }
 
 class About {

@@ -46,7 +46,11 @@ const get = ( props: Props ) => {
 
   return (
     <>
-      <h2>{StorefrontConfig.heading}</h2>
+      <h2>{props.serverData.servers[index].title} - {StorefrontConfig.storefrontHeading}</h2>
+      <hr />
+      {props.serverData.servers[index].description}
+      <hr />
+      {props.serverData.servers[index].url}
       <hr />
       <p>
           {isLoading ?
@@ -69,13 +73,15 @@ const get = ( props: Props ) => {
                           const icon = miniDapp.icon
                           const iconURL = dappStorefront + dir + "/" + icon
                           const name = miniDapp.conf.name
+                          const headline = miniDapp.conf.headline
+                          const version = miniDapp.conf.version
                           const description = miniDapp.conf.description
                           const category = miniDapp.conf.category
                           const pathAddDapp = `${Local.addDapp}/${i}`
 
                           return (
                             <>
-                              <Grid item justify="center" alignItems="center" xs={12}  sm={4}>
+                              <Grid item justify="center" alignItems="center" xs={12} sm={2}>
                                 <Paper className={classes.appIconContainer}>
                                   <button onClick={() => history.push(`${pathAddDapp}`)}>
                                     <img
@@ -85,9 +91,15 @@ const get = ( props: Props ) => {
                                   </button>
                                 </Paper>
                               </Grid>
-                              <Grid item justify="center" alignItems="center" xs={12} sm={8}>
+                              <Grid item justify="center" alignItems="center" xs={12} sm={10}>
                                <b>{name}</b><br/>
                                <i>{category}</i>
+                              </Grid>
+                              <hr/>
+                              <Grid item justify="center" alignItems="center" xs={12}>
+                                <hr />
+                                <p>{headline}<br/>
+                                <b>{version}</b></p>
                               </Grid>
                             </>
                           )

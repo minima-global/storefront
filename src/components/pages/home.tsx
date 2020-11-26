@@ -133,8 +133,8 @@ const get = ( props: Props ) => {
                            <b>{name}</b><br/>
                            <i>{category}</i>
                           </Grid>
-                          <hr/>
                           <Grid item justify="center" alignItems="center" xs={12}>
+                           <hr />
                            <p>{headline}<br/>
                            <b>{version}</b><br/>
                            <b>{ props.serverData.servers[serverIndex].title}</b></p>
