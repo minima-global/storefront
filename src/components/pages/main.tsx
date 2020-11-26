@@ -153,21 +153,21 @@ const mainNav = (props: Props) => {
 
                 <Grid item xs={4}>
 
-                  <input
+                    <input
                       id="getFile"
                       type="file"
                       accept='.json'
                       onChange={getFile}
                       style={{ visibility: 'hidden'}}
-                  />
+                    />
                     <Tooltip title={Settings.fileTip}>
-                      <label htmlFor="getFile">
-                        <IconButton color="primary" aria-label="upload server config file" component="span">
-                            <Paper className={classes.footerLinks} elevation={0} square={true}>
-                              <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
-                            </Paper>
-                        </IconButton>
-                      </label>
+                        <label htmlFor="getFile">
+                            <IconButton color="primary" aria-label="upload server config file" component="span">
+                                <Paper className={classes.footerLinks} elevation={0} square={true}>
+                                  <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
+                                </Paper>
+                            </IconButton>
+                        </label>
                     </Tooltip>
 
                 </Grid>

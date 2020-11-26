@@ -107,12 +107,15 @@ const get = ( props: Props ) => {
                         <>
                           <Grid item justify="center" alignItems="center" xs={12}  sm={4}>
                             <Paper className={classes.appIconContainer}>
-                              <button onClick={() => history.push(`${pathShowStore}`)}>
-                                <img
-                                  className={classes.appIcon}
-                                  src={iconURL}
+                                <input
+                                    type="image"
+                                    src={iconURL}
+                                    onClick={() => history.push(`${pathShowStore}`)}
+                                    alt="store icon"
+                                    aria-label="store icon"
+                                    role="button"
+                                    className={classes.appIcon}
                                 />
-                              </button>
                             </Paper>
                           </Grid>
                           <Grid item justify="center" alignItems="center" xs={12} sm={8}>
