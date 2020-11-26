@@ -1,14 +1,22 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom'
 import { useHistory } from "react-router-dom"
 
 import Markdown from 'react-markdown'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import Input from '@material-ui/core/Input'
 
 import { Content } from '../content'
 import { AppInit } from '../appInit'
 import { App } from '../../config/strings'
+
+import { ApplicationState, AppDispatch } from '../../store'
+
+import { initServers, initMiniDapps, setServers } from '../../store/app/fileServer/actions'
+
+import IconButton from '@material-ui/core/IconButton'
 
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone'
 import HomeIcon from '@material-ui/icons/Home'
@@ -25,9 +33,17 @@ import appName from '../../images/appName.png'
 
 import { themeStyles } from '../../styles'
 
-import { Paths, Local, Help } from '../../config'
+import { Paths, Local, Help, Settings } from '../../config'
 
-export const Main = () => {
+interface MainDispatchProps {
+  initServers: () => void
+  initMiniDapps: () => void
+  setServers: (file: any) => void
+}
+
+type Props =  MainDispatchProps
+
+const mainNav = (props: Props) => {
 
   let path = window.location.href
   const indexOf = path.indexOf("index")
@@ -38,6 +54,14 @@ export const Main = () => {
 
   const classes = themeStyles()
   const tagLine = `${App.catchLine}`
+
+  const getFile = (e: any) => {
+
+    props.initMiniDapps()
+    props.initServers()
+    const files = e.target.files
+    props.setServers(files[0])
+  }
 
   return (
       <div className={classes.root}>
@@ -111,11 +135,6 @@ export const Main = () => {
                             <HomeTwoToneIcon fontSize={'large'}/>
                           </Paper>
                        </Grid>
-                       <Grid item>
-                          <Paper className={classes.footerLinks} elevation={0} square={true}>
-                              {Paths.home}
-                          </Paper>
-                       </Grid>
                    </NavLink>
 
                 </Grid>
@@ -128,29 +147,28 @@ export const Main = () => {
                             <StorefrontTwoToneIcon fontSize={'large'}/>
                           </Paper>
                        </Grid>
-                       <Grid item>
-                          <Paper className={classes.footerLinks} elevation={0} square={true}>
-                              {Paths.showStoreDapps}
-                          </Paper>
-                       </Grid>
                    </NavLink>
 
                 </Grid>
 
                 <Grid item xs={4}>
 
-                   <NavLink to={Local.serverSettings} className={classes.link}>
-                       <Grid item>
-                          <Paper className={classes.footerLinks} elevation={0} square={true}>
-                            <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
-                          </Paper>
-                       </Grid>
-                       <Grid item>
-                          <Paper className={classes.footerLinks} elevation={0} square={true}>
-                              {Paths.serverSettings}
-                          </Paper>
-                       </Grid>
-                   </NavLink>
+                  <input
+                      id="getFile"
+                      type="file"
+                      accept='.json'
+                      onChange={getFile}
+                      style={{ visibility: 'hidden'}}
+                  />
+                    <Tooltip title={Settings.fileTip}>
+                      <label htmlFor="getFile">
+                        <IconButton color="primary" aria-label="upload server config file" component="span">
+                            <Paper className={classes.footerLinks} elevation={0} square={true}>
+                              <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
+                            </Paper>
+                        </IconButton>
+                      </label>
+                    </Tooltip>
 
                 </Grid>
 
@@ -161,3 +179,16 @@ export const Main = () => {
       </div>
   )
 }
+
+const mapDispatchToProps = (dispatch: AppDispatch): MainDispatchProps => {
+ return {
+   initServers: () => dispatch(initServers()),
+   initMiniDapps: () => dispatch(initMiniDapps()),
+   setServers: (file: any) => dispatch(setServers(file))
+ }
+}
+
+export const Main = connect<{}, MainDispatchProps, {}, ApplicationState>(
+  null,
+  mapDispatchToProps
+)(mainNav)
