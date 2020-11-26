@@ -95,11 +95,11 @@ const get = ( props: Props ) => {
                   {
                     props.serverData.servers.map( ( server: Server, i: number ) => {
 
-                      const dappStorefronts = server.url
+                      const dappStorefront = server.url
                       const icon = server.icon
-                      const iconURL = dappStorefronts + "/" + icon
+                      const iconURL = dappStorefront + "/" + icon
                       const title = server.title
-                      const info = server.info
+                      //const description = server.description
                       const isOnline = server.isOnline
                       const pathShowStore = `${Local.showStoreDapps}/${i}`
 
@@ -116,8 +116,7 @@ const get = ( props: Props ) => {
                             </Paper>
                           </Grid>
                           <Grid item justify="center" alignItems="center" xs={12} sm={8}>
-                           <b>{title}</b><br/>
-                           {info}
+                           <b>{title}</b>
                           </Grid>
                         </>
                       )

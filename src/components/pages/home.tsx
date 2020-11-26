@@ -111,13 +111,15 @@ const get = ( props: Props ) => {
                       const icon = miniDapp.icon
                       const iconURL = dappHome + dir + "/" + icon
                       const name = miniDapp.conf.name
+                      const headline = miniDapp.conf.headline
+                      const version = miniDapp.conf.version
                       const description = miniDapp.conf.description
                       const category = miniDapp.conf.category
                       const pathAddDapp = `${Local.addDapp}/${i}`
 
                       return (
                         <>
-                          <Grid item justify="center" alignItems="center" xs={12}  sm={4}>
+                          <Grid item justify="center" alignItems="center" xs={12} sm={2}>
                             <Paper className={classes.appIconContainer}>
                               <button onClick={() => history.push(`${pathAddDapp}`)}>
                                 <img
@@ -127,9 +129,15 @@ const get = ( props: Props ) => {
                               </button>
                             </Paper>
                           </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={8}>
+                          <Grid item justify="center" alignItems="center" xs={12} sm={10}>
                            <b>{name}</b><br/>
                            <i>{category}</i>
+                          </Grid>
+                          <hr/>
+                          <Grid item justify="center" alignItems="center" xs={12}>
+                           <p>{headline}<br/>
+                           <b>{version}</b><br/>
+                           <b>{ props.serverData.servers[serverIndex].title}</b></p>
                           </Grid>
                         </>
                       )

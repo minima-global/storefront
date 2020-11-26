@@ -51,7 +51,7 @@ export interface Server {
   title: string
   url: string
   icon: string
-  info: string
+  description: string
   isOnline: boolean
 }
 
@@ -71,10 +71,13 @@ export interface MiniData {
   miniDapp: string
   conf: {
     name: string,
+	version: string,
+	headline: string,
     description: string,
     category: string
   }
   icon: string
+  isOnline: boolean
 }
 
 export interface MiniDapps {

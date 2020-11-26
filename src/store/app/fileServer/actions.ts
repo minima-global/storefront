@@ -85,7 +85,7 @@ const serverEntries = async (): Promise<Server[]> => {
 
           thisConfig.url += thisConfig.url.endsWith("/") ? "" : "/"
           //console.log(thisURL)
-          thisConfig.info = thisConfig.hasOwnProperty('info') ? thisConfig.info : ""
+          thisConfig.description = thisConfig.hasOwnProperty('info') ? thisConfig.description : ""
           thisConfig.icon = thisConfig.hasOwnProperty('icon') ? thisConfig.icon : ""
           servers.push(thisConfig)
         } else {
@@ -130,7 +130,7 @@ export const getServers = () => {
           index: i,
           title: thisServerData.title,
           url: thisServerData.url,
-          info: thisServerData.info,
+          description: thisServerData.description,
           icon: thisServerData.icon,
           isOnline: true
         }
@@ -312,10 +312,13 @@ export const getMiniDapps = (isCountOnly: boolean = false) => {
                           miniDapp: dappData.miniDapp,
                           conf: {
                             name: thisConfJSON.name,
+                            version: thisConfJSON.version,
+                            headline: thisConfJSON.headline,
                             description: thisConfJSON.description,
                             category: thisConfJSON.category
                           },
-                          icon: dappData.icon
+                          icon: dappData.icon,
+                          isOnline: true
                         }
 
                         dispatch(write({data: newDappData})(MiniDappActionTypes.MINIDAPP_SUCCESS))

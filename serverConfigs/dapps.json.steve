@@ -1,17 +1,17 @@
 {
-  "0x62916EDC6334B2A7EE9AF139E3971189F2794B35": {
-    "miniDapp": "provenator.minidapp",
-    "icon": "provenatorIcon.png",
-    "conf": "minidapp.conf"
-  },
-  "0x555D39602F9047B4D26F8381ACB84476D7DBDAF7": {
+  "cowsay": {
     "miniDapp": "cowsay.minidapp",
-    "icon": "cowsayIcon.png",
-    "conf": "minidapp.conf"
+    "icon": "cowsay/images/cowsayIcon.png",
+    "conf": "cowsay/minidapp.conf"
   },
-  "0x0D180BF6A4FD51C24C2640D511086760E4B5D6DB": {
+  "provenator": {
+    "miniDapp": "provenator.minidapp",
+    "icon": "build/images/provenatorIcon.png",
+    "conf": "build/minidapp.conf"
+  },
+  "storefront": {
     "miniDapp": "storefront.minidapp",
-    "icon": "storeFrontIcon.png",
-    "conf": "minidapp.conf"
+    "icon": "storefront/images/storeFrontIcon.png",
+    "conf": "storefront/minidapp.conf"
   }
 }

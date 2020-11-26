@@ -1,32 +1,52 @@
 {
-  "0x4B247231307A4CCDA54A2C61B5924B184A1D4249": {
+  "blockx": {
+    "miniDapp": "blockx.minidapp",
+    "icon": "blockx/search.png",
+    "conf": "blockx/minidapp.conf"
+  },
+  "coinflip": {
     "miniDapp": "coinflip.minidapp",
-    "icon": "icon.png",
-    "conf": "minidapp.conf"
+    "icon": "coinflip/images/coinicon.png",
+    "conf": "coinflip/minidapp.conf"
   },
-  "0x42C2FE1E9887E54CFE0ADBDD923F58602AE4D503": {
-    "miniDapp": "terminal.minidapp",
-    "icon": "icon.png",
-    "conf": "minidapp.conf"
+  "cowsay": {
+    "miniDapp": "cowsay.minidapp",
+    "icon": "cowsay/images/cowsayIcon.png",
+    "conf": "cowsay/minidapp.conf"
   },
-  "0x7FB7F44CF48CEBDED1B5689A4999391FA3DC3DAF": {
-    "miniDapp": "scriptide.minidapp",
-    "icon": "icon.png",
-    "conf": "minidapp.conf"
-  },
-  "0x3CACC87DC563DA12FFF1A679332FBF7E6E218E4B": {
-    "miniDapp": "walletv98.06.minidapp",
-    "icon": "icon.png",
-    "conf": "minidapp.conf"
-  },  
-  "0x016EDD387B62F949284ED6579CEE175AD68B46D4": {
-    "miniDapp": "futurecash.minidapp",
-    "icon": "clock.png",
-    "conf": "minidapp.conf"
-  },
-  "0x544BC24E11D1FA42EBC247D36A4D8B7C4B4F30A6": {
+  "dexxed": {
     "miniDapp": "dexxed.minidapp",
-    "icon": "stocks.png",
-    "conf": "minidapp.conf"
+    "icon": "dexxed/images/stocks.png",
+    "conf": "dexxed/minidapp.conf"
+  },
+  "futurecash": {
+    "miniDapp": "futurecash.minidapp",
+    "icon": "futurecash/clock.png",
+    "conf": "futurecash/minidapp.conf"
+  },
+  "provenator": {
+    "miniDapp": "provenator.minidapp",
+    "icon": "build/images/provenatorIcon.png",
+    "conf": "build/minidapp.conf"
+  },
+  "scriptide": {
+    "miniDapp": "scriptide.minidapp",
+    "icon": "scriptide/images/icon.png",
+    "conf": "scriptide/minidapp.conf"
+  },
+  "terminal": {
+    "miniDapp": "terminal.minidapp",
+    "icon": "terminal/terminal_icon.png",
+    "conf": "terminal/minidapp.conf"
+  },
+  "tokenator": {
+    "miniDapp": "tokenator.minidapp",
+    "icon": "tokenator/images/coins.png",
+    "conf": "tokenator/minidapp.conf"
+  },
+  "wallet": {
+    "miniDapp": "wallet.minidapp",
+    "icon": "miniwallet/assets/logo.png",
+    "conf": "miniwallet/minidapp.conf"
   }
 }
