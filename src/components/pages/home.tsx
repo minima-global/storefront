@@ -11,7 +11,7 @@ import Spinner from 'react-spinner-material'
 
 //import Markdown from 'react-markdown'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
-import { Home as HomeConfig, Misc, Local } from '../../config'
+import { Home as HomeConfig, Misc, Local, AddDapp } from '../../config'
 
 import { themeStyles } from '../../styles'
 
@@ -115,23 +115,27 @@ const get = ( props: Props ) => {
                       const version = miniDapp.conf.version
                       const description = miniDapp.conf.description
                       const category = miniDapp.conf.category
-                      const pathAddDapp = `${Local.addDapp}/${i}`
+                      const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
+                      //const pathAddDapp = `${Local.addDapp}/${i}`
 
                       return (
                         <>
                           <Grid item justify="center" alignItems="center" xs={12} sm={2}>
                             <Paper className={classes.appIconContainer}>
-                              <button onClick={() => history.push(`${pathAddDapp}`)}>
                                 <img
                                   className={classes.appIcon}
                                   src={iconURL}
                                 />
-                              </button>
                             </Paper>
                           </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={10}>
+                          <Grid item justify="center" alignItems="center" xs={12} sm={8}>
                            <b>{name}</b><br/>
                            <i>{category}</i>
+                          </Grid>
+                          <Grid item justify="center" alignItems="center" xs={12} sm={2}>
+                            <form method="get" action={miniDappURL}>
+                               <button type="submit">{AddDapp.download}</button>
+                            </form>
                           </Grid>
                           <Grid item justify="center" alignItems="center" xs={12}>
                            <hr />

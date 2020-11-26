@@ -12,7 +12,7 @@ import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 
 //import Markdown from 'react-markdown'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
-import { Storefronts as StorefrontConfig, Misc, Local } from '../../config'
+import { Storefronts as StorefrontConfig, Misc, Local, AddDapp } from '../../config'
 
 import { themeStyles } from '../../styles'
 
@@ -67,35 +67,37 @@ const get = ( props: Props ) => {
                       if ( index == serverIndex ) {
 
                           //console.log("made it here")
-
-                          const dappStorefront = props.serverData.servers[serverIndex].url
+                          const dappHome = props.serverData.servers[serverIndex].url
                           const dir = miniDapp.dir
                           const icon = miniDapp.icon
-                          const iconURL = dappStorefront + dir + "/" + icon
+                          const iconURL = dappHome + dir + "/" + icon
                           const name = miniDapp.conf.name
                           const headline = miniDapp.conf.headline
                           const version = miniDapp.conf.version
                           const description = miniDapp.conf.description
                           const category = miniDapp.conf.category
-                          const pathAddDapp = `${Local.addDapp}/${i}`
+                          const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
+                          //const pathAddDapp = `${Local.addDapp}/${i}`
 
                           return (
                             <>
                               <Grid item justify="center" alignItems="center" xs={12} sm={2}>
                                 <Paper className={classes.appIconContainer}>
-                                  <button onClick={() => history.push(`${pathAddDapp}`)}>
                                     <img
                                       className={classes.appIcon}
                                       src={iconURL}
                                     />
-                                  </button>
                                 </Paper>
                               </Grid>
-                              <Grid item justify="center" alignItems="center" xs={12} sm={10}>
+                              <Grid item justify="center" alignItems="center" xs={12} sm={8}>
                                <b>{name}</b><br/>
                                <i>{category}</i>
                               </Grid>
-                              <hr/>
+                              <Grid item justify="center" alignItems="center" xs={12} sm={2}>
+                                <form method="get" action={miniDappURL}>
+                                   <button type="submit">{AddDapp.download}</button>
+                                </form>
+                              </Grid>
                               <Grid item justify="center" alignItems="center" xs={12}>
                                 <hr />
                                 <p>{headline}<br/>
