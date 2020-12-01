@@ -6,6 +6,7 @@ export interface ApplicationState {
   info: InfoPageProps
   fileServers: ServerProps
   miniDapps: MiniDappProps
+  installedDapps: InstalledDappProps
 }
 
 export interface PayloadProps {
@@ -65,14 +66,29 @@ export interface ServerProps extends PayloadProps {
 }
 
 // MiniDapps
+export interface InstalledDapp {
+  uid: string
+  services: Array<string>
+}
+
+export interface InstalledDapps {
+  num: number
+  installedDapps: Array<InstalledDapp>
+}
+
+export interface InstalledDappProps extends PayloadProps {
+  data: InstalledDapps
+}
+
+// to be installed
 export interface MiniData {
   serverIndex: number
   dir: string
   miniDapp: string
   conf: {
     name: string,
-	version: string,
-	headline: string,
+  	version: string,
+  	headline: string,
     description: string,
     category: string
   }
@@ -104,4 +120,11 @@ export const enum MiniDappActionTypes {
   MINIDAPP_FAILURE = '@@MiniDappActionTypes/MINIDAPP_FAILURE',
   MINIDAPP_TOTAL = '@@MiniDappActionTypes/MINIDAPP_TOTAL',
   MINIDAPP_COUNT = '@@MiniDappActionTypes/MINIDAPP_COUNT'
+}
+
+export const enum InstalledActionTypes {
+  INSTALLED_INIT = '@@InstalledActionTypes/INSTALLED_INIT',
+  INSTALLED_SUCCESS = '@@InstalledActionTypes/INSTALLED_SUCCESS',
+  INSTALLED_FAILURE = '@@InstalledActionTypes/INSTALLED_FAILURE',
+  INSTALLED_TOTAL = '@@InstalledActionTypes/INSTALLED_TOTAL'
 }

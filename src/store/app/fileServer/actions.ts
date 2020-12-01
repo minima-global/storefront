@@ -110,7 +110,7 @@ export const getServers = () => {
 
     const servers = uniqueServers(serverList)
 
-    let serverData: Servers = {
+    const serverData: Servers = {
       numAvailable: servers.length,
       servers: []
     }

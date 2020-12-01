@@ -330,7 +330,7 @@ export const Minima = {
 		//The replyid is in the original message
 		reply : function(replyid,message){
 			//Reply to a POST message..
-			replymsg = { "type":"reply", "message": message, "replyid" : replyid };
+			let replymsg = { "type":"reply", "message": message, "replyid" : replyid };
 			MINIMA_WEBSOCKET.send(JSON.stringify(replymsg));
 		}
 
