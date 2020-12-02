@@ -48,17 +48,8 @@ export const initBlockchain = () => {
                       services: msg.response.reply.split(" ")
                     }
 
-                    console.log("services! ", thisInstalled)
+                    //console.log("services! ", thisInstalled)
                     dispatch(write({data: thisInstalled})(InstalledActionTypes.INSTALLED_SUCCESS))
-
-                    if ( msg.response.reply.includes("/files") ) {
-
-                      Minima.minidapps.send( myDapps[i].uid, "/files", function ( msg: any ) {
-
-                        console.log("Files: ", msg)
-
-                      })
-                    }
 
                   } else {
 
@@ -69,9 +60,6 @@ export const initBlockchain = () => {
 
                   console.log("no services!", msg)
                 }
-
-
-
               })
             }
       	})
