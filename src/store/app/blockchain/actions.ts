@@ -33,7 +33,7 @@ export const initBlockchain = () => {
           }
           dispatch(write({data: installedData})(InstalledActionTypes.INSTALLED_TOTAL))
 
-          for ( let i = 0; i < myDapps.length; i++ ) {
+          /*for ( let i = 0; i < myDapps.length; i++ ) {
 
               Minima.minidapps.send( myDapps[i].uid, "/services", function ( msg: any ) {
 
@@ -61,7 +61,7 @@ export const initBlockchain = () => {
                   console.log("no services!", msg)
                 }
               })
-            }
+            }*/
       	})
       }
     })
