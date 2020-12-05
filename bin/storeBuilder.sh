@@ -20,27 +20,29 @@ else
 	COUNTER=0
 	for DAPP in *.minidapp
 	do
+
 		#create unique dir for minidapp
 		DIR=$(echo $DAPP | cut -d. -f1)
 		unzip -q -o $DAPP -d $DIR
 
 		# find conf file
-		CONF="${DIR}/${CONFFILE}"
+		CONF=$(find $DIR -name $CONFFILE | sed "s/$DIR\///")
 
 		#find icon
-		ICONFIELD=$(grep "$ICONREGEX" "${DIR}/${CONF}")
-		ICONENTRY=$(echo $ICONFIELD | cut -d\" -f4 | sed "s/^\.\///")
-		ICON="${DIR}/${ICONENTRY}"
+		ICONFIELD=$(grep "$ICONREGEX" "$DIR/$CONF")
+		ICONENTRY=$(echo $ICONFIELD | cut -d\" -f4)
+		ICONNAME=$(basename "$ICONENTRY")
+		ICON=$(find $DIR -name $ICONNAME | head -1 | sed "s/$DIR\///")
 
 		#find version
 		VERSIONFIELD=$(grep "$VERSIONREGEX" "${DIR}/${CONF}")
 		VERSION=$(echo $VERSIONFIELD | cut -d\" -f4 | sed "s/^\.\///")
 
 		#create minidapp entry
-		MINIDAPP="${DIR}/${DIR}${VERSION}${EXTENSION}"
+		MINIDAPP="${DIR}${VERSION}${EXTENSION}"
 
 		#add the minidapp to the directory
-		mv $DAPP ${MINIDAPP}
+		mv $DAPP "${DIR}/${MINIDAPP}"
 
 		# Output JSON
 		echo "  \"$DIR\": {"
