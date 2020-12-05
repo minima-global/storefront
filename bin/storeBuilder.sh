@@ -1,38 +1,63 @@
 #!/bin/bash
 
-CONF="minidapp.conf"
-NUMDAPPS=$(ls -l *minidapp | wc -l)
-COUNTER=0
+EXTENSION=".minidapp"
+NUMDAPPS=$(ls -l ${EXTENSION} 2>/dev/null | wc -l)
 
-echo "{"
+if [[ $NUMDAPPS -eq 0 ]]
+then
 
-for DAPP in *.minidapp
-do
-	#create unique dir for minidapp
-	DIR=$(echo $DAPP | cut -d. -f1)
-	unzip -q -o $DAPP -d $DIR && mv $DAPP $DIR
+	echo "No MiniDapps Here!" >&2
+	exit 1
 
-	# find conf and icon
-	CONF="${DIR}/${CONF}"
+else
+
+	CONF="minidapp.conf"
 	ICONREGEX='\"icon\"\:'
-	ICONFIELD=$(grep "$ICONREGEX" "$DIR/$CONF")
-	ICONENTRY=$(echo $ICONFIELD | cut -d\" -f4 | sed "s/^\.\///")
-	ICON="${DIR}/${ICONENTRY}"
+	VERSIONREGEX='\"version\"\:'
 
-	# Output JSON
-	echo "  \"$DIR\": {"
-	echo "    \"miniDapp\": \"$DAPP\","
-	echo "    \"icon\": \"$ICON\","
-	echo "    \"conf\": \"$CONF\""
+	echo "{"
 
-	let COUNTER=COUNTER+1
+	COUNTER=0
+	for DAPP in *.minidapp
+	do
+		#create unique dir for minidapp
+		DIR=$(echo $DAPP | cut -d. -f1)
+		unzip -q -o $DAPP -d $DIR
 
-	if [ $COUNTER -eq $NUMDAPPS ]
-	then
-		echo "  }"
-	else
-		echo "  },"
-	fi
-done
+		# find conf
+		CONF="${DIR}/${CONF}"
 
-echo "}"
+		#find icon
+		ICONFIELD=$(grep "$ICONREGEX" "$DIR/$CONF")
+		ICONENTRY=$(echo $ICONFIELD | cut -d\" -f4 | sed "s/^\.\///")
+		ICON="${DIR}/${ICONENTRY}"
+
+		#find version
+		VERSIONFIELD=$(grep "$VERSIONREGEX" "$DIR/$CONF")
+		VERSION=$(echo $VERSIONFIELD | cut -d\" -f4 | sed "s/^\.\///")
+
+		#create minidapp entry
+		MINIDAPP="${DIR}/${DIR}${VERSION}${EXTENSION}"
+
+		#add the minidapp to the directory
+		mv $DAPP ${MINIDAPP}
+
+		# Output JSON
+		echo "  \"$DIR\": {"
+		echo "    \"miniDapp\": \"$MINIDAPP\","
+		echo "    \"icon\": \"$ICON\","
+		echo "    \"conf\": \"$CONF\""
+
+		let COUNTER=COUNTER+1
+
+		if [ $COUNTER -eq $NUMDAPPS ]
+		then
+			echo "  }"
+		else
+			echo "  },"
+		fi
+	done
+
+	echo "}"
+	exit 0
+fi
