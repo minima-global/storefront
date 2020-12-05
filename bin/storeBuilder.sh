@@ -1,9 +1,10 @@
 #!/bin/bash
 
-echo "{"
-
+CONF="minidapp.conf"
 NUMDAPPS=$(ls -l *minidapp | wc -l)
 COUNTER=0
+
+echo "{"
 
 for DAPP in *.minidapp
 do
@@ -12,12 +13,11 @@ do
 	unzip -q -o $DAPP -d $DIR && mv $DAPP $DIR
 
 	# find conf and icon
-	CONF=$(find $DIR -name minidapp.conf | sed "s/$DIR\///")
+	CONF="${DIR}/${CONF}"
 	ICONREGEX='\"icon\"\:'
 	ICONFIELD=$(grep "$ICONREGEX" "$DIR/$CONF")
-	ICONENTRY=$(echo $ICONFIELD | cut -d\" -f4)
-	ICONNAME=$(basename "$ICONENTRY")
-	ICON=$(find $DIR -name $ICONNAME | sed "s/$DIR\///")
+	ICONENTRY=$(echo $ICONFIELD | cut -d\" -f4 | sed "s/^\.\///")
+	ICON="${DIR}/${ICONENTRY}"
 
 	# Output JSON
 	echo "  \"$DIR\": {"
