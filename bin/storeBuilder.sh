@@ -1,7 +1,7 @@
 #!/bin/bash
 
 EXTENSION=".minidapp"
-NUMDAPPS=$(ls -l ${EXTENSION} 2>/dev/null | wc -l)
+NUMDAPPS=$(ls -l *${EXTENSION} | wc -l)
 
 if [[ $NUMDAPPS -eq 0 ]]
 then
@@ -11,7 +11,7 @@ then
 
 else
 
-	CONF="minidapp.conf"
+	CONFFILE="minidapp.conf"
 	ICONREGEX='\"icon\"\:'
 	VERSIONREGEX='\"version\"\:'
 
@@ -24,16 +24,16 @@ else
 		DIR=$(echo $DAPP | cut -d. -f1)
 		unzip -q -o $DAPP -d $DIR
 
-		# find conf
-		CONF="${DIR}/${CONF}"
+		# find conf file
+		CONF="${DIR}/${CONFFILE}"
 
 		#find icon
-		ICONFIELD=$(grep "$ICONREGEX" "$DIR/$CONF")
+		ICONFIELD=$(grep "$ICONREGEX" "${DIR}/${CONF}")
 		ICONENTRY=$(echo $ICONFIELD | cut -d\" -f4 | sed "s/^\.\///")
 		ICON="${DIR}/${ICONENTRY}"
 
 		#find version
-		VERSIONFIELD=$(grep "$VERSIONREGEX" "$DIR/$CONF")
+		VERSIONFIELD=$(grep "$VERSIONREGEX" "${DIR}/${CONF}")
 		VERSION=$(echo $VERSIONFIELD | cut -d\" -f4 | sed "s/^\.\///")
 
 		#create minidapp entry
