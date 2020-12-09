@@ -32,6 +32,7 @@
     "history": "^4.10.1",
     "material-ui-chip-input": "^2.0.0-beta.2",
     "material-ui-formik-components": "^0.7.0",
+    "minima": "file:../../minima-0.96.11.tgz",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-file-reader-input": "^2.0.0",

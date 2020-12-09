@@ -1,7 +1,6 @@
-import shortid from 'shortid'
+import { Minima } from 'minima'
 
-// @ts-ignore
-import { Minima } from '../blockchain/minima'
+import shortid from 'shortid'
 
 import {
   AppDispatch,

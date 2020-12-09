@@ -1,5 +1,4 @@
-// @ts-ignore
-import { Minima } from './minima'
+import { Minima } from 'minima'
 
 import {
   AppDispatch,
@@ -18,7 +17,9 @@ export const initBlockchain = () => {
     //Minima.init()
     Minima.init( function( msg: any ) {
 
-      //console.log(msg)
+      //console.log("minima event", msg)
+
+      //console.log("Minima balance: ", Minima.balance)
 
       if ( msg.event == "connected" ) {
 
