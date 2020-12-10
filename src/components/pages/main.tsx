@@ -88,40 +88,47 @@ const mainNav = (props: Props) => {
             </Grid>
           </Paper>
 
-          <Paper className={classes.content} square={true}>
+          <Paper className={classes.subHeader} square={true}>
 
             <Grid item container xs={12}>
 
-              <Grid item xs={6}>
-                &nbsp;
+              <Grid item xs={4}>
+                <NavLink to={Local.help} className={classes.link}>
+                    <Tooltip title={Help.helpTip}>
+                      <IconButton
+                        color="primary"
+                        aria-label="Help"
+                        component="span">
+                        <HelpIcon fontSize={'large'}/>
+                      </IconButton>
+                    </Tooltip>
+                </NavLink>
               </Grid>
 
-              <Grid item container justify="flex-end" xs={6}>
+              <Grid item xs={4}>
+                <NavLink to={Local.contact} className={classes.link}>
+                    <Tooltip title={Help.contactTip}>
+                      <IconButton
+                        color="primary"
+                        aria-label="Contact"
+                        component="span">
+                        <ContactMailIcon fontSize={'large'}/>
+                      </IconButton>
+                    </Tooltip>
+                </NavLink>
+              </Grid>
 
-                  <Grid item xs={2}>
-                    <NavLink to={Local.help} className={classes.link}>
-                        <Tooltip title={Help.helpTip}>
-                          <HelpIcon />
-                        </Tooltip>
-                    </NavLink>
-                  </Grid>
-
-                  <Grid item xs={2}>
-                    <NavLink to={Local.contact} className={classes.link}>
-                        <Tooltip title={Help.contactTip}>
-                          <ContactMailIcon />
-                        </Tooltip>
-                    </NavLink>
-                  </Grid>
-
-                  <Grid item xs={2}>
-                    <NavLink to={Local.about} className={classes.link}>
-                        <Tooltip title={Help.aboutTip}>
-                          <InfoIcon />
-                        </Tooltip>
-                    </NavLink>
-                  </Grid>
-
+              <Grid item xs={4}>
+                <NavLink to={Local.about} className={classes.link}>
+                    <Tooltip title={Help.aboutTip}>
+                      <IconButton
+                        color="primary"
+                        aria-label="Info"
+                        component="span">
+                        <InfoIcon fontSize={'large'}/>
+                      </IconButton>
+                    </Tooltip>
+                </NavLink>
               </Grid>
 
             </Grid>
@@ -130,15 +137,7 @@ const mainNav = (props: Props) => {
 
           <Paper className={classes.content} square={true}>
             <Grid item container xs={12}>
-               <Grid item xs={1}>
-                    &nbsp;
-                </Grid>
-                <Grid item xs={10}>
-                    <Content />
-                </Grid>
-                <Grid item xs={1}>
-                    &nbsp;
-                </Grid>
+              <Content />
             </Grid>
           </Paper>
 

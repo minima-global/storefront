@@ -167,6 +167,16 @@ const themeStyles = makeStyles({
     position: 'absolute',
     top: '0'
   },
+  subHeader: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(0),
+    textAlign: 'center',
+    background: 'linear-gradient(#F0F0FA, #F0F0FA)',
+    height: "70px",
+    width: "100vw",
+    position: 'absolute',
+    top: '70px'
+  },
   logo: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
@@ -201,7 +211,7 @@ const themeStyles = makeStyles({
     width: "100vw",
     position: 'absolute',
     bottom: '84px',
-    top: '70px'
+    top: '140px'
   },
   home: {
     padding: theme.spacing(1),
