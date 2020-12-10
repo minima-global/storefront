@@ -152,8 +152,7 @@ theme.spacing(4)
 
 const themeStyles = makeStyles({
   root: {
-    background: 'linear-gradient(#FAFAFF, #FAFAFF)',
-    color: theme.palette.text.primary,
+    background: 'linear-gradient(#F0F0FA, #F0F0FA)',
     height: "100vh",
     width: "100vw",
     position: 'relative'
@@ -171,21 +170,18 @@ const themeStyles = makeStyles({
   logo: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
-    textAlign: 'left',
     position: 'absolute',
     bottom: '0'
   },
   title: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
-    textAlign: 'center',
     position: 'absolute',
     bottom: '0'
   },
   companyLogo: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
-    textAlign: 'right',
     position: 'absolute',
     bottom: '0'
   },
@@ -228,9 +224,6 @@ const themeStyles = makeStyles({
     bottom: '0'
   },
   footerLinks: {
-    background: 'linear-gradient(#00abc7, #00abc7)',
-    textAlign: 'center',
-    fontSize: "2vh",
     fontWeight: 400,
     fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
   },

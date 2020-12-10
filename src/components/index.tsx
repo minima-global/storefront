@@ -15,4 +15,4 @@ const store = configureStore(initialState)
 fontLoader()
 render(<Root store={store}/>, document.getElementById('root'))
 
-serviceWorker.register()
+//serviceWorker.register()

@@ -65,7 +65,7 @@ const mainNav = (props: Props) => {
   }
 
   return (
-      <div className={classes.root}>
+      <Paper className={classes.root} square={true}>
         <Grid container>
 
           <Paper className={classes.header} square={true}>
@@ -147,24 +147,26 @@ const mainNav = (props: Props) => {
 
               <Grid item xs={4}>
 
-                   <NavLink to={Local.home}>
-                       <Grid item>
-                          <Paper className={classes.footerLinks} elevation={0} square={true}>
-                            <HomeTwoToneIcon fontSize={'large'}/>
-                          </Paper>
-                       </Grid>
-                   </NavLink>
+                 <NavLink to={Local.home}>
+                   <IconButton
+                     color="primary"
+                     aria-label="upload server config file"
+                     component="span">
+                     <HomeTwoToneIcon fontSize={'large'}/>
+                    </IconButton>
+                 </NavLink>
 
                 </Grid>
 
                 <Grid item xs={4}>
 
                    <NavLink to={Local.showStoreDapps}>
-                       <Grid item>
-                          <Paper className={classes.footerLinks} elevation={0} square={true}>
-                            <StorefrontTwoToneIcon fontSize={'large'}/>
-                          </Paper>
-                       </Grid>
+                   <IconButton
+                     color="primary"
+                     aria-label="upload server config file"
+                     component="span">
+                     <StorefrontTwoToneIcon fontSize={'large'}/>
+                    </IconButton>
                    </NavLink>
 
                 </Grid>
@@ -179,13 +181,14 @@ const mainNav = (props: Props) => {
                       style={{ visibility: 'hidden'}}
                     />
                     <Tooltip title={Settings.fileTip}>
-                        <label htmlFor="getFile">
-                            <IconButton color="primary" aria-label="upload server config file" component="span">
-                                <Paper className={classes.footerLinks} elevation={0} square={true}>
-                                  <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
-                                </Paper>
-                            </IconButton>
-                        </label>
+                      <label htmlFor="getFile">
+                        <IconButton
+                          color="primary"
+                          aria-label="upload server config file"
+                          component="span">
+                          <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
+                        </IconButton>
+                      </label>
                     </Tooltip>
 
                 </Grid>
@@ -194,7 +197,7 @@ const mainNav = (props: Props) => {
           </Paper>
 
         </Grid>
-      </div>
+      </Paper>
   )
 }
 
