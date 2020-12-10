@@ -152,7 +152,7 @@ theme.spacing(4)
 
 const themeStyles = makeStyles({
   root: {
-    background: 'linear-gradient(#929396, #929396)',
+    background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     color: theme.palette.text.primary,
     height: "100vh",
     width: "100vw",
@@ -161,26 +161,36 @@ const themeStyles = makeStyles({
   header: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
-    textAlign: 'left',
-    background: 'linear-gradient(#ff671d, #ff671d)',
-    height: "75px",
+    textAlign: 'center',
+    background: 'linear-gradient(#001C32, #001C32)',
+    height: "70px",
     width: "100vw",
     position: 'absolute',
     top: '0'
   },
   logo: {
-    padding: theme.spacing(0),
+    padding: theme.spacing(1),
     margin: theme.spacing(0),
-    background: 'linear-gradient(#00abc7, #00abc7)',
+    textAlign: 'left',
+    position: 'absolute',
+    bottom: '0'
   },
   title: {
-    padding: theme.spacing(0),
+    padding: theme.spacing(1),
     margin: theme.spacing(0),
-    background: 'linear-gradient(#ff671d, #ff671d)',
-    position: 'relative'
+    textAlign: 'center',
+    position: 'absolute',
+    bottom: '0'
+  },
+  companyLogo: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(0),
+    textAlign: 'right',
+    position: 'absolute',
+    bottom: '0'
   },
   subTitle: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(0),
     margin: theme.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#ff671d, #ff671d)',
@@ -190,31 +200,29 @@ const themeStyles = makeStyles({
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     color: theme.palette.text.primary,
-    background: 'linear-gradient(#929396, #929396)',
+    background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     overflow: 'auto',
     width: "100vw",
     position: 'absolute',
-    bottom: '120px',
-    top: '75px'
+    bottom: '84px',
+    top: '70px'
   },
   home: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     color: theme.palette.text.primary,
-    background: 'linear-gradient(#929396, #929396)'
   },
   caption: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     textAlign: 'center',
-    background: 'linear-gradient(#ff671d, #ff671d)'
   },
   footer: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     textAlign: 'center',
-    background: 'linear-gradient(#00abc7, #00abc7)',
-    height: "120px",
+    background: 'linear-gradient(#001C32, #001C32)',
+    height: "84px",
     width: "100vw",
     position: 'absolute',
     bottom: '0'

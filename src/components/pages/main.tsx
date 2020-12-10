@@ -28,8 +28,9 @@ import StorefrontTwoToneIcon from '@material-ui/icons/StorefrontTwoTone';
 
 import Tooltip from '@material-ui/core/Tooltip'
 
-import powered from '../../images/powered.png'
-import appName from '../../images/appName.png'
+import logo from '../../images/storefrontLogoLarge.png'
+import appName from '../../images/storefrontLarge.png'
+import minimaIcon from '../../images/minimaIconlarge.png'
 
 import { themeStyles } from '../../styles'
 
@@ -68,46 +69,63 @@ const mainNav = (props: Props) => {
         <Grid container>
 
           <Paper className={classes.header} square={true}>
+
             <Grid item container xs={12}>
 
-                <Grid item xs={1}>
-                  <img className={classes.title} src={powered}/>
-                  <AppInit />
-                </Grid>
+              <Grid item xs={4}>
+                <img className={classes.title} src={logo}/>
+                <AppInit />
+              </Grid>
 
-                <Grid item xs={5}>
-                  <img className={classes.title} src={appName}/>
-                </Grid>
+              <Grid item xs={4}>
+                <img className={classes.title} src={appName}/>
+              </Grid>
 
-                <Grid item container justify="flex-end" xs={6}>
-
-                    <Grid item xs={2}>
-                      <NavLink to={Local.help} className={classes.link}>
-                          <Tooltip title={Help.helpTip}>
-                            <HelpIcon />
-                          </Tooltip>
-                      </NavLink>
-                    </Grid>
-
-                    <Grid item xs={2}>
-                      <NavLink to={Local.contact} className={classes.link}>
-                          <Tooltip title={Help.contactTip}>
-                            <ContactMailIcon />
-                          </Tooltip>
-                      </NavLink>
-                    </Grid>
-
-                    <Grid item xs={2}>
-                      <NavLink to={Local.about} className={classes.link}>
-                          <Tooltip title={Help.aboutTip}>
-                            <InfoIcon />
-                          </Tooltip>
-                      </NavLink>
-                    </Grid>
-
-                </Grid>
+              <Grid item xs={4}>
+                <img className={classes.companyLogo} src={minimaIcon}/>
+              </Grid>
 
             </Grid>
+          </Paper>
+
+          <Paper className={classes.content} square={true}>
+
+            <Grid item container xs={12}>
+
+              <Grid item xs={6}>
+                &nbsp;
+              </Grid>
+
+              <Grid item container justify="flex-end" xs={6}>
+
+                  <Grid item xs={2}>
+                    <NavLink to={Local.help} className={classes.link}>
+                        <Tooltip title={Help.helpTip}>
+                          <HelpIcon />
+                        </Tooltip>
+                    </NavLink>
+                  </Grid>
+
+                  <Grid item xs={2}>
+                    <NavLink to={Local.contact} className={classes.link}>
+                        <Tooltip title={Help.contactTip}>
+                          <ContactMailIcon />
+                        </Tooltip>
+                    </NavLink>
+                  </Grid>
+
+                  <Grid item xs={2}>
+                    <NavLink to={Local.about} className={classes.link}>
+                        <Tooltip title={Help.aboutTip}>
+                          <InfoIcon />
+                        </Tooltip>
+                    </NavLink>
+                  </Grid>
+
+              </Grid>
+
+            </Grid>
+
           </Paper>
 
           <Paper className={classes.content} square={true}>
