@@ -71,7 +71,7 @@ const get = ( props: Props ) => {
     return uniqElements
   }*/
 
-  useEffect(() => {
+  /*useEffect(() => {
 
     if ( props.serverData.servers.length
     && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
@@ -79,58 +79,58 @@ const get = ( props: Props ) => {
       console.log(props.serverData.servers)
     }
 
-  }, [props.serverData])
+  }, [props.serverData])*/
 
   return (
-    <>
-      <h2>{StorefrontsConfig.heading}</h2>
-      <hr />
-      <p>
-          {isLoading ?
-            <div className={classes.spinner}>
-              <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-            </div> : (
-              <Paper className={classes.home} square={true}>
-                <Grid container>
-                  {
-                    props.serverData.servers.map( ( server: Server, i: number ) => {
+    <Grid container>
+      <Grid item xs={12}>
+        <h2>{StorefrontsConfig.heading}</h2>
+      </Grid>
+      {isLoading ?
+        <div className={classes.spinner}>
+          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+        </div> : (
+          <Grid container>
+            {
+              props.serverData.servers.map( ( server: Server, i: number ) => {
 
-                      const dappStorefront = server.url
-                      const icon = server.icon
-                      const iconURL = dappStorefront + "/" + icon
-                      const title = server.title
-                      //const description = server.description
-                      const isOnline = server.isOnline
-                      const pathShowStore = `${Local.showStoreDapps}/${i}`
+                const iconURL = server.url + "/" + server.icon
+                const title = server.title
+                //const description = server.description
+                const isOnline = server.isOnline
+                const pathShowStore = `${Local.showStoreDapps}/${i}`
 
-                      return (
-                        <>
-                          <Grid item justify="center" alignItems="center" xs={12}  sm={4}>
-                            <Paper className={classes.appIconContainer}>
-                                <input
-                                    type="image"
-                                    src={iconURL}
-                                    onClick={() => history.push(`${pathShowStore}`)}
-                                    alt="store icon"
-                                    aria-label="store icon"
-                                    role="button"
-                                    className={classes.appIcon}
-                                />
-                            </Paper>
-                          </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={8}>
-                           <b>{title}</b>
-                          </Grid>
-                        </>
-                      )
-                    })
-                  }
-                </Grid>
-              </Paper>
-            )
-          }
-      </p>
-    </>
+                return (
+                  <React.Fragment key={server.url}>
+                    <Grid item xs={12}>
+                      <hr/>
+                    </Grid>
+                    <Grid item container justify="flex-start" xs={12} sm={4}>
+                      <Paper className={classes.appIconContainer}>
+                          <input
+                              type="image"
+                              src={iconURL}
+                              onClick={() => history.push(`${pathShowStore}`)}
+                              alt="store icon"
+                              aria-label="store icon"
+                              role="button"
+                              className={classes.appIcon}
+                          />
+                      </Paper>
+                    </Grid>
+                    <Grid item container justify="flex-start" xs={12} sm={8}>
+                      <div>
+                        <h3>{title}</h3>
+                      </div>
+                    </Grid>
+                  </React.Fragment>
+                )
+              })
+            }
+          </Grid>
+        )
+      }
+    </Grid>
   )
 }
 

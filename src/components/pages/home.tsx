@@ -98,88 +98,88 @@ const get = ( props: Props ) => {
   }, [props.serverData])*/
 
   return (
-    <>
-      <h2>{HomeConfig.heading}</h2>
-      <div>
-        {isLoading ?
-          <div className={classes.spinner}>
-            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-          </div> : (
-            <Grid container>
-              {
-                props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
+    <Grid container>
+      <Grid item xs={12}>
+        <h2>{HomeConfig.heading}</h2>
+      </Grid>
+      {isLoading ?
+        <div className={classes.spinner}>
+          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+        </div> : (
+          <Grid container>
+            {
+              props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
-                  const serverIndex = miniDapp.serverIndex
-                  const dappHome = props.serverData.servers[serverIndex].url
-                  const dir = miniDapp.dir
-                  const icon = miniDapp.icon
-                  const iconURL = dappHome + dir + "/" + icon
-                  const name = miniDapp.conf.name
-                  const headline = miniDapp.conf.headline
-                  const version = miniDapp.conf.version
-                  const description = miniDapp.conf.description
-                  const category = miniDapp.conf.category
-                  const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
-                  //const pathAddDapp = `${Local.addDapp}/${i}`
+                const serverIndex = miniDapp.serverIndex
+                const dappHome = props.serverData.servers[serverIndex].url
+                const dir = miniDapp.dir
+                const icon = miniDapp.icon
+                const iconURL = dappHome + dir + "/" + icon
+                const name = miniDapp.conf.name
+                const headline = miniDapp.conf.headline
+                const version = miniDapp.conf.version
+                const description = miniDapp.conf.description
+                const category = miniDapp.conf.category
+                const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
+                //const pathAddDapp = `${Local.addDapp}/${i}`
 
-                  return (
-                    <React.Fragment key={miniDappURL}>
-                      <Grid xs={12}>
-                        <hr/>
-                      </Grid>
-                      <Grid item container justify="flex-start" alignItems="center" xs={12} sm={2}>
-                        <Paper className={classes.appIconContainer}>
-                            <img
-                              className={classes.appIcon}
-                              src={iconURL}
-                            />
-                        </Paper>
-                      </Grid>
-                      <Grid item container justify="flex-start" alignItems="center" xs={12} sm={8}>
-                        <div>
-                           <p><h3>{name}</h3></p>
-                           <p>{category}</p>
-                        </div>
-                      </Grid>
-                      <Grid item container justify="flex-end" alignItems="center" xs={12} sm={2}>
-                        <form method="get" action={miniDappURL}>
-                          <Tooltip title={Help.downloadTip}>
-                            <label htmlFor={miniDappURL}>
-                              <IconButton
-                                color="primary"
-                                aria-label={Help.downloadTip}
-                                component="span">
-                                <img src={downloadIcon}/>
-                              </IconButton>
-                            </label>
-                          </Tooltip>
-                          <input
-                            id={miniDappURL}
-                            type="submit"
-                            style={{ visibility: 'hidden'}}
+                return (
+                  <React.Fragment key={miniDappURL}>
+                    <Grid item xs={12}>
+                      <hr/>
+                    </Grid>
+                    <Grid item container justify="flex-start" xs={12} sm={2}>
+                      <Paper className={classes.appIconContainer}>
+                          <img
+                            className={classes.appIcon}
+                            src={iconURL}
                           />
-                        </form>
-                      </Grid>
-                      <Grid xs={12} sm={2}>
-                        &nbsp;
-                      </Grid>
-                      <Grid item container justify="flex-start" xs={12}  sm={10}>
-                        <div>
-                           <hr className={classes.hr}/>
-                           <p>{headline}<br/>
-                           <b>{version}</b><br/>
-                           <b>{props.serverData.servers[serverIndex].title}</b></p>
-                        </div>
-                      </Grid>
-                    </React.Fragment>
-                  )
-                })
-              }
-            </Grid>
-          )
-        }
-      </div>
-    </>
+                      </Paper>
+                    </Grid>
+                    <Grid item container justify="flex-start" xs={12} sm={8}>
+                      <div>
+                         <h3>{name}</h3>
+                         <p>{category}</p>
+                      </div>
+                    </Grid>
+                    <Grid item container justify="flex-end" xs={12} sm={2}>
+                      <form method="get" action={miniDappURL}>
+                        <Tooltip title={Help.downloadTip}>
+                          <label htmlFor={miniDappURL}>
+                            <IconButton
+                              color="primary"
+                              aria-label={Help.downloadTip}
+                              component="span">
+                              <img src={downloadIcon}/>
+                            </IconButton>
+                          </label>
+                        </Tooltip>
+                        <input
+                          id={miniDappURL}
+                          type="submit"
+                          style={{ visibility: 'hidden'}}
+                        />
+                      </form>
+                    </Grid>
+                    <Grid item xs={12} sm={2}>
+                      &nbsp;
+                    </Grid>
+                    <Grid item container justify="flex-start" xs={12}  sm={10}>
+                      <div>
+                         <hr className={classes.hr}/>
+                         <p>{headline}<br/>
+                         <b>{version}</b><br/>
+                         <b>{props.serverData.servers[serverIndex].title}</b></p>
+                      </div>
+                    </Grid>
+                  </React.Fragment>
+                )
+              })
+            }
+          </Grid>
+        )
+      }
+    </Grid>
   )
 }
 

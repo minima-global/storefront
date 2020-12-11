@@ -46,73 +46,69 @@ const get = ( props: Props ) => {
 
   return (
     <>
-      <h2>{props.serverData.servers[index].title} - {StorefrontConfig.storefrontHeading}</h2>
-      <hr />
-      {props.serverData.servers[index].description}
-      <hr />
-      {props.serverData.servers[index].url}
-      <hr />
-      <p>
-          {isLoading ?
-            <div className={classes.spinner}>
-              <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-            </div> : (
-              <Paper className={classes.home} square={true}>
-                <Grid container>
-                  {
-                    props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
+      <h2>{StorefrontConfig.storefrontHeading}</h2>
+      <div>
+        {isLoading ?
+          <div className={classes.spinner}>
+            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+          </div> : (
+            <Grid container>
+              {
+                props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
-                      const serverIndex = miniDapp.serverIndex
-                      //console.log("indexes: ", index, serverIndex)
-                      if ( index == serverIndex ) {
+                  const serverIndex = miniDapp.serverIndex
+                  //console.log("indexes: ", index, serverIndex)
+                  if ( index == serverIndex ) {
 
-                          //console.log("made it here")
-                          const dappHome = props.serverData.servers[serverIndex].url
-                          const dir = miniDapp.dir
-                          const icon = miniDapp.icon
-                          const iconURL = dappHome + dir + "/" + icon
-                          const name = miniDapp.conf.name
-                          const headline = miniDapp.conf.headline
-                          const version = miniDapp.conf.version
-                          const description = miniDapp.conf.description
-                          const category = miniDapp.conf.category
-                          const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
-                          //const pathAddDapp = `${Local.addDapp}/${i}`
+                      //console.log("made it here")
+                      const dappHome = props.serverData.servers[serverIndex].url
+                      const dir = miniDapp.dir
+                      const icon = miniDapp.icon
+                      const iconURL = dappHome + dir + "/" + icon
+                      const name = miniDapp.conf.name
+                      const headline = miniDapp.conf.headline
+                      const version = miniDapp.conf.version
+                      const description = miniDapp.conf.description
+                      const category = miniDapp.conf.category
+                      const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
+                      //const pathAddDapp = `${Local.addDapp}/${i}`
 
-                          return (
-                            <>
-                              <Grid item justify="center" alignItems="center" xs={12} sm={2}>
-                                <Paper className={classes.appIconContainer}>
-                                    <img
-                                      className={classes.appIcon}
-                                      src={iconURL}
-                                    />
-                                </Paper>
-                              </Grid>
-                              <Grid item justify="center" alignItems="center" xs={12} sm={8}>
-                               <b>{name}</b><br/>
-                               <i>{category}</i>
-                              </Grid>
-                              <Grid item justify="center" alignItems="center" xs={12} sm={2}>
-                                <form method="get" action={miniDappURL}>
-                                   <button type="submit">{AddDapp.download}</button>
-                                </form>
-                              </Grid>
-                              <Grid item justify="center" alignItems="center" xs={12}>
-                                <hr />
-                                <p>{headline}<br/>
-                                <b>{version}</b></p>
-                              </Grid>
-                            </>
-                          )
-                      }
-                    })
+                      return (
+                        <React.Fragment key={miniDappURL}>
+                          <Grid xs={12}>
+                            <hr/>
+                          </Grid>
+                          <Grid item justify="center" alignItems="center" xs={12} sm={2}>
+                            <Paper className={classes.appIconContainer}>
+                                <img
+                                  className={classes.appIcon}
+                                  src={iconURL}
+                                />
+                            </Paper>
+                          </Grid>
+                          <Grid item justify="center" alignItems="center" xs={12} sm={8}>
+                           <b>{name}</b><br/>
+                           <i>{category}</i>
+                          </Grid>
+                          <Grid item justify="center" alignItems="center" xs={12} sm={2}>
+                            <form method="get" action={miniDappURL}>
+                               <button type="submit">{AddDapp.download}</button>
+                            </form>
+                          </Grid>
+                          <Grid item justify="center" alignItems="center" xs={12}>
+                            <hr />
+                            <p>{headline}<br/>
+                            <b>{version}</b></p>
+                          </Grid>
+                        </React.Fragment>
+                      )
                   }
-                </Grid>
-              </Paper>
-            )
-          }
-      </p>
+                })
+              }
+            </Grid>
+          )
+        }
+      </div>
     </>
   )
 }
