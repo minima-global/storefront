@@ -94,63 +94,61 @@ const get = ( props: Props ) => {
   return (
     <>
       <h2>{HomeConfig.heading}</h2>
-      <hr />
       <p>
-          {isLoading ?
-            <div className={classes.spinner}>
-              <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-            </div> : (
-              <Paper className={classes.home} square={true}>
-                <Grid container>
-                  {
-                    props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
+        {isLoading ?
+          <div className={classes.spinner}>
+            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+          </div> : (
+            <Grid container>
+              {
+                props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
-                      const serverIndex = miniDapp.serverIndex
-                      const dappHome = props.serverData.servers[serverIndex].url
-                      const dir = miniDapp.dir
-                      const icon = miniDapp.icon
-                      const iconURL = dappHome + dir + "/" + icon
-                      const name = miniDapp.conf.name
-                      const headline = miniDapp.conf.headline
-                      const version = miniDapp.conf.version
-                      const description = miniDapp.conf.description
-                      const category = miniDapp.conf.category
-                      const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
-                      //const pathAddDapp = `${Local.addDapp}/${i}`
+                  const serverIndex = miniDapp.serverIndex
+                  const dappHome = props.serverData.servers[serverIndex].url
+                  const dir = miniDapp.dir
+                  const icon = miniDapp.icon
+                  const iconURL = dappHome + dir + "/" + icon
+                  const name = miniDapp.conf.name
+                  const headline = miniDapp.conf.headline
+                  const version = miniDapp.conf.version
+                  const description = miniDapp.conf.description
+                  const category = miniDapp.conf.category
+                  const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
+                  //const pathAddDapp = `${Local.addDapp}/${i}`
 
-                      return (
-                        <>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={2}>
-                            <Paper className={classes.appIconContainer}>
-                                <img
-                                  className={classes.appIcon}
-                                  src={iconURL}
-                                />
-                            </Paper>
-                          </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={8}>
-                           <b>{name}</b><br/>
-                           <i>{category}</i>
-                          </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={2}>
-                            <form method="get" action={miniDappURL}>
-                               <button type="submit">{AddDapp.download}</button>
-                            </form>
-                          </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12}>
-                           <hr />
-                           <p>{headline}<br/>
-                           <b>{version}</b><br/>
-                           <b>{ props.serverData.servers[serverIndex].title}</b></p>
-                          </Grid>
-                        </>
-                      )
-                    })
-                  }
-                </Grid>
-              </Paper>
-            )
-          }
+                  return (
+                    <>
+                      <Grid item justify="center" alignItems="center" xs={12} sm={2}>
+                        <Paper className={classes.appIconContainer}>
+                            <img
+                              className={classes.appIcon}
+                              src={iconURL}
+                            />
+                        </Paper>
+                      </Grid>
+                      <Grid item justify="center" alignItems="center" xs={12} sm={8}>
+                       <b>{name}</b><br/>
+                       <i>{category}</i>
+                      </Grid>
+                      <Grid item justify="center" alignItems="center" xs={12} sm={2}>
+                        <form method="get" action={miniDappURL}>
+                           <button type="submit">{AddDapp.download}</button>
+                        </form>
+                      </Grid>
+                      <Grid item justify="center" alignItems="center" xs={12}>
+                       <hr className={classes.hr} />
+                       <p>{headline}<br/>
+                       <b>{version}</b><br/>
+                       <b>{props.serverData.servers[serverIndex].title}</b></p>
+                       <hr/>
+                      </Grid>
+                    </>
+                  )
+                })
+              }
+            </Grid>
+          )
+        }
       </p>
     </>
   )

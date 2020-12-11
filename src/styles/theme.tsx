@@ -256,6 +256,10 @@ const themeStyles = makeStyles({
     margin: 'auto',
     height: "80px",
     width: '100%'
+  },
+  hr: {
+    borderTop: "1px",
+    solid: "#ccc"
   }
 })
 

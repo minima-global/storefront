@@ -69,7 +69,7 @@ const mainNav = (props: Props) => {
 
         <Grid container className={classes.header} xs={12}>
 
-          <Grid item container justify="left" xs={4}>
+          <Grid item container justify="flex-start" xs={4}>
             <img className={classes.title} src={logo}/>
           </Grid>
 
@@ -89,7 +89,7 @@ const mainNav = (props: Props) => {
             &nbsp;
           </Grid>
 
-          <Grid item container justify="left" xs={2}>
+          <Grid item container justify="flex-start" xs={2}>
             <NavLink to={Local.help} className={classes.link}>
                 <Tooltip title={Help.helpTip}>
                   <IconButton
@@ -136,7 +136,7 @@ const mainNav = (props: Props) => {
 
       <Grid container className={classes.footer} xs={12}>
 
-        <Grid item container justify="left" xs={4}>
+        <Grid item container justify="flex-start" xs={4}>
 
            <NavLink to={Local.home}>
             <Tooltip title={Help.homeTip}>
