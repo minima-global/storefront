@@ -69,7 +69,7 @@ const mainNav = (props: Props) => {
 
         <Grid container className={classes.header} xs={12}>
 
-          <Grid item container justify="center" xs={4}>
+          <Grid item container justify="left" xs={4}>
             <img className={classes.title} src={logo}/>
           </Grid>
 
@@ -77,19 +77,19 @@ const mainNav = (props: Props) => {
             <img className={classes.title} src={appName}/>
           </Grid>
 
-          <Grid item container justify="center" xs={4}>
+          <Grid item container justify="flex-end" xs={4}>
             <img className={classes.title} src={minimaIcon}/>
           </Grid>
 
         </Grid>
 
-        <Grid item container className={classes.subHeader} xs={12}>
+        <Grid container className={classes.subHeader} xs={12}>
 
           <Grid item xs={6}>
             &nbsp;
           </Grid>
 
-          <Grid item xs={2}>
+          <Grid item container justify="left" xs={2}>
             <NavLink to={Local.help} className={classes.link}>
                 <Tooltip title={Help.helpTip}>
                   <IconButton
@@ -102,7 +102,7 @@ const mainNav = (props: Props) => {
             </NavLink>
           </Grid>
 
-          <Grid item xs={2}>
+          <Grid item container justify="center" xs={2}>
             <NavLink to={Local.contact} className={classes.link}>
                 <Tooltip title={Help.contactTip}>
                   <IconButton
@@ -115,7 +115,7 @@ const mainNav = (props: Props) => {
             </NavLink>
           </Grid>
 
-          <Grid item xs={2}>
+          <Grid item container justify="flex-end" xs={2}>
             <NavLink to={Local.about} className={classes.link}>
                 <Tooltip title={Help.aboutTip}>
                   <IconButton
@@ -134,15 +134,15 @@ const mainNav = (props: Props) => {
         <Content />
       </Grid>
 
-      <Grid item container className={classes.footer} xs={12}>
+      <Grid container className={classes.footer} xs={12}>
 
-        <Grid item xs={4}>
+        <Grid item container justify="left" xs={4}>
 
            <NavLink to={Local.home}>
             <Tooltip title={Help.homeTip}>
               <IconButton
                color="primary"
-               aria-label="upload server config file"
+               aria-label="All MiniDapps"
                component="span">
                <HomeTwoToneIcon fontSize={'large'}/>
               </IconButton>
@@ -151,13 +151,13 @@ const mainNav = (props: Props) => {
 
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item container justify="center" xs={4}>
 
              <NavLink to={Local.showStoreDapps}>
               <Tooltip title={Help.storeTip}>
                <IconButton
                  color="primary"
-                 aria-label="upload server config file"
+                 aria-label="Store MiniDapps"
                  component="span">
                  <StorefrontTwoToneIcon fontSize={'large'}/>
                 </IconButton>
@@ -166,13 +166,13 @@ const mainNav = (props: Props) => {
 
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item container justify="flex-end" xs={4}>
 
             <Tooltip title={Help.fileTip}>
               <label htmlFor="getFile">
                 <IconButton
                   color="primary"
-                  aria-label="upload server config file"
+                  aria-label="Upload server config file"
                   component="span">
                   <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
                 </IconButton>
