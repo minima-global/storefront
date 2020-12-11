@@ -7,11 +7,17 @@ import Paper from '@material-ui/core/Paper'
 
 import Spinner from 'react-spinner-material'
 
+import IconButton from '@material-ui/core/IconButton'
+
+import Tooltip from '@material-ui/core/Tooltip'
+
+import downloadIcon from '../../images/download.png'
+
 //import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 
 //import Markdown from 'react-markdown'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
-import { Home as HomeConfig, Misc, Local, AddDapp } from '../../config'
+import { Home as HomeConfig, Misc, Local, AddDapp, Help } from '../../config'
 
 import { themeStyles } from '../../styles'
 
@@ -94,7 +100,7 @@ const get = ( props: Props ) => {
   return (
     <>
       <h2>{HomeConfig.heading}</h2>
-      <p>
+      <div>
         {isLoading ?
           <div className={classes.spinner}>
             <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
@@ -117,8 +123,8 @@ const get = ( props: Props ) => {
                   //const pathAddDapp = `${Local.addDapp}/${i}`
 
                   return (
-                    <>
-                      <Grid item justify="center" alignItems="center" xs={12} sm={2}>
+                    <React.Fragment key={miniDappURL}>
+                      <Grid item container justify="center" alignItems="center" xs={12} sm={2}>
                         <Paper className={classes.appIconContainer}>
                             <img
                               className={classes.appIcon}
@@ -126,30 +132,44 @@ const get = ( props: Props ) => {
                             />
                         </Paper>
                       </Grid>
-                      <Grid item justify="center" alignItems="center" xs={12} sm={8}>
+                      <Grid item container justify="center" alignItems="center" xs={12} sm={8}>
                        <b>{name}</b><br/>
                        <i>{category}</i>
                       </Grid>
-                      <Grid item justify="center" alignItems="center" xs={12} sm={2}>
+                      <Grid item container justify="center" alignItems="center" xs={12} sm={2}>
                         <form method="get" action={miniDappURL}>
-                           <button type="submit">{AddDapp.download}</button>
+                          <Tooltip title={Help.downloadTip}>
+                            <label htmlFor={miniDappURL}>
+                              <IconButton
+                                color="primary"
+                                aria-label={Help.downloadTip}
+                                component="span">
+                                <img src={downloadIcon}/>
+                              </IconButton>
+                            </label>
+                          </Tooltip>
+                          <input
+                            id={miniDappURL}
+                            type="submit"
+                            style={{ visibility: 'hidden'}}
+                          />
                         </form>
                       </Grid>
-                      <Grid item justify="center" alignItems="center" xs={12}>
+                      <Grid item container justify="center" alignItems="center" xs={12}>
                        <hr className={classes.hr} />
                        <p>{headline}<br/>
                        <b>{version}</b><br/>
                        <b>{props.serverData.servers[serverIndex].title}</b></p>
                        <hr/>
                       </Grid>
-                    </>
+                    </React.Fragment>
                   )
                 })
               }
             </Grid>
           )
         }
-      </p>
+      </div>
     </>
   )
 }

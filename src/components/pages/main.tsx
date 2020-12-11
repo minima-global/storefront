@@ -24,7 +24,7 @@ import InfoIcon from '@material-ui/icons/Info'
 import HelpIcon from '@material-ui/icons/Help'
 import ContactMailIcon from '@material-ui/icons/ContactMail'
 import SettingsApplicationsTwoToneIcon from '@material-ui/icons/SettingsApplicationsTwoTone'
-import StorefrontTwoToneIcon from '@material-ui/icons/StorefrontTwoTone';
+import StorefrontTwoToneIcon from '@material-ui/icons/StorefrontTwoTone'
 
 import Tooltip from '@material-ui/core/Tooltip'
 
@@ -67,7 +67,7 @@ const mainNav = (props: Props) => {
   return (
     <Grid container className={classes.root}>
 
-        <Grid container className={classes.header} xs={12}>
+        <Grid item container className={classes.header} xs={12}>
 
           <Grid item container justify="flex-start" xs={4}>
             <img className={classes.title} src={logo}/>
@@ -83,7 +83,7 @@ const mainNav = (props: Props) => {
 
         </Grid>
 
-        <Grid container className={classes.subHeader} xs={12}>
+        <Grid item container className={classes.subHeader} xs={12}>
 
           <Grid item xs={6}>
             &nbsp;
@@ -134,7 +134,7 @@ const mainNav = (props: Props) => {
         <Content />
       </Grid>
 
-      <Grid container className={classes.footer} xs={12}>
+      <Grid item container className={classes.footer} xs={12}>
 
         <Grid item container justify="flex-start" xs={4}>
 
@@ -142,7 +142,7 @@ const mainNav = (props: Props) => {
             <Tooltip title={Help.homeTip}>
               <IconButton
                color="primary"
-               aria-label="All MiniDapps"
+               aria-label={Help.homeTip}>
                component="span">
                <HomeTwoToneIcon fontSize={'large'}/>
               </IconButton>
@@ -157,7 +157,7 @@ const mainNav = (props: Props) => {
               <Tooltip title={Help.storeTip}>
                <IconButton
                  color="primary"
-                 aria-label="Store MiniDapps"
+                 aria-label={Help.storeTip}>
                  component="span">
                  <StorefrontTwoToneIcon fontSize={'large'}/>
                 </IconButton>
@@ -172,7 +172,7 @@ const mainNav = (props: Props) => {
               <label htmlFor="getFile">
                 <IconButton
                   color="primary"
-                  aria-label="Upload server config file"
+                  aria-label={Help.fileTip}
                   component="span">
                   <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
                 </IconButton>
@@ -183,19 +183,18 @@ const mainNav = (props: Props) => {
 
       </Grid>
 
-      <Grid item container xs={12}>
-
-        //hide stuff we need but don;t display here
-        <Grid item>
+        //hide stuff we need but don't display here
+      <Grid>
+        <div>
           <input
-          id="getFile"
-          type="file"
-          accept='.json'
-          onChange={getFile}
-          style={{ visibility: 'hidden'}}
+            id="getFile"
+            type="file"
+            accept='.json'
+            onChange={getFile}
+            style={{ visibility: 'hidden'}}
           />
-        </Grid>
-        <AppInit />
+          <AppInit />
+        </div>
       </Grid>
 
     </Grid>
