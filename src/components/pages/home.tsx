@@ -124,6 +124,9 @@ const get = ( props: Props ) => {
 
                   return (
                     <React.Fragment key={miniDappURL}>
+                      <Grid xs={12}>
+                        <hr/>
+                      </Grid>
                       <Grid item container justify="flex-start" alignItems="center" xs={12} sm={2}>
                         <Paper className={classes.appIconContainer}>
                             <img
@@ -134,8 +137,8 @@ const get = ( props: Props ) => {
                       </Grid>
                       <Grid item container justify="flex-start" alignItems="center" xs={12} sm={8}>
                         <div>
-                           <p><b>{name}</b></p>
-                           <p><i>{category}</i></p>
+                           <p><h3>{name}</h3></p>
+                           <p>{category}</p>
                         </div>
                       </Grid>
                       <Grid item container justify="flex-end" alignItems="center" xs={12} sm={2}>
@@ -157,13 +160,15 @@ const get = ( props: Props ) => {
                           />
                         </form>
                       </Grid>
-                      <Grid item container justify="flex-start" xs={12}>
+                      <Grid xs={12} sm={2}>
+                        &nbsp;
+                      </Grid>
+                      <Grid item container justify="flex-start" xs={12}  sm={10}>
                         <div>
                            <hr className={classes.hr}/>
                            <p>{headline}<br/>
                            <b>{version}</b><br/>
                            <b>{props.serverData.servers[serverIndex].title}</b></p>
-                           <hr/>
                         </div>
                       </Grid>
                     </React.Fragment>
