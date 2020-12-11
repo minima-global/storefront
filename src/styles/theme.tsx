@@ -259,7 +259,8 @@ const themeStyles = makeStyles({
   },
   hr: {
     borderTop: "1px",
-    solid: "#ccc"
+    solid: "#ccc",
+    width: "98vw",
   }
 })
 

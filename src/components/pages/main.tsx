@@ -142,7 +142,7 @@ const mainNav = (props: Props) => {
             <Tooltip title={Help.homeTip}>
               <IconButton
                color="primary"
-               aria-label={Help.homeTip}>
+               aria-label={Help.homeTip}
                component="span">
                <HomeTwoToneIcon fontSize={'large'}/>
               </IconButton>
@@ -157,7 +157,7 @@ const mainNav = (props: Props) => {
               <Tooltip title={Help.storeTip}>
                <IconButton
                  color="primary"
-                 aria-label={Help.storeTip}>
+                 aria-label={Help.storeTip}
                  component="span">
                  <StorefrontTwoToneIcon fontSize={'large'}/>
                 </IconButton>

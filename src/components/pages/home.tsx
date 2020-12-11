@@ -124,7 +124,7 @@ const get = ( props: Props ) => {
 
                   return (
                     <React.Fragment key={miniDappURL}>
-                      <Grid item container justify="center" alignItems="center" xs={12} sm={2}>
+                      <Grid item container justify="flex-start" alignItems="center" xs={12} sm={2}>
                         <Paper className={classes.appIconContainer}>
                             <img
                               className={classes.appIcon}
@@ -132,11 +132,13 @@ const get = ( props: Props ) => {
                             />
                         </Paper>
                       </Grid>
-                      <Grid item container justify="center" alignItems="center" xs={12} sm={8}>
-                       <b>{name}</b><br/>
-                       <i>{category}</i>
+                      <Grid item container justify="flex-start" alignItems="center" xs={12} sm={8}>
+                        <div>
+                           <p><b>{name}</b></p>
+                           <p><i>{category}</i></p>
+                        </div>
                       </Grid>
-                      <Grid item container justify="center" alignItems="center" xs={12} sm={2}>
+                      <Grid item container justify="flex-end" alignItems="center" xs={12} sm={2}>
                         <form method="get" action={miniDappURL}>
                           <Tooltip title={Help.downloadTip}>
                             <label htmlFor={miniDappURL}>
@@ -155,12 +157,14 @@ const get = ( props: Props ) => {
                           />
                         </form>
                       </Grid>
-                      <Grid item container justify="center" alignItems="center" xs={12}>
-                       <hr className={classes.hr} />
-                       <p>{headline}<br/>
-                       <b>{version}</b><br/>
-                       <b>{props.serverData.servers[serverIndex].title}</b></p>
-                       <hr/>
+                      <Grid item container justify="flex-start" xs={12}>
+                        <div>
+                           <hr className={classes.hr}/>
+                           <p>{headline}<br/>
+                           <b>{version}</b><br/>
+                           <b>{props.serverData.servers[serverIndex].title}</b></p>
+                           <hr/>
+                        </div>
                       </Grid>
                     </React.Fragment>
                   )
