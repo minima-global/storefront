@@ -78,10 +78,13 @@ class Help {
 
   static readonly info = `Use **${App.appName}** to access the fantastic ${App.title} MiniDapps.`
 
+  static readonly homeTip = 'All MiniDapps'
+  static readonly storeTip = 'Store MiniDapps'
   static readonly helpTip = 'Help'
   static readonly contactTip = 'Contact'
   static readonly aboutTip = 'About'
   static readonly serverTip = 'Server'
+  static readonly fileTip = "Load a server settings file"
 }
 
 class Faq {
@@ -105,7 +108,6 @@ class Settings {
 
   static readonly info = `Storefront settings`
   static readonly getFile = "Load alternative settings"
-  static readonly fileTip = "Load a server settings file"
   static readonly fileName = "Filename"
 
   static readonly server = "Server"

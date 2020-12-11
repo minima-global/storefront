@@ -160,7 +160,6 @@ const themeStyles = makeStyles({
   header: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
-    textAlign: 'center',
     background: 'linear-gradient(#001C32, #001C32)',
     height: "70px",
     width: "100vw",
@@ -177,19 +176,7 @@ const themeStyles = makeStyles({
     position: 'absolute',
     top: '70px'
   },
-  logo: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(0),
-    position: 'absolute',
-    bottom: '0'
-  },
   title: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(0),
-    position: 'absolute',
-    bottom: '0'
-  },
-  companyLogo: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     position: 'absolute',

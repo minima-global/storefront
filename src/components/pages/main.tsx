@@ -67,24 +67,23 @@ const mainNav = (props: Props) => {
   return (
     <Grid container className={classes.root}>
 
-        <Grid container justify="center" className={classes.header}  xs={12}>
+        <Grid container className={classes.header} xs={12}>
 
-          <Grid item xs={4}>
+          <Grid item container justify="center" xs={4}>
             <img className={classes.title} src={logo}/>
-            <AppInit />
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item container justify="center" xs={4}>
             <img className={classes.title} src={appName}/>
           </Grid>
 
-          <Grid item xs={4}>
-            <img className={classes.companyLogo} src={minimaIcon}/>
+          <Grid item container justify="center" xs={4}>
+            <img className={classes.title} src={minimaIcon}/>
           </Grid>
 
         </Grid>
 
-        <Grid container className={classes.subHeader} xs={12}>
+        <Grid item container className={classes.subHeader} xs={12}>
 
           <Grid item xs={4}>
             <NavLink to={Local.help} className={classes.link}>
@@ -136,12 +135,14 @@ const mainNav = (props: Props) => {
         <Grid item xs={4}>
 
            <NavLink to={Local.home}>
-             <IconButton
+            <Tooltip title={Help.homeTip}>
+              <IconButton
                color="primary"
                aria-label="upload server config file"
                component="span">
                <HomeTwoToneIcon fontSize={'large'}/>
               </IconButton>
+            </Tooltip>
            </NavLink>
 
           </Grid>
@@ -149,19 +150,21 @@ const mainNav = (props: Props) => {
           <Grid item xs={4}>
 
              <NavLink to={Local.showStoreDapps}>
-             <IconButton
-               color="primary"
-               aria-label="upload server config file"
-               component="span">
-               <StorefrontTwoToneIcon fontSize={'large'}/>
-              </IconButton>
+              <Tooltip title={Help.storeTip}>
+               <IconButton
+                 color="primary"
+                 aria-label="upload server config file"
+                 component="span">
+                 <StorefrontTwoToneIcon fontSize={'large'}/>
+                </IconButton>
+              </Tooltip>
              </NavLink>
 
           </Grid>
 
           <Grid item xs={4}>
 
-            <Tooltip title={Settings.fileTip}>
+            <Tooltip title={Help.fileTip}>
               <label htmlFor="getFile">
                 <IconButton
                   color="primary"
@@ -178,6 +181,7 @@ const mainNav = (props: Props) => {
 
       <Grid item container xs={12}>
 
+        //hide stuff we need but don;t display here
         <Grid item>
           <input
           id="getFile"
@@ -187,6 +191,7 @@ const mainNav = (props: Props) => {
           style={{ visibility: 'hidden'}}
           />
         </Grid>
+        <AppInit />
       </Grid>
 
     </Grid>

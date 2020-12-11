@@ -12,7 +12,7 @@ import RightCircleOutlined from '@ant-design/icons/lib/icons/RightCircleOutlined
 
 import Input from '@material-ui/core/Input'
 
-import { Settings as SettingsConfig } from '../../config'
+import { Settings as SettingsConfig, Help } from '../../config'
 
 import { ApplicationState, AppDispatch, ServerProps, Server } from '../../store'
 import { initServers, initMiniDapps, setServers } from '../../store/app/fileServer/actions'
@@ -70,7 +70,7 @@ const settings = (props: Props) => {
         <Markdown escapeHtml={false} source={serverInfo} />
         <hr />
         <h3><label htmlFor="getFile">{SettingsConfig.getFile}:<br/></label></h3>
-        <Tooltip title={SettingsConfig.fileTip}>
+        <Tooltip title={Help.fileTip}>
           <Input
               name="getFile"
               type="file"
