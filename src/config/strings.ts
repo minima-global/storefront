@@ -76,7 +76,7 @@ class Help {
 
   static readonly heading = `${App.appName} Help`
 
-  static readonly info = `Use **${App.appName}** to access ${App.title} MiniDapps.`
+  static readonly info = `Use **${App.appName}** to access the fantastic ${App.title} MiniDapps.`
 
   static readonly helpTip = 'Help'
   static readonly contactTip = 'Contact'

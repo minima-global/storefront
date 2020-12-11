@@ -65,138 +65,131 @@ const mainNav = (props: Props) => {
   }
 
   return (
-      <Paper className={classes.root} square={true}>
-        <Grid container>
+    <Grid container className={classes.root}>
 
-          <Paper className={classes.header} square={true}>
+        <Grid container justify="center" className={classes.header}  xs={12}>
 
-            <Grid item container xs={12}>
+          <Grid item xs={4}>
+            <img className={classes.title} src={logo}/>
+            <AppInit />
+          </Grid>
 
-              <Grid item xs={4}>
-                <img className={classes.title} src={logo}/>
-                <AppInit />
-              </Grid>
+          <Grid item xs={4}>
+            <img className={classes.title} src={appName}/>
+          </Grid>
 
-              <Grid item xs={4}>
-                <img className={classes.title} src={appName}/>
-              </Grid>
-
-              <Grid item xs={4}>
-                <img className={classes.companyLogo} src={minimaIcon}/>
-              </Grid>
-
-            </Grid>
-          </Paper>
-
-          <Paper className={classes.subHeader} square={true}>
-
-            <Grid item container xs={12}>
-
-              <Grid item xs={4}>
-                <NavLink to={Local.help} className={classes.link}>
-                    <Tooltip title={Help.helpTip}>
-                      <IconButton
-                        color="primary"
-                        aria-label="Help"
-                        component="span">
-                        <HelpIcon fontSize={'large'}/>
-                      </IconButton>
-                    </Tooltip>
-                </NavLink>
-              </Grid>
-
-              <Grid item xs={4}>
-                <NavLink to={Local.contact} className={classes.link}>
-                    <Tooltip title={Help.contactTip}>
-                      <IconButton
-                        color="primary"
-                        aria-label="Contact"
-                        component="span">
-                        <ContactMailIcon fontSize={'large'}/>
-                      </IconButton>
-                    </Tooltip>
-                </NavLink>
-              </Grid>
-
-              <Grid item xs={4}>
-                <NavLink to={Local.about} className={classes.link}>
-                    <Tooltip title={Help.aboutTip}>
-                      <IconButton
-                        color="primary"
-                        aria-label="Info"
-                        component="span">
-                        <InfoIcon fontSize={'large'}/>
-                      </IconButton>
-                    </Tooltip>
-                </NavLink>
-              </Grid>
-
-            </Grid>
-
-          </Paper>
-
-          <Paper className={classes.content} square={true}>
-            <Grid item container xs={12}>
-              <Content />
-            </Grid>
-          </Paper>
-
-          <Paper className={classes.footer} square={true}>
-            <Grid item container xs={12}>
-
-              <Grid item xs={4}>
-
-                 <NavLink to={Local.home}>
-                   <IconButton
-                     color="primary"
-                     aria-label="upload server config file"
-                     component="span">
-                     <HomeTwoToneIcon fontSize={'large'}/>
-                    </IconButton>
-                 </NavLink>
-
-                </Grid>
-
-                <Grid item xs={4}>
-
-                   <NavLink to={Local.showStoreDapps}>
-                   <IconButton
-                     color="primary"
-                     aria-label="upload server config file"
-                     component="span">
-                     <StorefrontTwoToneIcon fontSize={'large'}/>
-                    </IconButton>
-                   </NavLink>
-
-                </Grid>
-
-                <Grid item xs={4}>
-
-                    <input
-                      id="getFile"
-                      type="file"
-                      accept='.json'
-                      onChange={getFile}
-                      style={{ visibility: 'hidden'}}
-                    />
-                    <Tooltip title={Settings.fileTip}>
-                      <label htmlFor="getFile">
-                        <IconButton
-                          color="primary"
-                          aria-label="upload server config file"
-                          component="span">
-                          <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
-                        </IconButton>
-                      </label>
-                    </Tooltip>
-
-                </Grid>
-
-            </Grid>
-          </Paper>
+          <Grid item xs={4}>
+            <img className={classes.companyLogo} src={minimaIcon}/>
+          </Grid>
 
         </Grid>
-      </Paper>
+
+        <Grid container className={classes.subHeader} xs={12}>
+
+          <Grid item xs={4}>
+            <NavLink to={Local.help} className={classes.link}>
+                <Tooltip title={Help.helpTip}>
+                  <IconButton
+                    color="primary"
+                    aria-label="Help"
+                    component="span">
+                    <HelpIcon fontSize={'large'}/>
+                  </IconButton>
+                </Tooltip>
+            </NavLink>
+          </Grid>
+
+          <Grid item xs={4}>
+            <NavLink to={Local.contact} className={classes.link}>
+                <Tooltip title={Help.contactTip}>
+                  <IconButton
+                    color="primary"
+                    aria-label="Contact"
+                    component="span">
+                    <ContactMailIcon fontSize={'large'}/>
+                  </IconButton>
+                </Tooltip>
+            </NavLink>
+          </Grid>
+
+          <Grid item xs={4}>
+            <NavLink to={Local.about} className={classes.link}>
+                <Tooltip title={Help.aboutTip}>
+                  <IconButton
+                    color="primary"
+                    aria-label="Info"
+                    component="span">
+                    <InfoIcon fontSize={'large'}/>
+                  </IconButton>
+                </Tooltip>
+            </NavLink>
+          </Grid>
+
+        </Grid>
+
+      <Grid item container className={classes.content} xs={12}>
+        <Content />
+      </Grid>
+
+      <Grid item container className={classes.footer} xs={12}>
+
+        <Grid item xs={4}>
+
+           <NavLink to={Local.home}>
+             <IconButton
+               color="primary"
+               aria-label="upload server config file"
+               component="span">
+               <HomeTwoToneIcon fontSize={'large'}/>
+              </IconButton>
+           </NavLink>
+
+          </Grid>
+
+          <Grid item xs={4}>
+
+             <NavLink to={Local.showStoreDapps}>
+             <IconButton
+               color="primary"
+               aria-label="upload server config file"
+               component="span">
+               <StorefrontTwoToneIcon fontSize={'large'}/>
+              </IconButton>
+             </NavLink>
+
+          </Grid>
+
+          <Grid item xs={4}>
+
+            <Tooltip title={Settings.fileTip}>
+              <label htmlFor="getFile">
+                <IconButton
+                  color="primary"
+                  aria-label="upload server config file"
+                  component="span">
+                  <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
+                </IconButton>
+              </label>
+            </Tooltip>
+
+          </Grid>
+
+      </Grid>
+
+      <Grid item container xs={12}>
+
+        <Grid item>
+          <input
+          id="getFile"
+          type="file"
+          accept='.json'
+          onChange={getFile}
+          style={{ visibility: 'hidden'}}
+          />
+        </Grid>
+      </Grid>
+
+    </Grid>
   )
 }
 
