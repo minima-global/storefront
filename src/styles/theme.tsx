@@ -200,7 +200,7 @@ const themeStyles = makeStyles({
     overflow: 'auto',
     width: "100vw",
     position: 'absolute',
-    bottom: '84px',
+    bottom: '50px',
     top: '125px'
   },
   home: {
@@ -219,7 +219,7 @@ const themeStyles = makeStyles({
     margin: theme.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "84px",
+    height: "50px",
     width: "100vw",
     position: 'absolute',
     bottom: '0'

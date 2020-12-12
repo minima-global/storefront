@@ -20,14 +20,9 @@ import IconButton from '@material-ui/core/IconButton'
 import helpIcon from '../../images/help.png'
 import infoIcon from '../../images/info.png'
 import contactIcon from '../../images/contact.png'
-
-import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone'
-import HomeIcon from '@material-ui/icons/Home'
-import InfoIcon from '@material-ui/icons/Info'
-import HelpIcon from '@material-ui/icons/Help'
-import ContactMailIcon from '@material-ui/icons/ContactMail'
-import SettingsApplicationsTwoToneIcon from '@material-ui/icons/SettingsApplicationsTwoTone'
-import StorefrontTwoToneIcon from '@material-ui/icons/StorefrontTwoTone'
+import allDappsIcon from '../../images/allMiniDapps.png'
+import storesIcon from '../../images/storefronts.png'
+import settingsIcon from '../../images/addStorefront.png'
 
 import Tooltip from '@material-ui/core/Tooltip'
 
@@ -147,7 +142,7 @@ const mainNav = (props: Props) => {
                color="primary"
                aria-label={Help.homeTip}
                component="span">
-               <HomeTwoToneIcon fontSize={'large'}/>
+               <img src={allDappsIcon}/>
               </IconButton>
             </Tooltip>
            </NavLink>
@@ -162,7 +157,7 @@ const mainNav = (props: Props) => {
                  color="primary"
                  aria-label={Help.storeTip}
                  component="span">
-                 <StorefrontTwoToneIcon fontSize={'large'}/>
+                 <img src={storesIcon}/>
                 </IconButton>
               </Tooltip>
              </NavLink>
@@ -177,7 +172,7 @@ const mainNav = (props: Props) => {
                   color="primary"
                   aria-label={Help.fileTip}
                   component="span">
-                  <SettingsApplicationsTwoToneIcon fontSize={'large'}/>
+                  <img src={settingsIcon}/>
                 </IconButton>
               </label>
             </Tooltip>

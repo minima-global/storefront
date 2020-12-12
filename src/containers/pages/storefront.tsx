@@ -8,11 +8,17 @@ import Paper from '@material-ui/core/Paper'
 
 import Spinner from 'react-spinner-material'
 
+import IconButton from '@material-ui/core/IconButton'
+
+import Tooltip from '@material-ui/core/Tooltip'
+
+import downloadIcon from '../../images/download.png'
+
 import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 
 //import Markdown from 'react-markdown'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
-import { Storefronts as StorefrontConfig, Misc, Local, AddDapp } from '../../config'
+import { Storefronts as StorefrontConfig, Misc, Local, AddDapp, Help } from '../../config'
 
 import { themeStyles } from '../../styles'
 
@@ -45,14 +51,16 @@ const get = ( props: Props ) => {
   let history = useHistory()
 
   return (
-    <>
-      <h2>{StorefrontConfig.storefrontHeading}</h2>
-      <div>
+    <Grid container alignItems="flex-start">
         {isLoading ?
-          <div className={classes.spinner}>
+          <Grid container className={classes.spinner}>
             <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-          </div> : (
+          </Grid> : (
             <Grid container>
+              <Grid item xs={12}>
+                <h2>{StorefrontConfig.storefrontHeading}</h2>
+                <hr className={classes.hr}/>
+              </Grid>
               {
                 props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
@@ -75,10 +83,7 @@ const get = ( props: Props ) => {
 
                       return (
                         <React.Fragment key={miniDappURL}>
-                          <Grid xs={12}>
-                            <hr/>
-                          </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={2}>
+                          <Grid item container justify="flex-start" xs={12} sm={2}>
                             <Paper className={classes.appIconContainer}>
                                 <img
                                   className={classes.appIcon}
@@ -86,19 +91,43 @@ const get = ( props: Props ) => {
                                 />
                             </Paper>
                           </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={8}>
-                           <b>{name}</b><br/>
-                           <i>{category}</i>
+                          <Grid item container justify="flex-start" xs={12} sm={8}>
+                            <div>
+                               <h3>{name}</h3>
+                               <p>{category}</p>
+                            </div>
                           </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={2}>
+                          <Grid item container justify="flex-end" xs={12} sm={2}>
                             <form method="get" action={miniDappURL}>
-                               <button type="submit">{AddDapp.download}</button>
+                              <Tooltip title={Help.downloadTip}>
+                                <label htmlFor={miniDappURL}>
+                                  <IconButton
+                                    color="primary"
+                                    aria-label={Help.downloadTip}
+                                    component="span">
+                                    <img src={downloadIcon}/>
+                                  </IconButton>
+                                </label>
+                              </Tooltip>
+                              <input
+                                id={miniDappURL}
+                                type="submit"
+                                style={{ visibility: 'hidden'}}
+                              />
                             </form>
                           </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12}>
-                            <hr />
-                            <p>{headline}<br/>
-                            <b>{version}</b></p>
+                          <Grid item xs={12} sm={2}>
+                            &nbsp;
+                          </Grid>
+                          <Grid item container justify="flex-start" xs={12}  sm={10}>
+                            <div>
+                               <hr className={classes.hr}/>
+                               <p>{headline}<br/>
+                               <b>{version}</b></p>
+                            </div>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <hr/>
                           </Grid>
                         </React.Fragment>
                       )
@@ -108,8 +137,7 @@ const get = ( props: Props ) => {
             </Grid>
           )
         }
-      </div>
-    </>
+    </Grid>
   )
 }
 
