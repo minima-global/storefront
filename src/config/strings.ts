@@ -69,7 +69,7 @@ class About {
 
   static readonly heading = `About ${App.appName}`
 
-  static readonly info = `**${App.appName}** version ${App.version}<br /><br />Created by _${App.author}_<br /><br />${App.copyright}`
+  static readonly info = `Created by _${App.author}_<br /><br />${App.copyright}`
 }
 
 class Help {

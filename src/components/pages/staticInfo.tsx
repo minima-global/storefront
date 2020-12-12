@@ -19,7 +19,8 @@ const appInfo = (props: Props) => {
     const classes = themeStyles()
 
     return (
-        <Grid container alignItems="flex-start">
+      <Grid container alignItems="flex-start">
+        <Grid container>
           <Grid item container justify="flex-start" xs={12}>
             <Grid item xs={12}>
               <h2>{props.title}</h2>
@@ -32,6 +33,7 @@ const appInfo = (props: Props) => {
             </Grid>
           </Grid>
         </Grid>
+      </Grid>
     )
 }
 
