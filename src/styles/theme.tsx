@@ -45,7 +45,7 @@ let theme = createMuiTheme ({
       'Roboto',
       '-apple-system',
     ].join(','),
-    fontSize: 14,
+    fontSize: 16,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 500,
@@ -53,63 +53,63 @@ let theme = createMuiTheme ({
       fontSize:  "30px",
       fontWeight: 700,
       fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000',
+      color: '#001c32',
     },
     h2: {
       fontSize: "2.7vh",
       fontWeight: 600,
       fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      color: '#001c32'
     },
     h3: {
       fontSize: "2.5vh",
       fontWeight: 500,
       fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      color: '#001c32'
     },
     h4: {
       fontSize: "2.4vh",
       fontWeight: 400,
       fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      color: '#001c32'
     },
     h5: {
       fontSize: "2.3vh",
       fontWeight: 400,
       fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      color: '#001c32'
     },
     h6: {
       fontSize: "2.2vh",
       fontWeight: 400,
       fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      color: '#001c32'
     },
     subtitle1: {
       fontSize: "2.1vh",
       fontWeight: 400,
       fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
       lineHeight: "1",
-      color: '#000000'
+      color: '#001c32'
     },
     subtitle2: {
       fontSize: "2.1vh",
       fontWeight: 400,
       fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      color: '#001c32'
     },
     body1: {
       fontSize: "2vh",
       fontWeight: 400,
       fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000',
+      color: '#001c32',
       lineHeight: 'normal'
     },
     body2: {
       fontSize: "2vh",
       fontWeight: 400,
       fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      color: '#001c32'
     },
     caption: {
       fontSize: "1.9vh",
@@ -131,8 +131,8 @@ let theme = createMuiTheme ({
       default: '#FFFFFF',
     },
     text: {
-      primary: "#000000",
-      secondary: "#000000"
+      primary: "#001c32",
+      secondary: "#001c32"
     },
     primary: {
       main: '#929396'
@@ -195,7 +195,6 @@ const themeStyles = makeStyles({
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     margin: theme.spacing(0),
-    color: theme.palette.text.primary,
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     overflow: 'auto',
     width: "100vw",
@@ -206,7 +205,6 @@ const themeStyles = makeStyles({
   home: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
-    color: theme.palette.text.primary,
   },
   caption: {
     padding: theme.spacing(1),
@@ -229,7 +227,6 @@ const themeStyles = makeStyles({
     fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
   },
   link: {
-    color: theme.palette.text.primary,
     textDecoration: 'none',
     fontSize: "2vh",
     fontWeight: 400,
