@@ -82,15 +82,16 @@ const get = ( props: Props ) => {
   }, [props.serverData])*/
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <h2>{StorefrontsConfig.heading}</h2>
-      </Grid>
+    <Grid container alignItems="flex-start">
       {isLoading ?
-        <div className={classes.spinner}>
+        <Grid container className={classes.spinner}>
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-        </div> : (
-          <Grid container>
+        </Grid> : (
+          <Grid container alignItems="flex-start">
+            <Grid item xs={12}>
+              <h2>{StorefrontsConfig.heading}</h2>
+              <hr className={classes.hr}/>
+            </Grid>
             {
               props.serverData.servers.map( ( server: Server, i: number ) => {
 
@@ -102,10 +103,7 @@ const get = ( props: Props ) => {
 
                 return (
                   <React.Fragment key={server.url}>
-                    <Grid item xs={12}>
-                      <hr/>
-                    </Grid>
-                    <Grid item container justify="flex-start" xs={12} sm={4}>
+                    <Grid item container justify="flex-start" alignItems="flex-start" xs={12} sm={4}>
                       <Paper className={classes.appIconContainer}>
                           <input
                               type="image"
@@ -118,10 +116,13 @@ const get = ( props: Props ) => {
                           />
                       </Paper>
                     </Grid>
-                    <Grid item container justify="flex-start" xs={12} sm={8}>
+                    <Grid item container justify="flex-start"  alignItems="flex-start" xs={12} sm={8}>
                       <div>
                         <h3>{title}</h3>
                       </div>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <hr/>
                     </Grid>
                   </React.Fragment>
                 )

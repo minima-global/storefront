@@ -98,15 +98,16 @@ const get = ( props: Props ) => {
   }, [props.serverData])*/
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <h2>{HomeConfig.heading}</h2>
-      </Grid>
+    <Grid container alignItems="flex-start">
       {isLoading ?
-        <div className={classes.spinner}>
+        <Grid container className={classes.spinner}>
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-        </div> : (
-          <Grid container>
+        </Grid> : (
+          <Grid container alignItems="flex-start">
+            <Grid item xs={12}>
+              <h2>{HomeConfig.heading}</h2>
+              <hr className={classes.hr}/>
+            </Grid>
             {
               props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
@@ -125,9 +126,6 @@ const get = ( props: Props ) => {
 
                 return (
                   <React.Fragment key={miniDappURL}>
-                    <Grid item xs={12}>
-                      <hr/>
-                    </Grid>
                     <Grid item container justify="flex-start" xs={12} sm={2}>
                       <Paper className={classes.appIconContainer}>
                           <img
@@ -171,6 +169,9 @@ const get = ( props: Props ) => {
                          <b>{version}</b><br/>
                          <b>{props.serverData.servers[serverIndex].title}</b></p>
                       </div>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <hr/>
                     </Grid>
                   </React.Fragment>
                 )

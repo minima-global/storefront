@@ -17,6 +17,9 @@ import { ApplicationState, AppDispatch } from '../../store'
 import { initServers, initMiniDapps, setServers } from '../../store/app/fileServer/actions'
 
 import IconButton from '@material-ui/core/IconButton'
+import helpIcon from '../../images/help.png'
+import infoIcon from '../../images/info.png'
+import contactIcon from '../../images/contact.png'
 
 import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone'
 import HomeIcon from '@material-ui/icons/Home'
@@ -85,44 +88,44 @@ const mainNav = (props: Props) => {
 
         <Grid item container className={classes.subHeader} xs={12}>
 
-          <Grid item xs={6}>
+          <Grid item container justify="center" alignItems="flex-start" xs={6}>
             &nbsp;
           </Grid>
 
-          <Grid item container justify="flex-start" xs={2}>
+          <Grid item container justify="flex-start" alignItems="flex-start" xs={2}>
             <NavLink to={Local.help} className={classes.link}>
                 <Tooltip title={Help.helpTip}>
                   <IconButton
                     color="primary"
                     aria-label="Help"
                     component="span">
-                    <HelpIcon fontSize={'large'}/>
+                    <img src={helpIcon}/>
                   </IconButton>
                 </Tooltip>
             </NavLink>
           </Grid>
 
-          <Grid item container justify="center" xs={2}>
-            <NavLink to={Local.contact} className={classes.link}>
-                <Tooltip title={Help.contactTip}>
-                  <IconButton
-                    color="primary"
-                    aria-label="Contact"
-                    component="span">
-                    <ContactMailIcon fontSize={'large'}/>
-                  </IconButton>
-                </Tooltip>
-            </NavLink>
-          </Grid>
-
-          <Grid item container justify="flex-end" xs={2}>
+          <Grid item container justify="center" alignItems="flex-start" xs={2}>
             <NavLink to={Local.about} className={classes.link}>
                 <Tooltip title={Help.aboutTip}>
                   <IconButton
                     color="primary"
                     aria-label="Info"
                     component="span">
-                    <InfoIcon fontSize={'large'}/>
+                    <img src={infoIcon}/>
+                  </IconButton>
+                </Tooltip>
+            </NavLink>
+          </Grid>
+
+          <Grid item container justify="flex-end" alignItems="flex-start" xs={2}>
+            <NavLink to={Local.contact} className={classes.link}>
+                <Tooltip title={Help.contactTip}>
+                  <IconButton
+                    color="primary"
+                    aria-label="Contact"
+                    component="span">
+                    <img src={contactIcon}/>
                   </IconButton>
                 </Tooltip>
             </NavLink>

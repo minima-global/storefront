@@ -85,7 +85,7 @@ class Help {
   static readonly contactTip = 'Contact'
   static readonly aboutTip = 'About'
   static readonly serverTip = 'Server'
-  static readonly fileTip = "Load a server settings file"
+  static readonly fileTip = "Load a Server Settings File"
 }
 
 class Faq {
