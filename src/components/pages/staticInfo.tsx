@@ -6,6 +6,8 @@ import Grid from '@material-ui/core/Grid'
 
 import { ApplicationState, InfoProps, InfoTypes } from '../../store/types'
 
+import { themeStyles } from '../../styles'
+
 interface StateProps {
   type: InfoTypes
 }
@@ -14,11 +16,22 @@ type Props = InfoProps & StateProps
 
 const appInfo = (props: Props) => {
 
+    const classes = themeStyles()
+
     return (
-        <React.Fragment>
-            <h2>{props.title}</h2>
-            <Markdown escapeHtml={false} source={props.data} />
-        </React.Fragment>
+        <Grid container alignItems="flex-start">
+          <Grid item container justify="flex-start" xs={12}>
+            <Grid item xs={12}>
+              <h2>{props.title}</h2>
+              <hr className={classes.hr}/>
+            </Grid>
+          </Grid>
+          <Grid item container justify="flex-start" xs={12}>
+            <Grid item xs={12}>
+              <Markdown escapeHtml={false} source={props.data} />
+            </Grid>
+          </Grid>
+        </Grid>
     )
 }
 

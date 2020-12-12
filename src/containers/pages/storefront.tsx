@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 
 import downloadIcon from '../../images/download.png'
+import linkIcon from '../../images/link.png'
 
 import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 
@@ -50,6 +51,12 @@ const get = ( props: Props ) => {
   const classes = themeStyles()
   let history = useHistory()
 
+  const storeURL = props.serverData.servers[index].url
+  const storeTitle = props.serverData.servers[index].title
+  const storeDescription = props.serverData.servers[index].description
+  const storeIcon = props.serverData.servers[index].icon
+  const storeIconURL = storeURL + "/" + storeIcon
+
   return (
     <Grid container alignItems="flex-start">
         {isLoading ?
@@ -58,7 +65,11 @@ const get = ( props: Props ) => {
           </Grid> : (
             <Grid container>
               <Grid item xs={12}>
-                <h2>{StorefrontConfig.storefrontHeading}</h2>
+                <h2>{storeTitle} - {StorefrontConfig.storefrontHeading}</h2>
+                <h3>Store Description</h3>
+                <p>{storeDescription}</p>
+                <hr className={classes.hr}/>
+                <p><img src={linkIcon}/> {storeURL}</p>
                 <hr className={classes.hr}/>
               </Grid>
               {
@@ -69,16 +80,15 @@ const get = ( props: Props ) => {
                   if ( index == serverIndex ) {
 
                       //console.log("made it here")
-                      const dappHome = props.serverData.servers[serverIndex].url
                       const dir = miniDapp.dir
                       const icon = miniDapp.icon
-                      const iconURL = dappHome + dir + "/" + icon
+                      const iconURL = storeURL + dir + "/" + icon
                       const name = miniDapp.conf.name
                       const headline = miniDapp.conf.headline
                       const version = miniDapp.conf.version
                       const description = miniDapp.conf.description
                       const category = miniDapp.conf.category
-                      const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
+                      const miniDappURL = storeURL + dir + "/" + miniDapp.miniDapp
                       //const pathAddDapp = `${Local.addDapp}/${i}`
 
                       return (
