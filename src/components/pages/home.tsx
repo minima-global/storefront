@@ -166,7 +166,7 @@ const get = ( props: Props ) => {
                       <div>
                          <hr className={classes.hr}/>
                          <p>{headline}<br/>
-                         <b>{version}</b><br/>
+                         <b>Version {version}</b><br/>
                          <b>{props.serverData.servers[serverIndex].title}</b></p>
                       </div>
                     </Grid>
