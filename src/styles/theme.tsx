@@ -23,12 +23,8 @@ const fontLoader = () =>
     <GoogleFontLoader
       fonts={[
         {
-          font: 'Barlow',
+          font: 'Manrope',
           weights: [400, '400i'],
-        },
-        {
-          font: 'Lato',
-          weights: [400, 500],
         },
       ]}
       subsets={['cyrillic-ext', 'greek']}
@@ -38,7 +34,7 @@ let theme = createMuiTheme ({
   spacing: 8,
   typography: {
     fontFamily: [
-      'Barlow',
+      'Manrope',
       'Lato',
       'sans-serif',
       'Arial',
@@ -52,77 +48,77 @@ let theme = createMuiTheme ({
     h1: {
       fontSize:  "30px",
       fontWeight: 700,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#001c32',
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      color: '#001C32',
     },
     h2: {
       fontSize: "2.7vh",
       fontWeight: 600,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#001c32'
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      color: '#001C32'
     },
     h3: {
       fontSize: "2.5vh",
       fontWeight: 500,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#001c32'
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      color: '#001C32'
     },
     h4: {
       fontSize: "2.4vh",
       fontWeight: 400,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#001c32'
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      color: '#001C32'
     },
     h5: {
       fontSize: "2.3vh",
       fontWeight: 400,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#001c32'
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      color: '#001C32'
     },
     h6: {
       fontSize: "2.2vh",
       fontWeight: 400,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#001c32'
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      color: '#001C32'
     },
     subtitle1: {
       fontSize: "2.1vh",
       fontWeight: 400,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       lineHeight: "1",
-      color: '#001c32'
+      color: '#001C32'
     },
     subtitle2: {
       fontSize: "2.1vh",
       fontWeight: 400,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#001c32'
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      color: '#001C32'
     },
     body1: {
       fontSize: "2vh",
       fontWeight: 400,
-      fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#001c32',
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      color: '#001C32',
       lineHeight: 'normal'
     },
     body2: {
       fontSize: "2vh",
       fontWeight: 400,
-      fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#001c32'
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      color: '#001C32'
     },
     caption: {
       fontSize: "1.9vh",
       fontWeight: 400,
-      fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: orange[900]
     },
     button: {
       fontSize: "2vh",
       textTransform: "uppercase",
       fontWeight: 500,
-      fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      color: '#001C32'
     }
   },
   palette: {
@@ -131,8 +127,8 @@ let theme = createMuiTheme ({
       default: '#FFFFFF',
     },
     text: {
-      primary: "#001c32",
-      secondary: "#001c32"
+      primary: "#001C32",
+      secondary: "#001C32"
     },
     primary: {
       main: '#929396'
