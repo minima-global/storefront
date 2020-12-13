@@ -12,8 +12,8 @@ import IconButton from '@material-ui/core/IconButton'
 
 import Tooltip from '@material-ui/core/Tooltip'
 
-import downloadIcon from '../../images/download.png'
-import linkIcon from '../../images/link.png'
+import downloadIcon from '../../images/downloadLarge.png'
+import linkIcon from '../../images/linkLarge.png'
 
 import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 
@@ -102,9 +102,9 @@ const get = ( props: Props ) => {
                             </Paper>
                           </Grid>
                           <Grid item container justify="flex-start" xs={12} sm={8}>
-                            <div>
-                               <h3>{name}</h3>
-                               <p>{category}</p>
+                            <div className={classes.details}>
+                               <b>{name}</b><br/>
+                               {category}
                             </div>
                           </Grid>
                           <Grid item container justify="flex-end" xs={12} sm={2}>
@@ -130,10 +130,18 @@ const get = ( props: Props ) => {
                             &nbsp;
                           </Grid>
                           <Grid item container justify="flex-start" xs={12}  sm={10}>
-                            <div>
-                               <hr className={classes.hr}/>
-                               <p>{headline}<br/>
-                               <b>{version}</b></p>
+                            <hr className={classes.hr}/>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <hr/>
+                          </Grid>
+                          <Grid item xs={12} sm={2}>
+                            &nbsp;
+                          </Grid>
+                          <Grid item container justify="flex-start" xs={12}  sm={10}>
+                            <div className={classes.details}>
+                               {headline}<br/>
+                               <b>{version}</b>
                             </div>
                           </Grid>
                           <Grid item xs={12}>

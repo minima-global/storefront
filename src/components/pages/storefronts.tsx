@@ -117,8 +117,8 @@ const get = ( props: Props ) => {
                       </Paper>
                     </Grid>
                     <Grid item container justify="flex-start"  alignItems="flex-start" xs={12} sm={8}>
-                      <div>
-                        <h3>{title}</h3>
+                      <div className={classes.details}>
+                        <b>{title}</b>
                       </div>
                     </Grid>
                     <Grid item xs={12}>

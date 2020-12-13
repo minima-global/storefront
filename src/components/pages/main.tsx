@@ -17,12 +17,12 @@ import { ApplicationState, AppDispatch } from '../../store'
 import { initServers, initMiniDapps, setServers } from '../../store/app/fileServer/actions'
 
 import IconButton from '@material-ui/core/IconButton'
-import helpIcon from '../../images/help.png'
-import infoIcon from '../../images/info.png'
-import contactIcon from '../../images/contact.png'
-import allDappsIcon from '../../images/allMiniDapps.png'
-import storesIcon from '../../images/storefronts.png'
-import settingsIcon from '../../images/addStorefront.png'
+import helpIcon from '../../images/helpLarge.png'
+import infoIcon from '../../images/infolarge.png'
+import contactIcon from '../../images/contactLarge.png'
+import allDappsIcon from '../../images/allMiniDappsLarge.png'
+import storesIcon from '../../images/storefrontsLarge.png'
+import settingsIcon from '../../images/addStorefrontLarge.png'
 
 import Tooltip from '@material-ui/core/Tooltip'
 

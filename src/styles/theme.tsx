@@ -41,90 +41,90 @@ let theme = createMuiTheme ({
       'Roboto',
       '-apple-system',
     ].join(','),
-    fontSize: 16,
+    fontSize: 1,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     h1: {
-      lineHeight: '3vh',
-      fontSize:  "3vh",
+      lineHeight: '1',
+      fontSize:  "3em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32',
     },
     h2: {
-      lineHeight: '2.7vh',
-      fontSize: "2.7vh",
+      lineHeight: '1',
+      fontSize: "2.7em",
       fontWeight: 600,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h3: {
-      lineHeight: '2.5vh',
-      fontSize: "2.5vh",
+      lineHeight: '1',
+      fontSize: "2.5em",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h4: {
-      lineHeight: '2.4vh',
-      fontSize: "2.4vh",
+      lineHeight: '1',
+      fontSize: "2.4em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h5: {
-      lineHeight: '2.3vh',
-      fontSize: "2.3vh",
+      lineHeight: '1',
+      fontSize: "2.3em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h6: {
-      lineHeight: '2.2vh',
-      fontSize: "2.2vh",
+      lineHeight: '1',
+      fontSize: "2.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     subtitle1: {
-      lineHeight: '2.1vh',
-      fontSize: "2.1vh",
+      lineHeight: '1',
+      fontSize: "2.1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     subtitle2: {
-      lineHeight: '2.1vh',
-      fontSize: "2.1vh",
+      lineHeight: '1',
+      fontSize: "2.1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     body1: {
-      lineHeight: '2vh',
-      fontSize: "2vh",
+      lineHeight: '1',
+      fontSize: "2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32',
     },
     body2: {
-      lineHeight: '2vh',
-      fontSize: "2vh",
+      lineHeight: '1',
+      fontSize: "2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     caption: {
-      lineHeight: '1.9vh',
-      fontSize: "1.9vh",
+      lineHeight: '1',
+      fontSize: "1.9em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: orange[900]
     },
     button: {
-      lineHeight: '2vh',
-      fontSize: "2vh",
+      lineHeight: '1',
+      fontSize: "2em",
       textTransform: "uppercase",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
@@ -168,7 +168,7 @@ const themeStyles = makeStyles({
     paddingLeft: theme.spacing(2),
     margin: theme.spacing(0),
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "70px",
+    height: "80px",
     width: "100vw",
     position: 'absolute',
     top: '0'
@@ -179,10 +179,10 @@ const themeStyles = makeStyles({
     margin: theme.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
-    height: "55px",
+    height: "90px",
     width: "100vw",
     position: 'absolute',
-    top: '70px'
+    top: '80px'
   },
   title: {
     padding: theme.spacing(1),
@@ -205,17 +205,17 @@ const themeStyles = makeStyles({
     overflow: 'auto',
     width: "100vw",
     position: 'absolute',
-    bottom: '50px',
-    top: '125px'
-  },
-  home: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(0),
+    bottom: '70px',
+    top: '170px'
   },
   caption: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     textAlign: 'center',
+  },
+  details: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(0)
   },
   footer: {
     paddingRight: theme.spacing(2),
@@ -223,7 +223,7 @@ const themeStyles = makeStyles({
     margin: theme.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "50px",
+    height: "70px",
     width: "100vw",
     position: 'absolute',
     bottom: '0'
