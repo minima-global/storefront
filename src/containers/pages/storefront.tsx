@@ -65,11 +65,11 @@ const get = ( props: Props ) => {
           </Grid> : (
             <Grid container>
               <Grid item xs={12}>
-                <h2>{storeTitle} - {StorefrontConfig.storefrontHeading}</h2>
-                <h3>Store Description</h3>
-                <p>{storeDescription}</p>
+                <h3>{storeTitle} - {StorefrontConfig.storefrontHeading}</h3>
+                <b>Store Description</b><br/>
+                {storeDescription}<br/>
                 <hr className={classes.hr}/>
-                <p><img src={linkIcon}/> {storeURL}</p>
+                <img src={linkIcon}/> {storeURL}
                 <hr className={classes.hr}/>
               </Grid>
               {
