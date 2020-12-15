@@ -134,13 +134,13 @@ const get = ( props: Props ) => {
                           />
                       </Paper>
                     </Grid>
-                    <Grid item container justify="flex-start" xs={12} sm={8}>
+                    <Grid item container justify="flex-start" xs={12} sm={9}>
                       <div className={classes.details}>
                          <b>{name}</b><br/>
                          {category}
                       </div>
                     </Grid>
-                    <Grid item container justify="flex-end" xs={12} sm={2}>
+                    <Grid item container justify="flex-end" xs={12} sm={1}>
                       <form method="get" action={miniDappURL}>
                         <Tooltip title={Help.downloadTip}>
                           <label htmlFor={miniDappURL}>

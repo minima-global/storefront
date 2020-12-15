@@ -46,85 +46,77 @@ let theme = createMuiTheme ({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     h1: {
-      lineHeight: '1',
-      fontSize:  "3em",
+      fontSize:  "2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32',
     },
     h2: {
-      lineHeight: '1',
-      fontSize: "2.7em",
+      fontSize: "1.7em",
       fontWeight: 600,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h3: {
-      lineHeight: '1',
-      fontSize: "2.5em",
+      fontSize: "1.5em",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h4: {
-      lineHeight: '1',
-      fontSize: "2.4em",
+      fontSize: "1.4em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h5: {
-      lineHeight: '1',
-      fontSize: "2.3em",
+      fontSize: "1.3em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h6: {
-      lineHeight: '1',
-      fontSize: "2.2em",
-      fontWeight: 400,
+      fontSize: "0.9em",
+      fontWeight: 700,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     subtitle1: {
-      lineHeight: '1',
-      fontSize: "2.1em",
+      fontSize: "1.1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     subtitle2: {
-      lineHeight: '1',
-      fontSize: "2.1em",
+      fontSize: "1.1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     body1: {
-      lineHeight: '1',
-      fontSize: "2em",
+      lineHeight: '1.4',
+      fontSize: "1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32',
     },
     body2: {
-      lineHeight: '1',
-      fontSize: "2em",
+      lineHeight: '1.4',
+      fontSize: "1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     caption: {
       lineHeight: '1',
-      fontSize: "1.9em",
+      fontSize: "0.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: orange[900]
     },
     button: {
       lineHeight: '1',
-      fontSize: "2em",
+      fontSize: "1em",
       textTransform: "uppercase",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",

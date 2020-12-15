@@ -55,7 +55,9 @@ const get = ( props: Props ) => {
   const storeTitle = props.serverData.servers[index].title
   const storeDescription = props.serverData.servers[index].description
   const storeIcon = props.serverData.servers[index].icon
-  const storeIconURL = storeURL + "/" + storeIcon
+  const storeIconURL = storeURL + storeIcon
+
+  console.log("store icon url", storeIconURL)
 
   return (
     <Grid container alignItems="flex-start">
@@ -64,12 +66,23 @@ const get = ( props: Props ) => {
             <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
           </Grid> : (
             <Grid container>
+              <Grid item container justify="flex-start" xs={12} sm={2}>
+                <Paper className={classes.appIconContainer}>
+                    <img
+                      className={classes.appIcon}
+                      src={storeIconURL}
+                    />
+                </Paper>
+              </Grid>
+              <Grid item container justify="flex-start" xs={12} sm={10}>
+                <div className={classes.details}>
+                  <b>{storeTitle}</b><br/>
+                  {storeDescription}
+                </div>
+              </Grid>
               <Grid item xs={12}>
-                <h3>{storeTitle} - {StorefrontConfig.storefrontHeading}</h3>
-                <b>Store Description</b><br/>
-                {storeDescription}<br/>
                 <hr className={classes.hr}/>
-                <img src={linkIcon}/> {storeURL}
+                <h6><img src={linkIcon}/> {storeURL}</h6>
                 <hr className={classes.hr}/>
               </Grid>
               {
@@ -101,13 +114,13 @@ const get = ( props: Props ) => {
                                 />
                             </Paper>
                           </Grid>
-                          <Grid item container justify="flex-start" xs={12} sm={8}>
+                          <Grid item container justify="flex-start" xs={12} sm={9}>
                             <div className={classes.details}>
                                <b>{name}</b><br/>
                                {category}
                             </div>
                           </Grid>
-                          <Grid item container justify="flex-end" xs={12} sm={2}>
+                          <Grid item container justify="flex-end" xs={12} sm={1}>
                             <form method="get" action={miniDappURL}>
                               <Tooltip title={Help.downloadTip}>
                                 <label htmlFor={miniDappURL}>
@@ -129,11 +142,8 @@ const get = ( props: Props ) => {
                           <Grid item xs={12} sm={2}>
                             &nbsp;
                           </Grid>
-                          <Grid item container justify="flex-start" xs={12}  sm={10}>
+                          <Grid item xs={12}  sm={10}>
                             <hr className={classes.hr}/>
-                          </Grid>
-                          <Grid item xs={12}>
-                            <hr/>
                           </Grid>
                           <Grid item xs={12} sm={2}>
                             &nbsp;
@@ -141,7 +151,7 @@ const get = ( props: Props ) => {
                           <Grid item container justify="flex-start" xs={12}  sm={10}>
                             <div className={classes.details}>
                                {headline}<br/>
-                               <b>{version}</b>
+                               <b>Version {version}</b><br/>
                             </div>
                           </Grid>
                           <Grid item xs={12}>
