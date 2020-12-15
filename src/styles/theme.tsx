@@ -95,14 +95,14 @@ let theme = createMuiTheme ({
     },
     body1: {
       lineHeight: '1.4',
-      fontSize: "1.4",
+      fontSize: "1.6",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32',
     },
     body2: {
       lineHeight: '1.4',
-      fontSize: "1em",
+      fontSize: "1.6",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
