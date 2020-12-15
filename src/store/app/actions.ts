@@ -79,11 +79,12 @@ export const poll = () => {
                   await dispatch(initMiniDapps())
                   dispatch(getMiniDapps())
               }
-              pollCount = 0
+              // Comenting these out to disable dapp refresh
+              //pollCount = 0
 
           } else {
 
-              pollCount += 1
+              //pollCount += 1
           }
         }
       }
