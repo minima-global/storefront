@@ -53,37 +53,37 @@ let theme = createMuiTheme ({
     },
     h2: {
       fontSize: "1.7em",
-      fontWeight: 600,
+      fontWeight: 700,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h3: {
       fontSize: "1.5em",
-      fontWeight: 500,
+      fontWeight: 700,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h4: {
       fontSize: "1.4em",
-      fontWeight: 400,
+      fontWeight: 700,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h5: {
       fontSize: "1.3em",
-      fontWeight: 400,
+      fontWeight: 700,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     h6: {
-      fontSize: "0.9em",
+      fontSize: "1.2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     subtitle1: {
       fontSize: "1.1em",
-      fontWeight: 400,
+      fontWeight: 500,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
@@ -94,15 +94,15 @@ let theme = createMuiTheme ({
       color: '#001C32'
     },
     body1: {
-      lineHeight: '1.4',
-      fontSize: "1.6",
+      lineHeight: '1.3',
+      fontSize: "1.3em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32',
     },
     body2: {
-      lineHeight: '1.4',
-      fontSize: "1.6",
+      lineHeight: '1.3',
+      fontSize: "1.3em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
@@ -115,8 +115,8 @@ let theme = createMuiTheme ({
       color: orange[900]
     },
     button: {
-      lineHeight: '1',
-      fontSize: "1em",
+      lineHeight: '1.8',
+      fontSize: "1.8em",
       textTransform: "uppercase",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
