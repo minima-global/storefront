@@ -92,7 +92,7 @@ Below is an example of a `dapps.json`:
 }
 ```
 
-There is a script, [storeBuilder.sh](./bin/storeBuilder.sh), which can build the correct MiniDapp directory structure and create `dapps.json`. It will also take the version string in the `minidapp.conf` file and name the `.minidapp` file accordingly. To use it, simply copy the script and all your MiniDapps to a directory, then run:
+There is a script, [storeBuilder.sh](./bin/storeBuilder.sh), which can build the correct MiniDapp directory structure and create `dapps.json`. It will also take the [version string](https://github.com/minima-global/MiniDAPP#minidapp-config-file-layout) in the `minidapp.conf` file and name the `.minidapp` file accordingly. To use it, simply copy the script and all your MiniDapps to a directory, then run:
 
 ```
 storeBuilder.sh > dapps.json
