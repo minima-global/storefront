@@ -156,28 +156,29 @@ const themeStyles = makeStyles({
     position: 'relative'
   },
   header: {
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(8),
+    paddingLeft: theme.spacing(8),
     margin: theme.spacing(0),
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "80px",
+    height: "110px",
     width: "100vw",
     position: 'absolute',
     top: '0'
   },
   subHeader: {
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(8),
+    paddingLeft: theme.spacing(8),
     margin: theme.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
     height: "90px",
     width: "100vw",
     position: 'absolute',
-    top: '80px'
+    top: '110px'
   },
   title: {
-    padding: theme.spacing(1),
+    paddingTop: "25px",
+    paddingBottom: "20px",
     margin: theme.spacing(0),
     position: 'absolute',
     bottom: '0'
@@ -190,15 +191,15 @@ const themeStyles = makeStyles({
     fontStyle: 'italic'
   },
   content: {
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(8),
+    paddingLeft: theme.spacing(8),
     margin: theme.spacing(0),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     overflow: 'auto',
     width: "100vw",
     position: 'absolute',
-    bottom: '70px',
-    top: '170px'
+    bottom: '110px',
+    top: '200px'
   },
   caption: {
     padding: theme.spacing(1),
@@ -210,12 +211,12 @@ const themeStyles = makeStyles({
     margin: theme.spacing(0)
   },
   footer: {
-    paddingRight: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(8),
+    paddingLeft: theme.spacing(8),
     margin: theme.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "70px",
+    height: "110px",
     width: "100vw",
     position: 'absolute',
     bottom: '0'

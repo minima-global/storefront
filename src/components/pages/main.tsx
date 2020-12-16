@@ -83,11 +83,11 @@ const mainNav = (props: Props) => {
 
         <Grid item container className={classes.subHeader} xs={12}>
 
-          <Grid item container justify="center" alignItems="flex-start" xs={9}>
+          <Grid item container justify="center" alignItems="flex-start" xs={6}>
             &nbsp;
           </Grid>
 
-          <Grid item container justify="flex-start" alignItems="flex-start" xs={1}>
+          <Grid item container justify="flex-start" alignItems="flex-start" xs={2}>
             <NavLink to={Local.help} className={classes.link}>
                 <Tooltip title={Help.helpTip}>
                   <IconButton
@@ -100,7 +100,7 @@ const mainNav = (props: Props) => {
             </NavLink>
           </Grid>
 
-          <Grid item container justify="center" alignItems="flex-start" xs={1}>
+          <Grid item container justify="center" alignItems="flex-start" xs={2}>
             <NavLink to={Local.about} className={classes.link}>
                 <Tooltip title={Help.aboutTip}>
                   <IconButton
@@ -113,7 +113,7 @@ const mainNav = (props: Props) => {
             </NavLink>
           </Grid>
 
-          <Grid item container justify="flex-end" alignItems="flex-start" xs={1}>
+          <Grid item container justify="flex-end" alignItems="flex-start" xs={2}>
             <NavLink to={Local.contact} className={classes.link}>
                 <Tooltip title={Help.contactTip}>
                   <IconButton
