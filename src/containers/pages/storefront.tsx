@@ -66,7 +66,7 @@ const get = ( props: Props ) => {
             <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
           </Grid> : (
             <Grid container>
-              <Grid item container justify="flex-start" xs={12} sm={2}>
+              <Grid item container justify="flex-start" xs={1}>
                 <Paper className={classes.appIconContainer}>
                     <img
                       className={classes.appIcon}
@@ -74,7 +74,7 @@ const get = ( props: Props ) => {
                     />
                 </Paper>
               </Grid>
-              <Grid item container justify="flex-start" xs={12} sm={10}>
+              <Grid item container justify="flex-start" xs={11}>
                 <div className={classes.details}>
                   <b>{storeTitle}</b><br/>
                   {storeDescription}
@@ -106,7 +106,7 @@ const get = ( props: Props ) => {
 
                       return (
                         <React.Fragment key={miniDappURL}>
-                          <Grid item container justify="flex-start" xs={12} sm={2}>
+                          <Grid item container justify="flex-start" xs={1}>
                             <Paper className={classes.appIconContainer}>
                                 <img
                                   className={classes.appIcon}
@@ -114,20 +114,21 @@ const get = ( props: Props ) => {
                                 />
                             </Paper>
                           </Grid>
-                          <Grid item container justify="flex-start" xs={12} sm={9}>
+                          <Grid item container justify="flex-start" xs={10}>
                             <div className={classes.details}>
                                <b>{name}</b><br/>
                                {category}
                             </div>
                           </Grid>
-                          <Grid item container justify="flex-end" xs={12} sm={1}>
+                          <Grid item container justify="flex-end" xs={1}>
                             <form method="get" action={miniDappURL}>
                               <Tooltip title={Help.downloadTip}>
                                 <label htmlFor={miniDappURL}>
                                   <IconButton
                                     color="primary"
                                     aria-label={Help.downloadTip}
-                                    component="span">
+                                    component="span"
+                                    size="small">
                                     <img src={downloadIcon}/>
                                   </IconButton>
                                 </label>
@@ -139,16 +140,16 @@ const get = ( props: Props ) => {
                               />
                             </form>
                           </Grid>
-                          <Grid item xs={12} sm={2}>
+                          <Grid item xs={1}>
                             &nbsp;
                           </Grid>
-                          <Grid item xs={12}  sm={10}>
+                          <Grid item xs={11}>
                             <hr className={classes.hr}/>
                           </Grid>
-                          <Grid item xs={12} sm={2}>
+                          <Grid item xs={1}>
                             &nbsp;
                           </Grid>
-                          <Grid item container justify="flex-start" xs={12}  sm={10}>
+                          <Grid item container justify="flex-start" xs={10}>
                             <div className={classes.details}>
                                {headline}<br/>
                                <b>Version {version}</b><br/>

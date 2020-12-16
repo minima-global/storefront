@@ -126,7 +126,7 @@ const get = ( props: Props ) => {
 
                 return (
                   <React.Fragment key={miniDappURL}>
-                    <Grid item container justify="flex-start" xs={12} sm={2}>
+                    <Grid item container justify="flex-start" xs={1}>
                       <Paper className={classes.appIconContainer}>
                           <img
                             className={classes.appIcon}
@@ -134,45 +134,45 @@ const get = ( props: Props ) => {
                           />
                       </Paper>
                     </Grid>
-                    <Grid item container justify="flex-start" xs={12} sm={9}>
-                      <div className={classes.details}>
-                         <b>{name}</b><br/>
-                         {category}
-                      </div>
+                    <Grid container justify="flex-start" xs={11}>
+                      <Grid item container justify="flex-start" xs={11}>
+                        <div className={classes.details}>
+                           <b>{name}</b><br/>
+                           {category}
+                        </div>
+                      </Grid>
+                      <Grid item container justify="flex-end" xs={1}>
+                        <form method="get" action={miniDappURL}>
+                          <Tooltip title={Help.downloadTip}>
+                            <label htmlFor={miniDappURL}>
+                              <IconButton
+                                color="primary"
+                                aria-label={Help.downloadTip}
+                                component="span"
+                                size="small">
+                                <img src={downloadIcon}/>
+                              </IconButton>
+                            </label>
+                          </Tooltip>
+                          <input
+                            id={miniDappURL}
+                            type="submit"
+                            style={{ visibility: 'hidden'}}
+                          />
+                        </form>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <hr className={classes.hr}/>
+                      </Grid>
                     </Grid>
-                    <Grid item container justify="flex-end" xs={12} sm={1}>
-                      <form method="get" action={miniDappURL}>
-                        <Tooltip title={Help.downloadTip}>
-                          <label htmlFor={miniDappURL}>
-                            <IconButton
-                              color="primary"
-                              aria-label={Help.downloadTip}
-                              component="span">
-                              <img src={downloadIcon}/>
-                            </IconButton>
-                          </label>
-                        </Tooltip>
-                        <input
-                          id={miniDappURL}
-                          type="submit"
-                          style={{ visibility: 'hidden'}}
-                        />
-                      </form>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
+                    <Grid item xs={1}>
                       &nbsp;
                     </Grid>
-                    <Grid item xs={12}  sm={10}>
-                      <hr className={classes.hr}/>
-                    </Grid>
-                    <Grid item xs={12} sm={2}>
-                      &nbsp;
-                    </Grid>
-                    <Grid item container justify="flex-start" xs={12}  sm={10}>
+                    <Grid item container justify="flex-start" xs={11}>
                       <div className={classes.details}>
-                         <p>{headline}<br/>
+                         {headline}<br/>
                          <b>Version {version}</b><br/>
-                         <b>{props.serverData.servers[serverIndex].title}</b></p>
+                         <b>{props.serverData.servers[serverIndex].title}</b>
                       </div>
                     </Grid>
                     <Grid item xs={12}>

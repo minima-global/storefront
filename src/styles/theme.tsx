@@ -94,28 +94,26 @@ let theme = createMuiTheme ({
       color: '#001C32'
     },
     body1: {
-      lineHeight: '1.3',
+      lineHeight: '1.7',
       fontSize: "1.3em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32',
     },
     body2: {
-      lineHeight: '1.3',
+      lineHeight: '1.6',
       fontSize: "1.3em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: '#001C32'
     },
     caption: {
-      lineHeight: '1',
-      fontSize: "0.2em",
+      fontSize: "1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
       color: orange[900]
     },
     button: {
-      lineHeight: '1.8',
       fontSize: "1.8em",
       textTransform: "uppercase",
       fontWeight: 500,
@@ -177,18 +175,20 @@ const themeStyles = makeStyles({
     top: '110px'
   },
   title: {
-    paddingTop: "25px",
-    paddingBottom: "20px",
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
     margin: theme.spacing(0),
     position: 'absolute',
     bottom: '0'
   },
   subTitle: {
-    padding: theme.spacing(0),
+    paddingRight: theme.spacing(8),
+    paddingLeft: theme.spacing(8),
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
     margin: theme.spacing(0),
-    textAlign: 'center',
-    background: 'linear-gradient(#ff671d, #ff671d)',
-    fontStyle: 'italic'
+    position: 'absolute',
+    bottom: '0'
   },
   content: {
     paddingRight: theme.spacing(8),
@@ -198,7 +198,7 @@ const themeStyles = makeStyles({
     overflow: 'auto',
     width: "100vw",
     position: 'absolute',
-    bottom: '110px',
+    bottom: '120px',
     top: '200px'
   },
   caption: {
@@ -213,10 +213,12 @@ const themeStyles = makeStyles({
   footer: {
     paddingRight: theme.spacing(8),
     paddingLeft: theme.spacing(8),
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(4),
     margin: theme.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "110px",
+    height: "120px",
     width: "100vw",
     position: 'absolute',
     bottom: '0'

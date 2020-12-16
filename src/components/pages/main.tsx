@@ -81,49 +81,56 @@ const mainNav = (props: Props) => {
 
         </Grid>
 
-        <Grid item container className={classes.subHeader} xs={12}>
+        <Grid item container className={classes.subHeader} justify="flex-end" alignItems="flex-end" xs={12}>
 
-          <Grid item container justify="center" alignItems="flex-start" xs={6}>
+          <Grid item xs={6}>
             &nbsp;
           </Grid>
 
-          <Grid item container justify="flex-start" alignItems="flex-start" xs={2}>
-            <NavLink to={Local.help} className={classes.link}>
-                <Tooltip title={Help.helpTip}>
-                  <IconButton
-                    color="primary"
-                    aria-label="Help"
-                    component="span">
-                    <img src={helpIcon}/>
-                  </IconButton>
-                </Tooltip>
-            </NavLink>
-          </Grid>
+          <Grid item container justify="flex-end" alignItems="flex-end" xs={6}>
 
-          <Grid item container justify="center" alignItems="flex-start" xs={2}>
-            <NavLink to={Local.about} className={classes.link}>
-                <Tooltip title={Help.aboutTip}>
-                  <IconButton
-                    color="primary"
-                    aria-label="Info"
-                    component="span">
-                    <img src={infoIcon}/>
-                  </IconButton>
-                </Tooltip>
-            </NavLink>
-          </Grid>
+            <Grid item container justify="flex-start" alignItems="flex-start" xs={4}>
+              <NavLink to={Local.help} className={classes.link}>
+                  <Tooltip title={Help.helpTip}>
+                    <IconButton
+                      color="primary"
+                      aria-label="Help"
+                      component="span"
+                      size="small">
+                      <img src={helpIcon}/>
+                    </IconButton>
+                  </Tooltip>
+              </NavLink>
+            </Grid>
 
-          <Grid item container justify="flex-end" alignItems="flex-start" xs={2}>
-            <NavLink to={Local.contact} className={classes.link}>
-                <Tooltip title={Help.contactTip}>
-                  <IconButton
-                    color="primary"
-                    aria-label="Contact"
-                    component="span">
-                    <img src={contactIcon}/>
-                  </IconButton>
-                </Tooltip>
-            </NavLink>
+            <Grid item container justify="center" alignItems="center" xs={4}>
+              <NavLink to={Local.about} className={classes.link}>
+                  <Tooltip title={Help.aboutTip}>
+                    <IconButton
+                      color="primary"
+                      aria-label="Info"
+                      component="span"
+                      size="small">
+                      <img src={infoIcon}/>
+                    </IconButton>
+                  </Tooltip>
+              </NavLink>
+            </Grid>
+
+            <Grid item container justify="flex-end" alignItems="flex-end" xs={3}>
+              <NavLink to={Local.contact} className={classes.link}>
+                  <Tooltip title={Help.contactTip}>
+                    <IconButton
+                      color="primary"
+                      aria-label="Contact"
+                      component="span"
+                      size="small">
+                      <img src={contactIcon}/>
+                    </IconButton>
+                  </Tooltip>
+              </NavLink>
+            </Grid>
+
           </Grid>
 
         </Grid>
@@ -141,7 +148,8 @@ const mainNav = (props: Props) => {
               <IconButton
                color="primary"
                aria-label={Help.homeTip}
-               component="span">
+               component="span"
+               size="small">
                <img src={allDappsIcon}/>
               </IconButton>
             </Tooltip>
@@ -156,7 +164,8 @@ const mainNav = (props: Props) => {
                <IconButton
                  color="primary"
                  aria-label={Help.storeTip}
-                 component="span">
+                 component="span"
+                 size="small">
                  <img src={storesIcon}/>
                 </IconButton>
               </Tooltip>
@@ -171,7 +180,8 @@ const mainNav = (props: Props) => {
                 <IconButton
                   color="primary"
                   aria-label={Help.fileTip}
-                  component="span">
+                  component="span"
+                  size="small">
                   <img src={settingsIcon}/>
                 </IconButton>
               </label>
