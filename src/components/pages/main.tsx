@@ -81,15 +81,15 @@ const mainNav = (props: Props) => {
 
         </Grid>
 
-        <Grid item container className={classes.subHeader} justify="flex-end" alignItems="flex-end" xs={12}>
+        <Grid item container className={classes.subHeader} xs={12}>
 
           <Grid item xs={6}>
             &nbsp;
           </Grid>
 
-          <Grid item container justify="flex-end" alignItems="flex-end" xs={6}>
+          <Grid item container className={classes.subTitle} justify="flex-end" xs={6}>
 
-            <Grid item container justify="flex-start" alignItems="flex-start" xs={4}>
+            <Grid item container justify="flex-end" xs={4}>
               <NavLink to={Local.help} className={classes.link}>
                   <Tooltip title={Help.helpTip}>
                     <IconButton
@@ -103,7 +103,7 @@ const mainNav = (props: Props) => {
               </NavLink>
             </Grid>
 
-            <Grid item container justify="center" alignItems="center" xs={4}>
+            <Grid item container justify="flex-end" xs={4}>
               <NavLink to={Local.about} className={classes.link}>
                   <Tooltip title={Help.aboutTip}>
                     <IconButton
@@ -117,7 +117,7 @@ const mainNav = (props: Props) => {
               </NavLink>
             </Grid>
 
-            <Grid item container justify="flex-end" alignItems="flex-end" xs={3}>
+            <Grid item container justify="flex-end" xs={4}>
               <NavLink to={Local.contact} className={classes.link}>
                   <Tooltip title={Help.contactTip}>
                     <IconButton
@@ -191,7 +191,7 @@ const mainNav = (props: Props) => {
 
       </Grid>
 
-        //hide stuff we need but don't display here
+      //hide stuff we need but don't display here
       <Grid>
         <div>
           <input

@@ -182,13 +182,8 @@ const themeStyles = makeStyles({
     bottom: '0'
   },
   subTitle: {
-    paddingRight: theme.spacing(8),
-    paddingLeft: theme.spacing(8),
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-    margin: theme.spacing(0),
-    position: 'absolute',
-    bottom: '0'
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1)
   },
   content: {
     paddingRight: theme.spacing(8),

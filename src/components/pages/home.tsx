@@ -98,13 +98,13 @@ const get = ( props: Props ) => {
   }, [props.serverData])*/
 
   return (
-    <Grid container alignItems="flex-start">
+    <Grid container>
       {isLoading ?
         <Grid container className={classes.spinner}>
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
-          <Grid container alignItems="flex-start">
-            <Grid item xs={12}>
+          <Grid item container justify="flex-end">
+            <Grid item justify="flex-start" xs={12}>
               <h2>{HomeConfig.heading}</h2>
               <hr className={classes.hr}/>
             </Grid>
@@ -126,6 +126,7 @@ const get = ( props: Props ) => {
 
                 return (
                   <React.Fragment key={miniDappURL}>
+
                     <Grid item container justify="flex-start" xs={1}>
                       <Paper className={classes.appIconContainer}>
                           <img
@@ -134,40 +135,49 @@ const get = ( props: Props ) => {
                           />
                       </Paper>
                     </Grid>
-                    <Grid container justify="flex-start" xs={11}>
+
+                    <Grid item container justify="flex-end" xs={11}>
+
                       <Grid item container justify="flex-start" xs={11}>
                         <div className={classes.details}>
                            <b>{name}</b><br/>
                            {category}
                         </div>
                       </Grid>
+
                       <Grid item container justify="flex-end" xs={1}>
-                        <form method="get" action={miniDappURL}>
-                          <Tooltip title={Help.downloadTip}>
-                            <label htmlFor={miniDappURL}>
-                              <IconButton
-                                color="primary"
-                                aria-label={Help.downloadTip}
-                                component="span"
-                                size="small">
-                                <img src={downloadIcon}/>
-                              </IconButton>
-                            </label>
-                          </Tooltip>
-                          <input
-                            id={miniDappURL}
-                            type="submit"
-                            style={{ visibility: 'hidden'}}
-                          />
-                        </form>
+                        <Grid item>
+                          <form method="get" action={miniDappURL}>
+                            <Tooltip title={Help.downloadTip}>
+                              <label htmlFor={miniDappURL}>
+                                <IconButton
+                                  color="primary"
+                                  aria-label={Help.downloadTip}
+                                  component="span"
+                                  size="small">
+                                  <img src={downloadIcon}/>
+                                </IconButton>
+                              </label>
+                            </Tooltip>
+                            <input
+                              id={miniDappURL}
+                              type="submit"
+                              style={{ visibility: 'hidden'}}
+                            />
+                          </form>
+                        </Grid>
                       </Grid>
+
                       <Grid item xs={12}>
                         <hr className={classes.hr}/>
                       </Grid>
+
                     </Grid>
+
                     <Grid item xs={1}>
                       &nbsp;
                     </Grid>
+
                     <Grid item container justify="flex-start" xs={11}>
                       <div className={classes.details}>
                          {headline}<br/>
@@ -175,6 +185,7 @@ const get = ( props: Props ) => {
                          <b>{props.serverData.servers[serverIndex].title}</b>
                       </div>
                     </Grid>
+
                     <Grid item xs={12}>
                       <hr/>
                     </Grid>
