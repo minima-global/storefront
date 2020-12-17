@@ -94,7 +94,7 @@ let theme = createMuiTheme ({
       color: '#001C32'
     },
     body1: {
-      lineHeight: '1.7',
+      lineHeight: '1.6',
       fontSize: "1.3em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
@@ -202,7 +202,7 @@ const themeStyles = makeStyles({
     textAlign: 'center',
   },
   details: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(0),
     margin: theme.spacing(0)
   },
   footer: {
@@ -241,7 +241,7 @@ const themeStyles = makeStyles({
   },
   appIconContainer: {
     padding: theme.spacing(0),
-    margin: theme.spacing(1),
+    margin: theme.spacing(0),
     width: "96px",
     height: "80px",
     border: "2px",

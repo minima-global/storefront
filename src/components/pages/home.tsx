@@ -138,25 +138,25 @@ const get = ( props: Props ) => {
 
                     <Grid item container justify="flex-end" xs={11}>
 
-                      <Grid item container justify="flex-start" xs={6}>
+                      <Grid item container justify="flex-start" xs={11}>
                         <div className={classes.details}>
                            <b>{name}</b><br/>
                            {category}
                         </div>
                       </Grid>
 
-                      <Grid item container justify="flex-end" xs={6}>
-                        <Tooltip title={Help.downloadTip}>
-                          <a href={miniDappURL} alt={Help.downloadTip}>
-                            <IconButton
-                              color="primary"
-                              aria-label={Help.downloadTip}
-                              component="span"
-                              size="small">
-                              <img src={downloadIcon}/>
-                            </IconButton>
+                      <Grid item container justify="flex-end" xs={1}>
+                          <a href={miniDappURL}>
+                            <Tooltip title={Help.downloadTip} arrow>
+                              <IconButton
+                                color="primary"
+                                aria-label={Help.downloadTip}
+                                component="span"
+                                size="small">
+                                <img src={downloadIcon}/>
+                              </IconButton>
+                            </Tooltip>
                           </a>
-                        </Tooltip>
                       </Grid>
 
                       <Grid item xs={12}>
