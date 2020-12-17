@@ -76,6 +76,7 @@ let theme = createMuiTheme ({
       color: '#001C32'
     },
     h6: {
+      lineHeight: "1",
       fontSize: "1.2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
@@ -108,10 +109,9 @@ let theme = createMuiTheme ({
       color: '#001C32'
     },
     caption: {
-      fontSize: "1em",
-      fontWeight: 400,
+      fontSize: "0.9em",
+      fontWeight: 700,
       fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: orange[900]
     },
     button: {
       fontSize: "1.8em",
@@ -254,7 +254,7 @@ const themeStyles = makeStyles({
   },
   storeIconContainer: {
     padding: theme.spacing(0),
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(2),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     width: "96px",
     height: "80px",
@@ -263,6 +263,19 @@ const themeStyles = makeStyles({
   storeIcon: {
     margin: 'auto',
     height: "80px",
+    width: '100%'
+  },
+  linkIconContainer: {
+    padding: theme.spacing(0),
+    marginTop: theme.spacing(0),
+    background: 'linear-gradient(#FAFAFF, #FAFAFF)',
+    width: "46px",
+    height: "30px",
+    overflow: "hidden"
+  },
+  linkIcon: {
+    margin: 'auto',
+    height: "30px",
     width: '100%'
   },
   hr: {

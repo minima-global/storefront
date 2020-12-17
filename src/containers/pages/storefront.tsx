@@ -81,27 +81,38 @@ const get = ( props: Props ) => {
 
             <Grid className={classes.details} item xs={11}>
               <h2>{storeTitle}</h2>
-              {storeDescription}<br/>
             </Grid>
 
-            <Grid item container xs={12}>
+            <Grid item xs={12}>
+              <hr className={classes.hr}/>
+            </Grid>
 
-              <Grid item xs={12}>
-                <hr className={classes.hr}/>
-              </Grid>
+            <Grid item xs={12}>
+              {storeDescription}
+            </Grid>
 
-              <Grid item container justify="flex-start" xs={1}>
-                <h6><img src={linkIcon}/></h6>
-              </Grid>
+            <Grid item xs={12}>
+              <hr className={classes.hr}/>
+            </Grid>
 
-              <Grid className={classes.details} item container justify="flex-start" xs={11}>
-                <h6>{storeURL}</h6>
-              </Grid>
+            <Grid item container justify="flex-start" xs={1}>
+              <Paper
+                className={classes.linkIconContainer}
+                elevation={0}
+              >
+                <img
+                  className={classes.linkIcon}
+                  src={linkIcon}
+                />
+              </Paper>
+            </Grid>
 
-              <Grid item xs={12}>
-                <hr className={classes.hr}/>
-              </Grid>
+            <Grid className={classes.details} item container justify="flex-start" xs={11}>
+              {storeURL}
+            </Grid>
 
+            <Grid item xs={12}>
+              <hr className={classes.hr}/>
             </Grid>
             {
               props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
