@@ -61,54 +61,69 @@ const get = ( props: Props ) => {
 
   return (
     <Grid container alignItems="flex-start">
-        {isLoading ?
-          <Grid container className={classes.spinner}>
-            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-          </Grid> : (
-            <Grid container>
-              <Grid item container justify="flex-start" xs={1}>
-                <Paper
-                  className={classes.appIconContainer}
-                  elevation={0}
-                >
-                  <img
-                    className={classes.appIcon}
-                    src={storeIconURL}
-                  />
-                </Paper>
-              </Grid>
-              <Grid item container justify="flex-start" xs={11}>
-                <div className={classes.details}>
-                  <b>{storeTitle}</b><br/>
-                  {storeDescription}
-                </div>
-              </Grid>
+      {isLoading ?
+        <Grid container className={classes.spinner}>
+          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+        </Grid> : (
+          <Grid container justify="flex-start">
+
+            <Grid item container justify="flex-start" xs={1}>
+              <Paper
+                className={classes.storeIconContainer}
+                elevation={0}
+              >
+                <img
+                  className={classes.storeIcon}
+                  src={storeIconURL}
+                />
+              </Paper>
+            </Grid>
+
+            <Grid className={classes.details} item xs={11}>
+              <h2>{storeTitle}</h2>
+              {storeDescription}<br/>
+            </Grid>
+
+            <Grid item container xs={12}>
+
               <Grid item xs={12}>
                 <hr className={classes.hr}/>
-                <h6><img src={linkIcon}/> {storeURL}</h6>
+              </Grid>
+
+              <Grid item container justify="flex-start" xs={1}>
+                <h6><img src={linkIcon}/></h6>
+              </Grid>
+
+              <Grid className={classes.details} item container justify="flex-start" xs={11}>
+                <h6>{storeURL}</h6>
+              </Grid>
+
+              <Grid item xs={12}>
                 <hr className={classes.hr}/>
               </Grid>
-              {
-                props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
-                  const serverIndex = miniDapp.serverIndex
-                  //console.log("indexes: ", index, serverIndex)
-                  if ( index == serverIndex ) {
+            </Grid>
+            {
+              props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
-                      //console.log("made it here")
-                      const dir = miniDapp.dir
-                      const icon = miniDapp.icon
-                      const iconURL = storeURL + dir + "/" + icon
-                      const name = miniDapp.conf.name
-                      const headline = miniDapp.conf.headline
-                      const version = miniDapp.conf.version
-                      const description = miniDapp.conf.description
-                      const category = miniDapp.conf.category
-                      const miniDappURL = storeURL + dir + "/" + miniDapp.miniDapp
-                      //const pathAddDapp = `${Local.addDapp}/${i}`
+                const serverIndex = miniDapp.serverIndex
+                //console.log("indexes: ", index, serverIndex)
+                if ( index == serverIndex ) {
 
-                      return (
-                        <React.Fragment key={miniDappURL}>
+                    //console.log("made it here")
+                    const dir = miniDapp.dir
+                    const icon = miniDapp.icon
+                    const iconURL = storeURL + dir + "/" + icon
+                    const name = miniDapp.conf.name
+                    const headline = miniDapp.conf.headline
+                    const version = miniDapp.conf.version
+                    const description = miniDapp.conf.description
+                    const category = miniDapp.conf.category
+                    const miniDappURL = storeURL + dir + "/" + miniDapp.miniDapp
+                    //const pathAddDapp = `${Local.addDapp}/${i}`
+
+                    return (
+                      <React.Fragment key={miniDappURL}>
                         <Grid item container justify="flex-start" xs={1}>
                           <Paper
                             className={classes.appIconContainer}
@@ -130,48 +145,48 @@ const get = ( props: Props ) => {
                             </div>
                           </Grid>
 
-                          <Grid item container justify="flex-end" xs={1}>
-                              <a href={miniDappURL}>
-                                <Tooltip title={Help.downloadTip} arrow>
-                                  <IconButton
-                                    color="primary"
-                                    aria-label={Help.downloadTip}
-                                    component="span"
-                                    size="small">
-                                    <img src={downloadIcon}/>
-                                  </IconButton>
-                                </Tooltip>
-                              </a>
-                          </Grid>
-
-                          <Grid item xs={12}>
-                            <hr className={classes.hr}/>
-                          </Grid>
-
-                        </Grid>
-
-                        <Grid item xs={1}>
-                          &nbsp;
-                        </Grid>
-
-                        <Grid className={classes.details} item container justify="flex-start" xs={11}>
-                          <div >
-                           {headline}<br/>
-                           <b>Version {version}</b><br/>
-                          </div>
+                        <Grid item container justify="flex-end" xs={1}>
+                            <a href={miniDappURL}>
+                              <Tooltip title={Help.downloadTip} arrow>
+                                <IconButton
+                                  color="primary"
+                                  aria-label={Help.downloadTip}
+                                  component="span"
+                                  size="small">
+                                  <img src={downloadIcon}/>
+                                </IconButton>
+                              </Tooltip>
+                            </a>
                         </Grid>
 
                         <Grid item xs={12}>
-                          <hr/>
+                          <hr className={classes.hr}/>
                         </Grid>
-                      </React.Fragment>
-                      )
-                  }
-                })
-              }
-            </Grid>
-          )
-        }
+
+                      </Grid>
+
+                      <Grid item xs={1}>
+                        &nbsp;
+                      </Grid>
+
+                      <Grid className={classes.details} item container justify="flex-start" xs={11}>
+                        <div >
+                         {headline}<br/>
+                         <b>Version {version}</b><br/>
+                        </div>
+                      </Grid>
+
+                      <Grid item xs={12}>
+                        <hr/>
+                      </Grid>
+                    </React.Fragment>
+                  )
+                }
+              })
+            }
+          </Grid>
+        )
+      }
     </Grid>
   )
 }

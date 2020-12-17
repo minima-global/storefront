@@ -252,6 +252,19 @@ const themeStyles = makeStyles({
     height: "80px",
     width: '100%'
   },
+  storeIconContainer: {
+    padding: theme.spacing(0),
+    marginTop: theme.spacing(4),
+    background: 'linear-gradient(#FAFAFF, #FAFAFF)',
+    width: "96px",
+    height: "80px",
+    overflow: "hidden"
+  },
+  storeIcon: {
+    margin: 'auto',
+    height: "80px",
+    width: '100%'
+  },
   hr: {
     borderTop: "1px",
     solid: "#ccc"

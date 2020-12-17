@@ -88,6 +88,7 @@ const get = ( props: Props ) => {
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
           <Grid container alignItems="flex-start">
+
             <Grid item xs={12}>
               <h2>{StorefrontsConfig.heading}</h2>
               <hr className={classes.hr}/>
@@ -103,7 +104,8 @@ const get = ( props: Props ) => {
 
                 return (
                   <React.Fragment key={server.url}>
-                    <Grid item container justify="flex-start" alignItems="flex-start" xs={12} sm={4}>
+
+                    <Grid item container justify="flex-start" xs={4}>
                       <Paper
                         className={classes.appIconContainer}
                         elevation={0}
@@ -119,11 +121,13 @@ const get = ( props: Props ) => {
                         />
                       </Paper>
                     </Grid>
-                    <Grid item container justify="flex-start"  alignItems="flex-start" xs={12} sm={8}>
+
+                    <Grid item container justify="flex-start" xs={8}>
                       <div className={classes.details}>
                         <b>{title}</b>
                       </div>
                     </Grid>
+
                     <Grid item xs={12}>
                       <hr/>
                     </Grid>
