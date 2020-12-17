@@ -138,34 +138,25 @@ const get = ( props: Props ) => {
 
                     <Grid item container justify="flex-end" xs={11}>
 
-                      <Grid item container justify="flex-start" xs={11}>
+                      <Grid item container justify="flex-start" xs={6}>
                         <div className={classes.details}>
                            <b>{name}</b><br/>
                            {category}
                         </div>
                       </Grid>
 
-                      <Grid item container justify="flex-end" xs={1}>
-                        <Grid item>
-                          <form method="get" action={miniDappURL}>
-                            <Tooltip title={Help.downloadTip}>
-                              <label htmlFor={miniDappURL}>
-                                <IconButton
-                                  color="primary"
-                                  aria-label={Help.downloadTip}
-                                  component="span"
-                                  size="small">
-                                  <img src={downloadIcon}/>
-                                </IconButton>
-                              </label>
-                            </Tooltip>
-                            <input
-                              id={miniDappURL}
-                              type="submit"
-                              style={{ visibility: 'hidden'}}
-                            />
-                          </form>
-                        </Grid>
+                      <Grid item container justify="flex-end" xs={6}>
+                        <Tooltip title={Help.downloadTip}>
+                          <a href={miniDappURL} alt={Help.downloadTip}>
+                            <IconButton
+                              color="primary"
+                              aria-label={Help.downloadTip}
+                              component="span"
+                              size="small">
+                              <img src={downloadIcon}/>
+                            </IconButton>
+                          </a>
+                        </Tooltip>
                       </Grid>
 
                       <Grid item xs={12}>
