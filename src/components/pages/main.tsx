@@ -27,7 +27,7 @@ import allDappsIcon from '../../images/allMiniDappsLarge.png'
 import storesIcon from '../../images/storefrontsLarge.png'
 import settingsIcon from '../../images/addStorefrontLarge.png'
 
-import { Tooltip } from '@material-ui/core'
+import ReactTooltip from 'react-tooltip'
 
 import logo from '../../images/storefrontLogoLarge.png'
 import appName from '../../images/storefrontLarge.png'
@@ -97,43 +97,58 @@ const mainNav = (props: Props) => {
 
             <Grid item container justify="flex-end" xs={4}>
               <NavLink to={Local.help} className={classes.link}>
-                  <Tooltip title={Help.helpTip}>
-                    <IconButton
-                      color="primary"
-                      aria-label="Help"
-                      component="span"
-                      size="small">
-                      <img src={helpIcon}/>
-                    </IconButton>
-                  </Tooltip>
+                  <IconButton
+                    color="primary"
+                    aria-label="Help"
+                    component="span"
+                    size="small">
+                    <img data-for={helpIcon} data-tip src={helpIcon}/>
+                  </IconButton>
+                  <ReactTooltip
+                    id={helpIcon}
+                    place="bottom"
+                    effect="solid"
+                  >
+                    {Help.helpTip}
+                  </ReactTooltip>
               </NavLink>
             </Grid>
 
             <Grid item container justify="flex-end" xs={4}>
               <NavLink to={Local.about} className={classes.link}>
-                  <Tooltip title={Help.aboutTip}>
-                    <IconButton
-                      color="primary"
-                      aria-label="Info"
-                      component="span"
-                      size="small">
-                      <img src={infoIcon}/>
-                    </IconButton>
-                  </Tooltip>
+                <IconButton
+                  color="primary"
+                  aria-label="Info"
+                  component="span"
+                  size="small">
+                  <img data-for={infoIcon} data-tip src={infoIcon}/>
+                </IconButton>
+                <ReactTooltip
+                  id={infoIcon}
+                  place="bottom"
+                  effect="solid"
+                >
+                  {Help.aboutTip}
+                </ReactTooltip>
               </NavLink>
             </Grid>
 
             <Grid item container justify="flex-end" xs={4}>
               <NavLink to={Local.contact} className={classes.link}>
-                  <Tooltip title={Help.contactTip}>
-                    <IconButton
-                      color="primary"
-                      aria-label="Contact"
-                      component="span"
-                      size="small">
-                      <img src={contactIcon}/>
-                    </IconButton>
-                  </Tooltip>
+                <IconButton
+                  color="primary"
+                  aria-label="Contact"
+                  component="span"
+                  size="small">
+                  <img data-for={contactIcon} data-tip src={contactIcon}/>
+                </IconButton>
+                <ReactTooltip
+                  id={contactIcon}
+                  place="bottom"
+                  effect="solid"
+                >
+                  {Help.contactTip}
+                </ReactTooltip>
               </NavLink>
             </Grid>
 
@@ -150,15 +165,20 @@ const mainNav = (props: Props) => {
         <Grid item container justify="flex-start" xs={4}>
 
            <NavLink to={Local.home}>
-            <Tooltip title={Help.homeTip}>
               <IconButton
                color="primary"
                aria-label={Help.homeTip}
                component="span"
                size="small">
-               <img src={allDappsIcon}/>
+               <img data-for={allDappsIcon} data-tip src={allDappsIcon}/>
               </IconButton>
-            </Tooltip>
+              <ReactTooltip
+                id={allDappsIcon}
+                place="top"
+                effect="solid"
+              >
+                {Help.homeTip}
+              </ReactTooltip>
            </NavLink>
 
           </Grid>
@@ -166,15 +186,20 @@ const mainNav = (props: Props) => {
           <Grid item container justify="center" xs={4}>
 
              <NavLink to={Local.showStoreDapps}>
-              <Tooltip title={Help.storeTip}>
                <IconButton
                  color="primary"
                  aria-label={Help.storeTip}
                  component="span"
                  size="small">
-                 <img src={storesIcon}/>
+                 <img data-for={storesIcon} data-tip src={storesIcon}/>
                 </IconButton>
-              </Tooltip>
+                <ReactTooltip
+                  id={storesIcon}
+                  place="top"
+                  effect="solid"
+                >
+                  {Help.storeTip}
+                </ReactTooltip>
              </NavLink>
 
           </Grid>
@@ -182,15 +207,20 @@ const mainNav = (props: Props) => {
           <Grid item container justify="flex-end" xs={4}>
 
             <label htmlFor="getFile">
-              <Tooltip title={Help.fileTip}>
-                <IconButton
-                  color="primary"
-                  aria-label={Help.fileTip}
-                  component="span"
-                  size="small">
-                  <img src={settingsIcon}/>
-                </IconButton>
-              </Tooltip>
+              <IconButton
+                color="primary"
+                aria-label={Help.fileTip}
+                component="span"
+                size="small">
+                <img data-for={settingsIcon} data-tip src={settingsIcon}/>
+              </IconButton>
+              <ReactTooltip
+                id={settingsIcon}
+                place="top"
+                effect="solid"
+              >
+                {Help.fileTip}
+              </ReactTooltip>
             </label>
 
           </Grid>

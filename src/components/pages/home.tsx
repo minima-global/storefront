@@ -9,7 +9,7 @@ import Spinner from 'react-spinner-material'
 
 import IconButton from '@material-ui/core/IconButton'
 
-import Tooltip from '@material-ui/core/Tooltip'
+import ReactTooltip from 'react-tooltip'
 
 import downloadIcon from '../../images/downloadLarge.png'
 
@@ -150,15 +150,20 @@ const get = ( props: Props ) => {
 
                       <Grid item container justify="flex-end" xs={1}>
                           <a href={miniDappURL}>
-                            <Tooltip title={Help.downloadTip} arrow>
-                              <IconButton
-                                color="primary"
-                                aria-label={Help.downloadTip}
-                                component="span"
-                                size="small">
-                                <img src={downloadIcon}/>
-                              </IconButton>
-                            </Tooltip>
+                            <IconButton
+                              color="primary"
+                              aria-label={Help.downloadTip}
+                              component="span"
+                              size="small">
+                              <img data-for='download' data-tip src={downloadIcon}/>
+                            </IconButton>
+                            <ReactTooltip
+                              id='download'
+                              place="top"
+                              effect="solid"
+                            >
+                              {Help.downloadTip}
+                            </ReactTooltip>
                           </a>
                       </Grid>
 
