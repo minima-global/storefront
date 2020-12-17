@@ -104,16 +104,19 @@ const get = ( props: Props ) => {
                 return (
                   <React.Fragment key={server.url}>
                     <Grid item container justify="flex-start" alignItems="flex-start" xs={12} sm={4}>
-                      <Paper className={classes.appIconContainer}>
-                          <input
-                              type="image"
-                              src={iconURL}
-                              onClick={() => history.push(`${pathShowStore}`)}
-                              alt="store icon"
-                              aria-label="store icon"
-                              role="button"
-                              className={classes.appIcon}
-                          />
+                      <Paper
+                        className={classes.appIconContainer}
+                        elevation={0}
+                      >
+                        <input
+                            type="image"
+                            src={iconURL}
+                            onClick={() => history.push(`${pathShowStore}`)}
+                            alt="store icon"
+                            aria-label="store icon"
+                            role="button"
+                            className={classes.appIcon}
+                        />
                       </Paper>
                     </Grid>
                     <Grid item container justify="flex-start"  alignItems="flex-start" xs={12} sm={8}>

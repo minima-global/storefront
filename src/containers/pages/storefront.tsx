@@ -67,11 +67,14 @@ const get = ( props: Props ) => {
           </Grid> : (
             <Grid container>
               <Grid item container justify="flex-start" xs={1}>
-                <Paper className={classes.appIconContainer}>
-                    <img
-                      className={classes.appIcon}
-                      src={storeIconURL}
-                    />
+                <Paper
+                  className={classes.appIconContainer}
+                  elevation={0}
+                >
+                  <img
+                    className={classes.appIcon}
+                    src={storeIconURL}
+                  />
                 </Paper>
               </Grid>
               <Grid item container justify="flex-start" xs={11}>
@@ -106,24 +109,30 @@ const get = ( props: Props ) => {
 
                       return (
                         <React.Fragment key={miniDappURL}>
-                          <Grid item container justify="flex-start" xs={1}>
-                            <Paper className={classes.appIconContainer}>
-                                <img
-                                  className={classes.appIcon}
-                                  src={iconURL}
-                                />
-                            </Paper>
-                          </Grid>
-                          <Grid item container justify="flex-start" xs={10}>
-                            <div className={classes.details}>
+                        <Grid item container justify="flex-start" xs={1}>
+                          <Paper
+                            className={classes.appIconContainer}
+                            elevation={0}
+                          >
+                            <img
+                              className={classes.appIcon}
+                              src={iconURL}
+                            />
+                          </Paper>
+                        </Grid>
+
+                        <Grid className={classes.details} item container justify="flex-end" xs={11}>
+
+                          <Grid item container justify="flex-start" xs={11}>
+                            <div>
                                <b>{name}</b><br/>
                                {category}
                             </div>
                           </Grid>
+
                           <Grid item container justify="flex-end" xs={1}>
-                            <form method="get" action={miniDappURL}>
-                              <Tooltip title={Help.downloadTip}>
-                                <label htmlFor={miniDappURL}>
+                              <a href={miniDappURL}>
+                                <Tooltip title={Help.downloadTip} arrow>
                                   <IconButton
                                     color="primary"
                                     aria-label={Help.downloadTip}
@@ -131,34 +140,31 @@ const get = ( props: Props ) => {
                                     size="small">
                                     <img src={downloadIcon}/>
                                   </IconButton>
-                                </label>
-                              </Tooltip>
-                              <input
-                                id={miniDappURL}
-                                type="submit"
-                                style={{ visibility: 'hidden'}}
-                              />
-                            </form>
+                                </Tooltip>
+                              </a>
                           </Grid>
-                          <Grid item xs={1}>
-                            &nbsp;
-                          </Grid>
-                          <Grid item xs={11}>
+
+                          <Grid item xs={12}>
                             <hr className={classes.hr}/>
                           </Grid>
-                          <Grid item xs={1}>
-                            &nbsp;
-                          </Grid>
-                          <Grid item container justify="flex-start" xs={10}>
-                            <div className={classes.details}>
-                               {headline}<br/>
-                               <b>Version {version}</b><br/>
-                            </div>
-                          </Grid>
-                          <Grid item xs={12}>
-                            <hr/>
-                          </Grid>
-                        </React.Fragment>
+
+                        </Grid>
+
+                        <Grid item xs={1}>
+                          &nbsp;
+                        </Grid>
+
+                        <Grid className={classes.details} item container justify="flex-start" xs={11}>
+                          <div >
+                           {headline}<br/>
+                           <b>Version {version}</b><br/>
+                          </div>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                          <hr/>
+                        </Grid>
+                      </React.Fragment>
                       )
                   }
                 })

@@ -202,7 +202,7 @@ const themeStyles = makeStyles({
     textAlign: 'center',
   },
   details: {
-    padding: theme.spacing(0),
+    paddingLeft: theme.spacing(1),
     margin: theme.spacing(0)
   },
   footer: {
@@ -242,11 +242,9 @@ const themeStyles = makeStyles({
   appIconContainer: {
     padding: theme.spacing(0),
     margin: theme.spacing(0),
+    background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     width: "96px",
     height: "80px",
-    border: "2px",
-    borderRadius: "50%",
-    borderColor: "red",
     overflow: "hidden"
   },
   appIcon: {
