@@ -7,7 +7,6 @@ import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import { Form } from 'formik'
 
 import red from '@material-ui/core/colors/red'
 import blue from '@material-ui/core/colors/blue'
@@ -150,7 +149,14 @@ const themeStyles = makeStyles({
   root: {
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
     height: "100vh",
-    width: "100vw",
+    width: "100%",
+    position: 'relative'
+  },
+  rootDesktop: {
+    background: 'linear-gradient(#F0F0FA, #F0F0FA)',
+    height: "100vh",
+    width: "70%",
+    margin: 'auto',
     position: 'relative'
   },
   header: {
@@ -159,7 +165,7 @@ const themeStyles = makeStyles({
     margin: theme.spacing(0),
     background: 'linear-gradient(#001C32, #001C32)',
     height: "110px",
-    width: "100vw",
+    width: "100%",
     position: 'absolute',
     top: '0'
   },
@@ -170,7 +176,7 @@ const themeStyles = makeStyles({
     textAlign: 'center',
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
     height: "90px",
-    width: "100vw",
+    width: "100%",
     position: 'absolute',
     top: '110px'
   },
@@ -191,7 +197,7 @@ const themeStyles = makeStyles({
     margin: theme.spacing(0),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     overflow: 'auto',
-    width: "100vw",
+    width: "100%",
     position: 'absolute',
     bottom: '120px',
     top: '200px'
@@ -202,7 +208,7 @@ const themeStyles = makeStyles({
     textAlign: 'center',
   },
   details: {
-    paddingLeft: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
     margin: theme.spacing(0)
   },
   footer: {
@@ -214,7 +220,7 @@ const themeStyles = makeStyles({
     textAlign: 'center',
     background: 'linear-gradient(#001C32, #001C32)',
     height: "120px",
-    width: "100vw",
+    width: "100%",
     position: 'absolute',
     bottom: '0'
   },

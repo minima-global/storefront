@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom'
 import { useHistory } from "react-router-dom"
 
+import { useTheme } from '@material-ui/core/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+
 import Markdown from 'react-markdown'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
@@ -24,7 +27,7 @@ import allDappsIcon from '../../images/allMiniDappsLarge.png'
 import storesIcon from '../../images/storefrontsLarge.png'
 import settingsIcon from '../../images/addStorefrontLarge.png'
 
-import Tooltip from '@material-ui/core/Tooltip'
+import { Tooltip } from '@material-ui/core'
 
 import logo from '../../images/storefrontLogoLarge.png'
 import appName from '../../images/storefrontLarge.png'
@@ -51,8 +54,11 @@ const mainNav = (props: Props) => {
       window.location.href = redirect
   }
 
+  const theme = useTheme()
   const classes = themeStyles()
-  const tagLine = `${App.catchLine}`
+  const rootClass = useMediaQuery(theme.breakpoints.up('md')) ? classes.rootDesktop: classes.root
+
+  console.log(rootClass, theme.breakpoints.up('md'))
 
   const getFile = (e: any) => {
 
@@ -63,7 +69,7 @@ const mainNav = (props: Props) => {
   }
 
   return (
-    <Grid container className={classes.root}>
+    <Grid className={rootClass}>
 
         <Grid item container className={classes.header} xs={12}>
 
@@ -175,8 +181,8 @@ const mainNav = (props: Props) => {
 
           <Grid item container justify="flex-end" xs={4}>
 
-            <Tooltip title={Help.fileTip}>
-              <label htmlFor="getFile">
+            <label htmlFor="getFile">
+              <Tooltip title={Help.fileTip}>
                 <IconButton
                   color="primary"
                   aria-label={Help.fileTip}
@@ -184,8 +190,8 @@ const mainNav = (props: Props) => {
                   size="small">
                   <img src={settingsIcon}/>
                 </IconButton>
-              </label>
-            </Tooltip>
+              </Tooltip>
+            </label>
 
           </Grid>
 

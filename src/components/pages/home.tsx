@@ -104,7 +104,7 @@ const get = ( props: Props ) => {
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
           <Grid item container justify="flex-end">
-            <Grid item justify="flex-start" xs={12}>
+            <Grid item xs={12}>
               <h2>{HomeConfig.heading}</h2>
               <hr className={classes.hr}/>
             </Grid>
