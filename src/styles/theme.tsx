@@ -232,28 +232,28 @@ const themeStyles = makeStyles({
   },
   appIconContainer: {
     padding: theme.spacing(0),
-    margin: theme.spacing(0),
+    marginTop: theme.spacing(1),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
-    width: "96px",
-    height: "80px",
+    width: "50px",
+    height: "50px",
     overflow: "hidden"
   },
   appIcon: {
     margin: 'auto',
-    height: "80px",
+    height: "50px",
     width: '100%'
   },
   storeIconContainer: {
     padding: theme.spacing(0),
     marginTop: theme.spacing(2),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
-    width: "96px",
-    height: "80px",
+    width: "50px",
+    height: "50px",
     overflow: "hidden"
   },
   storeIcon: {
     margin: 'auto',
-    height: "80px",
+    height: "50px",
     width: '100%'
   },
   linkIconContainer: {
