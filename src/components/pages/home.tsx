@@ -98,12 +98,13 @@ const get = ( props: Props ) => {
   }, [props.serverData])*/
 
   return (
-    <Grid container>
+    <Grid container alignItems="flex-start">
       {isLoading ?
         <Grid container className={classes.spinner}>
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
-          <Grid item container justify="flex-end">
+          <Grid container justify="flex-start">
+
             <Grid item xs={12}>
               <h2>{HomeConfig.heading}</h2>
               <hr className={classes.hr}/>

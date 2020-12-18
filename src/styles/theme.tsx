@@ -271,7 +271,7 @@ const themeStyles = makeStyles({
   },
   hr: {
     borderTop: "1px",
-    solid: "#ccc"
+    solid: "#F0F0FA"
   }
 })
 
