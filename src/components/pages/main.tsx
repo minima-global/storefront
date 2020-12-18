@@ -34,7 +34,7 @@ import logo from '../../images/storefrontLogoLarge.png'
 import appName from '../../images/storefrontLarge.png'
 import minimaIcon from '../../images/minimaIconlarge.png'
 
-import { themeStyles } from '../../styles'
+import { themeStyles, themeStylesMobile } from '../../styles'
 
 import { Paths, Local, Help, Settings } from '../../config'
 
@@ -55,11 +55,7 @@ const mainNav = (props: Props) => {
       window.location.href = redirect
   }
 
-  const classes = themeStyles()
-  //const rootClass = useMediaQuery(theme.breakpoints.up('md')) ? classes.rootDesktop: classes.root
-  const rootClass = isMobile ? classes.root : classes.rootDesktop
-
-  console.log(rootClass, isMobile )
+  const classes = isMobile ? themeStylesMobile() : themeStyles()
 
   const getFile = (e: any) => {
 
@@ -70,7 +66,7 @@ const mainNav = (props: Props) => {
   }
 
   return (
-    <Grid className={rootClass}>
+    <Grid className={classes.root}>
 
       <GoogleFontLoader
         fonts={[

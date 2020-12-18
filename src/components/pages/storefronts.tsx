@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 
+import { isMobile } from "react-device-detect"
+
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
@@ -13,7 +15,7 @@ import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 import { SimpleArrayRenderer } from '../simpleRenderer'
 import { Storefronts as StorefrontsConfig, Misc, Local } from '../../config'
 
-import { themeStyles } from '../../styles'
+import { themeStyles, themeStylesMobile } from '../../styles'
 
 import {
   ApplicationState,
@@ -36,7 +38,7 @@ const get = ( props: Props ) => {
 
   const [isLoading, setLoading] = useState(false)
 
-  const classes = themeStyles()
+  const classes = isMobile ? themeStylesMobile() : themeStyles()
   let history = useHistory()
 
   /*const compare = (a: MiniData, b: MiniData) => {
@@ -91,6 +93,9 @@ const get = ( props: Props ) => {
 
             <Grid item xs={12}>
               <h2>{StorefrontsConfig.heading}</h2>
+            </Grid>
+
+            <Grid item xs={12}>
               <hr className={classes.hr}/>
             </Grid>
             {

@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 
+import { isMobile } from "react-device-detect"
+
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 
@@ -21,7 +23,7 @@ import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
 import { Storefronts as StorefrontConfig, Misc, Local, AddDapp, Help } from '../../config'
 
-import { themeStyles } from '../../styles'
+import { themeStyles, themeStylesMobile } from '../../styles'
 
 import {
   ApplicationState,
@@ -48,10 +50,14 @@ const get = ( props: Props ) => {
 
   const {index} = useParams()
 
-  const classes = themeStyles()
+  const classes = isMobile ? themeStylesMobile() : themeStyles()
   let history = useHistory()
 
   const storeURL = props.serverData.servers[index].url
+  const splitter = '//'
+  const indexOf = storeURL.indexOf(splitter)
+  const displayURL = storeURL.slice(indexOf+splitter.length)
+
   const storeTitle = props.serverData.servers[index].title
   const storeDescription = props.serverData.servers[index].description
   const storeIcon = props.serverData.servers[index].icon
@@ -67,7 +73,7 @@ const get = ( props: Props ) => {
         </Grid> : (
           <Grid container justify="flex-start">
 
-            <Grid item container justify="flex-start" xs={1}>
+            <Grid item container justify="flex-start" xs={12}>
               <Paper
                 className={classes.storeIconContainer}
                 elevation={0}
@@ -76,10 +82,7 @@ const get = ( props: Props ) => {
                   className={classes.storeIcon}
                   src={storeIconURL}
                 />
-              </Paper>
-            </Grid>
-
-            <Grid className={classes.details} item xs={11}>
+              </Paper> &nbsp;
               <h2>{storeTitle}</h2>
             </Grid>
 
@@ -95,7 +98,7 @@ const get = ( props: Props ) => {
               <hr className={classes.hr}/>
             </Grid>
 
-            <Grid item container justify="flex-start" xs={1}>
+            <Grid item container justify="flex-start" xs={12}>
               <Paper
                 className={classes.linkIconContainer}
                 elevation={0}
@@ -104,11 +107,7 @@ const get = ( props: Props ) => {
                   className={classes.linkIcon}
                   src={linkIcon}
                 />
-              </Paper>
-            </Grid>
-
-            <Grid className={classes.details} item container justify="flex-start" xs={11}>
-              {storeURL}
+              </Paper> &nbsp; {displayURL}
             </Grid>
 
             <Grid item xs={12}>
