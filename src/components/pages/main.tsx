@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom'
 import { useHistory } from "react-router-dom"
 
-import { useTheme } from '@material-ui/core/styles'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import GoogleFontLoader from 'react-google-font-loader'
+
+import { isMobile } from "react-device-detect"
 
 import Markdown from 'react-markdown'
 import Grid from '@material-ui/core/Grid'
@@ -54,11 +55,11 @@ const mainNav = (props: Props) => {
       window.location.href = redirect
   }
 
-  const theme = useTheme()
   const classes = themeStyles()
-  const rootClass = useMediaQuery(theme.breakpoints.up('md')) ? classes.rootDesktop: classes.root
+  //const rootClass = useMediaQuery(theme.breakpoints.up('md')) ? classes.rootDesktop: classes.root
+  const rootClass = isMobile ? classes.root : classes.rootDesktop
 
-  console.log(rootClass, theme.breakpoints.up('md'))
+  console.log(rootClass, isMobile )
 
   const getFile = (e: any) => {
 
@@ -71,159 +72,172 @@ const mainNav = (props: Props) => {
   return (
     <Grid className={rootClass}>
 
-        <Grid item container className={classes.header} xs={12}>
+      <GoogleFontLoader
+        fonts={[
+          {
+            font: 'Manrope',
+            weights: [300, 400, 500, 600, 700],
+          },
+          {
+            font: 'Roboto',
+            weights: [300, 400, 500, 600, 700],
+          }
+        ]}
+      />
 
-          <Grid item container justify="flex-start" xs={4}>
-            <img className={classes.title} src={logo}/>
-          </Grid>
+      <Grid item container className={classes.header} xs={12}>
 
-          <Grid item container justify="center" xs={4}>
-            <img className={classes.title} src={appName}/>
+        <Grid item container justify="flex-start" xs={4}>
+          <img className={classes.title} src={logo}/>
+        </Grid>
+
+        <Grid item container justify="center" xs={4}>
+          <img className={classes.title} src={appName}/>
+        </Grid>
+
+        <Grid item container justify="flex-end" xs={4}>
+          <img className={classes.title} src={minimaIcon}/>
+        </Grid>
+
+      </Grid>
+
+      <Grid item container className={classes.subHeader} xs={12}>
+
+        <Grid item xs={6}>
+          &nbsp;
+        </Grid>
+
+        <Grid item container className={classes.subTitle} justify="flex-end" xs={6}>
+
+          <Grid item container justify="flex-end" xs={4}>
+            <NavLink to={Local.help} className={classes.link}>
+                <IconButton
+                  color="primary"
+                  aria-label="Help"
+                  component="span"
+                  size="small">
+                  <img data-for={helpIcon} data-tip src={helpIcon}/>
+                </IconButton>
+                <ReactTooltip
+                  id={helpIcon}
+                  place="bottom"
+                  effect="solid"
+                >
+                  {Help.helpTip}
+                </ReactTooltip>
+            </NavLink>
           </Grid>
 
           <Grid item container justify="flex-end" xs={4}>
-            <img className={classes.title} src={minimaIcon}/>
-          </Grid>
-
-        </Grid>
-
-        <Grid item container className={classes.subHeader} xs={12}>
-
-          <Grid item xs={6}>
-            &nbsp;
-          </Grid>
-
-          <Grid item container className={classes.subTitle} justify="flex-end" xs={6}>
-
-            <Grid item container justify="flex-end" xs={4}>
-              <NavLink to={Local.help} className={classes.link}>
-                  <IconButton
-                    color="primary"
-                    aria-label="Help"
-                    component="span"
-                    size="small">
-                    <img data-for={helpIcon} data-tip src={helpIcon}/>
-                  </IconButton>
-                  <ReactTooltip
-                    id={helpIcon}
-                    place="bottom"
-                    effect="solid"
-                  >
-                    {Help.helpTip}
-                  </ReactTooltip>
-              </NavLink>
-            </Grid>
-
-            <Grid item container justify="flex-end" xs={4}>
-              <NavLink to={Local.about} className={classes.link}>
-                <IconButton
-                  color="primary"
-                  aria-label="Info"
-                  component="span"
-                  size="small">
-                  <img data-for={infoIcon} data-tip src={infoIcon}/>
-                </IconButton>
-                <ReactTooltip
-                  id={infoIcon}
-                  place="bottom"
-                  effect="solid"
-                >
-                  {Help.aboutTip}
-                </ReactTooltip>
-              </NavLink>
-            </Grid>
-
-            <Grid item container justify="flex-end" xs={4}>
-              <NavLink to={Local.contact} className={classes.link}>
-                <IconButton
-                  color="primary"
-                  aria-label="Contact"
-                  component="span"
-                  size="small">
-                  <img data-for={contactIcon} data-tip src={contactIcon}/>
-                </IconButton>
-                <ReactTooltip
-                  id={contactIcon}
-                  place="bottom"
-                  effect="solid"
-                >
-                  {Help.contactTip}
-                </ReactTooltip>
-              </NavLink>
-            </Grid>
-
-          </Grid>
-
-        </Grid>
-
-      <Grid item container className={classes.content} xs={12}>
-        <Content />
-      </Grid>
-
-      <Grid item container className={classes.footer} xs={12}>
-
-        <Grid item container justify="flex-start" xs={4}>
-
-           <NavLink to={Local.home}>
+            <NavLink to={Local.about} className={classes.link}>
               <IconButton
-               color="primary"
-               aria-label={Help.homeTip}
-               component="span"
-               size="small">
-               <img data-for={allDappsIcon} data-tip src={allDappsIcon}/>
+                color="primary"
+                aria-label="Info"
+                component="span"
+                size="small">
+                <img data-for={infoIcon} data-tip src={infoIcon}/>
               </IconButton>
               <ReactTooltip
-                id={allDappsIcon}
+                id={infoIcon}
+                place="bottom"
+                effect="solid"
+              >
+                {Help.aboutTip}
+              </ReactTooltip>
+            </NavLink>
+          </Grid>
+
+          <Grid item container justify="flex-end" xs={4}>
+            <NavLink to={Local.contact} className={classes.link}>
+              <IconButton
+                color="primary"
+                aria-label="Contact"
+                component="span"
+                size="small">
+                <img data-for={contactIcon} data-tip src={contactIcon}/>
+              </IconButton>
+              <ReactTooltip
+                id={contactIcon}
+                place="bottom"
+                effect="solid"
+              >
+                {Help.contactTip}
+              </ReactTooltip>
+            </NavLink>
+          </Grid>
+
+        </Grid>
+
+      </Grid>
+
+    <Grid item container className={classes.content} xs={12}>
+      <Content />
+    </Grid>
+
+    <Grid item container className={classes.footer} xs={12}>
+
+      <Grid item container justify="flex-start" xs={4}>
+
+         <NavLink to={Local.home}>
+            <IconButton
+             color="primary"
+             aria-label={Help.homeTip}
+             component="span"
+             size="small">
+             <img data-for={allDappsIcon} data-tip src={allDappsIcon}/>
+            </IconButton>
+            <ReactTooltip
+              id={allDappsIcon}
+              place="top"
+              effect="solid"
+            >
+              {Help.homeTip}
+            </ReactTooltip>
+         </NavLink>
+
+        </Grid>
+
+        <Grid item container justify="center" xs={4}>
+
+           <NavLink to={Local.showStoreDapps}>
+             <IconButton
+               color="primary"
+               aria-label={Help.storeTip}
+               component="span"
+               size="small">
+               <img data-for={storesIcon} data-tip src={storesIcon}/>
+              </IconButton>
+              <ReactTooltip
+                id={storesIcon}
                 place="top"
                 effect="solid"
               >
-                {Help.homeTip}
+                {Help.storeTip}
               </ReactTooltip>
            </NavLink>
 
-          </Grid>
+        </Grid>
 
-          <Grid item container justify="center" xs={4}>
+        <Grid item container justify="flex-end" xs={4}>
 
-             <NavLink to={Local.showStoreDapps}>
-               <IconButton
-                 color="primary"
-                 aria-label={Help.storeTip}
-                 component="span"
-                 size="small">
-                 <img data-for={storesIcon} data-tip src={storesIcon}/>
-                </IconButton>
-                <ReactTooltip
-                  id={storesIcon}
-                  place="top"
-                  effect="solid"
-                >
-                  {Help.storeTip}
-                </ReactTooltip>
-             </NavLink>
+          <label htmlFor="getFile">
+            <IconButton
+              color="primary"
+              aria-label={Help.fileTip}
+              component="span"
+              size="small">
+              <img data-for={settingsIcon} data-tip src={settingsIcon}/>
+            </IconButton>
+            <ReactTooltip
+              id={settingsIcon}
+              place="top"
+              effect="solid"
+            >
+              {Help.fileTip}
+            </ReactTooltip>
+          </label>
 
-          </Grid>
-
-          <Grid item container justify="flex-end" xs={4}>
-
-            <label htmlFor="getFile">
-              <IconButton
-                color="primary"
-                aria-label={Help.fileTip}
-                component="span"
-                size="small">
-                <img data-for={settingsIcon} data-tip src={settingsIcon}/>
-              </IconButton>
-              <ReactTooltip
-                id={settingsIcon}
-                place="top"
-                effect="solid"
-              >
-                {Help.fileTip}
-              </ReactTooltip>
-            </label>
-
-          </Grid>
+        </Grid>
 
       </Grid>
 

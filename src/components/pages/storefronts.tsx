@@ -98,14 +98,14 @@ const get = ( props: Props ) => {
 
                 const iconURL = server.url + "/" + server.icon
                 const title = server.title
-                //const description = server.description
+                const description = server.description
                 const isOnline = server.isOnline
                 const pathShowStore = `${Local.showStoreDapps}/${i}`
 
                 return (
                   <React.Fragment key={server.url}>
 
-                    <Grid item container justify="flex-start" xs={4}>
+                    <Grid item container justify="flex-start" xs={1}>
                       <Paper
                         className={classes.appIconContainer}
                         elevation={0}
@@ -122,9 +122,10 @@ const get = ( props: Props ) => {
                       </Paper>
                     </Grid>
 
-                    <Grid item container justify="flex-start" xs={8}>
-                      <div className={classes.details}>
-                        <b>{title}</b>
+                    <Grid className={classes.details} item container justify="flex-start" xs={11}>
+                      <div>
+                        <b>{title}</b><br/>
+                        {description}
                       </div>
                     </Grid>
 

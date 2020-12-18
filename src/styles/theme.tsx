@@ -15,29 +15,14 @@ import indigo from '@material-ui/core/colors/indigo'
 import orange from '@material-ui/core/colors/orange'
 import yellow from '@material-ui/core/colors/yellow'
 
-import GoogleFontLoader from 'react-google-font-loader'
-
-//load this first
-const fontLoader = () =>
-    <GoogleFontLoader
-      fonts={[
-        {
-          font: 'Manrope',
-          weights: [400, '400i'],
-        },
-      ]}
-      subsets={['cyrillic-ext', 'greek']}
-    />
-
 let theme = createMuiTheme ({
   spacing: 8,
   typography: {
     fontFamily: [
       'Manrope',
-      'Lato',
-      'sans-serif',
-      'Arial',
       'Roboto',
+      'Arial',
+      'sans-serif',
       '-apple-system',
     ].join(','),
     fontSize: 1,
@@ -47,76 +32,76 @@ let theme = createMuiTheme ({
     h1: {
       fontSize:  "2em",
       fontWeight: 700,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     h2: {
       fontSize: "1.7em",
       fontWeight: 700,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h3: {
       fontSize: "1.5em",
       fontWeight: 700,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h4: {
       fontSize: "1.4em",
       fontWeight: 700,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h5: {
       fontSize: "1.3em",
       fontWeight: 700,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h6: {
       lineHeight: "1",
       fontSize: "1.2em",
       fontWeight: 700,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     subtitle1: {
       fontSize: "1.1em",
       fontWeight: 500,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     subtitle2: {
       fontSize: "1.1em",
       fontWeight: 400,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     body1: {
       lineHeight: '1.6',
       fontSize: "1.3em",
       fontWeight: 400,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     body2: {
       lineHeight: '1.6',
       fontSize: "1.3em",
       fontWeight: 400,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     caption: {
       fontSize: "0.9em",
       fontWeight: 700,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
     },
     button: {
       fontSize: "1.8em",
       textTransform: "uppercase",
       fontWeight: 500,
-      fontFamily: "\"Manrope\", \"Arial\", \"sans-serif\", \"Roboto\"",
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     }
   },
@@ -208,7 +193,7 @@ const themeStyles = makeStyles({
     textAlign: 'center',
   },
   details: {
-    paddingLeft: theme.spacing(2),
+    paddingLeft: theme.spacing(3),
     margin: theme.spacing(0)
   },
   footer: {
@@ -290,4 +275,4 @@ const themeStyles = makeStyles({
   }
 })
 
-export { fontLoader, theme, themeStyles }
+export { theme, themeStyles }
