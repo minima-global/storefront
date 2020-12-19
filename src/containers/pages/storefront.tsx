@@ -73,7 +73,7 @@ const get = ( props: Props ) => {
         </Grid> : (
           <Grid container justify="flex-start">
 
-            <Grid item container justify="flex-start" xs={12}>
+            <Grid item container justify="flex-start" xs={1}>
               <Paper
                 className={classes.storeIconContainer}
                 elevation={0}
@@ -82,7 +82,10 @@ const get = ( props: Props ) => {
                   className={classes.storeIcon}
                   src={storeIconURL}
                 />
-              </Paper> &nbsp;
+              </Paper>
+            </Grid>
+
+            <Grid item xs={11}>
               <h2>{storeTitle}</h2>
             </Grid>
 
@@ -91,7 +94,9 @@ const get = ( props: Props ) => {
             </Grid>
 
             <Grid item xs={12}>
-              {storeDescription}
+              <div>
+                {storeDescription}
+              </div>
             </Grid>
 
             <Grid item xs={12}>
