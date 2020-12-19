@@ -89,7 +89,7 @@ const get = ( props: Props ) => {
         <Grid container className={classes.spinner}>
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
-          <Grid container alignItems="flex-start">
+          <Grid container justify="flex-start">
 
             <Grid item xs={12}>
               <h2>{StorefrontsConfig.heading}</h2>
@@ -127,7 +127,7 @@ const get = ( props: Props ) => {
                       </Paper>
                     </Grid>
 
-                    <Grid className={classes.details} item container justify="flex-start" xs={11}>
+                    <Grid className={classes.details} item xs={11}>
                       <div>
                         <b>{title}</b><br/>
                         {description}

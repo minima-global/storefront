@@ -63,7 +63,7 @@ const get = ( props: Props ) => {
   const storeIcon = props.serverData.servers[index].icon
   const storeIconURL = storeURL + storeIcon
 
-  console.log("store icon url", storeIconURL)
+  //console.log("store icon url", storeIconURL)
 
   return (
     <Grid container alignItems="flex-start">
@@ -71,9 +71,9 @@ const get = ( props: Props ) => {
         <Grid container className={classes.spinner}>
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
-          <Grid container justify="flex-start">
+          <Grid item container justify="flex-start">
 
-            <Grid item container justify="flex-start" xs={1}>
+            <Grid item xs={1}>
               <Paper
                 className={classes.storeIconContainer}
                 elevation={0}
@@ -94,14 +94,14 @@ const get = ( props: Props ) => {
             </Grid>
 
             <Grid className={classes.storeDescription} item xs={12}>
-              {storeDescription}
+              <p>{storeDescription}</p>
             </Grid>
 
             <Grid item xs={12}>
               <hr className={classes.hr}/>
             </Grid>
 
-            <Grid item container justify="flex-start" xs={12}>
+            <Grid item xs={1}>
               <Paper
                 className={classes.linkIconContainer}
                 elevation={0}
@@ -110,7 +110,11 @@ const get = ( props: Props ) => {
                   className={classes.linkIcon}
                   src={linkIcon}
                 />
-              </Paper> &nbsp; {displayURL}
+              </Paper>
+            </Grid>
+
+            <Grid item xs={11}>
+              <h6>{displayURL}</h6>
             </Grid>
 
             <Grid item xs={12}>
@@ -137,7 +141,7 @@ const get = ( props: Props ) => {
 
                     return (
                       <React.Fragment key={miniDappURL}>
-                        <Grid item container justify="flex-start" xs={1}>
+                        <Grid item xs={1}>
                           <Paper
                             className={classes.appIconContainer}
                             elevation={0}
@@ -149,45 +153,45 @@ const get = ( props: Props ) => {
                           </Paper>
                         </Grid>
 
-                        <Grid className={classes.details} item container justify="flex-end" xs={11}>
+                        <Grid className={classes.details} item container xs={11}>
 
-                          <Grid item container justify="flex-start" xs={11}>
+                          <Grid item xs={11}>
                             <div>
                                <b>{name}</b><br/>
                                {category}
                             </div>
                           </Grid>
 
-                        <Grid item container justify="flex-end" xs={1}>
-                            <a href={miniDappURL}>
-                              <IconButton
-                                color="primary"
-                                aria-label={Help.downloadTip}
-                                component="span"
-                                size="small">
-                                <img data-for='download' data-tip src={downloadIcon}/>
-                              </IconButton>
-                              <ReactTooltip
-                                id='download'
-                                place="top"
-                                effect="solid"
-                              >
-                                {Help.downloadTip}
-                              </ReactTooltip>
-                            </a>
-                        </Grid>
+                          <Grid item container justify="flex-end" xs={1}>
+                              <a href={miniDappURL}>
+                                <IconButton
+                                  color="primary"
+                                  aria-label={Help.downloadTip}
+                                  component="span"
+                                  size="small">
+                                  <img data-for='download' data-tip src={downloadIcon}/>
+                                </IconButton>
+                                <ReactTooltip
+                                  id='download'
+                                  place="top"
+                                  effect="solid"
+                                >
+                                  {Help.downloadTip}
+                                </ReactTooltip>
+                              </a>
+                          </Grid>
 
-                        <Grid item xs={12}>
-                          <hr className={classes.hr}/>
-                        </Grid>
+                          <Grid item xs={12}>
+                            <hr className={classes.hr}/>
+                          </Grid>
 
-                      </Grid>
+                        </Grid>
 
                       <Grid item xs={1}>
                         &nbsp;
                       </Grid>
 
-                      <Grid className={classes.details} item container justify="flex-start" xs={11}>
+                      <Grid className={classes.details} item xs={11}>
                         <div >
                          {headline}<br/>
                          <b>Version {version}</b><br/>

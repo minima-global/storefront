@@ -30,30 +30,35 @@ let theme = createMuiTheme ({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     h1: {
+      lineHeight: "1",
       fontSize:  "1.5em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     h2: {
+      lineHeight: "1",
       fontSize: "1.4em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h3: {
+      lineHeight: "1",
       fontSize: "1.3em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h4: {
+      lineHeight: "1",
       fontSize: "1.2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h5: {
+      lineHeight: "1",
       fontSize: "1.1em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
@@ -61,32 +66,34 @@ let theme = createMuiTheme ({
     },
     h6: {
       lineHeight: "1",
-      fontSize: "1.2em",
+      fontSize: "1em",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     subtitle1: {
+      lineHeight: "1",
       fontSize: "0.9em",
       fontWeight: 600,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     subtitle2: {
+      lineHeight: "1",
       fontSize: "0.9em",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     body1: {
-      lineHeight: '1.6',
+      lineHeight: '1.5',
       fontSize: "1.3em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     body2: {
-      lineHeight: '1.6',
+      lineHeight: '1.5',
       fontSize: "1.3em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
@@ -128,7 +135,7 @@ let theme = createMuiTheme ({
 })
 
 theme = responsiveFontSizes(theme)
-theme.spacing(4)
+theme.spacing(1)
 
 const themeStyles = makeStyles({
   root: {

@@ -53,31 +53,33 @@ let themeMobile = createMuiTheme ({
     h4: {
       lineHeight: "1",
       fontSize: "1.5em",
-      fontWeight: 700,
+      fontWeight: 600,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h5: {
       lineHeight: "1",
       fontSize: "1.4em",
-      fontWeight: 700,
+      fontWeight: 500,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h6: {
       lineHeight: "1",
-      fontSize: "1.2em",
+      fontSize: "1.1em",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     subtitle1: {
+      lineHeight: "1",
       fontSize: "1.3em",
       fontWeight: 600,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     subtitle2: {
+      lineHeight: "1",
       fontSize: "1.3em",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
@@ -134,7 +136,7 @@ let themeMobile = createMuiTheme ({
 })
 
 themeMobile = responsiveFontSizes(themeMobile)
-themeMobile.spacing(4)
+themeMobile.spacing(1)
 
 const themeStylesMobile = makeStyles({
   root: {

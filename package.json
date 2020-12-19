@@ -1,3 +1,4 @@
+
 {
   "name": "Storefront",
   "version": "0.1.0",
@@ -11,9 +12,9 @@
     "compile": "./node_modules/.bin/webpack --config ./webpack.dev.js --mode development && rm ./build/app.js && rm ./build/app.js.map && mkdir ./build/images && cp ./miniDapp/images/* ./build/images && cp ./miniDapp/config/minidapp.conf ./build",
     "watch": "./node_modules/.bin/webpack --config ./webpack.dev.js --watch --mode development",
     "prodWatch": "./node_modules/.bin/webpack --config ./webpack.dev.js --watch --mode production",
-    "prod": "./node_modules/.bin/webpack --config ./webpack.prod.js --mode production && rm ./build/app.js && mkdir ./build/images && cp ./miniDapp/images/* ./build/images && cp ./miniDapp/config/manifest.webmanifest ./build && cp ./miniDapp/config/minidapp.conf ./build && cp ./miniDapp/config/serverFile.json ./build && cp ./miniDapp/config/defaultServer.json ./build && cd ./build && zip -r ../miniDapp/dist/storefront.minidapp *",
+    "prod": "./node_modules/.bin/webpack --config ./webpack.prod.js --mode production && rm ./build/app.js && mkdir ./build/images && cp ./miniDapp/images/* /Users/sh601/.minima/webroot/minidapps/0xE60A5F0441B8F583B61E49BF5C5F20C6DC6E0FE8/images && cp ./build/index.html /Users/sh601/.minima/webroot/minidapps/0xE60A5F0441B8F583B61E49BF5C5F20C6DC6E0FE8",
     "prodClean": "rm ./build/app.js && mkdir ./build/images",
-    "prodCopy": "cp ./miniDapp/images/* ./build/images && cp ./miniDapp/config/manifest.webmanifest ./build && cp ./miniDapp/config/minidapp.conf ./build && cp ./miniDapp/config/serverFile.json ./build && cp ./miniDapp/config/defaultServer.json ./build && cd ./build && zip -r ../miniDapp/dist/storefront.minidapp *",
+    "prodCopy": "cp ./miniDapp/images/* /Users/sh601/.minima/webroot/minidapps/0xE60A5F0441B8F583B61E49BF5C5F20C6DC6E0FE8/images && cp ./build/index.html /Users/sh601/.minima/webroot/minidapps/0xE60A5F0441B8F583B61E49BF5C5F20C6DC6E0FE8",
     "test": "./node_modules/.bin/mocha",
     "start": "./node_modules/.bin/http-server -p 8081 build/"
   },

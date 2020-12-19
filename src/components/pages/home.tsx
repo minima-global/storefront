@@ -102,7 +102,7 @@ const get = ( props: Props ) => {
   return (
     <Grid container alignItems="flex-start">
       {isLoading ?
-        <Grid container className={classes.spinner}>
+        <Grid className={classes.spinner}>
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
           <Grid container justify="flex-start">
@@ -110,7 +110,7 @@ const get = ( props: Props ) => {
             <Grid item xs={12}>
               <h2>{HomeConfig.heading}</h2>
             </Grid>
-            
+
             <Grid item xs={12}>
               <hr className={classes.hr}/>
             </Grid>
@@ -133,7 +133,7 @@ const get = ( props: Props ) => {
                 return (
                   <React.Fragment key={miniDappURL}>
 
-                    <Grid item container justify="flex-start" xs={1}>
+                    <Grid item xs={1}>
                       <Paper
                         className={classes.appIconContainer}
                         elevation={0}
@@ -147,7 +147,7 @@ const get = ( props: Props ) => {
 
                     <Grid className={classes.details} item container justify="flex-end" xs={11}>
 
-                      <Grid item container justify="flex-start" xs={11}>
+                      <Grid item xs={11}>
                         <div>
                            <b>{name}</b><br/>
                            {category}
@@ -183,7 +183,7 @@ const get = ( props: Props ) => {
                       &nbsp;
                     </Grid>
 
-                    <Grid className={classes.details} item container justify="flex-start" xs={11}>
+                    <Grid className={classes.details} item xs={11}>
                       <div >
                          {headline}<br/>
                          <b>Version {version}</b><br/>
