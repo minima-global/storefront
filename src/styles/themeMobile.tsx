@@ -186,6 +186,14 @@ const themeStylesMobile = makeStyles({
     bottom: '120px',
     top: '200px'
   },
+  storeTitle: {
+    padding: themeMobile.spacing(0),
+    margin: themeMobile.spacing(0)
+  },
+  storeDescription: {
+    padding: themeMobile.spacing(0),
+    margin: themeMobile.spacing(0)
+  },
   caption: {
     padding: themeMobile.spacing(1),
     margin: themeMobile.spacing(0),
@@ -244,7 +252,7 @@ const themeStylesMobile = makeStyles({
   },
   storeIconContainer: {
     padding: themeMobile.spacing(0),
-    marginTop: themeMobile.spacing(4),
+    marginTop: themeMobile.spacing(4.5),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     width: "45px",
     height: "45px",

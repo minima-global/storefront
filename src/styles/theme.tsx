@@ -181,6 +181,14 @@ const themeStyles = makeStyles({
     bottom: '120px',
     top: '200px'
   },
+  storeTitle: {
+    padding: theme.spacing(0),
+    margin: theme.spacing(0)
+  },
+  storeDescription: {
+    padding: theme.spacing(0),
+    margin: theme.spacing(0)
+  },
   caption: {
     padding: theme.spacing(1),
     margin: theme.spacing(0),

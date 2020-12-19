@@ -85,7 +85,7 @@ const get = ( props: Props ) => {
               </Paper>
             </Grid>
 
-            <Grid item xs={11}>
+            <Grid className={classes.storeTitle} item xs={11}>
               <h2>{storeTitle}</h2>
             </Grid>
 
@@ -93,10 +93,8 @@ const get = ( props: Props ) => {
               <hr className={classes.hr}/>
             </Grid>
 
-            <Grid item xs={12}>
-              <div>
-                {storeDescription}
-              </div>
+            <Grid className={classes.storeDescription} item xs={12}>
+              {storeDescription}
             </Grid>
 
             <Grid item xs={12}>
