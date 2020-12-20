@@ -67,7 +67,7 @@ const get = ( props: Props ) => {
   //console.log("store icon url", storeIconURL)
 
   return (
-    <Grid container alignItems="flex-start">
+    <>
       {isLoading ?
         <Grid container className={classes.spinner}>
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
@@ -216,7 +216,7 @@ const get = ( props: Props ) => {
           </Grid>
         )
       }
-    </Grid>
+    </>
   )
 }
 
