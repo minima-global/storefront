@@ -135,7 +135,7 @@ let theme = createMuiTheme ({
 })
 
 theme = responsiveFontSizes(theme)
-theme.spacing(1)
+theme.spacing(0)
 
 const themeStyles = makeStyles({
   root: {

@@ -136,7 +136,7 @@ let themeMobile = createMuiTheme ({
 })
 
 themeMobile = responsiveFontSizes(themeMobile)
-themeMobile.spacing(1)
+themeMobile.spacing(0)
 
 const themeStylesMobile = makeStyles({
   root: {

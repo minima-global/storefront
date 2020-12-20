@@ -166,7 +166,7 @@ const mainNav = (props: Props) => {
 
       </Grid>
 
-    <Grid item container className={classes.content} xs={12}>
+    <Grid className={classes.content} item container alignItems="flex-start" xs={12}>
       <Content />
     </Grid>
 

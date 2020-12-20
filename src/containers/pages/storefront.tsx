@@ -7,6 +7,7 @@ import { isMobile } from "react-device-detect"
 
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
 
 import Spinner from 'react-spinner-material'
 
@@ -94,7 +95,9 @@ const get = ( props: Props ) => {
             </Grid>
 
             <Grid className={classes.storeDescription} item xs={12}>
-              <p>{storeDescription}</p>
+              <Box m={0}>
+                {storeDescription}
+              </Box>
             </Grid>
 
             <Grid item xs={12}>
@@ -114,7 +117,9 @@ const get = ( props: Props ) => {
             </Grid>
 
             <Grid item xs={11}>
-              <h6>{displayURL}</h6>
+              <Box m={0}>
+                {displayURL}
+              </Box>
             </Grid>
 
             <Grid item xs={12}>
@@ -156,10 +161,10 @@ const get = ( props: Props ) => {
                         <Grid className={classes.details} item container xs={11}>
 
                           <Grid item xs={11}>
-                            <div>
+                            <Box m={0}>
                                <b>{name}</b><br/>
                                {category}
-                            </div>
+                            </Box>
                           </Grid>
 
                           <Grid item container justify="flex-end" xs={1}>
@@ -188,14 +193,16 @@ const get = ( props: Props ) => {
                         </Grid>
 
                       <Grid item xs={1}>
-                        &nbsp;
+                        <Box m={0}>
+                          &nbsp;
+                        </Box>
                       </Grid>
 
                       <Grid className={classes.details} item xs={11}>
-                        <div >
+                        <Box m={0}>
                          {headline}<br/>
                          <b>Version {version}</b><br/>
-                        </div>
+                        </Box>
                       </Grid>
 
                       <Grid item xs={12}>

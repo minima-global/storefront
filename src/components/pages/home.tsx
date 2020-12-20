@@ -6,6 +6,7 @@ import { isMobile } from "react-device-detect"
 
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
 
 import Spinner from 'react-spinner-material'
 
@@ -100,7 +101,7 @@ const get = ( props: Props ) => {
   }, [props.serverData])*/
 
   return (
-    <Grid container alignItems="flex-start">
+    <>
       {isLoading ?
         <Grid className={classes.spinner}>
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
@@ -148,10 +149,10 @@ const get = ( props: Props ) => {
                     <Grid className={classes.details} item container justify="flex-end" xs={11}>
 
                       <Grid item xs={11}>
-                        <div>
+                        <Box m={0}>
                            <b>{name}</b><br/>
                            {category}
-                        </div>
+                        </Box>
                       </Grid>
 
                       <Grid item container justify="flex-end" xs={1}>
@@ -180,15 +181,15 @@ const get = ( props: Props ) => {
                     </Grid>
 
                     <Grid item xs={1}>
-                      &nbsp;
+                      <Box m={0}>&nbsp;</Box>
                     </Grid>
 
                     <Grid className={classes.details} item xs={11}>
-                      <div >
+                      <Box m={0}>
                          {headline}<br/>
                          <b>Version {version}</b><br/>
                          <b>{props.serverData.servers[serverIndex].title}</b>
-                      </div>
+                      </Box>
                     </Grid>
 
                     <Grid item xs={12}>
@@ -201,7 +202,7 @@ const get = ( props: Props ) => {
           </Grid>
         )
       }
-    </Grid>
+    </>
   )
 }
 
