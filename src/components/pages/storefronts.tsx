@@ -6,7 +6,7 @@ import { isMobile } from "react-device-detect"
 
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
 
 import Spinner from 'react-spinner-material'
 
@@ -90,10 +90,12 @@ const get = ( props: Props ) => {
         <Grid container className={classes.spinner}>
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
-          <Grid container justify="flex-start">
+          <Grid container>
 
             <Grid item xs={12}>
-              <h2>{StorefrontsConfig.heading}</h2>
+              <Typography variant="h2">
+                {StorefrontsConfig.heading}
+              </Typography>
             </Grid>
 
             <Grid item xs={12}>
@@ -111,33 +113,40 @@ const get = ( props: Props ) => {
                 return (
                   <React.Fragment key={server.url}>
 
-                    <Grid item container justify="flex-start" xs={1}>
-                      <Paper
-                        className={classes.appIconContainer}
-                        elevation={0}
-                      >
-                        <input
-                            type="image"
-                            src={iconURL}
-                            onClick={() => history.push(`${pathShowStore}`)}
-                            alt="store icon"
-                            aria-label="store icon"
-                            role="button"
-                            className={classes.appIcon}
-                        />
-                      </Paper>
-                    </Grid>
+                    <Grid container>
 
-                    <Grid className={classes.details} item xs={11}>
-                      <Box m={0}>
-                        <b>{title}</b><br/>
-                        {description}
-                      </Box>
+                      <Grid item container justify="flex-start" xs>
+                        <Paper
+                          className={classes.appIconContainer}
+                          elevation={0}
+                        >
+                          <input
+                              type="image"
+                              src={iconURL}
+                              onClick={() => history.push(`${pathShowStore}`)}
+                              alt="store icon"
+                              aria-label="store icon"
+                              role="button"
+                              className={classes.appIcon}
+                          />
+                        </Paper>
+                      </Grid>
+
+                      <Grid className={classes.details} item xs={11}>
+                        <Typography variant="h3">
+                          {title}
+                        </Typography>
+                        <Typography variant="body1">
+                          {description}
+                        </Typography>
+                      </Grid>
+
                     </Grid>
 
                     <Grid item xs={12}>
                       <hr/>
                     </Grid>
+
                   </React.Fragment>
                 )
               })

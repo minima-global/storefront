@@ -6,7 +6,7 @@ import { isMobile } from "react-device-detect"
 
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
 
 import Spinner from 'react-spinner-material'
 
@@ -106,10 +106,12 @@ const get = ( props: Props ) => {
         <Grid className={classes.spinner}>
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
-          <Grid container justify="flex-start">
+          <Grid container>
 
             <Grid item xs={12}>
-              <h2>{HomeConfig.heading}</h2>
+              <Typography variant="h2">
+                {HomeConfig.heading}
+              </Typography>
             </Grid>
 
             <Grid item xs={12}>
@@ -134,62 +136,75 @@ const get = ( props: Props ) => {
                 return (
                   <React.Fragment key={miniDappURL}>
 
-                    <Grid item xs={1}>
-                      <Paper
-                        className={classes.appIconContainer}
-                        elevation={0}
-                      >
-                          <img
-                            className={classes.appIcon}
-                            src={iconURL}
-                          />
-                      </Paper>
-                    </Grid>
+                    <Grid container>
 
-                    <Grid className={classes.details} item container justify="flex-end" xs={11}>
-
-                      <Grid item xs={11}>
-                        <Box m={0}>
-                           <b>{name}</b><br/>
-                           {category}
-                        </Box>
+                      <Grid item xs>
+                        <Paper
+                          className={classes.appIconContainer}
+                          elevation={0}
+                        >
+                            <img
+                              className={classes.appIcon}
+                              src={iconURL}
+                            />
+                        </Paper>
                       </Grid>
 
-                      <Grid item container justify="flex-end" xs={1}>
-                          <a href={miniDappURL}>
-                            <IconButton
-                              color="primary"
-                              aria-label={Help.downloadTip}
-                              component="span"
-                              size="small">
-                              <img data-for='download' data-tip src={downloadIcon}/>
-                            </IconButton>
-                            <ReactTooltip
-                              id='download'
-                              place="top"
-                              effect="solid"
-                            >
-                              {Help.downloadTip}
-                            </ReactTooltip>
-                          </a>
-                      </Grid>
+                      <Grid className={classes.details} item container xs={11}>
 
-                      <Grid item xs={12}>
-                        <hr className={classes.hr}/>
+                        <Grid item xs={11}>
+                          <Typography variant="h3">
+                            {name}
+                          </Typography>
+                          <Typography variant="body1">
+                            {category}
+                          </Typography>
+                        </Grid>
+
+                        <Grid item container justify="flex-end" xs>
+                            <a href={miniDappURL}>
+                              <IconButton
+                                color="primary"
+                                aria-label={Help.downloadTip}
+                                component="span"
+                                size="small">
+                                <img data-for='download' data-tip src={downloadIcon}/>
+                              </IconButton>
+                              <ReactTooltip
+                                id='download'
+                                place="top"
+                                effect="solid"
+                              >
+                                {Help.downloadTip}
+                              </ReactTooltip>
+                            </a>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                          <hr className={classes.hr}/>
+                        </Grid>
+
                       </Grid>
 
                     </Grid>
 
-                    <Grid item xs={1}>
-                      <Box m={0}>&nbsp;</Box>
-                    </Grid>
+                    <Grid container>
 
-                    <Grid className={classes.details} item xs={11}>
-                      <Box m={0}>
-                         {headline}<br/>
-                         <b>Version {version}</b><br/>
-                         <b>{props.serverData.servers[serverIndex].title}</b>
-                      </Box>
+                      <Grid item xs>
+                        &nbsp;
+                      </Grid>
+
+                      <Grid className={classes.details} item xs={11}>
+                        <Typography variant="body1">
+                          {headline}
+                        </Typography>
+                        <Typography variant="h3">
+                          Version {version}
+                        </Typography>
+                        <Typography variant="h4">
+                          {props.serverData.servers[serverIndex].title}
+                         </Typography>
+                      </Grid>
                     </Grid>
 
                     <Grid item xs={12}>

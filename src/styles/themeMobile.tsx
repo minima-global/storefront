@@ -30,30 +30,30 @@ let themeMobile = createMuiTheme ({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     h1: {
-      lineHeight: "1",
+      lineHeight: "2.4",
       fontSize:  "2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     h2: {
-      lineHeight: "1",
+      lineHeight: "2.2",
       fontSize: "1.8em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h3: {
-      lineHeight: "1",
-      fontSize: "1.6em",
+      lineHeight: '1.6',
+      fontSize: "1.5em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h4: {
-      lineHeight: "1",
+      lineHeight: '1.6',
       fontSize: "1.5em",
-      fontWeight: 600,
+      fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
@@ -254,7 +254,7 @@ const themeStylesMobile = makeStyles({
   },
   storeIconContainer: {
     padding: themeMobile.spacing(0),
-    marginTop: themeMobile.spacing(4.5),
+    marginTop: themeMobile.spacing(1),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     width: "45px",
     height: "45px",

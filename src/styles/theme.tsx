@@ -30,32 +30,32 @@ let theme = createMuiTheme ({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     h1: {
-      lineHeight: "1",
-      fontSize:  "1.5em",
+      lineHeight: "2.2",
+      fontSize:  "1.8em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     h2: {
-      lineHeight: "1",
-      fontSize: "1.4em",
+      lineHeight: "2",
+      fontSize: "1.6em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h3: {
-      lineHeight: "1",
+      lineHeight: '1.5',
       fontSize: "1.3em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h4: {
-      lineHeight: "1",
-      fontSize: "1.2em",
-      fontWeight: 700,
+      lineHeight: '1.5',
+      fontSize: "1.3em",
+      fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
-      color: '#001C32'
+      color: '#317aff'
     },
     h5: {
       lineHeight: "1",
@@ -97,7 +97,7 @@ let theme = createMuiTheme ({
       fontSize: "1.3em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
-      color: '#001C32'
+      color: '#001C32',
     },
     caption: {
       fontSize: "0.9em",
@@ -254,7 +254,7 @@ const themeStyles = makeStyles({
   },
   storeIconContainer: {
     padding: theme.spacing(0),
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(1),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     width: "45px",
     height: "45px",
