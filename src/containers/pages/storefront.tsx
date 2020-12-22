@@ -54,16 +54,6 @@ const get = ( props: Props ) => {
   const classes = isMobile ? themeStylesMobile() : themeStyles()
   let history = useHistory()
 
-  const storeURL = props.serverData.servers[index].url
-  const splitter = '//'
-  const indexOf = storeURL.indexOf(splitter)
-  const displayURL = storeURL.slice(indexOf+splitter.length)
-
-  const storeTitle = props.serverData.servers[index].title
-  const storeDescription = props.serverData.servers[index].description
-  const storeIcon = props.serverData.servers[index].icon
-  const storeIconURL = storeURL + storeIcon
-
   //console.log("store icon url", storeIconURL)
 
   return (
@@ -73,73 +63,22 @@ const get = ( props: Props ) => {
           <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
           <Grid container>
-
-            <Grid container>
-
-              <Grid item xs>
-                <Paper
-                  className={classes.storeIconContainer}
-                  elevation={0}
-                >
-                  <img
-                    className={classes.storeIcon}
-                    src={storeIconURL}
-                  />
-                </Paper>
-              </Grid>
-
-              <Grid className={classes.storeTitle} item xs={11}>
-                <Typography variant="h2">
-                  {storeTitle}
-                </Typography>
-              </Grid>
-
-            </Grid>
-
-            <Grid item xs={12}>
-              <hr className={classes.hr}/>
-            </Grid>
-
-            <Grid className={classes.storeDescription} item xs={12}>
-              <Typography variant="body1">
-                {storeDescription}
-              </Typography>
-            </Grid>
-
-            <Grid item xs={12}>
-              <hr className={classes.hr}/>
-            </Grid>
-
-            <Grid container>
-
-              <Grid item xs={1}>
-                <Paper
-                  className={classes.linkIconContainer}
-                  elevation={0}
-                >
-                  <img
-                    className={classes.linkIcon}
-                    src={linkIcon}
-                  />
-                </Paper>
-              </Grid>
-
-              <Grid item xs={11}>
-                <Typography variant="body1">
-                  {displayURL}
-                </Typography>
-              </Grid>
-            </Grid>
-
-            <Grid item xs={12}>
-              <hr className={classes.hr}/>
-            </Grid>
             {
-              props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
+                props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
-                const serverIndex = miniDapp.serverIndex
-                //console.log("indexes: ", index, serverIndex)
-                if ( index == serverIndex ) {
+                  const serverIndex = miniDapp.serverIndex
+                  //console.log("indexes: ", index, serverIndex)
+                  if ( index == serverIndex ) {
+
+                    const storeURL = props.serverData.servers[index].url
+                    const splitter = '//'
+                    const indexOf = storeURL.indexOf(splitter)
+                    const displayURL = storeURL.slice(indexOf+splitter.length)
+
+                    const storeTitle = props.serverData.servers[index].title
+                    const storeDescription = props.serverData.servers[index].description
+                    const storeIcon = props.serverData.servers[index].icon
+                    const storeIconURL = storeURL + storeIcon
 
                     //console.log("made it here")
                     const dir = miniDapp.dir
@@ -156,85 +95,146 @@ const get = ( props: Props ) => {
                     return (
                       <React.Fragment key={miniDappURL}>
 
-                        <Grid container>
+                          <Grid container>
 
-                          <Grid item xs>
-                            <Paper
-                              className={classes.appIconContainer}
-                              elevation={0}
-                            >
-                              <img
-                                className={classes.appIcon}
-                                src={iconURL}
-                              />
-                            </Paper>
+                            <Grid item xs>
+                              <Paper
+                                className={classes.storeIconContainer}
+                                elevation={0}
+                              >
+                                <img
+                                  className={classes.storeIcon}
+                                  src={storeIconURL}
+                                />
+                              </Paper>
+                            </Grid>
+
+                            <Grid className={classes.storeTitle} item xs={11}>
+                              <Typography variant="h2">
+                                {storeTitle}
+                              </Typography>
+                            </Grid>
+
                           </Grid>
 
-                          <Grid className={classes.details} item container xs={11}>
+                          <Grid item xs={12}>
+                            <hr className={classes.hr}/>
+                          </Grid>
+
+                          <Grid className={classes.storeDescription} item xs={12}>
+                            <Typography variant="body1">
+                              {storeDescription}
+                            </Typography>
+                          </Grid>
+
+                          <Grid item xs={12}>
+                            <hr className={classes.hr}/>
+                          </Grid>
+
+                          <Grid container>
+
+                            <Grid item xs={1}>
+                              <Paper
+                                className={classes.linkIconContainer}
+                                elevation={0}
+                              >
+                                <img
+                                  className={classes.linkIcon}
+                                  src={linkIcon}
+                                />
+                              </Paper>
+                            </Grid>
 
                             <Grid item xs={11}>
-                              <Typography variant="h3">
-                                {name}
-                              </Typography>
                               <Typography variant="body1">
-                                {category}
+                                {displayURL}
+                              </Typography>
+                            </Grid>
+                          </Grid>
+
+                          <Grid item xs={12}>
+                            <hr className={classes.hr}/>
+                          </Grid>
+
+                          <Grid container>
+
+                            <Grid item xs>
+                              <Paper
+                                className={classes.appIconContainer}
+                                elevation={0}
+                              >
+                                <img
+                                  className={classes.appIcon}
+                                  src={iconURL}
+                                />
+                              </Paper>
+                            </Grid>
+
+                            <Grid className={classes.details} item container xs={11}>
+
+                              <Grid item xs={11}>
+                                <Typography variant="h3">
+                                  {name}
+                                </Typography>
+                                <Typography variant="body1">
+                                  {category}
+                                </Typography>
+                              </Grid>
+
+                              <Grid item container justify="flex-end" xs>
+                                  <a href={miniDappURL}>
+                                    <IconButton
+                                      color="primary"
+                                      aria-label={Help.downloadTip}
+                                      component="span"
+                                      size="small">
+                                      <img data-for='download' data-tip src={downloadIcon}/>
+                                    </IconButton>
+                                    <ReactTooltip
+                                      id='download'
+                                      place="top"
+                                      effect="solid"
+                                    >
+                                      {Help.downloadTip}
+                                    </ReactTooltip>
+                                  </a>
+                              </Grid>
+
+                              <Grid item xs={12}>
+                                <hr className={classes.hr}/>
+                              </Grid>
+
+                            </Grid>
+
+                          </Grid>
+
+                          <Grid container>
+
+                            <Grid item xs>
+                              &nbsp;
+                            </Grid>
+
+                            <Grid className={classes.details} item xs={11}>
+                              <Typography variant="body1">
+                               {headline}
+                              </Typography>
+                              <Typography variant="h3">
+                               Version {version}
                               </Typography>
                             </Grid>
 
-                            <Grid item container justify="flex-end" xs>
-                                <a href={miniDappURL}>
-                                  <IconButton
-                                    color="primary"
-                                    aria-label={Help.downloadTip}
-                                    component="span"
-                                    size="small">
-                                    <img data-for='download' data-tip src={downloadIcon}/>
-                                  </IconButton>
-                                  <ReactTooltip
-                                    id='download'
-                                    place="top"
-                                    effect="solid"
-                                  >
-                                    {Help.downloadTip}
-                                  </ReactTooltip>
-                                </a>
-                            </Grid>
-
-                            <Grid item xs={12}>
-                              <hr className={classes.hr}/>
-                            </Grid>
-
                           </Grid>
 
-                        </Grid>
-
-                        <Grid container>
-
-                          <Grid item xs>
-                            &nbsp;
+                          <Grid item xs={12}>
+                            <hr/>
                           </Grid>
-
-                          <Grid className={classes.details} item xs={11}>
-                            <Typography variant="body1">
-                             {headline}
-                            </Typography>
-                            <Typography variant="h3">
-                             Version {version}
-                            </Typography>
-                          </Grid>
-
-                        </Grid>
-
-                        <Grid item xs={12}>
-                          <hr/>
-                        </Grid>
 
                       </React.Fragment>
                     )
-                }
-              })
-            }
-          </Grid>
+                  }
+                })
+              }
+            </Grid>
         )
       }
     </>
