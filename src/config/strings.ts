@@ -5,7 +5,7 @@ class App {
   static readonly catchLine = `Powered by ${App.title}`
   static readonly tagline = ''
   static readonly copyright = '© Copyright 2020 Minima GmbH'
-  static readonly author = '[Steve Huckle](https://glowkeeper.github.io/)'
+  static readonly author = 'Steve Huckle'
   static readonly email = 'steve dot huckle at minima dot global'
   static readonly version = '0.1.0'
 }
@@ -45,10 +45,7 @@ class Home {
 
   static readonly heading = 'All MiniDapps'
 
-  static readonly address = 'Store Address'
-  static readonly noServers = `Trying to find ${App.appName} MiniDapp Servers`
-  static readonly servers = 'Servers Loaded'
-  static readonly info = `<h3>${App.appName}</h3>`
+  static readonly info = `${App.appName}`
 }
 
 class AddDapp {
@@ -69,14 +66,14 @@ class About {
 
   static readonly heading = `About ${App.appName}`
 
-  static readonly info = `Created by _${App.author}_<br /><br />${App.copyright}`
+  static readonly info = `Created by ${App.author}`
 }
 
 class Help {
 
   static readonly heading = `${App.appName} Help`
 
-  static readonly info = `Use **${App.appName}** to access the fantastic ${App.title} MiniDapps.`
+  static readonly info = `Use ${App.appName} to access the fantastic ${App.title} MiniDapps`
 
   static readonly downloadTip = 'Download MiniDapp'
   static readonly homeTip = 'All MiniDapps'

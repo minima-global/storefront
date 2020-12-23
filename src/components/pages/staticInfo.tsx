@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Markdown from 'react-markdown'
+//import Markdown from 'react-markdown'
 
 import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
 
 import { ApplicationState, InfoProps, InfoTypes } from '../../store/types'
 
@@ -20,18 +21,18 @@ const appInfo = (props: Props) => {
 
     return (
       <Grid container alignItems="flex-start">
-        <Grid container>
-          <Grid item container justify="flex-start" xs={12}>
-            <Grid item xs={12}>
-              <h2>{props.title}</h2>
-              <hr className={classes.hr}/>
-            </Grid>
-          </Grid>
-          <Grid item container justify="flex-start" xs={12}>
-            <Grid item xs={12}>
-              <Markdown escapeHtml={false} source={props.data} />
-            </Grid>
-          </Grid>
+        <Grid item container justify="flex-start" xs={12}>
+          <Typography variant="h2">
+            {props.title}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <hr className={classes.hr}/>
+        </Grid>
+        <Grid item container justify="flex-start" xs={12}>
+          <Typography variant="body1">
+            {props.data}
+          </Typography>
         </Grid>
       </Grid>
     )

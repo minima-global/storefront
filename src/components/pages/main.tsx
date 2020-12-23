@@ -7,7 +7,6 @@ import GoogleFontLoader from 'react-google-font-loader'
 
 import { isMobile } from "react-device-detect"
 
-import Markdown from 'react-markdown'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Input from '@material-ui/core/Input'

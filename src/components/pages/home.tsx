@@ -55,51 +55,6 @@ const get = ( props: Props ) => {
   const classes = isMobile ? themeStylesMobile() : themeStyles()
   let history = useHistory()
 
-  /*const compare = (a: MiniData, b: MiniData) => {
-
-    const thisA = a.server.url
-    const thisB = b.server.url
-    if (thisA < thisB) {
-      return -1;
-    }
-    if (thisA > thisB) {
-      return 1;
-    }
-    // a must be equal to b
-    return 0;
-  }
-
-  const unique = (elements: MiniData[]): MiniData[] => {
-
-    const uniqElements = elements.reduce((element: MiniData[], current: MiniData) => {
-
-      const x = element.find( (item: MiniData) => {
-        return ( item.dir === current.dir &&  item.conf.name === current.conf.name )
-      })
-
-      if (!x) {
-        return element.concat([current])
-      } else {
-        return element
-      }
-    }, [])
-
-    return uniqElements
-  }
-
-  useEffect(() => {
-
-    if ( props.serverData.servers.length
-    && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
-
-      props.initMiniDapps()
-      setLoading(true)
-      setTimeout(function(){ setLoading(false) }, Misc.homeSpinnerDelay)
-      props.getMiniDapps()
-    }
-
-  }, [props.serverData])*/
-
   return (
     <>
       {isLoading ?
@@ -230,14 +185,6 @@ const mapStateToProps = (state: ApplicationState): HomeStateProps => {
     miniDappData: miniDapps
   }
 }
-
-/*
-const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
- return {
-   initMiniDapps: () => dispatch(initMiniDapps()),
-   getMiniDapps: () => dispatch(getMiniDapps())
- }
-}*/
 
 export const Home = connect<HomeStateProps, {}, {}, ApplicationState>(
   mapStateToProps
