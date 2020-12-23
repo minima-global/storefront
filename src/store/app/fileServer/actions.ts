@@ -24,11 +24,23 @@ export const initServers = () => {
   }
 }
 
+const compareServers = (a: Server, b: Server) => {
+
+  if (a.title < b.title) {
+    return -1;
+  }
+  if (a.title > b.title) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
 const uniqueServers = (elements: any[]): any[] => {
 
   //console.log("unique first: ", elements)
 
-  const uniqElements = elements.reduce((element: any[], current: any) => {
+  const uniqueElements = elements.reduce((element: Server[], current: Server) => {
 
     //console.log("unique: ", element, current)
 
@@ -54,7 +66,7 @@ const uniqueServers = (elements: any[]): any[] => {
     }
   }, [])
 
-  return uniqElements
+  return uniqueElements
 }
 
 const serverEntries = async (): Promise<Server[]> => {
@@ -104,10 +116,11 @@ const serverEntries = async (): Promise<Server[]> => {
 export const getServers = () => {
   return async (dispatch: AppDispatch) => {
 
-    const serverList: any[] = await serverEntries()
+    const serverList: Server[] = await serverEntries()
     //console.log("server list: ", serverList)
 
-    const servers = uniqueServers(serverList)
+    let servers = uniqueServers(serverList)
+    servers.sort(compareServers)
 
     const serverData: Servers = {
       numAvailable: servers.length,
