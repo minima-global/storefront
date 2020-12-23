@@ -47,15 +47,24 @@ type Props = StorefrontStateProps
 
 const get = ( props: Props ) => {
 
-  const [isLoading, setLoading] = useState(false)
+  let [isLoading, setLoading] = useState(true)
 
   const {index} = useParams()
 
   const classes = isMobile ? themeStylesMobile() : themeStyles()
-  let history = useHistory()
-  let heading = false
+  const history = useHistory()
+  let setHeading = true
 
   //console.log("store icon url", storeIconURL)
+  useEffect(() => {
+
+    if ( props.serverData.servers.length
+    && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
+
+      setLoading(false)
+    }
+
+  }, [props.serverData])
 
   return (
     <>
@@ -74,7 +83,7 @@ const get = ( props: Props ) => {
                     const storeURL = props.serverData.servers[index].url
                     let storeHeading
 
-                    if( !heading ) {
+                    if( setHeading ) {
 
                       const splitter = '//'
                       const indexOf = storeURL.indexOf(splitter)
@@ -150,7 +159,7 @@ const get = ( props: Props ) => {
                         </>
                       )
 
-                      heading = true
+                      setHeading = false
                     }
 
                     //console.log("made it here")

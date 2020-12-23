@@ -1,7 +1,7 @@
 {
   "Doctor's Dapper Dapps": {
-    "url": "http://www.reportaid.org/miniDapps/",
+    "url": "https://raw.githubusercontent.com/glowkeeper/MiniDapps/develop/store/",
     "description": "Digital Provenance and Randomised Cowsay (amongst other stuff)",
-    "icon": "doc.png"
+    "icon": "guitar.jpg"
   }
 }
