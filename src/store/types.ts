@@ -48,7 +48,6 @@ export interface InfoData {
 
 // Servers
 export interface Server {
-  index: number
   title: string
   url: string
   icon: string
@@ -82,7 +81,7 @@ export interface InstalledDappProps extends PayloadProps {
 
 // to be installed
 export interface MiniData {
-  serverIndex: number
+  serverURL: string
   dir: string
   miniDapp: string
   conf: {

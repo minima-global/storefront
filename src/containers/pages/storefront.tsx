@@ -18,11 +18,11 @@ import ReactTooltip from 'react-tooltip'
 import downloadIcon from '../../images/downloadLarge.png'
 import linkIcon from '../../images/linkLarge.png'
 
-import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
+import { initMiniDapps, getMiniDapps, serverInfo } from '../../store/app/fileServer/actions'
 
 //import Markdown from 'react-markdown'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
-import { Storefronts as StorefrontConfig, Misc, Local, AddDapp, Help } from '../../config'
+import { Storefronts as StorefrontConfig, Misc, Local, AddDapp, Help, Paths } from '../../config'
 
 import { themeStyles, themeStylesMobile } from '../../styles'
 
@@ -49,7 +49,9 @@ const get = ( props: Props ) => {
 
   let [isLoading, setLoading] = useState(true)
 
-  const {index} = useParams()
+  const {url} = useParams()
+  const serverUrl = decodeURIComponent(url)
+  console.log("decoded: ", serverUrl, url)
 
   const classes = isMobile ? themeStylesMobile() : themeStyles()
   const history = useHistory()
@@ -76,23 +78,25 @@ const get = ( props: Props ) => {
             {
                 props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
-                  const serverIndex = miniDapp.serverIndex
-                  //console.log("indexes: ", index, serverIndex)
-                  if ( index == serverIndex ) {
+                  console.log("urls: ", serverUrl, miniDapp.serverURL)
+                  if ( serverUrl == miniDapp.serverURL ) {
 
-                    const storeURL = props.serverData.servers[index].url
+                    console.log("urls: ", serverUrl, miniDapp.serverURL)
+
                     let storeHeading
 
                     if( setHeading ) {
 
-                      const splitter = '//'
-                      const indexOf = storeURL.indexOf(splitter)
-                      const displayURL = storeURL.slice(indexOf+splitter.length)
+                      const server = serverInfo(serverUrl, props.serverData)
 
-                      const storeTitle = props.serverData.servers[index].title
-                      const storeDescription = props.serverData.servers[index].description
-                      const storeIcon = props.serverData.servers[index].icon
-                      const storeIconURL = storeURL + storeIcon
+                      const splitter = '//'
+                      const indexOf = serverUrl.indexOf(splitter)
+                      const displayURL = serverUrl.slice(indexOf+splitter.length)
+
+                      const storeTitle = server.title
+                      const storeDescription = server.description
+                      const storeIcon = server.icon
+                      const storeIconURL = serverUrl + storeIcon
 
                       storeHeading = (
                         <>
@@ -165,13 +169,13 @@ const get = ( props: Props ) => {
                     //console.log("made it here")
                     const dir = miniDapp.dir
                     const icon = miniDapp.icon
-                    const iconURL = storeURL + dir + "/" + icon
+                    const iconURL = serverUrl + dir + "/" + icon
                     const name = miniDapp.conf.name
                     const headline = miniDapp.conf.headline
                     const version = miniDapp.conf.version
                     const description = miniDapp.conf.description
                     const category = miniDapp.conf.category
-                    const miniDappURL = storeURL + dir + "/" + miniDapp.miniDapp
+                    const miniDappURL = serverUrl + dir + "/" + miniDapp.miniDapp
                     //const pathAddDapp = `${Local.addDapp}/${i}`
 
                     return (

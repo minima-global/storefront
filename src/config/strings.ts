@@ -19,8 +19,6 @@ class Paths {
   static readonly contact = 'Contact'
 
   static readonly serverSettings = 'Settings'
-  static readonly addDapp = 'Get MiniDapp'
-  static readonly addDappIndex = Paths.addDapp
   static readonly showStoreDapps = 'My Storefronts'
   static readonly showStoreDappsIndex = Paths.showStoreDapps
 }

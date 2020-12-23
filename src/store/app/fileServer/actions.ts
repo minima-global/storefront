@@ -24,6 +24,27 @@ export const initServers = () => {
   }
 }
 
+export const serverInfo = (url: string, servers: Servers): Server => {
+
+  let server: Server = {
+    title: "",
+    url: "",
+    icon: "",
+    description: "",
+    isOnline: false
+  }
+
+  for (let i = 0; i < servers.servers.length; i++) {
+
+    if ( url === servers.servers[i].url ) {
+      server = servers.servers[i]
+      break
+    }
+  }
+
+  return server
+}
+
 const compareServers = (a: Server, b: Server) => {
 
   if (a.title < b.title) {
@@ -139,7 +160,6 @@ export const getServers = () => {
       Minima.net.GET(dappsListing, function(resp: any) {
 
         let thisServer: Server = {
-          index: i,
           title: thisServerData.title,
           url: thisServerData.url,
           description: thisServerData.description,
@@ -319,7 +339,7 @@ export const getMiniDapps = (isCountOnly: boolean = false) => {
                         //const miniDapps = state.miniDapps.data
 
                         let newDappData: MiniData = {
-                          serverIndex: fileServers.servers[i].index,
+                          serverURL: fileServers.servers[i].url,
                           dir: dir,
                           miniDapp: dappData.miniDapp,
                           conf: {

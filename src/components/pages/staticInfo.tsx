@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-//import Markdown from 'react-markdown'
 
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'

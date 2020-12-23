@@ -16,7 +16,7 @@ import ReactTooltip from 'react-tooltip'
 
 import downloadIcon from '../../images/downloadLarge.png'
 
-//import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
+import { serverInfo } from '../../store/app/fileServer/actions'
 
 //import Markdown from 'react-markdown'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
@@ -73,10 +73,11 @@ const get = ( props: Props ) => {
               <hr className={classes.hr}/>
             </Grid>
             {
-              props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
+              props.miniDappData.miniDapps.map( ( miniDapp: MiniData ) => {
 
-                const serverIndex = miniDapp.serverIndex
-                const dappHome = props.serverData.servers[serverIndex].url
+                const dappHome = miniDapp.serverURL
+                const server = serverInfo(dappHome, props.serverData)
+                const serverTitle = server.title
                 const dir = miniDapp.dir
                 const icon = miniDapp.icon
                 const iconURL = dappHome + dir + "/" + icon
@@ -157,7 +158,7 @@ const get = ( props: Props ) => {
                           Version {version}
                         </Typography>
                         <Typography variant="h4">
-                          {props.serverData.servers[serverIndex].title}
+                          {serverTitle}
                          </Typography>
                       </Grid>
                     </Grid>
