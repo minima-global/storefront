@@ -8,9 +8,6 @@ const { CheckerPlugin } = require('awesome-typescript-loader')
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader')
 
 var config = {
-  node: {
-    console: true
-  },
   entry: {
     app: [
       '@babel/polyfill',

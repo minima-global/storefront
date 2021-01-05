@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/styles'
-import { withStyles } from '@material-ui/core/styles'
+import { createMuiTheme, responsiveFontSizes, makeStyles } from '@material-ui/core/styles'
 
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
@@ -150,7 +148,7 @@ const themeStylesMobile = makeStyles({
     paddingLeft: themeMobile.spacing(8),
     margin: themeMobile.spacing(0),
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "110px",
+    height: "130px",
     width: "100%",
     position: 'absolute',
     top: '0'
@@ -161,10 +159,10 @@ const themeStylesMobile = makeStyles({
     margin: themeMobile.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
-    height: "90px",
+    height: "95px",
     width: "100%",
     position: 'absolute',
-    top: '110px'
+    top: '130px'
   },
   title: {
     paddingTop: themeMobile.spacing(3),
@@ -185,8 +183,8 @@ const themeStylesMobile = makeStyles({
     overflow: 'auto',
     width: "100%",
     position: 'absolute',
-    bottom: '120px',
-    top: '200px'
+    bottom: '140px',
+    top: '225px'
   },
   storeTitle: {
     padding: themeMobile.spacing(0),
@@ -213,7 +211,7 @@ const themeStylesMobile = makeStyles({
     margin: themeMobile.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "120px",
+    height: "140px",
     width: "100%",
     position: 'absolute',
     bottom: '0'

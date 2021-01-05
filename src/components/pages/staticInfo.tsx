@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { isMobile } from "react-device-detect"
+
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
 import { ApplicationState, InfoProps, InfoTypes } from '../../store/types'
 
-import { themeStyles } from '../../styles'
+import { themeStyles, themeStylesMobile } from '../../styles'
 
 interface StateProps {
   type: InfoTypes
@@ -16,7 +18,7 @@ type Props = InfoProps & StateProps
 
 const appInfo = (props: Props) => {
 
-    const classes = themeStyles()
+    const classes = isMobile ? themeStylesMobile() : themeStyles()
 
     return (
       <Grid container alignItems="flex-start">

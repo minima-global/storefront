@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/styles'
-import { withStyles } from '@material-ui/core/styles'
+import { createMuiTheme, responsiveFontSizes, makeStyles } from '@material-ui/core/styles'
 
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
@@ -148,9 +146,10 @@ const themeStyles = makeStyles({
   header: {
     paddingRight: theme.spacing(8),
     paddingLeft: theme.spacing(8),
+    paddingBottom: theme.spacing(3),
     margin: theme.spacing(0),
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "110px",
+    height: "130px",
     width: "100%",
     position: 'absolute',
     top: '0'
@@ -158,13 +157,15 @@ const themeStyles = makeStyles({
   subHeader: {
     paddingRight: theme.spacing(8),
     paddingLeft: theme.spacing(8),
+    paddingBottom: theme.spacing(1),
+    paddingTop: theme.spacing(1),
     margin: theme.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
-    height: "90px",
+    height: "95px",
     width: "100%",
     position: 'absolute',
-    top: '110px'
+    top: '130px'
   },
   title: {
     paddingTop: theme.spacing(3),
@@ -185,8 +186,8 @@ const themeStyles = makeStyles({
     overflow: 'auto',
     width: "100%",
     position: 'absolute',
-    bottom: '120px',
-    top: '200px'
+    bottom: '140px',
+    top: '225px'
   },
   storeTitle: {
     padding: theme.spacing(0),
@@ -213,7 +214,7 @@ const themeStyles = makeStyles({
     margin: theme.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "120px",
+    height: "140px",
     width: "100%",
     position: 'absolute',
     bottom: '0'

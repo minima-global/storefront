@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { isMobile } from "react-device-detect"
@@ -49,7 +48,7 @@ const get = ( props: Props ) => {
 
   let [isLoading, setLoading] = useState(true)
 
-  const {url} = useParams()
+  const { url } = useParams<{ url: string }>()
   const serverUrl = decodeURIComponent(url)
   console.log("decoded: ", serverUrl, url)
 
