@@ -42,23 +42,23 @@ let themeMobile = createMuiTheme ({
       color: '#001C32'
     },
     h3: {
-      lineHeight: '1.3',
+      lineHeight: '1.4',
       fontSize: "1.2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h4: {
-      lineHeight: '1.3',
+      lineHeight: '1.4',
       fontSize: "1.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#317aff'
     },
     h5: {
-      lineHeight: "1.2",
-      fontSize: "1.1em",
-      fontWeight: 500,
+      lineHeight: "1",
+      fontSize: "0.9em",
+      fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
@@ -84,14 +84,14 @@ let themeMobile = createMuiTheme ({
       color: '#001C32'
     },
     body1: {
-      lineHeight: '1.3',
+      lineHeight: '1.4',
       fontSize: "1.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     body2: {
-      lineHeight: '1.3',
+      lineHeight: '1.4',
       fontSize: "1.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
@@ -265,13 +265,13 @@ const themeStylesMobile = makeStyles({
     padding: themeMobile.spacing(0),
     marginTop: themeMobile.spacing(0),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
-    width: "20px",
-    height: "30px",
+    width: "15px",
+    height: "20px",
     overflow: "hidden"
   },
   linkIcon: {
     margin: 'auto',
-    height: "30px",
+    height: "15px",
     width: '100%'
   },
   hr: {

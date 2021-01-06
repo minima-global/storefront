@@ -56,9 +56,9 @@ let theme = createMuiTheme ({
       color: '#317aff'
     },
     h5: {
-      lineHeight: "1.1",
-      fontSize: "1.1em",
-      fontWeight: 700,
+      lineHeight: "1.3",
+      fontSize: "1.2em",
+      fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
@@ -271,12 +271,12 @@ const themeStyles = makeStyles({
     marginTop: theme.spacing(0),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     width: "30px",
-    height: "40px",
+    height: "30px",
     overflow: "hidden"
   },
   linkIcon: {
     margin: 'auto',
-    height: "40px",
+    height: "30px",
     width: '100%'
   },
   hr: {

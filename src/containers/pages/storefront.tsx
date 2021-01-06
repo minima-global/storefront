@@ -98,7 +98,7 @@ const mobile = ( props: Props ) => {
                       storeHeading = (
                         <>
 
-                          <Grid item xs={1}>
+                          <Grid item xs={2}>
                             <Paper
                               className={classes.storeIconContainer}
                               elevation={0}
@@ -110,7 +110,7 @@ const mobile = ( props: Props ) => {
                             </Paper>
                           </Grid>
 
-                          <Grid className={classes.storeTitle} item xs={11}>
+                          <Grid className={classes.storeTitle} item xs={9}>
                             <Typography variant="h2">
                               {storeTitle}
                             </Typography>
@@ -143,7 +143,7 @@ const mobile = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={11}>
-                            <Typography variant="body1">
+                            <Typography variant="h5">
                               {displayURL}
                             </Typography>
                           </Grid>
@@ -284,10 +284,7 @@ const desktop = ( props: Props ) => {
             {
                 props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
 
-                  console.log("urls: ", serverUrl, miniDapp.serverURL)
                   if ( serverUrl == miniDapp.serverURL ) {
-
-                    console.log("urls: ", serverUrl, miniDapp.serverURL)
 
                     let storeHeading
 
@@ -306,7 +303,7 @@ const desktop = ( props: Props ) => {
 
                       storeHeading = (
                         <>
-                          <Grid item xs={1}>
+                          <Grid item xs={2}>
                             <Paper
                               className={classes.storeIconContainer}
                               elevation={0}
@@ -318,7 +315,7 @@ const desktop = ( props: Props ) => {
                             </Paper>
                           </Grid>
 
-                          <Grid className={classes.storeTitle} item xs={11}>
+                          <Grid className={classes.storeTitle} item xs={9}>
                             <Typography variant="h2">
                               {storeTitle}
                             </Typography>
@@ -351,7 +348,7 @@ const desktop = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={11}>
-                            <Typography variant="body1">
+                            <Typography variant="h5">
                               {displayURL}
                             </Typography>
                           </Grid>
