@@ -28,35 +28,35 @@ let theme = createMuiTheme ({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     h1: {
-      lineHeight: "2.2",
-      fontSize:  "1.8em",
+      lineHeight: "2.4",
+      fontSize:  "2.2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     h2: {
-      lineHeight: "2",
-      fontSize: "1.6em",
+      lineHeight: "2.2",
+      fontSize: "2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h3: {
-      lineHeight: '1.5',
-      fontSize: "1.3em",
+      lineHeight: '1.6',
+      fontSize: "1.5em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h4: {
-      lineHeight: '1.5',
-      fontSize: "1.3em",
+      lineHeight: '1.6',
+      fontSize: "1.5em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#317aff'
     },
     h5: {
-      lineHeight: "1",
+      lineHeight: "1.1",
       fontSize: "1.1em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
@@ -84,15 +84,15 @@ let theme = createMuiTheme ({
       color: '#001C32'
     },
     body1: {
-      lineHeight: '1.5',
-      fontSize: "1.3em",
+      lineHeight: '1.6',
+      fontSize: "1.5em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     body2: {
-      lineHeight: '1.5',
-      fontSize: "1.3em",
+      lineHeight: '1.6',
+      fontSize: "1.5em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
@@ -144,8 +144,8 @@ const themeStyles = makeStyles({
     position: 'relative'
   },
   header: {
-    paddingRight: theme.spacing(8),
-    paddingLeft: theme.spacing(8),
+    paddingRight: theme.spacing(10),
+    paddingLeft: theme.spacing(10),
     paddingBottom: theme.spacing(3),
     margin: theme.spacing(0),
     background: 'linear-gradient(#001C32, #001C32)',
@@ -155,8 +155,8 @@ const themeStyles = makeStyles({
     top: '0'
   },
   subHeader: {
-    paddingRight: theme.spacing(8),
-    paddingLeft: theme.spacing(8),
+    paddingRight: theme.spacing(10),
+    paddingLeft: theme.spacing(10),
     paddingBottom: theme.spacing(1),
     paddingTop: theme.spacing(1),
     margin: theme.spacing(0),
@@ -179,8 +179,8 @@ const themeStyles = makeStyles({
     paddingBottom: theme.spacing(1)
   },
   content: {
-    paddingRight: theme.spacing(8),
-    paddingLeft: theme.spacing(8),
+    paddingRight: theme.spacing(10),
+    paddingLeft: theme.spacing(10),
     margin: theme.spacing(0),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     overflow: 'auto',
@@ -207,8 +207,8 @@ const themeStyles = makeStyles({
     margin: theme.spacing(0)
   },
   footer: {
-    paddingRight: theme.spacing(8),
-    paddingLeft: theme.spacing(8),
+    paddingRight: theme.spacing(10),
+    paddingLeft: theme.spacing(10),
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(4),
     margin: theme.spacing(0),
@@ -244,26 +244,26 @@ const themeStyles = makeStyles({
     padding: theme.spacing(0),
     marginTop: theme.spacing(1),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
-    width: "45px",
-    height: "45px",
+    width: "90px",
+    height: "90px",
     overflow: "hidden"
   },
   appIcon: {
     margin: 'auto',
-    height: "45px",
+    height: "90px",
     width: '100%'
   },
   storeIconContainer: {
     padding: theme.spacing(0),
     marginTop: theme.spacing(1),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
-    width: "45px",
-    height: "45px",
+    width: "90px",
+    height: "90px",
     overflow: "hidden"
   },
   storeIcon: {
     margin: 'auto',
-    height: "45px",
+    height: "90px",
     width: '100%'
   },
   linkIconContainer: {

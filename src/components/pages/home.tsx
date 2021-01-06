@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 
 import { isMobile } from "react-device-detect"
@@ -14,7 +13,8 @@ import IconButton from '@material-ui/core/IconButton'
 
 import ReactTooltip from 'react-tooltip'
 
-import downloadIcon from '../../images/downloadLarge.png'
+import downloadDesktop from '../../images/downloadLarge.png'
+import downloadMobile from '../../images/download.png'
 
 import { serverInfo } from '../../store/app/fileServer/actions'
 
@@ -48,12 +48,11 @@ interface HomeStateProps {
 //type Props = HomeStateProps & HomeDispatchProps
 type Props = HomeStateProps
 
-const get = ( props: Props ) => {
+const mobile = ( props: Props ) => {
 
   const [isLoading, setLoading] = useState(false)
 
-  const classes = isMobile ? themeStylesMobile() : themeStyles()
-  let history = useHistory()
+  const classes = themeStylesMobile()
 
   return (
     <>
@@ -92,9 +91,7 @@ const get = ( props: Props ) => {
                 return (
                   <React.Fragment key={miniDappURL}>
 
-                    <Grid container>
-
-                      <Grid item xs>
+                     <Grid item xs={3}>
                         <Paper
                           className={classes.appIconContainer}
                           elevation={0}
@@ -106,51 +103,47 @@ const get = ( props: Props ) => {
                         </Paper>
                       </Grid>
 
-                      <Grid className={classes.details} item container xs={11}>
-
-                        <Grid item xs={11}>
-                          <Typography variant="h3">
-                            {name}
-                          </Typography>
-                          <Typography variant="body1">
-                            {category}
-                          </Typography>
-                        </Grid>
-
-                        <Grid item container justify="flex-end" xs>
-                            <a href={miniDappURL}>
-                              <IconButton
-                                color="primary"
-                                aria-label={Help.downloadTip}
-                                component="span"
-                                size="small">
-                                <img data-for='download' data-tip src={downloadIcon}/>
-                              </IconButton>
-                              <ReactTooltip
-                                id='download'
-                                place="top"
-                                effect="solid"
-                              >
-                                {Help.downloadTip}
-                              </ReactTooltip>
-                            </a>
-                        </Grid>
-
-                        <Grid item xs={12}>
-                          <hr className={classes.hr}/>
-                        </Grid>
-
+                      <Grid item xs={8}>
+                        <Typography variant="h3">
+                          {name}
+                        </Typography>
+                        <Typography variant="body1">
+                          {category}
+                        </Typography>
                       </Grid>
 
-                    </Grid>
+                      <Grid item container justify="flex-end" xs={1}>
+                        <a href={miniDappURL}>
+                          <IconButton
+                            color="primary"
+                            aria-label={Help.downloadTip}
+                            component="span"
+                            size="small">
+                            <img data-for='download' data-tip src={downloadMobile}/>
+                          </IconButton>
+                          <ReactTooltip
+                            id='download'
+                            place="top"
+                            effect="solid"
+                          >
+                            {Help.downloadTip}
+                          </ReactTooltip>
+                        </a>
+                      </Grid>
 
-                    <Grid container>
-
-                      <Grid item xs>
+                      <Grid item xs={3}>
                         &nbsp;
                       </Grid>
 
-                      <Grid className={classes.details} item xs={11}>
+                      <Grid item xs={9}>
+                        <hr className={classes.hr}/>
+                      </Grid>
+
+                      <Grid item xs={3}>
+                        &nbsp;
+                      </Grid>
+
+                      <Grid item xs={9}>
                         <Typography variant="body1">
                           {headline}
                         </Typography>
@@ -161,11 +154,11 @@ const get = ( props: Props ) => {
                           {serverTitle}
                          </Typography>
                       </Grid>
-                    </Grid>
 
-                    <Grid item xs={12}>
-                      <hr/>
-                    </Grid>
+                      <Grid item xs={12}>
+                        <hr/>
+                      </Grid>
+
                   </React.Fragment>
                 )
               })
@@ -175,6 +168,137 @@ const get = ( props: Props ) => {
       }
     </>
   )
+}
+
+const desktop = ( props: Props ) => {
+
+  const [isLoading, setLoading] = useState(false)
+
+  const classes = themeStyles()
+
+  return (
+    <>
+      {isLoading ?
+        <Grid className={classes.spinner}>
+          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+        </Grid> : (
+          <Grid container>
+
+            <Grid item xs={12}>
+              <Typography variant="h2">
+                {HomeConfig.heading}
+              </Typography>
+            </Grid>
+
+            <Grid item xs={12}>
+              <hr className={classes.hr}/>
+            </Grid>
+            {
+              props.miniDappData.miniDapps.map( ( miniDapp: MiniData ) => {
+
+                const dappHome = miniDapp.serverURL
+                const server = serverInfo(dappHome, props.serverData)
+                const serverTitle = server.title
+                const dir = miniDapp.dir
+                const icon = miniDapp.icon
+                const iconURL = dappHome + dir + "/" + icon
+                const name = miniDapp.conf.name
+                const headline = miniDapp.conf.headline
+                const version = miniDapp.conf.version
+                const description = miniDapp.conf.description
+                const category = miniDapp.conf.category
+                const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
+                //const pathAddDapp = `${Local.addDapp}/${i}`
+
+                return (
+                  <React.Fragment key={miniDappURL}>
+
+                     <Grid item xs={2}>
+                        <Paper
+                          className={classes.appIconContainer}
+                          elevation={0}
+                        >
+                            <img
+                              className={classes.appIcon}
+                              src={iconURL}
+                            />
+                        </Paper>
+                      </Grid>
+
+                      <Grid item xs={9}>
+                        <Typography variant="h3">
+                          {name}
+                        </Typography>
+                        <Typography variant="body1">
+                          {category}
+                        </Typography>
+                      </Grid>
+
+                      <Grid item container justify="flex-end" xs={1}>
+                        <a href={miniDappURL}>
+                          <IconButton
+                            color="primary"
+                            aria-label={Help.downloadTip}
+                            component="span"
+                            size="small">
+                            <img data-for='download' data-tip src={downloadDesktop}/>
+                          </IconButton>
+                          <ReactTooltip
+                            id='download'
+                            place="top"
+                            effect="solid"
+                          >
+                            {Help.downloadTip}
+                          </ReactTooltip>
+                        </a>
+                      </Grid>
+
+                      <Grid item xs={2}>
+                        &nbsp;
+                      </Grid>
+
+                      <Grid item xs={10}>
+                        <hr className={classes.hr}/>
+                      </Grid>
+
+                      <Grid item xs={2}>
+                        &nbsp;
+                      </Grid>
+
+                      <Grid item xs={10}>
+                        <Typography variant="body1">
+                          {headline}
+                        </Typography>
+                        <Typography variant="h3">
+                          Version {version}
+                        </Typography>
+                        <Typography variant="h4">
+                          {serverTitle}
+                         </Typography>
+                      </Grid>
+
+                      <Grid item xs={12}>
+                        <hr/>
+                      </Grid>
+
+                  </React.Fragment>
+                )
+              })
+            }
+          </Grid>
+        )
+      }
+    </>
+  )
+}
+
+const get = ( props: Props ) => {
+
+  if (isMobile) {
+    return mobile(props)
+  } else {
+    return desktop(props)
+  }
 }
 
 const mapStateToProps = (state: ApplicationState): HomeStateProps => {

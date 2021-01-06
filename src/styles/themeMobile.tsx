@@ -29,14 +29,14 @@ let themeMobile = createMuiTheme ({
     fontWeightMedium: 500,
     h1: {
       lineHeight: "2.4",
-      fontSize:  "2em",
+      fontSize:  "2.2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     h2: {
       lineHeight: "2.2",
-      fontSize: "1.8em",
+      fontSize: "2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
@@ -53,7 +53,7 @@ let themeMobile = createMuiTheme ({
       fontSize: "1.5em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
-      color: '#001C32'
+      color: '#317aff'
     },
     h5: {
       lineHeight: "1",
@@ -144,29 +144,28 @@ const themeStylesMobile = makeStyles({
     position: 'relative'
   },
   header: {
-    paddingRight: themeMobile.spacing(8),
-    paddingLeft: themeMobile.spacing(8),
+    paddingRight: themeMobile.spacing(4),
+    paddingLeft: themeMobile.spacing(4),
     margin: themeMobile.spacing(0),
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "130px",
+    height: "80px",
     width: "100%",
     position: 'absolute',
     top: '0'
   },
   subHeader: {
-    paddingRight: themeMobile.spacing(8),
-    paddingLeft: themeMobile.spacing(8),
+    paddingRight: themeMobile.spacing(4),
+    paddingLeft: themeMobile.spacing(4),
     margin: themeMobile.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
-    height: "95px",
+    height: "60px",
     width: "100%",
     position: 'absolute',
-    top: '130px'
+    top: '80px'
   },
   title: {
-    paddingTop: themeMobile.spacing(3),
-    paddingBottom: themeMobile.spacing(3),
+    paddingBottom: themeMobile.spacing(2),
     margin: themeMobile.spacing(0),
     position: 'absolute',
     bottom: '0'
@@ -176,15 +175,15 @@ const themeStylesMobile = makeStyles({
     paddingBottom: themeMobile.spacing(1)
   },
   content: {
-    paddingRight: themeMobile.spacing(8),
-    paddingLeft: themeMobile.spacing(8),
+    paddingRight: themeMobile.spacing(4),
+    paddingLeft: themeMobile.spacing(4),
     margin: themeMobile.spacing(0),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     overflow: 'auto',
     width: "100%",
     position: 'absolute',
-    bottom: '140px',
-    top: '225px'
+    bottom: '80px',
+    top: '140px'
   },
   storeTitle: {
     padding: themeMobile.spacing(0),
@@ -204,14 +203,13 @@ const themeStylesMobile = makeStyles({
     margin: themeMobile.spacing(0)
   },
   footer: {
-    paddingRight: themeMobile.spacing(8),
-    paddingLeft: themeMobile.spacing(8),
-    paddingTop: themeMobile.spacing(3),
-    paddingBottom: themeMobile.spacing(4),
+    paddingRight: themeMobile.spacing(4),
+    paddingLeft: themeMobile.spacing(4),
+    paddingTop: themeMobile.spacing(1),
     margin: themeMobile.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "140px",
+    height: "80px",
     width: "100%",
     position: 'absolute',
     bottom: '0'

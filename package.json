@@ -10,7 +10,9 @@
   "scripts": {
     "compile": "./node_modules/.bin/webpack --config ./webpack.dev.js --mode development && rm ./build/app.js && rm ./build/app.js.map && mkdir ./build/images && cp ./miniDapp/images/* ./build/images && cp ./miniDapp/config/minidapp.conf ./build",
     "watch": "./node_modules/.bin/webpack --config ./webpack.dev.js --watch --mode development",
-    "prodWatch": "./node_modules/.bin/webpack --config ./webpack.dev.js --watch --mode production",
+    "prodWatch": "./node_modules/.bin/webpack --config ./webpack.prod.js --watch --mode production",
+    "devel": "./node_modules/.bin/webpack --config ./webpack.prod.js --mode production && rm ./build/app.js && mkdir ./build/images && cp ./miniDapp/images/* /Users/sh601/.minima/webroot/minidapps/0x5876F851839AA4933A5FC62AD1E339293F6C9913/images && cp ./build/index.html /Users/sh601/.minima/webroot/minidapps/0x5876F851839AA4933A5FC62AD1E339293F6C9913",
+    "develCopy": "cp ./miniDapp/images/* /Users/sh601/.minima/webroot/minidapps/0x5876F851839AA4933A5FC62AD1E339293F6C9913/images && cp ./build/index.html /Users/sh601/.minima/webroot/minidapps/0x5876F851839AA4933A5FC62AD1E339293F6C9913",
     "prod": "./node_modules/.bin/webpack --config ./webpack.prod.js --mode production && rm ./build/app.js && mkdir ./build/images && cp ./miniDapp/images/* ./build/images && cp ./miniDapp/config/minidapp.conf ./build && cp ./miniDapp/config/serverFile.json ./build && cp ./miniDapp/config/defaultServer.json ./build && cd ./build && zip -r ../miniDapp/dist/storefront.minidapp *",
     "prodClean": "rm ./build/app.js && mkdir ./build/images",
     "prodCopy": "cp ./miniDapp/images/* ./build/images && cp ./miniDapp/config/minidapp.conf ./build && cp ./miniDapp/config/serverFile.json ./build && cp ./miniDapp/config/defaultServer.json ./build && cd ./build && zip -r ../miniDapp/dist/storefront.minidapp *",
