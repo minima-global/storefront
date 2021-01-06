@@ -35,7 +35,7 @@ interface StorefrontsStateProps {
 //type Props = StorefrontsStateProps & StorefrontsDispatchProps
 type Props = StorefrontsStateProps
 
-const get = ( props: Props ) => {
+const mobile = ( props: Props ) => {
 
   const [isLoading, setLoading] = useState(false)
 
@@ -73,34 +73,30 @@ const get = ( props: Props ) => {
                 return (
                   <React.Fragment key={server.url}>
 
-                    <Grid container>
+                    <Grid item container justify="flex-start" xs={3}>
+                      <Paper
+                        className={classes.appIconContainer}
+                        elevation={0}
+                      >
+                        <input
+                            type="image"
+                            src={iconURL}
+                            onClick={() => history.push(`${pathShowStore}`)}
+                            alt="store icon"
+                            aria-label="store icon"
+                            role="button"
+                            className={classes.appIcon}
+                        />
+                      </Paper>
+                    </Grid>
 
-                      <Grid item container justify="flex-start" xs>
-                        <Paper
-                          className={classes.appIconContainer}
-                          elevation={0}
-                        >
-                          <input
-                              type="image"
-                              src={iconURL}
-                              onClick={() => history.push(`${pathShowStore}`)}
-                              alt="store icon"
-                              aria-label="store icon"
-                              role="button"
-                              className={classes.appIcon}
-                          />
-                        </Paper>
-                      </Grid>
-
-                      <Grid className={classes.details} item xs={11}>
-                        <Typography variant="h3">
-                          {title}
-                        </Typography>
-                        <Typography variant="body1">
-                          {description}
-                        </Typography>
-                      </Grid>
-
+                    <Grid className={classes.details} item xs={8}>
+                      <Typography variant="h3">
+                        {title}
+                      </Typography>
+                      <Typography variant="body1">
+                        {description}
+                      </Typography>
                     </Grid>
 
                     <Grid item xs={12}>
@@ -116,6 +112,94 @@ const get = ( props: Props ) => {
       }
     </>
   )
+}
+
+const desktop = ( props: Props ) => {
+
+  const [isLoading, setLoading] = useState(false)
+
+  const classes = isMobile ? themeStylesMobile() : themeStyles()
+  let history = useHistory()
+
+  return (
+    <>
+      {isLoading ?
+        <Grid container className={classes.spinner}>
+          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+        </Grid> : (
+          <Grid container>
+
+            <Grid item xs={12}>
+              <Typography variant="h2">
+                {StorefrontsConfig.heading}
+              </Typography>
+            </Grid>
+
+            <Grid item xs={12}>
+              <hr className={classes.hr}/>
+            </Grid>
+            {
+              props.serverData.servers.map( ( server: Server, i: number ) => {
+
+                const iconURL = server.url + "/" + server.icon
+                const title = server.title
+                const description = server.description
+                const isOnline = server.isOnline
+                const urlEncoded = encodeURIComponent(server.url)
+                console.log("url: ", urlEncoded)
+                const pathShowStore = `${Local.showStoreDapps}/${urlEncoded}`
+
+                return (
+                  <React.Fragment key={server.url}>
+
+                    <Grid item container justify="flex-start" xs={2}>
+                      <Paper
+                        className={classes.appIconContainer}
+                        elevation={0}
+                      >
+                        <input
+                            type="image"
+                            src={iconURL}
+                            onClick={() => history.push(`${pathShowStore}`)}
+                            alt="store icon"
+                            aria-label="store icon"
+                            role="button"
+                            className={classes.appIcon}
+                        />
+                      </Paper>
+                    </Grid>
+
+                    <Grid className={classes.details} item xs={9}>
+                      <Typography variant="h3">
+                        {title}
+                      </Typography>
+                      <Typography variant="body1">
+                        {description}
+                      </Typography>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                      <hr/>
+                    </Grid>
+
+                  </React.Fragment>
+                )
+              })
+            }
+          </Grid>
+        )
+      }
+    </>
+  )
+}
+
+const get = ( props: Props ) => {
+
+  if (isMobile) {
+    return mobile(props)
+  } else {
+    return desktop(props)
+  }
 }
 
 const mapStateToProps = (state: ApplicationState): StorefrontsStateProps => {
