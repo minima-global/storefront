@@ -97,26 +97,23 @@ const mobile = ( props: Props ) => {
 
                       storeHeading = (
                         <>
-                          <Grid container>
 
-                            <Grid item xs>
-                              <Paper
-                                className={classes.storeIconContainer}
-                                elevation={0}
-                              >
-                                <img
-                                  className={classes.storeIcon}
-                                  src={storeIconURL}
-                                />
-                              </Paper>
-                            </Grid>
+                          <Grid item xs={1}>
+                            <Paper
+                              className={classes.storeIconContainer}
+                              elevation={0}
+                            >
+                              <img
+                                className={classes.storeIcon}
+                                src={storeIconURL}
+                              />
+                            </Paper>
+                          </Grid>
 
-                            <Grid className={classes.storeTitle} item xs={11}>
-                              <Typography variant="h2">
-                                {storeTitle}
-                              </Typography>
-                            </Grid>
-
+                          <Grid className={classes.storeTitle} item xs={11}>
+                            <Typography variant="h2">
+                              {storeTitle}
+                            </Typography>
                           </Grid>
 
                           <Grid item xs={12}>
@@ -133,25 +130,22 @@ const mobile = ( props: Props ) => {
                             <hr className={classes.hr}/>
                           </Grid>
 
-                          <Grid container>
+                          <Grid item xs={1}>
+                            <Paper
+                              className={classes.linkIconContainer}
+                              elevation={0}
+                            >
+                              <img
+                                className={classes.linkIcon}
+                                src={linkMobile}
+                              />
+                            </Paper>
+                          </Grid>
 
-                            <Grid item xs={1}>
-                              <Paper
-                                className={classes.linkIconContainer}
-                                elevation={0}
-                              >
-                                <img
-                                  className={classes.linkIcon}
-                                  src={linkMobile}
-                                />
-                              </Paper>
-                            </Grid>
-
-                            <Grid item xs={11}>
-                              <Typography variant="body1">
-                                {displayURL}
-                              </Typography>
-                            </Grid>
+                          <Grid item xs={11}>
+                            <Typography variant="body1">
+                              {displayURL}
+                            </Typography>
                           </Grid>
 
                           <Grid item xs={12}>

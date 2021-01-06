@@ -28,71 +28,71 @@ let themeMobile = createMuiTheme ({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     h1: {
-      lineHeight: "2.4",
-      fontSize:  "2.2em",
+      lineHeight: "2",
+      fontSize:  "1.8em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     h2: {
-      lineHeight: "2.2",
-      fontSize: "2em",
+      lineHeight: "1.7",
+      fontSize: "1.6em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h3: {
-      lineHeight: '1.6',
-      fontSize: "1.5em",
+      lineHeight: '1.3',
+      fontSize: "1.2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h4: {
-      lineHeight: '1.6',
-      fontSize: "1.5em",
+      lineHeight: '1.3',
+      fontSize: "1.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#317aff'
     },
     h5: {
-      lineHeight: "1",
-      fontSize: "1.4em",
+      lineHeight: "1.2",
+      fontSize: "1.1em",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h6: {
-      lineHeight: "1",
-      fontSize: "1.1em",
+      lineHeight: "1.1",
+      fontSize: "1em",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     subtitle1: {
       lineHeight: "1",
-      fontSize: "1.3em",
+      fontSize: "1em",
       fontWeight: 600,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     subtitle2: {
       lineHeight: "1",
-      fontSize: "1.3em",
+      fontSize: "1em",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     body1: {
-      lineHeight: '1.6',
-      fontSize: "1.5em",
+      lineHeight: '1.3',
+      fontSize: "1.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     body2: {
-      lineHeight: '1.6',
-      fontSize: "1.5em",
+      lineHeight: '1.3',
+      fontSize: "1.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
@@ -104,7 +104,7 @@ let themeMobile = createMuiTheme ({
     },
     button: {
       lineHeight: "1",
-      fontSize: "1.5em",
+      fontSize: "1em",
       textTransform: "uppercase",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
