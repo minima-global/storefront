@@ -18,6 +18,7 @@ import downloadDesktop from '../../images/downloadLarge.png'
 import downloadMobile from '../../images/download.png'
 import linkDesktop from '../../images/linkLarge.png'
 import linkMobile from '../../images/link.png'
+import background from '../../images/square100x100.png'
 
 import { initMiniDapps, getMiniDapps, serverInfo } from '../../store/app/fileServer/actions'
 
@@ -71,8 +72,10 @@ const mobile = ( props: Props ) => {
   return (
     <>
       {isLoading ?
-        <Grid container className={classes.spinner}>
-          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+        <Grid container>
+          <Grid container className={classes.spinner}>
+            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+          </Grid>
         </Grid> : (
           <Grid container>
             {
@@ -99,15 +102,16 @@ const mobile = ( props: Props ) => {
                         <>
 
                           <Grid item xs={2}>
-                            <Paper
-                              className={classes.storeIconContainer}
-                              elevation={0}
-                            >
+                            <div className={classes.storeIconParent}>
+                              <img
+                                className={classes.storeIconContainer}
+                                src={background}
+                              />
                               <img
                                 className={classes.storeIcon}
                                 src={storeIconURL}
                               />
-                            </Paper>
+                            </div>
                           </Grid>
 
                           <Grid className={classes.storeTitle} item xs={9}>
@@ -117,29 +121,24 @@ const mobile = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hr}/>
+                            <hr className={classes.hrFirst}/>
                           </Grid>
 
                           <Grid className={classes.storeDescription} item xs={12}>
-                            <Typography variant="body1">
+                            <Typography variant="h5">
                               {storeDescription}
                             </Typography>
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hr}/>
+                            <hr className={classes.hrSecond}/>
                           </Grid>
 
                           <Grid item xs={1}>
-                            <Paper
-                              className={classes.linkIconContainer}
-                              elevation={0}
-                            >
-                              <img
-                                className={classes.linkIcon}
-                                src={linkMobile}
-                              />
-                            </Paper>
+                            <img
+                              className={classes.linkIcon}
+                              src={linkMobile}
+                            />
                           </Grid>
 
                           <Grid item xs={11}>
@@ -149,7 +148,7 @@ const mobile = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hr}/>
+                            <hr className={classes.hrFirst}/>
                           </Grid>
                         </>
                       )
@@ -175,22 +174,17 @@ const mobile = ( props: Props ) => {
                         {storeHeading}
 
                         <Grid item xs={3}>
-                          <Paper
-                            className={classes.appIconContainer}
-                            elevation={0}
-                          >
-                            <img
-                              className={classes.appIcon}
-                              src={iconURL}
-                            />
-                          </Paper>
+                          <img
+                            className={classes.appIcon}
+                            src={iconURL}
+                          />
                         </Grid>
 
                         <Grid item xs={8}>
                           <Typography variant="h3">
                             {name}
                           </Typography>
-                          <Typography variant="body1">
+                          <Typography variant="h5">
                             {category}
                           </Typography>
                         </Grid>
@@ -219,7 +213,7 @@ const mobile = ( props: Props ) => {
                         </Grid>
 
                         <Grid item xs={9}>
-                          <hr className={classes.hr}/>
+                          <hr className={classes.hrSecond}/>
                         </Grid>
 
                         <Grid item xs={3}>
@@ -227,7 +221,7 @@ const mobile = ( props: Props ) => {
                         </Grid>
 
                         <Grid item xs={9}>
-                          <Typography variant="body1">
+                          <Typography variant="h5">
                            {headline}
                           </Typography>
                           <Typography variant="h3">
@@ -236,7 +230,7 @@ const mobile = ( props: Props ) => {
                         </Grid>
 
                         <Grid item xs={12}>
-                          <hr/>
+                          <hr className={classes.hrFirst}/>
                         </Grid>
 
                       </React.Fragment>
@@ -277,8 +271,10 @@ const desktop = ( props: Props ) => {
   return (
     <>
       {isLoading ?
-        <Grid container className={classes.spinner}>
-          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+        <Grid container>
+          <Grid container className={classes.spinner}>
+            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+          </Grid>
         </Grid> : (
           <Grid container>
             {
@@ -304,15 +300,16 @@ const desktop = ( props: Props ) => {
                       storeHeading = (
                         <>
                           <Grid item xs={2}>
-                            <Paper
-                              className={classes.storeIconContainer}
-                              elevation={0}
-                            >
+                            <div className={classes.storeIconParent}>
+                              <img
+                                className={classes.storeIconContainer}
+                                src={background}
+                              />
                               <img
                                 className={classes.storeIcon}
                                 src={storeIconURL}
                               />
-                            </Paper>
+                            </div>
                           </Grid>
 
                           <Grid className={classes.storeTitle} item xs={9}>
@@ -322,29 +319,24 @@ const desktop = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hr}/>
+                            <hr className={classes.hrFirst}/>
                           </Grid>
 
                           <Grid className={classes.storeDescription} item xs={12}>
-                            <Typography variant="body1">
+                            <Typography variant="h5">
                               {storeDescription}
                             </Typography>
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hr}/>
+                            <hr className={classes.hrSecond}/>
                           </Grid>
 
                           <Grid item xs={1}>
-                            <Paper
-                              className={classes.linkIconContainer}
-                              elevation={0}
-                            >
-                              <img
-                                className={classes.linkIcon}
-                                src={linkDesktop}
-                              />
-                            </Paper>
+                            <img
+                              className={classes.linkIcon}
+                              src={linkDesktop}
+                            />
                           </Grid>
 
                           <Grid item xs={11}>
@@ -354,7 +346,7 @@ const desktop = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hr}/>
+                            <hr className={classes.hrFirst}/>
                           </Grid>
                         </>
                       )
@@ -380,22 +372,17 @@ const desktop = ( props: Props ) => {
                         {storeHeading}
 
                         <Grid item xs={2}>
-                          <Paper
-                            className={classes.appIconContainer}
-                            elevation={0}
-                          >
-                            <img
-                              className={classes.appIcon}
-                              src={iconURL}
-                            />
-                          </Paper>
+                          <img
+                            className={classes.appIcon}
+                            src={iconURL}
+                          />
                         </Grid>
 
                         <Grid item xs={9}>
                           <Typography variant="h3">
                             {name}
                           </Typography>
-                          <Typography variant="body1">
+                          <Typography variant="h5">
                             {category}
                           </Typography>
                         </Grid>
@@ -424,7 +411,7 @@ const desktop = ( props: Props ) => {
                         </Grid>
 
                         <Grid item xs={10}>
-                          <hr className={classes.hr}/>
+                          <hr className={classes.hrSecond}/>
                         </Grid>
 
                         <Grid item xs={2}>
@@ -432,7 +419,7 @@ const desktop = ( props: Props ) => {
                         </Grid>
 
                         <Grid item xs={10}>
-                          <Typography variant="body1">
+                          <Typography variant="h5">
                            {headline}
                           </Typography>
                           <Typography variant="h3">
@@ -441,7 +428,7 @@ const desktop = ( props: Props ) => {
                         </Grid>
 
                         <Grid item xs={12}>
-                          <hr/>
+                          <hr className={classes.hrFirst}/>
                         </Grid>
 
                       </React.Fragment>

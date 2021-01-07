@@ -28,10 +28,10 @@ const appInfo = (props: Props) => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <hr className={classes.hr}/>
+          <hr className={classes.hrFirst}/>
         </Grid>
         <Grid item container justify="flex-start" xs={12}>
-          <Typography variant="body1">
+          <Typography variant="h5">
             {props.data}
           </Typography>
         </Grid>

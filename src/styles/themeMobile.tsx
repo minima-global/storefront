@@ -35,29 +35,29 @@ let themeMobile = createMuiTheme ({
       color: '#001C32',
     },
     h2: {
-      lineHeight: "1.7",
+      lineHeight: "2.2",
       fontSize: "1.6em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h3: {
-      lineHeight: '1.4',
-      fontSize: "1.2em",
+      lineHeight: '1.3',
+      fontSize: "1.1em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h4: {
-      lineHeight: '1.4',
-      fontSize: "1.2em",
+      lineHeight: '1.3',
+      fontSize: "1.1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#317aff'
     },
     h5: {
-      lineHeight: "1",
-      fontSize: "0.9em",
+      lineHeight: "1.3",
+      fontSize: "1.1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
@@ -84,15 +84,15 @@ let themeMobile = createMuiTheme ({
       color: '#001C32'
     },
     body1: {
-      lineHeight: '1.4',
-      fontSize: "1.2em",
+      lineHeight: '1',
+      fontSize: "1",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32',
     },
     body2: {
-      lineHeight: '1.4',
-      fontSize: "1.2em",
+      lineHeight: '1',
+      fontSize: "1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
@@ -231,50 +231,46 @@ const themeStylesMobile = makeStyles({
   },
   spinner: {
      position: 'absolute',
-     left: '50%',
-     top: '50%',
-     transform: 'translate(-50%, -50%)'
-  },
-  appIconContainer: {
-    padding: themeMobile.spacing(0),
-    marginTop: themeMobile.spacing(1),
-    background: 'linear-gradient(#FAFAFF, #FAFAFF)',
-    width: "45px",
-    height: "45px",
-    overflow: "hidden"
+     top: "170px",
+     margin: "auto"
   },
   appIcon: {
     margin: 'auto',
     height: "45px",
-    width: '100%'
+    width: "45px"
+  },
+  storeIconParent: {
+    marginTop: themeMobile.spacing(1),
+    position: "relative",
+    top: "0",
+    left: "0",
   },
   storeIconContainer: {
-    padding: themeMobile.spacing(0),
-    marginTop: themeMobile.spacing(1),
-    background: 'linear-gradient(#FAFAFF, #FAFAFF)',
-    width: "45px",
-    height: "45px",
-    overflow: "hidden"
+    position: "relative",
+    top: "0",
+    left: "0",
+    borderRadius: "50%",
+    width: "30px",
+    height: "30px"
   },
   storeIcon: {
-    margin: 'auto',
-    height: "45px",
-    width: '100%'
-  },
-  linkIconContainer: {
-    padding: themeMobile.spacing(0),
-    marginTop: themeMobile.spacing(0),
-    background: 'linear-gradient(#FAFAFF, #FAFAFF)',
-    width: "15px",
+    position: "absolute",
+    top: "0",
+    left: "0",
+    margin: '5px',
+    width: "20px",
     height: "20px",
-    overflow: "hidden"
   },
   linkIcon: {
     margin: 'auto',
     height: "15px",
-    width: '100%'
+    width: '15px'
   },
-  hr: {
+  hrFirst: {
+    borderTop: "1px",
+    solid: "#C8C8D4"
+  },
+  hrSecond: {
     borderTop: "1px",
     solid: "#F0F0FA"
   }

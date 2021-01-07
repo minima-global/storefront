@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography'
 
 import Spinner from 'react-spinner-material'
 
+import background from '../../images/square100x100.png'
+
 import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 
 //import Markdown from 'react-markdown'
@@ -45,8 +47,10 @@ const mobile = ( props: Props ) => {
   return (
     <>
       {isLoading ?
-        <Grid container className={classes.spinner}>
-          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+        <Grid container>
+          <Grid container className={classes.spinner}>
+            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+          </Grid>
         </Grid> : (
           <Grid container>
 
@@ -57,7 +61,7 @@ const mobile = ( props: Props ) => {
             </Grid>
 
             <Grid item xs={12}>
-              <hr className={classes.hr}/>
+              <hr className={classes.hrFirst}/>
             </Grid>
             {
               props.serverData.servers.map( ( server: Server, i: number ) => {
@@ -74,33 +78,34 @@ const mobile = ( props: Props ) => {
                   <React.Fragment key={server.url}>
 
                     <Grid item container justify="flex-start" xs={3}>
-                      <Paper
-                        className={classes.appIconContainer}
-                        elevation={0}
-                      >
-                        <input
-                            type="image"
-                            src={iconURL}
-                            onClick={() => history.push(`${pathShowStore}`)}
-                            alt="store icon"
-                            aria-label="store icon"
-                            role="button"
-                            className={classes.appIcon}
+                      <div className={classes.storeIconParent}>
+                        <img
+                          className={classes.storeIconContainer}
+                          src={background}
                         />
-                      </Paper>
+                        <input
+                          type="image"
+                          src={iconURL}
+                          onClick={() => history.push(`${pathShowStore}`)}
+                          alt="store icon"
+                          aria-label="store icon"
+                          role="button"
+                          className={classes.storeIcon}
+                        />
+                      </div>
                     </Grid>
 
                     <Grid className={classes.details} item xs={8}>
                       <Typography variant="h3">
                         {title}
                       </Typography>
-                      <Typography variant="body1">
+                      <Typography variant="h5">
                         {description}
                       </Typography>
                     </Grid>
 
                     <Grid item xs={12}>
-                      <hr/>
+                      <hr className={classes.hrFirst}/>
                     </Grid>
 
                   </React.Fragment>
@@ -124,8 +129,10 @@ const desktop = ( props: Props ) => {
   return (
     <>
       {isLoading ?
-        <Grid container className={classes.spinner}>
-          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+        <Grid container>
+          <Grid container className={classes.spinner}>
+            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+          </Grid>
         </Grid> : (
           <Grid container>
 
@@ -136,7 +143,7 @@ const desktop = ( props: Props ) => {
             </Grid>
 
             <Grid item xs={12}>
-              <hr className={classes.hr}/>
+              <hr className={classes.hrFirst}/>
             </Grid>
             {
               props.serverData.servers.map( ( server: Server, i: number ) => {
@@ -153,33 +160,34 @@ const desktop = ( props: Props ) => {
                   <React.Fragment key={server.url}>
 
                     <Grid item container justify="flex-start" xs={2}>
-                      <Paper
-                        className={classes.appIconContainer}
-                        elevation={0}
-                      >
-                        <input
-                            type="image"
-                            src={iconURL}
-                            onClick={() => history.push(`${pathShowStore}`)}
-                            alt="store icon"
-                            aria-label="store icon"
-                            role="button"
-                            className={classes.appIcon}
+                      <div className={classes.storeIconParent}>
+                        <img
+                          className={classes.storeIconContainer}
+                          src={background}
                         />
-                      </Paper>
+                        <input
+                          type="image"
+                          src={iconURL}
+                          onClick={() => history.push(`${pathShowStore}`)}
+                          alt="store icon"
+                          aria-label="store icon"
+                          role="button"
+                          className={classes.storeIcon}
+                        />
+                      </div>
                     </Grid>
 
                     <Grid className={classes.details} item xs={9}>
                       <Typography variant="h3">
                         {title}
                       </Typography>
-                      <Typography variant="body1">
+                      <Typography variant="h5">
                         {description}
                       </Typography>
                     </Grid>
 
                     <Grid item xs={12}>
-                      <hr/>
+                      <hr className={classes.hrFirst}/>
                     </Grid>
 
                   </React.Fragment>

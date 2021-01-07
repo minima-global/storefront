@@ -57,8 +57,10 @@ const mobile = ( props: Props ) => {
   return (
     <>
       {isLoading ?
-        <Grid className={classes.spinner}>
-          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+        <Grid container>
+          <Grid className={classes.spinner}>
+            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+          </Grid>
         </Grid> : (
           <Grid container>
 
@@ -69,7 +71,7 @@ const mobile = ( props: Props ) => {
             </Grid>
 
             <Grid item xs={12}>
-              <hr className={classes.hr}/>
+              <hr className={classes.hrFirst}/>
             </Grid>
             {
               props.miniDappData.miniDapps.map( ( miniDapp: MiniData ) => {
@@ -92,22 +94,17 @@ const mobile = ( props: Props ) => {
                   <React.Fragment key={miniDappURL}>
 
                      <Grid item xs={3}>
-                        <Paper
-                          className={classes.appIconContainer}
-                          elevation={0}
-                        >
-                            <img
-                              className={classes.appIcon}
-                              src={iconURL}
-                            />
-                        </Paper>
+                        <img
+                          className={classes.appIcon}
+                          src={iconURL}
+                        />
                       </Grid>
 
                       <Grid item xs={8}>
                         <Typography variant="h3">
                           {name}
                         </Typography>
-                        <Typography variant="body1">
+                        <Typography variant="h5">
                           {category}
                         </Typography>
                       </Grid>
@@ -136,7 +133,7 @@ const mobile = ( props: Props ) => {
                       </Grid>
 
                       <Grid item xs={9}>
-                        <hr className={classes.hr}/>
+                        <hr className={classes.hrSecond}/>
                       </Grid>
 
                       <Grid item xs={3}>
@@ -144,7 +141,7 @@ const mobile = ( props: Props ) => {
                       </Grid>
 
                       <Grid item xs={9}>
-                        <Typography variant="body1">
+                        <Typography variant="h5">
                           {headline}
                         </Typography>
                         <Typography variant="h3">
@@ -156,7 +153,7 @@ const mobile = ( props: Props ) => {
                       </Grid>
 
                       <Grid item xs={12}>
-                        <hr/>
+                        <hr className={classes.hrFirst}/>
                       </Grid>
 
                   </React.Fragment>
@@ -179,8 +176,10 @@ const desktop = ( props: Props ) => {
   return (
     <>
       {isLoading ?
-        <Grid className={classes.spinner}>
-          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+        <Grid container>
+          <Grid container className={classes.spinner}>
+            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
+          </Grid>
         </Grid> : (
           <Grid container>
 
@@ -191,7 +190,7 @@ const desktop = ( props: Props ) => {
             </Grid>
 
             <Grid item xs={12}>
-              <hr className={classes.hr}/>
+              <hr className={classes.hrFirst}/>
             </Grid>
             {
               props.miniDappData.miniDapps.map( ( miniDapp: MiniData ) => {
@@ -214,22 +213,17 @@ const desktop = ( props: Props ) => {
                   <React.Fragment key={miniDappURL}>
 
                      <Grid item xs={2}>
-                        <Paper
-                          className={classes.appIconContainer}
-                          elevation={0}
-                        >
-                            <img
-                              className={classes.appIcon}
-                              src={iconURL}
-                            />
-                        </Paper>
+                        <img
+                          className={classes.appIcon}
+                          src={iconURL}
+                        />
                       </Grid>
 
                       <Grid item xs={9}>
                         <Typography variant="h3">
                           {name}
                         </Typography>
-                        <Typography variant="body1">
+                        <Typography variant="h5">
                           {category}
                         </Typography>
                       </Grid>
@@ -258,7 +252,7 @@ const desktop = ( props: Props ) => {
                       </Grid>
 
                       <Grid item xs={10}>
-                        <hr className={classes.hr}/>
+                        <hr className={classes.hrSecond}/>
                       </Grid>
 
                       <Grid item xs={2}>
@@ -266,7 +260,7 @@ const desktop = ( props: Props ) => {
                       </Grid>
 
                       <Grid item xs={10}>
-                        <Typography variant="body1">
+                        <Typography variant="h5">
                           {headline}
                         </Typography>
                         <Typography variant="h3">
@@ -278,7 +272,7 @@ const desktop = ( props: Props ) => {
                       </Grid>
 
                       <Grid item xs={12}>
-                        <hr/>
+                        <hr className={classes.hrFirst}/>
                       </Grid>
 
                   </React.Fragment>
