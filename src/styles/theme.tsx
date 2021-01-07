@@ -113,7 +113,7 @@ let theme = createMuiTheme ({
   palette: {
     type: 'dark',
     background: {
-      default: '#FFFFFF',
+      default: '#edefef',
     },
     text: {
       primary: "#001C32",
@@ -137,10 +137,12 @@ theme.spacing(0)
 
 const themeStyles = makeStyles({
   root: {
-    background: 'linear-gradient(#F0F0FA, #F0F0FA)',
-    height: "100vh",
-    width: "70%",
-    margin: 'auto',
+    marginTop: "5vh",
+    marginBottom: "5vh",
+    marginLeft: "auto",
+    marginRight: "auto",
+    height: "90vh",
+    width: "50%",
     position: 'relative'
   },
   header: {
@@ -235,9 +237,9 @@ const themeStyles = makeStyles({
     background: 'linear-gradient(#ff671d, #ff671d)',
   },
   spinner: {
-     position: 'absolute',
-     top: "170px",
-     margin: "auto"
+     position: 'relative',
+     top: "50%",
+     bottom: "50%"
   },
   appIcon: {
     margin: 'auto',

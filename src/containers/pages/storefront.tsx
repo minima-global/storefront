@@ -16,8 +16,8 @@ import ReactTooltip from 'react-tooltip'
 
 import downloadDesktop from '../../images/downloadLarge.png'
 import downloadMobile from '../../images/download.png'
-import linkDesktop from '../../images/linkLarge.png'
-import linkMobile from '../../images/link.png'
+/*import linkDesktop from '../../images/linkLarge.png'
+import linkMobile from '../../images/link.png'*/
 import background from '../../images/square100x100.png'
 
 import { initMiniDapps, getMiniDapps, serverInfo } from '../../store/app/fileServer/actions'
@@ -64,7 +64,9 @@ const mobile = ( props: Props ) => {
     if ( props.serverData.servers.length
     && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
 
-      setLoading(false)
+      setTimeout(async () => {
+        setLoading(false)
+      }, Misc.spinnerDelay)
     }
 
   }, [props.serverData])
@@ -72,10 +74,8 @@ const mobile = ( props: Props ) => {
   return (
     <>
       {isLoading ?
-        <Grid container>
-          <Grid container className={classes.spinner}>
-            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-          </Grid>
+        <Grid className={classes.spinner} item container justify="center">
+          <Spinner radius={40} color={"#ff671d"} stroke={10} visible={isLoading} />
         </Grid> : (
           <Grid container>
             {
@@ -88,11 +88,6 @@ const mobile = ( props: Props ) => {
                     if( setHeading ) {
 
                       const server = serverInfo(serverUrl, props.serverData)
-
-                      const splitter = '//'
-                      const indexOf = serverUrl.indexOf(splitter)
-                      const displayURL = serverUrl.slice(indexOf+splitter.length)
-
                       const storeTitle = server.title
                       const storeDescription = server.description
                       const storeIcon = server.icon
@@ -127,23 +122,6 @@ const mobile = ( props: Props ) => {
                           <Grid className={classes.storeDescription} item xs={12}>
                             <Typography variant="h5">
                               {storeDescription}
-                            </Typography>
-                          </Grid>
-
-                          <Grid item xs={12}>
-                            <hr className={classes.hrSecond}/>
-                          </Grid>
-
-                          <Grid item xs={1}>
-                            <img
-                              className={classes.linkIcon}
-                              src={linkMobile}
-                            />
-                          </Grid>
-
-                          <Grid item xs={11}>
-                            <Typography variant="h5">
-                              {displayURL}
                             </Typography>
                           </Grid>
 
@@ -251,7 +229,6 @@ const desktop = ( props: Props ) => {
 
   const { url } = useParams<{ url: string }>()
   const serverUrl = decodeURIComponent(url)
-  console.log("decoded: ", serverUrl, url)
 
   const classes = isMobile ? themeStylesMobile() : themeStyles()
   const history = useHistory()
@@ -263,7 +240,10 @@ const desktop = ( props: Props ) => {
     if ( props.serverData.servers.length
     && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
 
-      setLoading(false)
+      setTimeout(async () => {
+        setLoading(false)
+      }, Misc.spinnerDelay)
+
     }
 
   }, [props.serverData])
@@ -271,10 +251,8 @@ const desktop = ( props: Props ) => {
   return (
     <>
       {isLoading ?
-        <Grid container>
-          <Grid container className={classes.spinner}>
-            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-          </Grid>
+        <Grid className={classes.spinner} item container justify="center">
+          <Spinner radius={40} color={"#ff671d"} stroke={10} visible={isLoading} />
         </Grid> : (
           <Grid container>
             {
@@ -287,11 +265,6 @@ const desktop = ( props: Props ) => {
                     if( setHeading ) {
 
                       const server = serverInfo(serverUrl, props.serverData)
-
-                      const splitter = '//'
-                      const indexOf = serverUrl.indexOf(splitter)
-                      const displayURL = serverUrl.slice(indexOf+splitter.length)
-
                       const storeTitle = server.title
                       const storeDescription = server.description
                       const storeIcon = server.icon
@@ -325,23 +298,6 @@ const desktop = ( props: Props ) => {
                           <Grid className={classes.storeDescription} item xs={12}>
                             <Typography variant="h5">
                               {storeDescription}
-                            </Typography>
-                          </Grid>
-
-                          <Grid item xs={12}>
-                            <hr className={classes.hrSecond}/>
-                          </Grid>
-
-                          <Grid item xs={1}>
-                            <img
-                              className={classes.linkIcon}
-                              src={linkDesktop}
-                            />
-                          </Grid>
-
-                          <Grid item xs={11}>
-                            <Typography variant="h5">
-                              {displayURL}
                             </Typography>
                           </Grid>
 

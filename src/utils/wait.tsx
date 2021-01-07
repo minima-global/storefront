@@ -13,7 +13,7 @@ export const waitFor = async (condFunc: () => Promise<boolean>) => {
       setTimeout(async () => {
         await waitFor(condFunc)
         resolve()
-    }, Misc.pollInterval)
+      }, Misc.pollInterval)
     }
   })
 }

@@ -50,17 +50,27 @@ type Props = HomeStateProps
 
 const mobile = ( props: Props ) => {
 
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(true)
 
   const classes = themeStylesMobile()
+
+  useEffect(() => {
+
+    if ( props.serverData.servers.length
+    && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
+
+      setTimeout(async () => {
+        setLoading(false)
+      }, Misc.spinnerDelay)
+    }
+
+  }, [props.serverData])
 
   return (
     <>
       {isLoading ?
-        <Grid container>
-          <Grid className={classes.spinner}>
-            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-          </Grid>
+        <Grid className={classes.spinner} item container justify="center">
+          <Spinner radius={40} color={"#ff671d"} stroke={10} visible={isLoading} />
         </Grid> : (
           <Grid container>
 
@@ -169,17 +179,27 @@ const mobile = ( props: Props ) => {
 
 const desktop = ( props: Props ) => {
 
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(true)
 
   const classes = themeStyles()
+
+  useEffect(() => {
+
+    if ( props.serverData.servers.length
+    && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
+
+      setTimeout(async () => {
+        setLoading(false)
+      }, Misc.spinnerDelay)
+    }
+
+  }, [props.serverData])
 
   return (
     <>
       {isLoading ?
-        <Grid container>
-          <Grid container className={classes.spinner}>
-            <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-          </Grid>
+        <Grid className={classes.spinner} item container justify="center">
+          <Spinner radius={40} color={"#ff671d"} stroke={10} visible={isLoading} />
         </Grid> : (
           <Grid container>
 

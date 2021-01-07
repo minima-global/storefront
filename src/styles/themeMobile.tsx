@@ -230,9 +230,9 @@ const themeStylesMobile = makeStyles({
     background: 'linear-gradient(#ff671d, #ff671d)',
   },
   spinner: {
-     position: 'absolute',
-     top: "170px",
-     margin: "auto"
+   position: 'relative',
+   top: "50%",
+   bottom: "50%"
   },
   appIcon: {
     margin: 'auto',
