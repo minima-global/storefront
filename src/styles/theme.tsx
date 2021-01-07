@@ -146,8 +146,8 @@ const themeStyles = makeStyles({
     position: 'relative'
   },
   header: {
-    paddingRight: theme.spacing(10),
-    paddingLeft: theme.spacing(10),
+    paddingRight: theme.spacing(5),
+    paddingLeft: theme.spacing(5),
     paddingBottom: theme.spacing(3),
     margin: theme.spacing(0),
     background: 'linear-gradient(#001C32, #001C32)',
@@ -157,8 +157,8 @@ const themeStyles = makeStyles({
     top: '0'
   },
   subHeader: {
-    paddingRight: theme.spacing(10),
-    paddingLeft: theme.spacing(10),
+    paddingRight: theme.spacing(5)
+    paddingLeft: theme.spacing(5)
     paddingBottom: theme.spacing(1),
     paddingTop: theme.spacing(1),
     margin: theme.spacing(0),
@@ -181,8 +181,8 @@ const themeStyles = makeStyles({
     paddingBottom: theme.spacing(1)
   },
   content: {
-    paddingRight: theme.spacing(10),
-    paddingLeft: theme.spacing(10),
+    paddingRight: theme.spacing(5)
+    paddingLeft: theme.spacing(5)
     margin: theme.spacing(0),
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     overflow: 'auto',
@@ -209,8 +209,8 @@ const themeStyles = makeStyles({
     margin: theme.spacing(0)
   },
   footer: {
-    paddingRight: theme.spacing(10),
-    paddingLeft: theme.spacing(10),
+    paddingRight: theme.spacing(5)
+    paddingLeft: theme.spacing(5)
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(4),
     margin: theme.spacing(0),
