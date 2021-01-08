@@ -177,7 +177,7 @@ const mobile = (props: Props) => {
 
       </Grid>
 
-    <Grid className={classes.content} item container xs={12}>
+    <Grid className={classes.content} alignItems="flex-start" item container xs={12}>
       <Content />
     </Grid>
 
