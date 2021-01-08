@@ -126,7 +126,7 @@ const mobile = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hrFirst}/>
+                            <hr className={classes.hrSecond}/>
                           </Grid>
                         </>
                       )
@@ -202,13 +202,13 @@ const mobile = ( props: Props ) => {
                           <Typography variant="h5">
                            {headline}
                           </Typography>
-                          <Typography variant="h3">
+                          <Typography variant="h6">
                            Version {version}
                           </Typography>
                         </Grid>
 
                         <Grid item xs={12}>
-                          <hr className={classes.hrFirst}/>
+                          <hr className={classes.hrThird}/>
                         </Grid>
 
                       </React.Fragment>
@@ -302,7 +302,7 @@ const desktop = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hrFirst}/>
+                            <hr className={classes.hrSecond}/>
                           </Grid>
                         </>
                       )
@@ -378,13 +378,13 @@ const desktop = ( props: Props ) => {
                           <Typography variant="h5">
                            {headline}
                           </Typography>
-                          <Typography variant="h3">
+                          <Typography variant="h6">
                            Version {version}
                           </Typography>
                         </Grid>
 
                         <Grid item xs={12}>
-                          <hr className={classes.hrFirst}/>
+                          <hr className={classes.hrThird}/>
                         </Grid>
 
                       </React.Fragment>

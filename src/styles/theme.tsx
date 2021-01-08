@@ -50,22 +50,22 @@ let theme = createMuiTheme ({
     },
     h4: {
       lineHeight: '1.4',
-      fontSize: "1.4em",
+      fontSize: "1.1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#317aff'
     },
     h5: {
       lineHeight: "1.4",
-      fontSize: "1.4em",
+      fontSize: "1.1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h6: {
-      lineHeight: "1",
-      fontSize: "1em",
-      fontWeight: 500,
+      lineHeight: "1.4",
+      fontSize: "1.1em",
+      fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
@@ -142,7 +142,7 @@ const themeStyles = makeStyles({
     marginLeft: "auto",
     marginRight: "auto",
     height: "90vh",
-    width: "50%",
+    width: "75%",
     position: 'relative'
   },
   header: {
@@ -243,8 +243,8 @@ const themeStyles = makeStyles({
   },
   appIcon: {
     margin: 'auto',
-    height: "70px",
-    width: '70px'
+    height: "60px",
+    width: '60px'
   },
   storeIconParent: {
     marginTop: theme.spacing(1),
@@ -268,18 +268,40 @@ const themeStyles = makeStyles({
     width: "40px",
     height: "40px",
   },
+  storesIconParent: {
+    position: "relative",
+    top: "0",
+    left: "0",
+  },
+  storesIconContainer: {
+    position: "relative",
+    top: "0",
+    left: "0",
+    borderRadius: "50%",
+    width: "60px",
+    height: "60px"
+  },
+  storesIcon: {
+    position: "absolute",
+    top: "0",
+    left: "0",
+    margin: '5px',
+    width: "50px",
+    height: "50px",
+  },
   linkIcon: {
     margin: 'auto',
     height: "30px",
     width: '30px'
   },
   hrFirst: {
-    borderTop: "1px",
-    solid: "#C8C8D4"
+    borderTop: "1px solid #C8C8BF"
   },
   hrSecond: {
-    borderTop: "1px",
-    solid: "#F0F0FA",
+    borderTop: "1px solid #F0F0FA",
+  },
+  hrThird: {
+    borderTop: "1px solid #DFDFED",
   }
 })
 

@@ -154,7 +154,7 @@ const mobile = ( props: Props ) => {
                         <Typography variant="h5">
                           {headline}
                         </Typography>
-                        <Typography variant="h3">
+                        <Typography variant="h6">
                           Version {version}
                         </Typography>
                         <Typography variant="h4">
@@ -163,7 +163,7 @@ const mobile = ( props: Props ) => {
                       </Grid>
 
                       <Grid item xs={12}>
-                        <hr className={classes.hrFirst}/>
+                        <hr className={classes.hrThird}/>
                       </Grid>
 
                   </React.Fragment>
@@ -283,7 +283,7 @@ const desktop = ( props: Props ) => {
                         <Typography variant="h5">
                           {headline}
                         </Typography>
-                        <Typography variant="h3">
+                        <Typography variant="h6">
                           Version {version}
                         </Typography>
                         <Typography variant="h4">
@@ -292,7 +292,7 @@ const desktop = ( props: Props ) => {
                       </Grid>
 
                       <Grid item xs={12}>
-                        <hr className={classes.hrFirst}/>
+                        <hr className={classes.hrThird}/>
                       </Grid>
 
                   </React.Fragment>

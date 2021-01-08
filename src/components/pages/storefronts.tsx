@@ -81,16 +81,15 @@ const mobile = ( props: Props ) => {
                 const description = server.description
                 const isOnline = server.isOnline
                 const urlEncoded = encodeURIComponent(server.url)
-                console.log("url: ", urlEncoded)
                 const pathShowStore = `${Local.showStoreDapps}/${urlEncoded}`
 
                 return (
                   <React.Fragment key={server.url}>
 
                     <Grid item container justify="flex-start" xs={3}>
-                      <div className={classes.storeIconParent}>
+                      <div className={classes.storesIconParent}>
                         <img
-                          className={classes.storeIconContainer}
+                          className={classes.storesIconContainer}
                           src={background}
                         />
                         <input
@@ -100,12 +99,12 @@ const mobile = ( props: Props ) => {
                           alt="store icon"
                           aria-label="store icon"
                           role="button"
-                          className={classes.storeIcon}
+                          className={classes.storesIcon}
                         />
                       </div>
                     </Grid>
 
-                    <Grid className={classes.details} item xs={8}>
+                    <Grid item xs={8}>
                       <Typography variant="h3">
                         {title}
                       </Typography>
@@ -115,7 +114,7 @@ const mobile = ( props: Props ) => {
                     </Grid>
 
                     <Grid item xs={12}>
-                      <hr className={classes.hrFirst}/>
+                      <hr className={classes.hrThird}/>
                     </Grid>
 
                   </React.Fragment>
@@ -173,16 +172,15 @@ const desktop = ( props: Props ) => {
                 const description = server.description
                 const isOnline = server.isOnline
                 const urlEncoded = encodeURIComponent(server.url)
-                console.log("url: ", urlEncoded)
                 const pathShowStore = `${Local.showStoreDapps}/${urlEncoded}`
 
                 return (
                   <React.Fragment key={server.url}>
 
                     <Grid item container justify="flex-start" xs={2}>
-                      <div className={classes.storeIconParent}>
+                      <div className={classes.storesIconParent}>
                         <img
-                          className={classes.storeIconContainer}
+                          className={classes.storesIconContainer}
                           src={background}
                         />
                         <input
@@ -192,12 +190,12 @@ const desktop = ( props: Props ) => {
                           alt="store icon"
                           aria-label="store icon"
                           role="button"
-                          className={classes.storeIcon}
+                          className={classes.storesIcon}
                         />
                       </div>
                     </Grid>
 
-                    <Grid className={classes.details} item xs={9}>
+                    <Grid item xs={9}>
                       <Typography variant="h3">
                         {title}
                       </Typography>
@@ -207,7 +205,7 @@ const desktop = ( props: Props ) => {
                     </Grid>
 
                     <Grid item xs={12}>
-                      <hr className={classes.hrFirst}/>
+                      <hr className={classes.hrThird}/>
                     </Grid>
 
                   </React.Fragment>
