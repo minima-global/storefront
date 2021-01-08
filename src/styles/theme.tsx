@@ -148,7 +148,7 @@ const themeStyles = makeStyles({
   header: {
     paddingRight: theme.spacing(5),
     paddingLeft: theme.spacing(5),
-    paddingBottom: theme.spacing(3),
+    paddingTop: "44px",
     margin: theme.spacing(0),
     background: 'linear-gradient(#001C32, #001C32)',
     height: "130px",
@@ -164,21 +164,10 @@ const themeStyles = makeStyles({
     margin: theme.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
-    height: "95px",
+    height: "90px",
     width: "100%",
     position: 'absolute',
     top: '130px'
-  },
-  title: {
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-    margin: theme.spacing(0),
-    position: 'absolute',
-    bottom: '0'
-  },
-  subTitle: {
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1)
   },
   content: {
     paddingRight: theme.spacing(5),
@@ -189,7 +178,18 @@ const themeStyles = makeStyles({
     width: "100%",
     position: 'absolute',
     bottom: '140px',
-    top: '225px'
+    top: '220px'
+  },
+  footer: {
+    paddingRight: theme.spacing(5),
+    paddingLeft: theme.spacing(5),
+    paddingTop: "20px",
+    margin: theme.spacing(0),
+    background: 'linear-gradient(#001C32, #001C32)',
+    height: "140px",
+    width: "100%",
+    position: 'absolute',
+    bottom: '0'
   },
   storeTitle: {
     padding: theme.spacing(0),
@@ -203,23 +203,6 @@ const themeStyles = makeStyles({
     padding: theme.spacing(1),
     margin: theme.spacing(0),
     textAlign: 'center',
-  },
-  details: {
-    paddingLeft: theme.spacing(3),
-    margin: theme.spacing(0)
-  },
-  footer: {
-    paddingRight: theme.spacing(5),
-    paddingLeft: theme.spacing(5),
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(4),
-    margin: theme.spacing(0),
-    textAlign: 'center',
-    background: 'linear-gradient(#001C32, #001C32)',
-    height: "140px",
-    width: "100%",
-    position: 'absolute',
-    bottom: '0'
   },
   footerLinks: {
     fontWeight: 400,
@@ -242,9 +225,34 @@ const themeStyles = makeStyles({
      bottom: "50%"
   },
   appIcon: {
-    margin: 'auto',
     height: "60px",
     width: '60px'
+  },
+  subHeaderIcon: {
+    height: "64px",
+    width: '64px'
+  },
+  footerIcon: {
+    height: "48px",
+    width: '48px'
+  },
+  headerIcon: {
+    height: "56px",
+    width: '56px'
+  },
+  appNameIconContainer: {
+    position: "relative",
+    top: "0",
+    left: "0",
+    height: "56px",
+    width: '208px'
+  },
+  appNameIcon: {
+    position: "absolute",
+    bottom: "0",
+    left: "0",
+    height: "31px",
+    width: '208px'
   },
   storeIconParent: {
     marginTop: theme.spacing(1),

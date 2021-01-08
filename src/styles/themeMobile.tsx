@@ -146,7 +146,9 @@ const themeStylesMobile = makeStyles({
   header: {
     paddingRight: themeMobile.spacing(4),
     paddingLeft: themeMobile.spacing(4),
+    paddingTop: "42px",
     margin: themeMobile.spacing(0),
+    textAlign: 'center',
     background: 'linear-gradient(#001C32, #001C32)',
     height: "80px",
     width: "100%",
@@ -156,23 +158,14 @@ const themeStylesMobile = makeStyles({
   subHeader: {
     paddingRight: themeMobile.spacing(4),
     paddingLeft: themeMobile.spacing(4),
+    paddingBottom: themeMobile.spacing(1),
+    paddingTop: themeMobile.spacing(1),
     margin: themeMobile.spacing(0),
-    textAlign: 'center',
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
-    height: "60px",
+    height: "55px",
     width: "100%",
     position: 'absolute',
     top: '80px'
-  },
-  title: {
-    paddingBottom: themeMobile.spacing(2),
-    margin: themeMobile.spacing(0),
-    position: 'absolute',
-    bottom: '0'
-  },
-  subTitle: {
-    paddingTop: themeMobile.spacing(1),
-    paddingBottom: themeMobile.spacing(1)
   },
   content: {
     paddingRight: themeMobile.spacing(4),
@@ -183,7 +176,18 @@ const themeStylesMobile = makeStyles({
     width: "100%",
     position: 'absolute',
     bottom: '80px',
-    top: '140px'
+    top: '135px'
+  },
+  footer: {
+    paddingRight: themeMobile.spacing(4),
+    paddingLeft: themeMobile.spacing(4),
+    paddingTop: "10px",
+    margin: themeMobile.spacing(0),
+    background: 'linear-gradient(#001C32, #001C32)',
+    height: "80px",
+    width: "100%",
+    position: 'absolute',
+    bottom: '0'
   },
   storeTitle: {
     padding: themeMobile.spacing(0),
@@ -197,22 +201,6 @@ const themeStylesMobile = makeStyles({
     padding: themeMobile.spacing(1),
     margin: themeMobile.spacing(0),
     textAlign: 'center',
-  },
-  details: {
-    paddingLeft: themeMobile.spacing(3),
-    margin: themeMobile.spacing(0)
-  },
-  footer: {
-    paddingRight: themeMobile.spacing(4),
-    paddingLeft: themeMobile.spacing(4),
-    paddingTop: themeMobile.spacing(1),
-    margin: themeMobile.spacing(0),
-    textAlign: 'center',
-    background: 'linear-gradient(#001C32, #001C32)',
-    height: "80px",
-    width: "100%",
-    position: 'absolute',
-    bottom: '0'
   },
   footerLinks: {
     fontWeight: 400,
@@ -235,9 +223,34 @@ const themeStylesMobile = makeStyles({
    bottom: "50%"
   },
   appIcon: {
-    margin: 'auto',
     height: "35px",
     width: "35px"
+  },
+  subHeaderIcon: {
+    height: "32px",
+    width: '32px'
+  },
+  footerIcon: {
+    height: "24px",
+    width: '24px'
+  },
+  headerIcon: {
+    height: "28px",
+    width: '28px'
+  },
+  appNameIconContainer: {
+    position: "relative",
+    top: "0",
+    left: "0",
+    height: "28px",
+    width: '104px'
+  },
+  appNameIcon: {
+    position: "absolute",
+    bottom: "0",
+    left: "0",
+    height: "16px",
+    width: '104px'
   },
   storeIconParent: {
     marginTop: themeMobile.spacing(1),

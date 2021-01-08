@@ -52,7 +52,7 @@ var config = {
         loader: "awesome-typescript-loader"
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|svg|gif)$/i,
         exclude: /node_modules/,
         use: [
           {

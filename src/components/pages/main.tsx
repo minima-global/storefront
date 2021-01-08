@@ -23,25 +23,17 @@ import ReactTooltip from 'react-tooltip'
 
 import { initServers, initMiniDapps, setServers } from '../../store/app/fileServer/actions'
 
-import helpDesktop from '../../images/helpLarge.png'
-import helpMobile from '../../images/help.png'
-import infoDesktop from '../../images/infolarge.png'
-import infoMobile from '../../images/info.png'
-import contactDesktop from '../../images/contactLarge.png'
-import contactMobile from '../../images/contact.png'
-import allDappsDesktop from '../../images/allMiniDappsLarge.png'
-import allDappsMobile from '../../images/allMiniDapps.png'
-import storesDesktop from '../../images/storefrontsLarge.png'
-import storesMobile from '../../images/storefronts.png'
-import settingsDesktop from '../../images/addStorefrontLarge.png'
-import settingsMobile from '../../images/addStorefront.png'
+import helpIcon from '../../images/help.svg'
+import infoIcon from '../../images/info.svg'
+import contactIcon from '../../images/contact.svg'
 
-import logoDesktop from '../../images/storefrontLogoLarge.png'
-import logoMobile from '../../images/storefrontLogo.png'
-import appNameDesktop from '../../images/storefrontLarge.png'
-import appNameMobile from '../../images/storefront.png'
-import minimaDesktop from '../../images/minimaIconlarge.png'
-import minimaMobile from '../../images/minimaIcon.png'
+import allDappsIcon from '../../images/allMiniDapps.svg'
+import storesIcon from '../../images/storefronts.svg'
+import settingsIcon from '../../images/addStorefront.svg'
+
+import logoIcon from '../../images/storefrontLogo.svg'
+import appNameIcon from '../../images/storefront.svg'
+import minimaIcon from '../../images/minimaIcon.svg'
 
 import { themeStyles, themeStylesMobile } from '../../styles'
 
@@ -86,15 +78,17 @@ const mobile = (props: Props) => {
       <Grid item container className={classes.header} xs={12}>
 
         <Grid item container justify="flex-start" xs={4}>
-          <img className={classes.title} src={logoMobile}/>
+          <img className={classes.headerIcon} src={logoIcon}/>
         </Grid>
 
         <Grid item container justify="center" xs={4}>
-          <img className={classes.title} src={appNameMobile}/>
+          <div className={classes.appNameIconContainer}>
+            <img className={classes.appNameIcon} src={appNameIcon}/>
+          </div>
         </Grid>
 
         <Grid item container justify="flex-end" xs={4}>
-          <img className={classes.title} src={minimaMobile}/>
+          <img className={classes.headerIcon} src={minimaIcon}/>
         </Grid>
 
       </Grid>
@@ -105,7 +99,7 @@ const mobile = (props: Props) => {
           &nbsp;
         </Grid>
 
-        <Grid item container className={classes.subTitle} justify="flex-end" xs={6}>
+        <Grid item container justify="flex-end" xs={6}>
 
           <Grid item container justify="flex-end" xs={4}>
             <NavLink to={Local.help} className={classes.link}>
@@ -114,10 +108,15 @@ const mobile = (props: Props) => {
                   aria-label="Help"
                   component="span"
                   size="small">
-                  <img data-for={helpMobile} data-tip src={helpMobile}/>
+                  <img
+                    data-for={helpIcon}
+                    data-tip
+                    src={helpIcon}
+                    className={classes.subHeaderIcon}
+                  />
                 </IconButton>
                 <ReactTooltip
-                  id={helpMobile}
+                  id={helpIcon}
                   place="bottom"
                   effect="solid"
                 >
@@ -133,10 +132,15 @@ const mobile = (props: Props) => {
                 aria-label="Info"
                 component="span"
                 size="small">
-                <img data-for={infoMobile} data-tip src={infoMobile}/>
+                <img
+                  data-for={infoIcon}
+                  data-tip
+                  src={infoIcon}
+                  className={classes.subHeaderIcon}
+                />
               </IconButton>
               <ReactTooltip
-                id={infoMobile}
+                id={infoIcon}
                 place="bottom"
                 effect="solid"
               >
@@ -152,10 +156,15 @@ const mobile = (props: Props) => {
                 aria-label="Contact"
                 component="span"
                 size="small">
-                <img data-for={contactMobile} data-tip src={contactMobile}/>
+                <img
+                  data-for={contactIcon}
+                  data-tip
+                  src={contactIcon}
+                  className={classes.subHeaderIcon}
+                />
               </IconButton>
               <ReactTooltip
-                id={contactMobile}
+                id={contactIcon}
                 place="bottom"
                 effect="solid"
               >
@@ -168,7 +177,7 @@ const mobile = (props: Props) => {
 
       </Grid>
 
-    <Grid className={classes.content} item container alignItems="flex-start" xs={12}>
+    <Grid className={classes.content} item container xs={12}>
       <Content />
     </Grid>
 
@@ -182,10 +191,15 @@ const mobile = (props: Props) => {
              aria-label={Help.homeTip}
              component="span"
              size="small">
-             <img data-for={allDappsMobile} data-tip src={allDappsMobile}/>
+             <img
+              data-for={allDappsIcon}
+              data-tip
+              src={allDappsIcon}
+              className={classes.footerIcon}
+            />
             </IconButton>
             <ReactTooltip
-              id={allDappsMobile}
+              id={allDappsIcon}
               place="top"
               effect="solid"
             >
@@ -203,10 +217,15 @@ const mobile = (props: Props) => {
                aria-label={Help.storeTip}
                component="span"
                size="small">
-               <img data-for={storesMobile} data-tip src={storesMobile}/>
+               <img
+                data-for={storesIcon}
+                data-tip
+                src={storesIcon}
+                className={classes.footerIcon}
+              />
               </IconButton>
               <ReactTooltip
-                id={storesMobile}
+                id={storesIcon}
                 place="top"
                 effect="solid"
               >
@@ -224,10 +243,15 @@ const mobile = (props: Props) => {
               aria-label={Help.fileTip}
               component="span"
               size="small">
-              <img data-for={settingsMobile} data-tip src={settingsMobile}/>
+              <img
+                data-for={settingsIcon}
+                data-tip
+                src={settingsIcon}
+                className={classes.footerIcon}
+              />
             </IconButton>
             <ReactTooltip
-              id={settingsMobile}
+              id={settingsIcon}
               place="top"
               effect="solid"
             >
@@ -288,15 +312,17 @@ const desktop = (props: Props) => {
       <Grid item container className={classes.header} xs={12}>
 
         <Grid item container justify="flex-start" xs={4}>
-          <img className={classes.title} src={logoDesktop}/>
+          <img className={classes.headerIcon} src={logoIcon}/>
         </Grid>
 
         <Grid item container justify="center" xs={4}>
-          <img className={classes.title} src={appNameDesktop}/>
+          <div className={classes.appNameIconContainer}>
+            <img className={classes.appNameIcon} src={appNameIcon}/>
+          </div>
         </Grid>
 
         <Grid item container justify="flex-end" xs={4}>
-          <img className={classes.title} src={minimaDesktop}/>
+          <img className={classes.headerIcon} src={minimaIcon}/>
         </Grid>
 
       </Grid>
@@ -307,7 +333,7 @@ const desktop = (props: Props) => {
           &nbsp;
         </Grid>
 
-        <Grid item container className={classes.subTitle} justify="flex-end" xs={6}>
+        <Grid item container justify="flex-end" xs={6}>
 
           <Grid item container justify="flex-end" xs={4}>
             <NavLink to={Local.help} className={classes.link}>
@@ -316,10 +342,15 @@ const desktop = (props: Props) => {
                   aria-label="Help"
                   component="span"
                   size="small">
-                  <img data-for={helpDesktop} data-tip src={helpDesktop}/>
+                  <img
+                    data-for={helpIcon}
+                    data-tip
+                    src={helpIcon}
+                    className={classes.subHeaderIcon}
+                  />
                 </IconButton>
                 <ReactTooltip
-                  id={helpDesktop}
+                  id={helpIcon}
                   place="bottom"
                   effect="solid"
                 >
@@ -335,10 +366,15 @@ const desktop = (props: Props) => {
                 aria-label="Info"
                 component="span"
                 size="small">
-                <img data-for={infoDesktop} data-tip src={infoDesktop}/>
+                <img
+                  data-for={infoIcon}
+                  data-tip
+                  src={infoIcon}
+                  className={classes.subHeaderIcon}
+                />
               </IconButton>
               <ReactTooltip
-                id={infoDesktop}
+                id={infoIcon}
                 place="bottom"
                 effect="solid"
               >
@@ -354,10 +390,15 @@ const desktop = (props: Props) => {
                 aria-label="Contact"
                 component="span"
                 size="small">
-                <img data-for={contactDesktop} data-tip src={contactDesktop}/>
+                <img
+                  data-for={contactIcon}
+                  data-tip
+                  src={contactIcon}
+                  className={classes.subHeaderIcon}
+                />
               </IconButton>
               <ReactTooltip
-                id={contactDesktop}
+                id={contactIcon}
                 place="bottom"
                 effect="solid"
               >
@@ -384,10 +425,15 @@ const desktop = (props: Props) => {
              aria-label={Help.homeTip}
              component="span"
              size="small">
-             <img data-for={allDappsDesktop} data-tip src={allDappsDesktop}/>
+             <img
+              data-for={allDappsIcon}
+              data-tip
+              src={allDappsIcon}
+              className={classes.footerIcon}
+            />
             </IconButton>
             <ReactTooltip
-              id={allDappsDesktop}
+              id={allDappsIcon}
               place="top"
               effect="solid"
             >
@@ -405,10 +451,15 @@ const desktop = (props: Props) => {
                aria-label={Help.storeTip}
                component="span"
                size="small">
-               <img data-for={storesDesktop} data-tip src={storesDesktop}/>
+               <img
+                data-for={storesIcon}
+                data-tip
+                src={storesIcon}
+                className={classes.footerIcon}
+               />
               </IconButton>
               <ReactTooltip
-                id={storesDesktop}
+                id={storesIcon}
                 place="top"
                 effect="solid"
               >
@@ -426,10 +477,15 @@ const desktop = (props: Props) => {
               aria-label={Help.fileTip}
               component="span"
               size="small">
-              <img data-for={settingsDesktop} data-tip src={settingsDesktop}/>
+              <img
+                data-for={settingsIcon}
+                data-tip
+                src={settingsIcon}
+                className={classes.footerIcon}
+              />
             </IconButton>
             <ReactTooltip
-              id={settingsDesktop}
+              id={settingsIcon}
               place="top"
               effect="solid"
             >
