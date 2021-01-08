@@ -228,6 +228,10 @@ const themeStyles = makeStyles({
     height: "60px",
     width: '60px'
   },
+  downloadIcon: {
+    height: "40px",
+    width: '34px'
+  },
   subHeaderIcon: {
     height: "64px",
     width: '64px'

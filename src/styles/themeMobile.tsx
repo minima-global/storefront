@@ -226,6 +226,10 @@ const themeStylesMobile = makeStyles({
     height: "35px",
     width: "35px"
   },
+  downloadIcon: {
+    height: "20px",
+    width: '17px'
+  },
   subHeaderIcon: {
     height: "32px",
     width: '32px'

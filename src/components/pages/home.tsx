@@ -13,8 +13,7 @@ import IconButton from '@material-ui/core/IconButton'
 
 import ReactTooltip from 'react-tooltip'
 
-import downloadDesktop from '../../images/downloadLarge.png'
-import downloadMobile from '../../images/download.png'
+import downloadIcon from '../../images/download.svg'
 
 import { serverInfo } from '../../store/app/fileServer/actions'
 
@@ -126,7 +125,12 @@ const mobile = ( props: Props ) => {
                             aria-label={Help.downloadTip}
                             component="span"
                             size="small">
-                            <img data-for='download' data-tip src={downloadMobile}/>
+                            <img
+                              data-for='download'
+                              data-tip
+                              src={downloadIcon}
+                              className={classes.downloadIcon}
+                            />
                           </IconButton>
                           <ReactTooltip
                             id='download'
@@ -255,7 +259,12 @@ const desktop = ( props: Props ) => {
                             aria-label={Help.downloadTip}
                             component="span"
                             size="small">
-                            <img data-for='download' data-tip src={downloadDesktop}/>
+                            <img
+                              data-for='download'
+                              data-tip
+                              src={downloadIcon}
+                              className={classes.downloadIcon}
+                            />
                           </IconButton>
                           <ReactTooltip
                             id='download'
