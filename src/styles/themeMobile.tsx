@@ -146,11 +146,11 @@ const themeStylesMobile = makeStyles({
   header: {
     paddingRight: themeMobile.spacing(4),
     paddingLeft: themeMobile.spacing(4),
-    paddingTop: "42px",
+    paddingTop: "32px",
     margin: themeMobile.spacing(0),
     textAlign: 'center',
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "80px",
+    height: "70px",
     width: "100%",
     position: 'absolute',
     top: '0'
@@ -165,7 +165,7 @@ const themeStylesMobile = makeStyles({
     height: "55px",
     width: "100%",
     position: 'absolute',
-    top: '80px'
+    top: '70px'
   },
   content: {
     paddingRight: themeMobile.spacing(4),
@@ -175,8 +175,8 @@ const themeStylesMobile = makeStyles({
     overflow: 'auto',
     width: "100%",
     position: 'absolute',
-    bottom: '80px',
-    top: '135px'
+    bottom: '70px',
+    top: '125px'
   },
   footer: {
     paddingRight: themeMobile.spacing(4),
@@ -184,7 +184,7 @@ const themeStylesMobile = makeStyles({
     paddingTop: "10px",
     margin: themeMobile.spacing(0),
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "80px",
+    height: "70px",
     width: "100%",
     position: 'absolute',
     bottom: '0'
