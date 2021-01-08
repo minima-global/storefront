@@ -86,7 +86,7 @@ const mobile = ( props: Props ) => {
                 return (
                   <React.Fragment key={server.url}>
 
-                    <Grid item container justify="flex-start" xs={3}>
+                    <Grid item container justify="flex-start" xs={2}>
                       <div className={classes.storesIconParent}>
                         <img
                           className={classes.storesIconContainer}
@@ -104,7 +104,7 @@ const mobile = ( props: Props ) => {
                       </div>
                     </Grid>
 
-                    <Grid item xs={8}>
+                    <Grid item xs={10}>
                       <Typography variant="h3">
                         {title}
                       </Typography>
@@ -195,7 +195,7 @@ const desktop = ( props: Props ) => {
                       </div>
                     </Grid>
 
-                    <Grid item xs={9}>
+                    <Grid item xs={10}>
                       <Typography variant="h3">
                         {title}
                       </Typography>

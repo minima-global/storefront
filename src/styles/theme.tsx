@@ -50,21 +50,21 @@ let theme = createMuiTheme ({
     },
     h4: {
       lineHeight: '1.4',
-      fontSize: "1.1em",
+      fontSize: "1.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#317aff'
     },
     h5: {
       lineHeight: "1.4",
-      fontSize: "1.1em",
+      fontSize: "1.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h6: {
       lineHeight: "1.4",
-      fontSize: "1.1em",
+      fontSize: "1.2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'

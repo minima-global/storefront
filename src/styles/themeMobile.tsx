@@ -50,21 +50,21 @@ let themeMobile = createMuiTheme ({
     },
     h4: {
       lineHeight: '1.2',
-      fontSize: "0.8em",
+      fontSize: "0.9em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#317aff'
     },
     h5: {
       lineHeight: "1.2",
-      fontSize: "0.8em",
+      fontSize: "0.9em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h6: {
       lineHeight: "1.2",
-      fontSize: "0.8em",
+      fontSize: "0.9em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
