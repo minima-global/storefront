@@ -73,7 +73,7 @@ const mobile = ( props: Props ) => {
               </Typography>
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item container xs={12} alignItems="flex-start">
               <img src={hrFirst} className={classes.hr}/>
             </Grid>
             {
@@ -89,34 +89,38 @@ const mobile = ( props: Props ) => {
                 return (
                   <React.Fragment key={server.url}>
 
-                    <Grid item container justify="flex-start" xs={2}>
-                      <div className={classes.storesIconParent}>
-                        <img
-                          className={classes.storesIconContainer}
-                          src={background}
-                        />
-                        <input
-                          type="image"
-                          src={iconURL}
-                          onClick={() => history.push(`${pathShowStore}`)}
-                          alt="store icon"
-                          aria-label="store icon"
-                          role="button"
-                          className={classes.storesIcon}
-                        />
-                      </div>
+                    <Grid container className={classes.details}>
+
+                      <Grid item container justify="flex-start" xs={2}>
+                        <div className={classes.storesIconParent}>
+                          <img
+                            className={classes.storesIconContainer}
+                            src={background}
+                          />
+                          <input
+                            type="image"
+                            src={iconURL}
+                            onClick={() => history.push(`${pathShowStore}`)}
+                            alt="store icon"
+                            aria-label="store icon"
+                            role="button"
+                            className={classes.storesIcon}
+                          />
+                        </div>
+                      </Grid>
+
+                      <Grid item xs={10}>
+                        <Typography variant="h3">
+                          {title}
+                        </Typography>
+                        <Typography variant="h5">
+                          {description}
+                        </Typography>
+                      </Grid>
+
                     </Grid>
 
-                    <Grid item xs={10}>
-                      <Typography variant="h3">
-                        {title}
-                      </Typography>
-                      <Typography variant="h5">
-                        {description}
-                      </Typography>
-                    </Grid>
-
-                    <Grid item xs={12}>
+                    <Grid item container xs={12} alignItems="flex-start">
                       <img src={hrThird} className={classes.hr}/>
                     </Grid>
 
@@ -164,7 +168,7 @@ const desktop = ( props: Props ) => {
               </Typography>
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item container xs={12} alignItems="flex-start">
               <img src={hrFirst} className={classes.hr}/>
             </Grid>
             {
@@ -180,34 +184,38 @@ const desktop = ( props: Props ) => {
                 return (
                   <React.Fragment key={server.url}>
 
-                    <Grid item container justify="flex-start" xs={2}>
-                      <div className={classes.storesIconParent}>
-                        <img
-                          className={classes.storesIconContainer}
-                          src={background}
-                        />
-                        <input
-                          type="image"
-                          src={iconURL}
-                          onClick={() => history.push(`${pathShowStore}`)}
-                          alt="store icon"
-                          aria-label="store icon"
-                          role="button"
-                          className={classes.storesIcon}
-                        />
-                      </div>
+                    <Grid container className={classes.details}>
+
+                      <Grid item container justify="flex-start" xs={2}>
+                        <div className={classes.storesIconParent}>
+                          <img
+                            className={classes.storesIconContainer}
+                            src={background}
+                          />
+                          <input
+                            type="image"
+                            src={iconURL}
+                            onClick={() => history.push(`${pathShowStore}`)}
+                            alt="store icon"
+                            aria-label="store icon"
+                            role="button"
+                            className={classes.storesIcon}
+                          />
+                        </div>
+                      </Grid>
+
+                      <Grid item xs={10}>
+                        <Typography variant="h3">
+                          {title}
+                        </Typography>
+                        <Typography variant="h5">
+                          {description}
+                        </Typography>
+                      </Grid>
+
                     </Grid>
 
-                    <Grid item xs={10}>
-                      <Typography variant="h3">
-                        {title}
-                      </Typography>
-                      <Typography variant="h5">
-                        {description}
-                      </Typography>
-                    </Grid>
-
-                    <Grid item xs={12}>
+                    <Grid item container xs={12} alignItems="flex-start">
                       <img src={hrThird} className={classes.hr}/>
                     </Grid>
 

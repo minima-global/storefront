@@ -49,7 +49,7 @@ let themeMobile = createMuiTheme ({
       color: '#001C32'
     },
     h4: {
-      lineHeight: '1',
+      lineHeight: '1.2',
       fontSize: "0.9em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",

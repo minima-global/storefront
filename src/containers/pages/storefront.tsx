@@ -117,18 +117,8 @@ const mobile = ( props: Props ) => {
                             </Typography>
                           </Grid>
 
-                          <Grid item xs={12}>
+                          <Grid item container xs={12} alignItems="flex-start">
                             <img src={hrFirst} className={classes.hr}/>
-                          </Grid>
-
-                          <Grid className={classes.storeDescription} item xs={12}>
-                            <Typography variant="h5">
-                              {storeDescription}
-                            </Typography>
-                          </Grid>
-
-                          <Grid item xs={12}>
-                            <img src={hrSecond} className={classes.hr}/>
                           </Grid>
                         </>
                       )
@@ -153,68 +143,72 @@ const mobile = ( props: Props ) => {
 
                         {storeHeading}
 
-                        <Grid item xs={3}>
-                          <img
-                            className={classes.appIcon}
-                            src={iconURL}
-                          />
+                        <Grid container className={classes.details}>
+
+                          <Grid item xs={3}>
+                            <img
+                              className={classes.appIcon}
+                              src={iconURL}
+                            />
+                          </Grid>
+
+                          <Grid item xs={8}>
+                            <Typography variant="h3">
+                              {name}
+                            </Typography>
+                            <Typography variant="h5">
+                              {category}
+                            </Typography>
+                          </Grid>
+
+                          <Grid item container justify="flex-end" xs={1}>
+                              <a href={miniDappURL}>
+                                <IconButton
+                                  color="primary"
+                                  aria-label={Help.downloadTip}
+                                  component="span"
+                                  size="small">
+                                  <img
+                                    data-for='download'
+                                    data-tip
+                                    src={downloadIcon}
+                                    className={classes.downloadIcon}
+                                  />
+                                </IconButton>
+                                <ReactTooltip
+                                  id='download'
+                                  place="top"
+                                  effect="solid"
+                                >
+                                  {Help.downloadTip}
+                                </ReactTooltip>
+                              </a>
+                          </Grid>
+
+                          <Grid item xs={3}>
+                            &nbsp;
+                          </Grid>
+
+                          <Grid item container xs={9} alignItems="center">
+                            <img src={hrSecond} className={classes.hr}/>
+                          </Grid>
+
+                          <Grid item xs={3}>
+                            &nbsp;
+                          </Grid>
+
+                          <Grid item xs={9}>
+                            <Typography variant="h5">
+                             {headline}
+                            </Typography>
+                            <Typography variant="h6">
+                             Version {version}
+                            </Typography>
+                          </Grid>
+
                         </Grid>
 
-                        <Grid item xs={8}>
-                          <Typography variant="h3">
-                            {name}
-                          </Typography>
-                          <Typography variant="h5">
-                            {category}
-                          </Typography>
-                        </Grid>
-
-                        <Grid item container justify="flex-end" xs={1}>
-                            <a href={miniDappURL}>
-                              <IconButton
-                                color="primary"
-                                aria-label={Help.downloadTip}
-                                component="span"
-                                size="small">
-                                <img
-                                  data-for='download'
-                                  data-tip
-                                  src={downloadIcon}
-                                  className={classes.downloadIcon}
-                                />
-                              </IconButton>
-                              <ReactTooltip
-                                id='download'
-                                place="top"
-                                effect="solid"
-                              >
-                                {Help.downloadTip}
-                              </ReactTooltip>
-                            </a>
-                        </Grid>
-
-                        <Grid item xs={3}>
-                          &nbsp;
-                        </Grid>
-
-                        <Grid item xs={9}>
-                          <img src={hrSecond} className={classes.hr}/>
-                        </Grid>
-
-                        <Grid item xs={3}>
-                          &nbsp;
-                        </Grid>
-
-                        <Grid item xs={9}>
-                          <Typography variant="h5">
-                           {headline}
-                          </Typography>
-                          <Typography variant="h6">
-                           Version {version}
-                          </Typography>
-                        </Grid>
-
-                        <Grid item xs={12}>
+                        <Grid item container xs={12} alignItems="flex-start">
                           <img src={hrThird} className={classes.hr}/>
                         </Grid>
 
@@ -298,17 +292,7 @@ const desktop = ( props: Props ) => {
                             </Typography>
                           </Grid>
 
-                          <Grid item xs={12}>
-                            <img src={hrFirst} className={classes.hr}/>
-                          </Grid>
-
-                          <Grid className={classes.storeDescription} item xs={12}>
-                            <Typography variant="h5">
-                              {storeDescription}
-                            </Typography>
-                          </Grid>
-
-                          <Grid item xs={12}>
+                          <Grid item container xs={12} alignItems="flex-start">
                             <img src={hrSecond} className={classes.hr}/>
                           </Grid>
                         </>
@@ -334,68 +318,72 @@ const desktop = ( props: Props ) => {
 
                         {storeHeading}
 
-                        <Grid item xs={2}>
-                          <img
-                            className={classes.appIcon}
-                            src={iconURL}
-                          />
+                        <Grid container className={classes.details}>
+
+                          <Grid item xs={2}>
+                            <img
+                              className={classes.appIcon}
+                              src={iconURL}
+                            />
+                          </Grid>
+
+                          <Grid item xs={9}>
+                            <Typography variant="h3">
+                              {name}
+                            </Typography>
+                            <Typography variant="h5">
+                              {category}
+                            </Typography>
+                          </Grid>
+
+                          <Grid item container justify="flex-end" xs={1}>
+                              <a href={miniDappURL}>
+                                <IconButton
+                                  color="primary"
+                                  aria-label={Help.downloadTip}
+                                  component="span"
+                                  size="small">
+                                  <img
+                                    data-for='download'
+                                    data-tip
+                                    src={downloadIcon}
+                                    className={classes.downloadIcon}
+                                  />
+                                </IconButton>
+                                <ReactTooltip
+                                  id='download'
+                                  place="top"
+                                  effect="solid"
+                                >
+                                  {Help.downloadTip}
+                                </ReactTooltip>
+                              </a>
+                          </Grid>
+
+                          <Grid item xs={2}>
+                            &nbsp;
+                          </Grid>
+
+                          <Grid item container xs={10} alignItems="center">
+                            <img src={hrSecond} className={classes.hr}/>
+                          </Grid>
+
+                          <Grid item xs={2}>
+                            &nbsp;
+                          </Grid>
+
+                          <Grid item xs={10}>
+                            <Typography variant="h5">
+                             {headline}
+                            </Typography>
+                            <Typography variant="h6">
+                             Version {version}
+                            </Typography>
+                          </Grid>
+
                         </Grid>
 
-                        <Grid item xs={9}>
-                          <Typography variant="h3">
-                            {name}
-                          </Typography>
-                          <Typography variant="h5">
-                            {category}
-                          </Typography>
-                        </Grid>
-
-                        <Grid item container justify="flex-end" xs={1}>
-                            <a href={miniDappURL}>
-                              <IconButton
-                                color="primary"
-                                aria-label={Help.downloadTip}
-                                component="span"
-                                size="small">
-                                <img
-                                  data-for='download'
-                                  data-tip
-                                  src={downloadIcon}
-                                  className={classes.downloadIcon}
-                                />
-                              </IconButton>
-                              <ReactTooltip
-                                id='download'
-                                place="top"
-                                effect="solid"
-                              >
-                                {Help.downloadTip}
-                              </ReactTooltip>
-                            </a>
-                        </Grid>
-
-                        <Grid item xs={2}>
-                          &nbsp;
-                        </Grid>
-
-                        <Grid item xs={10}>
-                          <img src={hrSecond} className={classes.hr}/>
-                        </Grid>
-
-                        <Grid item xs={2}>
-                          &nbsp;
-                        </Grid>
-
-                        <Grid item xs={10}>
-                          <Typography variant="h5">
-                           {headline}
-                          </Typography>
-                          <Typography variant="h6">
-                           Version {version}
-                          </Typography>
-                        </Grid>
-
-                        <Grid item xs={12}>
+                        <Grid item container xs={12} alignItems="flex-start">
                           <img src={hrThird} className={classes.hr}/>
                         </Grid>
 
