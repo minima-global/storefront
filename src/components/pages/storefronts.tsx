@@ -10,6 +10,9 @@ import Typography from '@material-ui/core/Typography'
 
 import Spinner from 'react-spinner-material'
 
+import hrFirst from '../../images/hrFirst.svg'
+import hrSecond from '../../images/hrSecond.svg'
+import hrThird from '../../images/hrThird.svg'
 import background from '../../images/square100x100.png'
 
 import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
@@ -71,7 +74,7 @@ const mobile = ( props: Props ) => {
             </Grid>
 
             <Grid item xs={12}>
-              <hr className={classes.hrFirst}/>
+              <img src={hrFirst} className={classes.hr}/>
             </Grid>
             {
               props.serverData.servers.map( ( server: Server, i: number ) => {
@@ -114,7 +117,7 @@ const mobile = ( props: Props ) => {
                     </Grid>
 
                     <Grid item xs={12}>
-                      <hr className={classes.hrThird}/>
+                      <img src={hrThird} className={classes.hr}/>
                     </Grid>
 
                   </React.Fragment>
@@ -162,7 +165,7 @@ const desktop = ( props: Props ) => {
             </Grid>
 
             <Grid item xs={12}>
-              <hr className={classes.hrFirst}/>
+              <img src={hrFirst} className={classes.hr}/>
             </Grid>
             {
               props.serverData.servers.map( ( server: Server, i: number ) => {
@@ -205,7 +208,7 @@ const desktop = ( props: Props ) => {
                     </Grid>
 
                     <Grid item xs={12}>
-                      <hr className={classes.hrThird}/>
+                      <img src={hrThird} className={classes.hr}/>
                     </Grid>
 
                   </React.Fragment>

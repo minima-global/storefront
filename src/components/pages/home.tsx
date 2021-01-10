@@ -13,6 +13,9 @@ import IconButton from '@material-ui/core/IconButton'
 
 import ReactTooltip from 'react-tooltip'
 
+import hrFirst from '../../images/hrFirst.svg'
+import hrSecond from '../../images/hrSecond.svg'
+import hrThird from '../../images/hrThird.svg'
 import downloadIcon from '../../images/download.svg'
 
 import { serverInfo } from '../../store/app/fileServer/actions'
@@ -79,8 +82,8 @@ const mobile = ( props: Props ) => {
               </Typography>
             </Grid>
 
-            <Grid item xs={12}>
-              <hr className={classes.hrFirst}/>
+            <Grid item container xs={12} alignItems="flex-start">
+              <img src={hrFirst} className={classes.hr}/>
             </Grid>
             {
               props.miniDappData.miniDapps.map( ( miniDapp: MiniData ) => {
@@ -101,6 +104,8 @@ const mobile = ( props: Props ) => {
 
                 return (
                   <React.Fragment key={miniDappURL}>
+
+                    <Grid container className={classes.details}>
 
                      <Grid item xs={3}>
                         <img
@@ -146,8 +151,8 @@ const mobile = ( props: Props ) => {
                         &nbsp;
                       </Grid>
 
-                      <Grid item xs={9}>
-                        <hr className={classes.hrSecond}/>
+                      <Grid item container xs={9} alignItems="center">
+                        <img src={hrSecond} className={classes.hr}/>
                       </Grid>
 
                       <Grid item xs={3}>
@@ -166,9 +171,11 @@ const mobile = ( props: Props ) => {
                          </Typography>
                       </Grid>
 
-                      <Grid item xs={12}>
-                        <hr className={classes.hrThird}/>
-                      </Grid>
+                    </Grid>                    
+
+                    <Grid item container xs={12} alignItems="center">
+                      <img src={hrThird} className={classes.hr}/>
+                    </Grid>
 
                   </React.Fragment>
                 )
@@ -213,8 +220,8 @@ const desktop = ( props: Props ) => {
               </Typography>
             </Grid>
 
-            <Grid item xs={12}>
-              <hr className={classes.hrFirst}/>
+            <Grid item container xs={12} alignItems="flex-start">
+              <img src={hrFirst} className={classes.hr}/>
             </Grid>
             {
               props.miniDappData.miniDapps.map( ( miniDapp: MiniData ) => {
@@ -235,6 +242,8 @@ const desktop = ( props: Props ) => {
 
                 return (
                   <React.Fragment key={miniDappURL}>
+
+                    <Grid container className={classes.details}>
 
                      <Grid item xs={2}>
                         <img
@@ -280,8 +289,8 @@ const desktop = ( props: Props ) => {
                         &nbsp;
                       </Grid>
 
-                      <Grid item xs={10}>
-                        <hr className={classes.hrSecond}/>
+                      <Grid item container xs={10} alignItems="center">
+                        <img src={hrSecond} className={classes.hr}/>
                       </Grid>
 
                       <Grid item xs={2}>
@@ -300,9 +309,11 @@ const desktop = ( props: Props ) => {
                          </Typography>
                       </Grid>
 
-                      <Grid item xs={12}>
-                        <hr className={classes.hrThird}/>
-                      </Grid>
+                    </Grid>
+
+                    <Grid item container xs={12} alignItems="flex-start">
+                      <img src={hrThird} className={classes.hr}/>
+                    </Grid>
 
                   </React.Fragment>
                 )

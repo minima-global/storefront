@@ -18,6 +18,9 @@ import downloadIcon from '../../images/download.svg'
 /*import linkDesktop from '../../images/linkLarge.png'
 import linkMobile from '../../images/link.png'*/
 import background from '../../images/square100x100.png'
+import hrFirst from '../../images/hrFirst.svg'
+import hrSecond from '../../images/hrSecond.svg'
+import hrThird from '../../images/hrThird.svg'
 
 import { initMiniDapps, getMiniDapps, serverInfo } from '../../store/app/fileServer/actions'
 
@@ -115,7 +118,7 @@ const mobile = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hrFirst}/>
+                            <img src={hrFirst} className={classes.hr}/>
                           </Grid>
 
                           <Grid className={classes.storeDescription} item xs={12}>
@@ -125,7 +128,7 @@ const mobile = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hrSecond}/>
+                            <img src={hrSecond} className={classes.hr}/>
                           </Grid>
                         </>
                       )
@@ -195,7 +198,7 @@ const mobile = ( props: Props ) => {
                         </Grid>
 
                         <Grid item xs={9}>
-                          <hr className={classes.hrSecond}/>
+                          <img src={hrSecond} className={classes.hr}/>
                         </Grid>
 
                         <Grid item xs={3}>
@@ -212,7 +215,7 @@ const mobile = ( props: Props ) => {
                         </Grid>
 
                         <Grid item xs={12}>
-                          <hr className={classes.hrThird}/>
+                          <img src={hrThird} className={classes.hr}/>
                         </Grid>
 
                       </React.Fragment>
@@ -296,7 +299,7 @@ const desktop = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hrFirst}/>
+                            <img src={hrFirst} className={classes.hr}/>
                           </Grid>
 
                           <Grid className={classes.storeDescription} item xs={12}>
@@ -306,7 +309,7 @@ const desktop = ( props: Props ) => {
                           </Grid>
 
                           <Grid item xs={12}>
-                            <hr className={classes.hrSecond}/>
+                            <img src={hrSecond} className={classes.hr}/>
                           </Grid>
                         </>
                       )
@@ -376,7 +379,7 @@ const desktop = ( props: Props ) => {
                         </Grid>
 
                         <Grid item xs={10}>
-                          <hr className={classes.hrSecond}/>
+                          <img src={hrSecond} className={classes.hr}/>
                         </Grid>
 
                         <Grid item xs={2}>
@@ -393,7 +396,7 @@ const desktop = ( props: Props ) => {
                         </Grid>
 
                         <Grid item xs={12}>
-                          <hr className={classes.hrThird}/>
+                          <img src={hrThird} className={classes.hr}/>
                         </Grid>
 
                       </React.Fragment>

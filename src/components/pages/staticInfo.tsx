@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography'
 
 import { ApplicationState, InfoProps, InfoTypes } from '../../store/types'
 
+import hrFirst from '../../images/hrFirst.svg'
+
 import { themeStyles, themeStylesMobile } from '../../styles'
 
 interface StateProps {
@@ -28,7 +30,7 @@ const appInfo = (props: Props) => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <hr className={classes.hrFirst}/>
+          <img src={hrFirst} className={classes.hr}/>
         </Grid>
         <Grid item container justify="flex-start" xs={12}>
           <Typography variant="h5">

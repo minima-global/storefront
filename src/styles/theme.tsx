@@ -49,21 +49,21 @@ let theme = createMuiTheme ({
       color: '#001C32'
     },
     h4: {
-      lineHeight: '1.4',
+      lineHeight: '1.2',
       fontSize: "1.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#317aff'
     },
     h5: {
-      lineHeight: "1.4",
+      lineHeight: "1.2",
       fontSize: "1.2em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h6: {
-      lineHeight: "1.4",
+      lineHeight: "1.2",
       fontSize: "1.2em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
@@ -133,7 +133,7 @@ let theme = createMuiTheme ({
 })
 
 theme = responsiveFontSizes(theme)
-theme.spacing(0)
+"0"
 
 const themeStyles = makeStyles({
   root: {
@@ -149,7 +149,7 @@ const themeStyles = makeStyles({
     paddingRight: theme.spacing(5),
     paddingLeft: theme.spacing(5),
     paddingTop: "44px",
-    margin: theme.spacing(0),
+    margin: "0",
     background: 'linear-gradient(#001C32, #001C32)',
     height: "130px",
     width: "100%",
@@ -161,7 +161,7 @@ const themeStyles = makeStyles({
     paddingLeft: theme.spacing(5),
     paddingBottom: theme.spacing(1),
     paddingTop: theme.spacing(1),
-    margin: theme.spacing(0),
+    margin: "0",
     textAlign: 'center',
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
     height: "90px",
@@ -172,7 +172,7 @@ const themeStyles = makeStyles({
   content: {
     paddingRight: theme.spacing(5),
     paddingLeft: theme.spacing(5),
-    margin: theme.spacing(0),
+    margin: "0",
     background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     overflow: 'auto',
     width: "100%",
@@ -184,7 +184,7 @@ const themeStyles = makeStyles({
     paddingRight: theme.spacing(5),
     paddingLeft: theme.spacing(5),
     paddingTop: "20px",
-    margin: theme.spacing(0),
+    margin: "0",
     background: 'linear-gradient(#001C32, #001C32)',
     height: "140px",
     width: "100%",
@@ -192,25 +192,23 @@ const themeStyles = makeStyles({
     bottom: '0'
   },
   storeTitle: {
-    padding: theme.spacing(0),
-    margin: theme.spacing(0)
+    padding: "0",
+    margin: "0"
   },
   storeDescription: {
-    padding: theme.spacing(0),
-    margin: theme.spacing(0)
+    padding: "0",
+    margin: "0"
   },
   caption: {
     padding: theme.spacing(1),
-    margin: theme.spacing(0),
-    textAlign: 'center',
+    margin: "0"
+  },
+  details: {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(2),
+    margin: "0",
   },
   footerLinks: {
-    fontWeight: 400,
-    fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
-  },
-  link: {
-    textDecoration: 'none',
-    fontSize: "2vh",
     fontWeight: 400,
     fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
   },
@@ -301,19 +299,20 @@ const themeStyles = makeStyles({
     width: "50px",
     height: "50px",
   },
+  link: {
+    textDecoration: 'none'
+  },
+  activeLink: {
+    filter: "brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)"
+  },
   linkIcon: {
     margin: 'auto',
     height: "30px",
     width: '30px'
   },
-  hrFirst: {
-    borderTop: "1px solid #C8C8BF"
-  },
-  hrSecond: {
-    borderTop: "1px solid #F0F0FA",
-  },
-  hrThird: {
-    borderTop: "1px solid #DFDFED",
+  hr: {
+    height: "1px",
+    width: "100%"
   }
 })
 
