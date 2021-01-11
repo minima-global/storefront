@@ -3,7 +3,7 @@ import { ThunkDispatch } from 'redux-thunk'
 
 // Store stuff
 export interface ApplicationState {
-  info: InfoPageProps
+  appData: AppDataProps
   fileServers: ServerProps
   miniDapps: MiniDappProps
   installedDapps: InstalledDappProps
@@ -20,30 +20,25 @@ export interface ActionProps extends Action {
 
 export type AppDispatch = ThunkDispatch<ApplicationState, any, ActionProps>
 
-// Info (about etc.) stuff
-export const enum InfoTypes {
-  HOME = "home",
-  ABOUT = "about",
-  HELP = "help",
-  FAQ = "faq",
-  CONTACT = "contact"
+// Stuff pertinent to make this app' work
+export interface AppData {
+  activePage: string
 }
 
-export interface InfoPageProps extends PayloadProps {
-  data: InfoData
+export interface AppDataProps extends PayloadProps {
+  data: AppData
+}
+
+// Info (about etc.) stuff
+export const enum InfoTypes {
+  ABOUT = "about",
+  HELP = "help",
+  CONTACT = "contact"
 }
 
 export interface InfoProps {
   title: string
   data: string
-}
-
-export interface InfoData {
-  home: InfoProps
-  about: InfoProps
-  help: InfoProps
-  faq: InfoProps
-  contact: InfoProps
 }
 
 // Servers
@@ -106,6 +101,12 @@ export interface MiniDappProps extends PayloadProps {
 }
 
 // Action types
+export const enum AppDataActionTypes {
+  APPDATA_INIT = '@@AppDataActionTypes/APPDATA_INIT',
+  APPDATA_SUCCESS = '@@AppDataActionTypes/APPDATA_SUCCESS',
+  APPDATA_FAILURE = '@@AppDataActionTypes/APPDATA_FAILURE'
+}
+
 export const enum ServerActionTypes {
   SERVER_INIT = '@@ServerActionTypes/SERVER_INIT',
   SERVER_SUCCESS = '@@ServerActionTypes/SERVER_SUCCESS',

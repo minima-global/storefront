@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 import { isMobile } from "react-device-detect"
@@ -6,58 +6,88 @@ import { isMobile } from "react-device-detect"
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-import { ApplicationState, InfoProps, InfoTypes } from '../../store/types'
+import { ApplicationState, AppDispatch, InfoProps, InfoTypes } from '../../store/types'
 
 import hrFirst from '../../images/hrFirst.svg'
 
 import { themeStyles, themeStylesMobile } from '../../styles'
 
-interface StateProps {
+import { Local } from '../../config'
+import { Home, About, Help, Contact } from '../../config/strings'
+
+import { setActivePage } from '../../store/app/appData/actions'
+
+interface StaticInfoProps {
   type: InfoTypes
 }
 
-type Props = InfoProps & StateProps
+interface DispatchProps {
+  setActivePage: (page: string) => void
+}
+
+type Props = StaticInfoProps & DispatchProps
 
 const appInfo = (props: Props) => {
 
+    const [pageData, setPageData] = useState({title: Home.heading,
+    data: Home.info})
+
     const classes = isMobile ? themeStylesMobile() : themeStyles()
+
+    useEffect(() => {
+
+      switch (props.type) {
+        case InfoTypes.ABOUT:
+
+          setPageData({ title: About.heading, data: About.info })
+          props.setActivePage(Local.about)
+          break
+
+        case InfoTypes.HELP:
+
+          setPageData({ title: Help.heading, data: Help.info })
+          props.setActivePage(Local.help)
+          break
+
+        case InfoTypes.CONTACT:
+
+          setPageData({ title: Contact.heading, data: Contact.info })
+          props.setActivePage(Local.contact)
+          break
+
+        default:
+
+          props.setActivePage(Local.home)
+      }
+
+    }, [props.type])
 
     return (
       <Grid container alignItems="flex-start">
         <Grid item container justify="flex-start" xs={12}>
           <Typography variant="h2">
-            {props.title}
+            {pageData.title}
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item container xs={12} alignItems="flex-start">
           <img src={hrFirst} className={classes.hr}/>
         </Grid>
         <Grid item container justify="flex-start" xs={12}>
           <Typography variant="h5">
-            {props.data}
+            {pageData.data}
           </Typography>
         </Grid>
       </Grid>
     )
 }
 
-const mapStateToProps = (state: ApplicationState, ownProps: StateProps): InfoProps => {
-  switch (ownProps.type) {
-    case InfoTypes.HOME:
-      return { title: state.info.data.home.title, data: state.info.data.home.data }
-    case InfoTypes.ABOUT:
-      return { title: state.info.data.about.title, data: state.info.data.about.data }
-    case InfoTypes.HELP:
-      return { title: state.info.data.help.title, data: state.info.data.help.data }
-    case InfoTypes.FAQ:
-      return { title: state.info.data.faq.title, data: state.info.data.faq.data }
-    case InfoTypes.CONTACT:
-      return { title: state.info.data.contact.title, data: state.info.data.contact.data }
-    default:
-      return { title: state.info.data.home.title, data: state.info.data.home.data }
-  }
+const mapDispatchToProps = (dispatch: AppDispatch): DispatchProps => {
+ return {
+   setActivePage: (page: string) => dispatch(setActivePage(page))
+ }
 }
 
-export const Info = connect<InfoProps, {}, StateProps, ApplicationState>(
-  mapStateToProps
+export const Info = connect<DispatchProps, {}, {}, ApplicationState>(
+  null,
+  mapDispatchToProps
 )(appInfo)

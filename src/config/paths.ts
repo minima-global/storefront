@@ -13,7 +13,7 @@ class Local {
   static readonly server = '/server'
 
   static readonly serverSettings = '/settings'
-  
+
   static readonly showStoreDapps = '/show-store-dapps'
   static readonly showStoreDappsIndex = `${Local.showStoreDapps}/:url`
 }

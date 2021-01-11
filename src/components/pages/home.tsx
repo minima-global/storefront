@@ -19,6 +19,7 @@ import hrThird from '../../images/hrThird.svg'
 import downloadIcon from '../../images/download.svg'
 
 import { serverInfo } from '../../store/app/fileServer/actions'
+import { setActivePage } from '../../store/app/appData/actions'
 
 //import Markdown from 'react-markdown'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
@@ -42,13 +43,11 @@ interface HomeStateProps {
   miniDappData: MiniDapps
 }
 
-/*interface HomeDispatchProps {
-  initMiniDapps: () => void
-  getMiniDapps: () => void
-}*/
+interface HomeDispatchProps {
+  setActivePage: () => void
+}
 
-//type Props = HomeStateProps & HomeDispatchProps
-type Props = HomeStateProps
+type Props = HomeStateProps & HomeDispatchProps
 
 const mobile = ( props: Props ) => {
 
@@ -171,7 +170,7 @@ const mobile = ( props: Props ) => {
                          </Typography>
                       </Grid>
 
-                    </Grid>                    
+                    </Grid>
 
                     <Grid item container xs={12} alignItems="center">
                       <img src={hrThird} className={classes.hr}/>
@@ -328,6 +327,12 @@ const desktop = ( props: Props ) => {
 
 const get = ( props: Props ) => {
 
+  useEffect(() => {
+
+    props.setActivePage()
+
+  }, [])
+
   if (isMobile) {
     return mobile(props)
   } else {
@@ -345,6 +350,13 @@ const mapStateToProps = (state: ApplicationState): HomeStateProps => {
   }
 }
 
-export const Home = connect<HomeStateProps, {}, {}, ApplicationState>(
-  mapStateToProps
+const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
+ return {
+   setActivePage: () => dispatch(setActivePage(Local.home))
+ }
+}
+
+export const Home = connect<HomeStateProps, HomeDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
+  mapDispatchToProps
 )(get)

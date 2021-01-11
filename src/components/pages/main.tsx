@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { NavLink, Redirect } from 'react-router-dom'
 import { useHistory } from "react-router-dom"
@@ -15,7 +15,11 @@ import { Content } from '../content'
 import { AppInit } from '../appInit'
 import { App } from '../../config/strings'
 
-import { ApplicationState, AppDispatch } from '../../store'
+import {
+  ApplicationState,
+  AppDispatch,
+  AppDataProps,
+  AppData } from '../../store'
 
 import IconButton from '@material-ui/core/IconButton'
 
@@ -24,11 +28,16 @@ import ReactTooltip from 'react-tooltip'
 import { initServers, initMiniDapps, setServers } from '../../store/app/fileServer/actions'
 
 import helpIcon from '../../images/help.svg'
+import helpActiveIcon from '../../images/helpActive.svg'
 import infoIcon from '../../images/info.svg'
+import infoActiveIcon from '../../images/infoActive.svg'
 import contactIcon from '../../images/contact.svg'
+import contactActiveIcon from '../../images/contactActive.svg'
 
 import allDappsIcon from '../../images/allMiniDapps.svg'
+import allDappsActiveIcon from '../../images/allMiniDappsActive.svg'
 import storesIcon from '../../images/storefronts.svg'
+import storesActiveIcon from '../../images/storefrontsActive.svg'
 import settingsIcon from '../../images/addStorefront.svg'
 
 import logoIcon from '../../images/storefrontLogo.svg'
@@ -39,15 +48,21 @@ import { themeStyles, themeStylesMobile } from '../../styles'
 
 import { Paths, Local, Help, Settings } from '../../config'
 
+interface MainStateProps {
+  appData: AppData
+}
+
 interface MainDispatchProps {
   initServers: () => void
   initMiniDapps: () => void
   setServers: (file: any) => void
 }
 
-type Props =  MainDispatchProps
+type Props =  MainStateProps & MainDispatchProps
 
 const mobile = (props: Props) => {
+
+  const [icons, setIcons] = useState([allDappsActiveIcon, storesIcon, helpIcon, infoIcon, contactIcon])
 
   const classes = themeStylesMobile()
 
@@ -58,6 +73,37 @@ const mobile = (props: Props) => {
     const files = e.target.files
     props.setServers(files[0])
   }
+
+  /*const home = `#${Local.home}$`
+  const homeRegex = RegExp(home)
+  const storefronts = `#${Local.showStoreDapps}$`
+  const storefrontsRegex = RegExp(storefronts)*/
+
+  useEffect(() => {
+
+    console.log("main with: ", props.appData.activePage)
+    if ( props.appData.activePage === Local.home ) {
+
+      setIcons([allDappsActiveIcon, storesIcon, helpIcon, infoIcon, contactIcon])
+
+    } else if ( props.appData.activePage === Local.showStoreDapps ) {
+
+      setIcons([allDappsIcon, storesActiveIcon, helpIcon, infoIcon, contactIcon])
+
+    } else if ( props.appData.activePage === Local.help ) {
+
+      setIcons([allDappsIcon, storesIcon, helpActiveIcon, infoIcon, contactIcon])
+
+    } else if ( props.appData.activePage === Local.about ) {
+
+      setIcons([allDappsIcon, storesIcon, helpIcon, infoActiveIcon, contactIcon])
+
+    } else if ( props.appData.activePage === Local.contact ) {
+
+      setIcons([allDappsIcon, storesIcon, helpIcon, infoIcon, contactActiveIcon])
+
+    }
+  }, [props.appData])
 
   return (
     <Grid className={classes.root}>
@@ -111,7 +157,7 @@ const mobile = (props: Props) => {
                   <img
                     data-for={helpIcon}
                     data-tip
-                    src={helpIcon}
+                    src={icons[2]}
                     className={classes.subHeaderIcon}
                   />
                 </IconButton>
@@ -135,7 +181,7 @@ const mobile = (props: Props) => {
                 <img
                   data-for={infoIcon}
                   data-tip
-                  src={infoIcon}
+                  src={icons[3]}
                   className={classes.subHeaderIcon}
                 />
               </IconButton>
@@ -159,7 +205,7 @@ const mobile = (props: Props) => {
                 <img
                   data-for={contactIcon}
                   data-tip
-                  src={contactIcon}
+                  src={icons[4]}
                   className={classes.subHeaderIcon}
                 />
               </IconButton>
@@ -194,7 +240,7 @@ const mobile = (props: Props) => {
              <img
               data-for={allDappsIcon}
               data-tip
-              src={allDappsIcon}
+              src={icons[0]}
               className={classes.footerIcon}
             />
             </IconButton>
@@ -220,7 +266,7 @@ const mobile = (props: Props) => {
                <img
                 data-for={storesIcon}
                 data-tip
-                src={storesIcon}
+                src={icons[1]}
                 className={classes.footerIcon}
               />
               </IconButton>
@@ -283,6 +329,8 @@ const mobile = (props: Props) => {
 
 const desktop = (props: Props) => {
 
+  const [icons, setIcons] = useState([allDappsActiveIcon, storesIcon])
+
   const classes = themeStyles()
 
   const getFile = (e: any) => {
@@ -292,6 +340,18 @@ const desktop = (props: Props) => {
     const files = e.target.files
     props.setServers(files[0])
   }
+
+  useEffect(() => {
+
+    if ( props.appData.activePage === Local.home ) {
+
+      setIcons([allDappsActiveIcon, storesIcon])
+
+    } else if ( props.appData.activePage === Local.showStoreDapps ) {
+
+      setIcons([allDappsIcon, storesActiveIcon])
+    }
+  }, [props.appData])
 
   return (
     <Grid className={classes.root}>
@@ -345,7 +405,7 @@ const desktop = (props: Props) => {
                   <img
                     data-for={helpIcon}
                     data-tip
-                    src={helpIcon}
+                    src={icons[2]}
                     className={classes.subHeaderIcon}
                   />
                 </IconButton>
@@ -369,7 +429,7 @@ const desktop = (props: Props) => {
                 <img
                   data-for={infoIcon}
                   data-tip
-                  src={infoIcon}
+                  src={icons[3]}
                   className={classes.subHeaderIcon}
                 />
               </IconButton>
@@ -393,7 +453,7 @@ const desktop = (props: Props) => {
                 <img
                   data-for={contactIcon}
                   data-tip
-                  src={contactIcon}
+                  src={icons[4]}
                   className={classes.subHeaderIcon}
                 />
               </IconButton>
@@ -428,7 +488,7 @@ const desktop = (props: Props) => {
              <img
               data-for={allDappsIcon}
               data-tip
-              src={allDappsIcon}
+              src={icons[0]}
               className={classes.footerIcon}
             />
             </IconButton>
@@ -454,7 +514,7 @@ const desktop = (props: Props) => {
                <img
                 data-for={storesIcon}
                 data-tip
-                src={storesIcon}
+                src={icons[1]}
                 className={classes.footerIcon}
                />
               </IconButton>
@@ -531,6 +591,10 @@ const mainNav = (props: Props) => {
   }
 }
 
+const mapStateToProps = (state: ApplicationState): MainStateProps => {
+  return { appData: state.appData.data }
+}
+
 const mapDispatchToProps = (dispatch: AppDispatch): MainDispatchProps => {
  return {
    initServers: () => dispatch(initServers()),
@@ -539,7 +603,7 @@ const mapDispatchToProps = (dispatch: AppDispatch): MainDispatchProps => {
  }
 }
 
-export const Main = connect<{}, MainDispatchProps, {}, ApplicationState>(
-  null,
+export const Main = connect<MainStateProps, MainDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
   mapDispatchToProps
 )(mainNav)

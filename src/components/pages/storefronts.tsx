@@ -16,6 +16,7 @@ import hrThird from '../../images/hrThird.svg'
 import background from '../../images/square100x100.png'
 
 import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
+import { setActivePage } from '../../store/app/appData/actions'
 
 //import Markdown from 'react-markdown'
 import { SimpleArrayRenderer } from '../simpleRenderer'
@@ -37,8 +38,11 @@ interface StorefrontsStateProps {
   serverData: Servers
 }
 
-//type Props = StorefrontsStateProps & StorefrontsDispatchProps
-type Props = StorefrontsStateProps
+interface StorefrontsDispatchProps {
+  setActivePage: () => void
+}
+
+type Props = StorefrontsStateProps & StorefrontsDispatchProps
 
 const mobile = ( props: Props ) => {
 
@@ -232,6 +236,12 @@ const desktop = ( props: Props ) => {
 
 const get = ( props: Props ) => {
 
+  useEffect(() => {
+    
+    props.setActivePage()
+
+  }, [])
+
   if (isMobile) {
     return mobile(props)
   } else {
@@ -247,6 +257,14 @@ const mapStateToProps = (state: ApplicationState): StorefrontsStateProps => {
   }
 }
 
-export const Storefronts = connect<StorefrontsStateProps, {}, {}, ApplicationState>(
-  mapStateToProps
+
+const mapDispatchToProps = (dispatch: AppDispatch): StorefrontsDispatchProps => {
+ return {
+   setActivePage: () => dispatch(setActivePage(Local.showStoreDapps))
+ }
+}
+
+export const Storefronts = connect<StorefrontsStateProps, StorefrontsDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
+  mapDispatchToProps
 )(get)
