@@ -81,7 +81,7 @@ const mobile = (props: Props) => {
 
   useEffect(() => {
 
-    console.log("main with: ", props.appData.activePage)
+    //console.log("main with: ", props.appData.activePage)
     if ( props.appData.activePage === Local.home ) {
 
       setIcons([allDappsActiveIcon, storesIcon, helpIcon, infoIcon, contactIcon])
@@ -329,7 +329,7 @@ const mobile = (props: Props) => {
 
 const desktop = (props: Props) => {
 
-  const [icons, setIcons] = useState([allDappsActiveIcon, storesIcon])
+  const [icons, setIcons] = useState([allDappsActiveIcon, storesIcon, helpIcon, infoIcon, contactIcon])
 
   const classes = themeStyles()
 
@@ -343,13 +343,27 @@ const desktop = (props: Props) => {
 
   useEffect(() => {
 
+    //console.log("main with: ", props.appData.activePage)
     if ( props.appData.activePage === Local.home ) {
 
-      setIcons([allDappsActiveIcon, storesIcon])
+      setIcons([allDappsActiveIcon, storesIcon, helpIcon, infoIcon, contactIcon])
 
     } else if ( props.appData.activePage === Local.showStoreDapps ) {
 
-      setIcons([allDappsIcon, storesActiveIcon])
+      setIcons([allDappsIcon, storesActiveIcon, helpIcon, infoIcon, contactIcon])
+
+    } else if ( props.appData.activePage === Local.help ) {
+
+      setIcons([allDappsIcon, storesIcon, helpActiveIcon, infoIcon, contactIcon])
+
+    } else if ( props.appData.activePage === Local.about ) {
+
+      setIcons([allDappsIcon, storesIcon, helpIcon, infoActiveIcon, contactIcon])
+
+    } else if ( props.appData.activePage === Local.contact ) {
+
+      setIcons([allDappsIcon, storesIcon, helpIcon, infoIcon, contactActiveIcon])
+
     }
   }, [props.appData])
 
