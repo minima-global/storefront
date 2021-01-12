@@ -77,7 +77,7 @@ const mobile = ( props: Props ) => {
     <>
       {isLoading ?
         <Grid className={classes.spinner} item container justify="center">
-          <Spinner radius={40} color={"#ff671d"} stroke={10} visible={isLoading} />
+          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
           <Grid container>
             {
@@ -111,7 +111,7 @@ const mobile = ( props: Props ) => {
                             </div>
                           </Grid>
 
-                          <Grid className={classes.storeTitle} item xs={9}>
+                          <Grid className={classes.storeTitle} item xs={10}>
                             <Typography variant="h2">
                               {storeTitle}
                             </Typography>
@@ -145,14 +145,14 @@ const mobile = ( props: Props ) => {
 
                         <Grid container className={classes.details}>
 
-                          <Grid item xs={3}>
+                          <Grid item xs={2}>
                             <img
                               className={classes.appIcon}
                               src={iconURL}
                             />
                           </Grid>
 
-                          <Grid item xs={8}>
+                          <Grid item xs={9}>
                             <Typography variant="h3">
                               {name}
                             </Typography>
@@ -185,19 +185,19 @@ const mobile = ( props: Props ) => {
                               </a>
                           </Grid>
 
-                          <Grid item xs={3}>
+                          <Grid item xs={2}>
                             &nbsp;
                           </Grid>
 
-                          <Grid item container xs={9} alignItems="center">
+                          <Grid item container xs={10} alignItems="center">
                             <img src={hrSecond} className={classes.hr}/>
                           </Grid>
 
-                          <Grid item xs={3}>
+                          <Grid item xs={2}>
                             &nbsp;
                           </Grid>
 
-                          <Grid item xs={9}>
+                          <Grid item xs={10}>
                             <Typography variant="h5">
                              {headline}
                             </Typography>
@@ -253,7 +253,7 @@ const desktop = ( props: Props ) => {
     <>
       {isLoading ?
         <Grid className={classes.spinner} item container justify="center">
-          <Spinner radius={40} color={"#ff671d"} stroke={10} visible={isLoading} />
+          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
           <Grid container>
             {
@@ -273,7 +273,7 @@ const desktop = ( props: Props ) => {
 
                       storeHeading = (
                         <>
-                          <Grid item xs={2}>
+                          <Grid item xs={1}>
                             <div className={classes.storeIconParent}>
                               <img
                                 className={classes.storeIconContainer}
@@ -286,7 +286,7 @@ const desktop = ( props: Props ) => {
                             </div>
                           </Grid>
 
-                          <Grid className={classes.storeTitle} item xs={9}>
+                          <Grid className={classes.storeTitle} item xs={11}>
                             <Typography variant="h2">
                               {storeTitle}
                             </Typography>

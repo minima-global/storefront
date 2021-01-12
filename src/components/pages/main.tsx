@@ -403,11 +403,11 @@ const desktop = (props: Props) => {
 
       <Grid item container className={classes.subHeader} xs={12}>
 
-        <Grid item xs={6}>
+        <Grid item xs={9}>
           &nbsp;
         </Grid>
 
-        <Grid item container justify="flex-end" xs={6}>
+        <Grid item container justify="flex-end" xs={3}>
 
           <Grid item container justify="flex-end" xs={4}>
             <NavLink to={Local.help} className={classes.link}>

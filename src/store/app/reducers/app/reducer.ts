@@ -22,7 +22,7 @@ export const reducer = (state: AppDataProps = initialState, action: ActionProps)
       return state
     }
     case AppDataActionTypes.APPDATA_SUCCESS: {
-      console.log("here with: ", action.payload.data)
+      //console.log("here with: ", action.payload.data)
       const data = (action.payload as AppDataProps)
       return {...state, ...data}
     }

@@ -35,36 +35,36 @@ let theme = createMuiTheme ({
       color: '#001C32',
     },
     h2: {
-      lineHeight: "2.2",
-      fontSize: "2em",
+      lineHeight: "2",
+      fontSize: "1.6em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h3: {
-      lineHeight: '1.4',
-      fontSize: "1.4em",
+      lineHeight: '1.2',
+      fontSize: "1em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h4: {
-      lineHeight: '1.4',
-      fontSize: "1.2em",
+      lineHeight: '1.2',
+      fontSize: "1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#317aff'
     },
     h5: {
       lineHeight: "1.2",
-      fontSize: "1.2em",
+      fontSize: "1em",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     h6: {
       lineHeight: "1.2",
-      fontSize: "1.2em",
+      fontSize: "1em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
@@ -142,16 +142,16 @@ const themeStyles = makeStyles({
     marginLeft: "auto",
     marginRight: "auto",
     height: "90vh",
-    width: "75%",
+    width: "50%",
     position: 'relative'
   },
   header: {
     paddingRight: theme.spacing(5),
     paddingLeft: theme.spacing(5),
-    paddingTop: "44px",
+    paddingTop: "30px",
     margin: "0",
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "130px",
+    height: "90px",
     width: "100%",
     position: 'absolute',
     top: '0'
@@ -164,10 +164,10 @@ const themeStyles = makeStyles({
     margin: "0",
     textAlign: 'center',
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
-    height: "90px",
+    height: "60px",
     width: "100%",
     position: 'absolute',
-    top: '130px'
+    top: '90px'
   },
   content: {
     paddingRight: theme.spacing(5),
@@ -177,16 +177,16 @@ const themeStyles = makeStyles({
     overflow: 'auto',
     width: "100%",
     position: 'absolute',
-    bottom: '140px',
-    top: '220px'
+    bottom: '100px',
+    top: '150px'
   },
   footer: {
     paddingRight: theme.spacing(5),
     paddingLeft: theme.spacing(5),
-    paddingTop: "20px",
+    paddingTop: "10px",
     margin: "0",
     background: 'linear-gradient(#001C32, #001C32)',
-    height: "140px",
+    height: "100px",
     width: "100%",
     position: 'absolute',
     bottom: '0'
@@ -223,38 +223,38 @@ const themeStyles = makeStyles({
      bottom: "50%"
   },
   appIcon: {
-    height: "60px",
-    width: '60px'
+    height: "50px",
+    width: '50px'
   },
   downloadIcon: {
-    height: "40px",
-    width: '34px'
+    height: "25px",
+    width: '20px'
   },
   subHeaderIcon: {
-    height: "64px",
-    width: '64px'
+    height: "40px",
+    width: '40px'
   },
   footerIcon: {
-    height: "48px",
-    width: '48px'
+    height: "35px",
+    width: '35px'
   },
   headerIcon: {
-    height: "56px",
-    width: '56px'
+    height: "50px",
+    width: '50px'
   },
   appNameIconContainer: {
     position: "relative",
     top: "0",
     left: "0",
-    height: "56px",
+    height: "50px",
     width: '208px'
   },
   appNameIcon: {
     position: "absolute",
     bottom: "0",
     left: "0",
-    height: "31px",
-    width: '208px'
+    height: "25px",
+    width: '168px'
   },
   storeIconParent: {
     marginTop: theme.spacing(1),
@@ -267,16 +267,16 @@ const themeStyles = makeStyles({
     top: "0",
     left: "0",
     borderRadius: "50%",
-    width: "50px",
-    height: "50px"
+    width: "40px",
+    height: "40px"
   },
   storeIcon: {
     position: "absolute",
     top: "0",
     left: "0",
     margin: '10px',
-    width: "30px",
-    height: "30px",
+    width: "20px",
+    height: "20px",
   },
   storesIconParent: {
     position: "relative",
@@ -288,16 +288,16 @@ const themeStyles = makeStyles({
     top: "0",
     left: "0",
     borderRadius: "50%",
-    width: "60px",
-    height: "60px"
+    width: "40px",
+    height: "40px"
   },
   storesIcon: {
     position: "absolute",
     top: "0",
     left: "0",
     margin: '10px',
-    width: "40px",
-    height: "40px",
+    width: "20px",
+    height: "20px",
   },
   link: {
     textDecoration: 'none'

@@ -14,8 +14,6 @@ import { write } from '../../actions'
 export const setActivePage = (page: string) => {
   return async (dispatch: AppDispatch) => {
 
-    console.log("setActivePage")
-
     let appData: AppData = {
       activePage: page
     }

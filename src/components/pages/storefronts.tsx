@@ -67,7 +67,7 @@ const mobile = ( props: Props ) => {
     <>
       {isLoading ?
         <Grid className={classes.spinner} item container justify="center">
-          <Spinner radius={40} color={"#ff671d"} stroke={10} visible={isLoading} />
+          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
           <Grid container>
 
@@ -114,12 +114,14 @@ const mobile = ( props: Props ) => {
                       </Grid>
 
                       <Grid item xs={10}>
-                        <Typography variant="h3">
-                          {title}
-                        </Typography>
-                        <Typography variant="h5">
-                          {description}
-                        </Typography>
+                        <div onClick={() => history.push(`${pathShowStore}`)}>
+                          <Typography variant="h3">
+                            {title}
+                          </Typography>
+                          <Typography variant="h5">
+                            {description}
+                          </Typography>
+                        </div>
                       </Grid>
 
                     </Grid>
@@ -162,7 +164,7 @@ const desktop = ( props: Props ) => {
     <>
       {isLoading ?
         <Grid className={classes.spinner} item container justify="center">
-          <Spinner radius={40} color={"#ff671d"} stroke={10} visible={isLoading} />
+          <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
         </Grid> : (
           <Grid container>
 
@@ -190,7 +192,7 @@ const desktop = ( props: Props ) => {
 
                     <Grid container className={classes.details}>
 
-                      <Grid item container justify="flex-start" xs={2}>
+                      <Grid item container justify="flex-start" xs={1}>
                         <div className={classes.storesIconParent}>
                           <img
                             className={classes.storesIconContainer}
@@ -208,13 +210,15 @@ const desktop = ( props: Props ) => {
                         </div>
                       </Grid>
 
-                      <Grid item xs={10}>
-                        <Typography variant="h3">
-                          {title}
-                        </Typography>
-                        <Typography variant="h5">
-                          {description}
-                        </Typography>
+                      <Grid item xs={11}>
+                        <div onClick={() => history.push(`${pathShowStore}`)}>
+                          <Typography variant="h3">
+                            {title}
+                          </Typography>
+                          <Typography variant="h5">
+                            {description}
+                          </Typography>
+                        </div>
                       </Grid>
 
                     </Grid>
@@ -237,7 +241,7 @@ const desktop = ( props: Props ) => {
 const get = ( props: Props ) => {
 
   useEffect(() => {
-    
+
     props.setActivePage()
 
   }, [])
