@@ -26,6 +26,7 @@ import IconButton from '@material-ui/core/IconButton'
 import ReactTooltip from 'react-tooltip'
 
 import { initServers, initMiniDapps, setServers } from '../../store/app/fileServer/actions'
+import { poll } from '../../store/app/actions'
 
 import helpIcon from '../../images/help.svg'
 import helpActiveIcon from '../../images/helpActive.svg'
@@ -56,6 +57,7 @@ interface MainDispatchProps {
   initServers: () => void
   initMiniDapps: () => void
   setServers: (file: any) => void
+  poll: () => void
 }
 
 type Props =  MainStateProps & MainDispatchProps
@@ -72,6 +74,7 @@ const mobile = (props: Props) => {
     props.initServers()
     const files = e.target.files
     props.setServers(files[0])
+    props.poll()
   }
 
   /*const home = `#${Local.home}$`
@@ -339,6 +342,7 @@ const desktop = (props: Props) => {
     props.initServers()
     const files = e.target.files
     props.setServers(files[0])
+    props.poll()
   }
 
   useEffect(() => {
@@ -613,7 +617,8 @@ const mapDispatchToProps = (dispatch: AppDispatch): MainDispatchProps => {
  return {
    initServers: () => dispatch(initServers()),
    initMiniDapps: () => dispatch(initMiniDapps()),
-   setServers: (file: any) => dispatch(setServers(file))
+   setServers: (file: any) => dispatch(setServers(file)),
+   poll: () => dispatch(poll())
  }
 }
 

@@ -19,7 +19,6 @@ import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
 import { setActivePage } from '../../store/app/appData/actions'
 
 //import Markdown from 'react-markdown'
-import { SimpleArrayRenderer } from '../simpleRenderer'
 import { Storefronts as StorefrontsConfig, Misc, Local, Paths } from '../../config'
 
 import { themeStyles, themeStylesMobile } from '../../styles'

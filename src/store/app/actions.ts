@@ -34,12 +34,12 @@ export const init = () => {
   }
 }
 
-const sleep = (delay: number) => new Promise(resolve => setTimeout(resolve, delay))
+//const sleep = (delay: number) => new Promise(resolve => setTimeout(resolve, delay))
 
 export const poll = () => {
   return async (dispatch: AppDispatch, getState: Function) => {
 
-    console.log("in poll")
+    //console.log("in poll")
 
     // now get the miniDapps
     await dispatch(initMiniDapps())
@@ -59,17 +59,10 @@ export const poll = () => {
 
           //console.log("getting minidapps")
           dispatch(getMiniDapps())
-        } else {
-
-          const count = state.miniDapps.data.numAvailable
-          const listed = state.miniDapps.data.numListed
-
-          if ( count && count != listed ) {
-
-            console.log("In here?")
-            dispatch(poll())
-          }
         }
+      } else {
+        //console.log("In here?")
+        dispatch(poll())
       }
 
     }, Misc.pollInterval)
