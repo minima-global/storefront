@@ -212,11 +212,6 @@ const themeStyles = makeStyles({
     fontWeight: 400,
     fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
   },
-  menu: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(1),
-    background: 'linear-gradient(#ff671d, #ff671d)',
-  },
   spinner: {
      position: 'relative',
      top: "50%",

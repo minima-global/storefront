@@ -10,24 +10,38 @@ import Typography from '@material-ui/core/Typography'
 
 import Spinner from 'react-spinner-material'
 
+import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
+
+import ReactTooltip from 'react-tooltip'
+
 import hrFirst from '../../images/hrFirst.svg'
 import hrSecond from '../../images/hrSecond.svg'
 import hrThird from '../../images/hrThird.svg'
 import background from '../../images/square100x100.png'
+import sortIcon from '../../images/menuIcon.svg'
 
-import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
+import { initMiniDapps, getMiniDapps, sortServers } from '../../store/app/fileServer/actions'
 import { setActivePage } from '../../store/app/appData/actions'
 
 //import Markdown from 'react-markdown'
-import { Storefronts as StorefrontsConfig, Misc, Local, Paths } from '../../config'
+import {
+  Storefronts as StorefrontsConfig,
+  Misc,
+  Local,
+  Paths,
+  Help,
+  Sort
+} from '../../config'
 
-import { themeStyles, themeStylesMobile } from '../../styles'
+import { themeStyles, themeStylesMobile, SortMenu, SortMenuItem } from '../../styles'
 
 import {
   ApplicationState,
   AppDispatch,
   Servers,
-  Server
+  Server,
+  ServerSortTypes
 } from '../../store'
 
 // @ts-ignore
@@ -39,6 +53,7 @@ interface StorefrontsStateProps {
 
 interface StorefrontsDispatchProps {
   setActivePage: () => void
+  sortStores: (sortType: ServerSortTypes) => void
 }
 
 type Props = StorefrontsStateProps & StorefrontsDispatchProps
@@ -46,6 +61,8 @@ type Props = StorefrontsStateProps & StorefrontsDispatchProps
 const mobile = ( props: Props ) => {
 
   const [isLoading, setLoading] = useState(true)
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
 
   const classes = themeStylesMobile()
   let history = useHistory()
@@ -62,6 +79,19 @@ const mobile = ( props: Props ) => {
 
   }, [props.serverData])
 
+  const menuClick = (event: any) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const menuClose = () => {
+    setAnchorEl(null)
+  }
+
+  const doSort = (sortType: ServerSortTypes) => {
+    props.sortStores(sortType)
+    setAnchorEl(null)
+  }
+
   return (
     <>
       {isLoading ?
@@ -70,10 +100,50 @@ const mobile = ( props: Props ) => {
         </Grid> : (
           <Grid container>
 
-            <Grid item xs={12}>
+            <Grid item xs={11}>
               <Typography variant="h2">
                 {StorefrontsConfig.heading}
               </Typography>
+            </Grid>
+
+            <Grid item container justify="flex-end" xs={1}>
+              <IconButton
+                onClick={menuClick}
+                color="primary"
+                aria-label={Help.sortTip}
+                component="span"
+                size="small">
+                <img
+                  data-for='sort'
+                  data-tip
+                  src={sortIcon}
+                  className={classes.sortIcon}
+                />
+              </IconButton>
+              <ReactTooltip
+                id='sort'
+                place="top"
+                effect="solid"
+              >
+                {Help.sortTip}
+              </ReactTooltip>
+              <SortMenu
+                id="sortMenu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={open}
+                onClose={menuClose}
+              >
+                <SortMenuItem disabled={true}>
+                  {Sort.heading}
+                </SortMenuItem>
+                <SortMenuItem
+                  onClick={
+                    () => doSort(ServerSortTypes.ATOZ)}
+                >
+                  {Sort.atoZ}
+                </SortMenuItem>
+              </SortMenu>
             </Grid>
 
             <Grid item container xs={12} alignItems="flex-start">
@@ -143,6 +213,8 @@ const mobile = ( props: Props ) => {
 const desktop = ( props: Props ) => {
 
   const [isLoading, setLoading] = useState(true)
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
 
   const classes = themeStyles()
   let history = useHistory()
@@ -159,6 +231,19 @@ const desktop = ( props: Props ) => {
 
   }, [props.serverData])
 
+  const menuClick = (event: any) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const menuClose = () => {
+    setAnchorEl(null)
+  }
+
+  const doSort = (sortType: ServerSortTypes) => {
+    props.sortStores(sortType)
+    setAnchorEl(null)
+  }
+
   return (
     <>
       {isLoading ?
@@ -167,10 +252,50 @@ const desktop = ( props: Props ) => {
         </Grid> : (
           <Grid container>
 
-            <Grid item xs={12}>
+            <Grid item xs={11}>
               <Typography variant="h2">
                 {StorefrontsConfig.heading}
               </Typography>
+            </Grid>
+
+            <Grid item container justify="flex-end" xs={1}>
+              <IconButton
+                onClick={menuClick}
+                color="primary"
+                aria-label={Help.sortTip}
+                component="span"
+                size="small">
+                <img
+                  data-for='sort'
+                  data-tip
+                  src={sortIcon}
+                  className={classes.sortIcon}
+                />
+              </IconButton>
+              <ReactTooltip
+                id='sort'
+                place="top"
+                effect="solid"
+              >
+                {Help.sortTip}
+              </ReactTooltip>
+              <SortMenu
+                id="sortMenu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={open}
+                onClose={menuClose}
+              >
+                <SortMenuItem disabled={true}>
+                  {Sort.heading}
+                </SortMenuItem>
+                <SortMenuItem
+                  onClick={
+                    () => doSort(ServerSortTypes.ATOZ)}
+                >
+                  {Sort.atoZ}
+                </SortMenuItem>
+              </SortMenu>
             </Grid>
 
             <Grid item container xs={12} alignItems="flex-start">
@@ -263,7 +388,8 @@ const mapStateToProps = (state: ApplicationState): StorefrontsStateProps => {
 
 const mapDispatchToProps = (dispatch: AppDispatch): StorefrontsDispatchProps => {
  return {
-   setActivePage: () => dispatch(setActivePage(Local.showStoreDapps))
+   setActivePage: () => dispatch(setActivePage(Local.showStoreDapps)),
+   sortStores: (sortType: ServerSortTypes) => dispatch(sortServers(sortType))
  }
 }
 

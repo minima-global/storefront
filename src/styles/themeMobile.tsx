@@ -210,11 +210,6 @@ const themeStylesMobile = makeStyles({
     fontWeight: 400,
     fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
   },
-  menu: {
-    padding: themeMobile.spacing(1),
-    margin: themeMobile.spacing(1),
-    background: 'linear-gradient(#ff671d, #ff671d)',
-  },
   spinner: {
    position: 'relative',
    top: "50%",
@@ -241,8 +236,8 @@ const themeStylesMobile = makeStyles({
     width: '28px'
   },
   sortIcon: {
-    height: "15px",
-    width: '15px'
+    height: "20px",
+    width: '20px'
   },
   appNameIconContainer: {
     position: "relative",

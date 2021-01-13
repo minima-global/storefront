@@ -10,7 +10,8 @@ import {
   MiniDappActionTypes,
   MiniDapps,
   MiniData,
-  MiniDappSortTypes
+  MiniDappSortTypes,
+  ServerSortTypes
 } from '../../types'
 
 import { Config, Remote, GeneralError } from '../../../config'
@@ -110,7 +111,7 @@ export const sortDapps = ( sortType: MiniDappSortTypes ) => {
   }
 }
 
-const compareServers = (a: Server, b: Server) => {
+const compareServersByTitle = (a: Server, b: Server) => {
 
   if (a.title < b.title) {
     return -1;
@@ -120,6 +121,21 @@ const compareServers = (a: Server, b: Server) => {
   }
   // a must be equal to b
   return 0;
+}
+
+export const sortServers = ( sortType: ServerSortTypes ) => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    let state = getState()
+    let serverData = state.fileServers.data
+
+    if ( sortType === ServerSortTypes.ATOZ ) {
+
+      serverData.servers.sort(compareServersByTitle)
+      dispatch(write({data: serverData})(ServerActionTypes.SERVER_SORT))
+
+    }
+  }
 }
 
 const uniqueServers = (elements: any[]): any[] => {
@@ -206,7 +222,7 @@ export const getServers = () => {
     //console.log("server list: ", serverList)
 
     let servers = uniqueServers(serverList)
-    servers.sort(compareServers)
+    servers.sort(compareServersByTitle)
 
     const serverData: Servers = {
       numAvailable: servers.length,

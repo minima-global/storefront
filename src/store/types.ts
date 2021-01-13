@@ -102,11 +102,15 @@ export interface MiniDappProps extends PayloadProps {
   data: MiniDapps
 }
 
-// Search Types
+// Sort Types
 export const enum MiniDappSortTypes {
   ATOZ = 'aToZ',
   CATEGORY = 'category',
   STOREFRONT = 'storefront'
+}
+
+export const enum ServerSortTypes {
+  ATOZ = 'aToZ'
 }
 
 // Action types
@@ -119,6 +123,7 @@ export const enum AppDataActionTypes {
 export const enum ServerActionTypes {
   SERVER_INIT = '@@ServerActionTypes/SERVER_INIT',
   SERVER_SUCCESS = '@@ServerActionTypes/SERVER_SUCCESS',
+  SERVER_SORT = '@@ServerActionTypes/SERVER_SORT',
   SERVER_FAILURE = '@@ServerActionTypes/SERVER_FAILURE',
   SERVER_TOTAL = '@@ServerActionTypes/SERVER_TOTAL'
 }
