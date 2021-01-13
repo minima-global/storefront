@@ -92,7 +92,6 @@ const mobile = ( props: Props ) => {
   }
 
   const doSort = (sortType: MiniDappSortTypes) => {
-    console.log(sortType)
     props.sortDapps(sortType)
     setAnchorEl(null)
   }
@@ -297,8 +296,8 @@ const desktop = ( props: Props ) => {
     setAnchorEl(null)
   }
 
-  const doSort = (searchType: MiniDappSortTypes) => {
-    console.log(searchType)
+  const doSort = (sortType: MiniDappSortTypes) => {
+    props.sortDapps(sortType)
     setAnchorEl(null)
   }
 
