@@ -21,21 +21,23 @@ import background from '../../images/square100x100.png'
 import hrFirst from '../../images/hrFirst.svg'
 import hrSecond from '../../images/hrSecond.svg'
 import hrThird from '../../images/hrThird.svg'
+import sortIcon from '../../images/menuIcon.svg'
 
-import { initMiniDapps, getMiniDapps, serverInfo } from '../../store/app/fileServer/actions'
+import { initMiniDapps, getMiniDapps, serverInfo, sortDapps } from '../../store/app/fileServer/actions'
 
 //import Markdown from 'react-markdown'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
-import { Storefronts as StorefrontConfig, Misc, Local, AddDapp, Help, Paths } from '../../config'
+import { Storefronts as StorefrontConfig, Misc, Local, AddDapp, Help, Paths, Sort } from '../../config'
 
-import { themeStyles, themeStylesMobile } from '../../styles'
+import { themeStyles, themeStylesMobile, SortMenu, SortMenuItem } from '../../styles'
 
 import {
   ApplicationState,
   AppDispatch,
   Servers,
   MiniDapps,
-  MiniData
+  MiniData,
+  MiniDappSortTypes
 } from '../../store'
 
 // @ts-ignore
@@ -46,12 +48,18 @@ interface StorefrontStateProps {
   miniDappData: MiniDapps
 }
 
+interface StorefrontDispatchProps {
+  sortDapps: (sortType: MiniDappSortTypes) => void
+}
+
 //type Props = StorefrontStateProps & StorefrontDispatchProps
-type Props = StorefrontStateProps
+type Props = StorefrontStateProps & StorefrontDispatchProps
 
 const mobile = ( props: Props ) => {
 
   let [isLoading, setLoading] = useState(true)
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
 
   const { url } = useParams<{ url: string }>()
   const serverUrl = decodeURIComponent(url)
@@ -72,6 +80,19 @@ const mobile = ( props: Props ) => {
     }
 
   }, [props.serverData])
+
+  const menuClick = (event: any) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const menuClose = () => {
+    setAnchorEl(null)
+  }
+
+  const doSort = (sortType: MiniDappSortTypes) => {
+    props.sortDapps(sortType)
+    setAnchorEl(null)
+  }
 
   return (
     <>
@@ -111,10 +132,56 @@ const mobile = ( props: Props ) => {
                             </div>
                           </Grid>
 
-                          <Grid className={classes.storeTitle} item xs={10}>
+                          <Grid className={classes.storeTitle} item xs={9}>
                             <Typography variant="h2">
                               {storeTitle}
                             </Typography>
+                          </Grid>
+
+                          <Grid item container justify="flex-end" xs={1}>
+                            <IconButton
+                              onClick={menuClick}
+                              color="primary"
+                              aria-label={Help.sortTip}
+                              component="span"
+                              size="small">
+                              <img
+                                data-for='sort'
+                                data-tip
+                                src={sortIcon}
+                                className={classes.sortIcon}
+                              />
+                            </IconButton>
+                            <ReactTooltip
+                              id='sort'
+                              place="top"
+                              effect="solid"
+                            >
+                              {Help.sortTip}
+                            </ReactTooltip>
+                            <SortMenu
+                              id="sortMenu"
+                              anchorEl={anchorEl}
+                              keepMounted
+                              open={open}
+                              onClose={menuClose}
+                            >
+                              <SortMenuItem disabled={true}>
+                                {Sort.heading}
+                              </SortMenuItem>
+                              <SortMenuItem
+                                onClick={
+                                  () => doSort(MiniDappSortTypes.ATOZ)}
+                              >
+                                {Sort.atoZ}
+                              </SortMenuItem>
+                              <SortMenuItem
+                                onClick={
+                                  () => doSort(MiniDappSortTypes.CATEGORY)}
+                              >
+                                {Sort.category}
+                              </SortMenuItem>
+                            </SortMenu>
                           </Grid>
 
                           <Grid item container xs={12} alignItems="flex-start">
@@ -227,6 +294,8 @@ const mobile = ( props: Props ) => {
 const desktop = ( props: Props ) => {
 
   let [isLoading, setLoading] = useState(true)
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
 
   const { url } = useParams<{ url: string }>()
   const serverUrl = decodeURIComponent(url)
@@ -248,6 +317,19 @@ const desktop = ( props: Props ) => {
     }
 
   }, [props.serverData])
+
+  const menuClick = (event: any) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const menuClose = () => {
+    setAnchorEl(null)
+  }
+
+  const doSort = (sortType: MiniDappSortTypes) => {
+    props.sortDapps(sortType)
+    setAnchorEl(null)
+  }
 
   return (
     <>
@@ -286,10 +368,56 @@ const desktop = ( props: Props ) => {
                             </div>
                           </Grid>
 
-                          <Grid className={classes.storeTitle} item xs={11}>
+                          <Grid className={classes.storeTitle} item xs={10}>
                             <Typography variant="h2">
                               {storeTitle}
                             </Typography>
+                          </Grid>
+
+                          <Grid item container justify="flex-end" xs={1}>
+                            <IconButton
+                              onClick={menuClick}
+                              color="primary"
+                              aria-label={Help.sortTip}
+                              component="span"
+                              size="small">
+                              <img
+                                data-for='sort'
+                                data-tip
+                                src={sortIcon}
+                                className={classes.sortIcon}
+                              />
+                            </IconButton>
+                            <ReactTooltip
+                              id='sort'
+                              place="top"
+                              effect="solid"
+                            >
+                              {Help.sortTip}
+                            </ReactTooltip>
+                            <SortMenu
+                              id="sortMenu"
+                              anchorEl={anchorEl}
+                              keepMounted
+                              open={open}
+                              onClose={menuClose}
+                            >
+                              <SortMenuItem disabled={true}>
+                                {Sort.heading}
+                              </SortMenuItem>
+                              <SortMenuItem
+                                onClick={
+                                  () => doSort(MiniDappSortTypes.ATOZ)}
+                              >
+                                {Sort.atoZ}
+                              </SortMenuItem>
+                              <SortMenuItem
+                                onClick={
+                                  () => doSort(MiniDappSortTypes.CATEGORY)}
+                              >
+                                {Sort.category}
+                              </SortMenuItem>
+                            </SortMenu>
                           </Grid>
 
                           <Grid item container xs={12} alignItems="flex-start">
@@ -418,6 +546,13 @@ const mapStateToProps = (state: ApplicationState): StorefrontStateProps => {
   }
 }
 
-export const Storefront = connect<StorefrontStateProps, {}, {}, ApplicationState>(
-  mapStateToProps
+const mapDispatchToProps = (dispatch: AppDispatch): StorefrontDispatchProps => {
+ return {
+   sortDapps: (sortType: MiniDappSortTypes) => dispatch(sortDapps(sortType))
+ }
+}
+
+export const Storefront = connect<StorefrontStateProps, StorefrontDispatchProps, {}, ApplicationState>(
+  mapStateToProps,
+  mapDispatchToProps
 )(get)

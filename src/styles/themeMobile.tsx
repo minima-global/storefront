@@ -36,7 +36,7 @@ let themeMobile = createMuiTheme ({
     },
     h2: {
       lineHeight: "2.3",
-      fontSize: "1.5em",
+      fontSize: "1.4em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
