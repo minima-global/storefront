@@ -1,6 +1,8 @@
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 
+import { Sort } from '../config'
+
 // Store stuff
 export interface ApplicationState {
   appData: AppDataProps
@@ -100,6 +102,13 @@ export interface MiniDappProps extends PayloadProps {
   data: MiniDapps
 }
 
+// Search Types
+export const enum MiniDappSortTypes {
+  ATOZ = 'aToZ',
+  CATEGORY = 'category',
+  STOREFRONT = 'storefront'
+}
+
 // Action types
 export const enum AppDataActionTypes {
   APPDATA_INIT = '@@AppDataActionTypes/APPDATA_INIT',
@@ -117,6 +126,7 @@ export const enum ServerActionTypes {
 export const enum MiniDappActionTypes {
   MINIDAPP_INIT = '@@MiniDappActionTypes/MINIDAPP_INIT',
   MINIDAPP_SUCCESS = '@@MiniDappActionTypes/MINIDAPP_SUCCESS',
+  MINIDAPP_SORT = '@@MiniDappActionTypes/MINIDAPP_SORT',
   MINIDAPP_FAILURE = '@@MiniDappActionTypes/MINIDAPP_FAILURE',
   MINIDAPP_TOTAL = '@@MiniDappActionTypes/MINIDAPP_TOTAL',
   MINIDAPP_COUNT = '@@MiniDappActionTypes/MINIDAPP_COUNT'

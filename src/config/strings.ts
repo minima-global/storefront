@@ -113,6 +113,15 @@ class Settings {
   static readonly serverOnline = "Online"
 }
 
+class Sort {
+
+  static readonly heading = `Sort by`
+
+  static readonly atoZ = "A to Z"
+  static readonly category = "Category"
+  static readonly storefront = "Storefront"
+}
+
 export {
   App,
   Paths,
@@ -125,5 +134,6 @@ export {
   Faq,
   Help,
   Contact,
-  Settings
+  Settings,
+  Sort
 }

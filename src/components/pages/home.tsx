@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import Spinner from 'react-spinner-material'
 
 import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
 
 import ReactTooltip from 'react-tooltip'
 
@@ -19,12 +20,18 @@ import hrThird from '../../images/hrThird.svg'
 import downloadIcon from '../../images/download.svg'
 import sortIcon from '../../images/menuIcon.svg'
 
-import { serverInfo } from '../../store/app/fileServer/actions'
+import { serverInfo, sortDapps } from '../../store/app/fileServer/actions'
 import { setActivePage } from '../../store/app/appData/actions'
 
 //import Markdown from 'react-markdown'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
-import { Home as HomeConfig, Misc, Local, AddDapp, Help } from '../../config'
+import {
+  Home as HomeConfig,
+  Misc,
+  Local,
+  AddDapp,
+  Help,
+  Sort } from '../../config'
 
 import {
   themeStyles,
@@ -37,7 +44,8 @@ import {
   AppDispatch,
   Servers,
   MiniDapps,
-  MiniData
+  MiniData,
+  MiniDappSortTypes
 } from '../../store'
 
 // @ts-ignore
@@ -50,6 +58,7 @@ interface HomeStateProps {
 
 interface HomeDispatchProps {
   setActivePage: () => void
+  sortDapps: (sortType: MiniDappSortTypes) => void
 }
 
 type Props = HomeStateProps & HomeDispatchProps
@@ -57,8 +66,8 @@ type Props = HomeStateProps & HomeDispatchProps
 const mobile = ( props: Props ) => {
 
   const [isLoading, setLoading] = useState(true)
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
 
   const classes = themeStylesMobile()
 
@@ -75,12 +84,18 @@ const mobile = ( props: Props ) => {
   }, [props.serverData])
 
   const menuClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const menuClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
+
+  const doSort = (sortType: MiniDappSortTypes) => {
+    console.log(sortType)
+    props.sortDapps(sortType)
+    setAnchorEl(null)
+  }
 
   return (
     <>
@@ -124,12 +139,27 @@ const mobile = ( props: Props ) => {
                 open={open}
                 onClose={menuClose}
               >
-                  <SortMenuItem onClick={menuClose}>
-                    blah
-                  </SortMenuItem>
-                  <SortMenuItem onClick={menuClose}>
-                    more blah
-                  </SortMenuItem>
+                <SortMenuItem disabled={true}>
+                  {Sort.heading}
+                </SortMenuItem>
+                <SortMenuItem
+                  onClick={
+                    () => doSort(MiniDappSortTypes.ATOZ)}
+                >
+                  {Sort.atoZ}
+                </SortMenuItem>
+                <SortMenuItem
+                  onClick={
+                    () => doSort(MiniDappSortTypes.CATEGORY)}
+                >
+                  {Sort.category}
+                </SortMenuItem>
+                <SortMenuItem
+                  onClick={
+                    () => doSort(MiniDappSortTypes.STOREFRONT)}
+                >
+                  {Sort.storefront}
+                </SortMenuItem>
               </SortMenu>
             </Grid>
 
@@ -242,6 +272,8 @@ const mobile = ( props: Props ) => {
 const desktop = ( props: Props ) => {
 
   const [isLoading, setLoading] = useState(true)
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
 
   const classes = themeStyles()
 
@@ -256,6 +288,19 @@ const desktop = ( props: Props ) => {
     }
 
   }, [props.serverData])
+
+  const menuClick = (event: any) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const menuClose = () => {
+    setAnchorEl(null)
+  }
+
+  const doSort = (searchType: MiniDappSortTypes) => {
+    console.log(searchType)
+    setAnchorEl(null)
+  }
 
   return (
     <>
@@ -273,6 +318,7 @@ const desktop = ( props: Props ) => {
 
             <Grid item container justify="flex-end" xs={1}>
               <IconButton
+                onClick={menuClick}
                 color="primary"
                 aria-label={Help.sortTip}
                 component="span"
@@ -291,6 +337,35 @@ const desktop = ( props: Props ) => {
               >
                 {Help.sortTip}
               </ReactTooltip>
+              <SortMenu
+                id="sortMenu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={open}
+                onClose={menuClose}
+              >
+                <SortMenuItem disabled={true}>
+                  {Sort.heading}
+                </SortMenuItem>
+                <SortMenuItem
+                  onClick={
+                    () => doSort(MiniDappSortTypes.ATOZ)}
+                >
+                  {Sort.atoZ}
+                </SortMenuItem>
+                <SortMenuItem
+                  onClick={
+                    () => doSort(MiniDappSortTypes.CATEGORY)}
+                >
+                  {Sort.category}
+                </SortMenuItem>
+                <SortMenuItem
+                  onClick={
+                    () => doSort(MiniDappSortTypes.STOREFRONT)}
+                >
+                  {Sort.storefront}
+                </SortMenuItem>
+              </SortMenu>
             </Grid>
 
             <Grid item container xs={12} alignItems="flex-start">
@@ -426,7 +501,8 @@ const mapStateToProps = (state: ApplicationState): HomeStateProps => {
 
 const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
  return {
-   setActivePage: () => dispatch(setActivePage(Local.home))
+   setActivePage: () => dispatch(setActivePage(Local.home)),
+   sortDapps: (sortType: MiniDappSortTypes) => dispatch(sortDapps(sortType))
  }
 }
 

@@ -9,7 +9,8 @@ import {
   ServerActionTypes,
   MiniDappActionTypes,
   MiniDapps,
-  MiniData
+  MiniData,
+  MiniDappSortTypes
 } from '../../types'
 
 import { Config, Remote, GeneralError } from '../../../config'
@@ -43,6 +44,70 @@ export const serverInfo = (url: string, servers: Servers): Server => {
   }
 
   return server
+}
+
+const compareDappsByName = (a: MiniData, b: MiniData) => {
+
+  if (a.conf.name < b.conf.name) {
+    return -1;
+  }
+  if (a.conf.name > b.conf.name) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+
+}
+
+const compareDappsByCategory = (a: MiniData, b: MiniData) => {
+
+  if (a.conf.category < b.conf.category) {
+    return -1
+  }
+  if (a.conf.category > b.conf.category) {
+    return 1
+  }
+  // a must be equal to b
+  return 0
+
+}
+
+const compareDappsByStorefront = (a: MiniData, b: MiniData) => {
+
+  if (a.serverURL < b.serverURL) {
+    return -1;
+  }
+  if (a.serverURL > b.serverURL) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+
+}
+
+export const sortDapps = ( sortType: MiniDappSortTypes ) => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    let state = getState()
+    let dappData = state.miniDapps.data
+
+    if ( sortType === MiniDappSortTypes.ATOZ ) {
+
+      dappData.miniDapps.sort(compareDappsByName)
+      dispatch(write({data: dappData})(MiniDappActionTypes.MINIDAPP_SORT))
+
+    } else if ( sortType === MiniDappSortTypes.CATEGORY ) {
+
+      dappData.miniDapps.sort(compareDappsByCategory)
+      dispatch(write({data: dappData})(MiniDappActionTypes.MINIDAPP_SORT))
+
+    } else if ( sortType === MiniDappSortTypes.STOREFRONT ) {
+
+      dappData.miniDapps.sort(compareDappsByStorefront)
+      dispatch(write({data: dappData})(MiniDappActionTypes.MINIDAPP_SORT))
+    }
+
+  }
 }
 
 const compareServers = (a: Server, b: Server) => {
@@ -249,7 +314,7 @@ export const setServers = (file: any) => {
 }
 
 export const initMiniDapps = () => {
-  return async (dispatch: AppDispatch, getState: Function) => {
+  return async (dispatch: AppDispatch) => {
 
     //console.log("init dapps")
     dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_INIT))
