@@ -75,12 +75,13 @@ class Help {
 
   static readonly downloadTip = 'Download MiniDapp'
   static readonly homeTip = 'All MiniDapps'
-  static readonly storeTip = 'Store MiniDapps'
+  static readonly storeTip = 'Storefronts'
   static readonly helpTip = 'Help'
   static readonly contactTip = 'Contact'
   static readonly aboutTip = 'About'
   static readonly serverTip = 'Server'
-  static readonly fileTip = "Load a Server Settings File"
+  static readonly fileTip = "Load Storefronts"
+  static readonly sortTip = "Sort Options"
 }
 
 class Faq {

@@ -77,11 +77,6 @@ const mobile = (props: Props) => {
     props.poll()
   }
 
-  /*const home = `#${Local.home}$`
-  const homeRegex = RegExp(home)
-  const storefronts = `#${Local.showStoreDapps}$`
-  const storefrontsRegex = RegExp(storefronts)*/
-
   useEffect(() => {
 
     //console.log("main with: ", props.appData.activePage)

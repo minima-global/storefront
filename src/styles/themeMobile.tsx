@@ -240,6 +240,10 @@ const themeStylesMobile = makeStyles({
     height: "28px",
     width: '28px'
   },
+  sortIcon: {
+    height: "15px",
+    width: '15px'
+  },
   appNameIconContainer: {
     position: "relative",
     top: "0",

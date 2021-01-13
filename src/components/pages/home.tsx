@@ -17,6 +17,7 @@ import hrFirst from '../../images/hrFirst.svg'
 import hrSecond from '../../images/hrSecond.svg'
 import hrThird from '../../images/hrThird.svg'
 import downloadIcon from '../../images/download.svg'
+import sortIcon from '../../images/menuIcon.svg'
 
 import { serverInfo } from '../../store/app/fileServer/actions'
 import { setActivePage } from '../../store/app/appData/actions'
@@ -25,7 +26,11 @@ import { setActivePage } from '../../store/app/appData/actions'
 //import { SimpleArrayRenderer } from '../simpleRenderer'
 import { Home as HomeConfig, Misc, Local, AddDapp, Help } from '../../config'
 
-import { themeStyles, themeStylesMobile } from '../../styles'
+import {
+  themeStyles,
+  themeStylesMobile,
+  SortMenu,
+  SortMenuItem } from '../../styles'
 
 import {
   ApplicationState,
@@ -52,6 +57,8 @@ type Props = HomeStateProps & HomeDispatchProps
 const mobile = ( props: Props ) => {
 
   const [isLoading, setLoading] = useState(true)
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
 
   const classes = themeStylesMobile()
 
@@ -67,6 +74,14 @@ const mobile = ( props: Props ) => {
 
   }, [props.serverData])
 
+  const menuClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const menuClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
       {isLoading ?
@@ -75,10 +90,47 @@ const mobile = ( props: Props ) => {
         </Grid> : (
           <Grid container>
 
-            <Grid item xs={12}>
+            <Grid item xs={11}>
               <Typography variant="h2">
                 {HomeConfig.heading}
               </Typography>
+            </Grid>
+
+            <Grid item container justify="flex-end" xs={1}>
+              <IconButton
+                onClick={menuClick}
+                color="primary"
+                aria-label={Help.sortTip}
+                component="span"
+                size="small">
+                <img
+                  data-for='sort'
+                  data-tip
+                  src={sortIcon}
+                  className={classes.sortIcon}
+                />
+              </IconButton>
+              <ReactTooltip
+                id='sort'
+                place="top"
+                effect="solid"
+              >
+                {Help.sortTip}
+              </ReactTooltip>
+              <SortMenu
+                id="sortMenu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={open}
+                onClose={menuClose}
+              >
+                  <SortMenuItem onClick={menuClose}>
+                    blah
+                  </SortMenuItem>
+                  <SortMenuItem onClick={menuClose}>
+                    more blah
+                  </SortMenuItem>
+              </SortMenu>
             </Grid>
 
             <Grid item container xs={12} alignItems="flex-start">
@@ -213,10 +265,32 @@ const desktop = ( props: Props ) => {
         </Grid> : (
           <Grid container>
 
-            <Grid item xs={12}>
+            <Grid item xs={11}>
               <Typography variant="h2">
                 {HomeConfig.heading}
               </Typography>
+            </Grid>
+
+            <Grid item container justify="flex-end" xs={1}>
+              <IconButton
+                color="primary"
+                aria-label={Help.sortTip}
+                component="span"
+                size="small">
+                <img
+                  data-for='sort'
+                  data-tip
+                  src={sortIcon}
+                  className={classes.sortIcon}
+                />
+              </IconButton>
+              <ReactTooltip
+                id='sort'
+                place="top"
+                effect="solid"
+              >
+                {Help.sortTip}
+              </ReactTooltip>
             </Grid>
 
             <Grid item container xs={12} alignItems="flex-start">

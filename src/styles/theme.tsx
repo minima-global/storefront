@@ -242,6 +242,10 @@ const themeStyles = makeStyles({
     height: "50px",
     width: '50px'
   },
+  sortIcon: {
+    height: "25px",
+    width: '25px'
+  },
   appNameIconContainer: {
     position: "relative",
     top: "0",
