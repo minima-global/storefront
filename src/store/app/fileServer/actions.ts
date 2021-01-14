@@ -14,9 +14,10 @@ import {
   ServerSortTypes
 } from '../../types'
 
-import { Config, Remote, GeneralError } from '../../../config'
-
+import { poll } from '../actions'
 import { write } from '../../actions'
+
+import { Config, Remote, GeneralError } from '../../../config'
 
 export const initServers = () => {
   return async (dispatch: AppDispatch) => {
@@ -135,6 +136,77 @@ export const sortServers = ( sortType: ServerSortTypes ) => {
       dispatch(write({data: serverData})(ServerActionTypes.SERVER_SORT))
 
     }
+  }
+}
+
+export const deleteServer = ( serverURL: string ) => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    //console.log("my server: ", serverURL)
+
+    try {
+
+      let serversJSON = {
+        files: [] as any
+      }
+
+      const response = await fetch(`${Config.serverConfig}`)
+      const serverFiles = await response.json()
+      let configFiles: any[] = serverFiles.files as any[]
+
+      //console.log("configfiles: ", configFiles)
+
+      for (let i = 0; i < configFiles.length; i++) {
+
+        const file = await fetch(configFiles[i])
+        const thisFile = await file.json()
+
+        //console.log("this file: ", thisFile)
+
+        for (let [title, config] of Object.entries(thisFile)) {
+
+          //console.log("title stuff: ", title, config)
+
+          let thisConfig: Server = config as Server
+
+          //console.log("this config: ", thisConfig)
+          if ( thisConfig.hasOwnProperty('url') ) {
+
+            if ( serverURL != thisConfig.url ) {
+
+              serversJSON.files.push(configFiles[i])
+
+            }
+          } else {
+
+            console.error(GeneralError.serverConfig)
+          }
+        }
+      }
+
+      //console.log("servers json: ", serversJSON)
+      const fileJSON = JSON.stringify(serversJSON)
+      Minima.file.save(`${fileJSON}`, Config.serverConfig, function(resp: any) {
+
+        //console.log("save success: ", resp)
+
+        if(!resp.success) {
+
+          console.error(resp.statusText)
+          dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
+
+        } else {
+
+          dispatch(initServers())
+          dispatch(getServers())
+          dispatch(poll())
+        }
+      })
+
+    } catch (error) {
+      console.error(error)
+    }
+
   }
 }
 

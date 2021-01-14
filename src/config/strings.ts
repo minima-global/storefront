@@ -73,7 +73,7 @@ class Help {
 
   static readonly info = `Use ${App.appName} to access the fantastic ${App.title} MiniDapps`
 
-  static readonly downloadTip = 'Download MiniDapp'
+  static readonly downloadTip = 'Download'
   static readonly homeTip = 'All MiniDapps'
   static readonly storeTip = 'Storefronts'
   static readonly helpTip = 'Help'
@@ -81,7 +81,8 @@ class Help {
   static readonly aboutTip = 'About'
   static readonly serverTip = 'Server'
   static readonly fileTip = "Load Storefronts"
-  static readonly sortTip = "Sort Options"
+  static readonly sortTip = "Sort"
+  static readonly deleteTip = "Delete"
 }
 
 class Faq {

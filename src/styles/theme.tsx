@@ -225,6 +225,10 @@ const themeStyles = makeStyles({
     height: "25px",
     width: '20px'
   },
+  deleteIcon: {
+    height: "25px",
+    width: '25px'
+  },
   subHeaderIcon: {
     height: "40px",
     width: '40px'

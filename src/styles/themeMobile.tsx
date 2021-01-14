@@ -223,6 +223,10 @@ const themeStylesMobile = makeStyles({
     height: "20px",
     width: '17px'
   },
+  deleteIcon: {
+    height: "15px",
+    width: '15px'
+  },
   subHeaderIcon: {
     height: "32px",
     width: '32px'

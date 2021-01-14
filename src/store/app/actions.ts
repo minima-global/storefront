@@ -43,7 +43,7 @@ export const poll = () => {
 
     // now get the miniDapps
     await dispatch(initMiniDapps())
-    dispatch(getMiniDapps())
+    //dispatch(getMiniDapps())
 
     setTimeout( async () => {
 

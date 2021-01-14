@@ -20,8 +20,15 @@ import hrSecond from '../../images/hrSecond.svg'
 import hrThird from '../../images/hrThird.svg'
 import background from '../../images/square100x100.png'
 import sortIcon from '../../images/menuIcon.svg'
+import deleteIcon from '../../images/crossIcon.svg'
 
-import { initMiniDapps, getMiniDapps, sortServers } from '../../store/app/fileServer/actions'
+import {
+  initMiniDapps,
+  getMiniDapps,
+  sortServers,
+  deleteServer
+} from '../../store/app/fileServer/actions'
+
 import { setActivePage } from '../../store/app/appData/actions'
 
 //import Markdown from 'react-markdown'
@@ -54,6 +61,7 @@ interface StorefrontsStateProps {
 interface StorefrontsDispatchProps {
   setActivePage: () => void
   sortStores: (sortType: ServerSortTypes) => void
+  deleteStore: (serverURL: string) => void
 }
 
 type Props = StorefrontsStateProps & StorefrontsDispatchProps
@@ -90,6 +98,10 @@ const mobile = ( props: Props ) => {
   const doSort = (sortType: ServerSortTypes) => {
     props.sortStores(sortType)
     setAnchorEl(null)
+  }
+
+  const doDelete = (serverURL: string) => {
+    props.deleteStore(serverURL)
   }
 
   return (
@@ -182,7 +194,7 @@ const mobile = ( props: Props ) => {
                         </div>
                       </Grid>
 
-                      <Grid item xs={10}>
+                      <Grid item xs={9}>
                         <div onClick={() => history.push(`${pathShowStore}`)}>
                           <Typography variant="h3">
                             {title}
@@ -191,6 +203,29 @@ const mobile = ( props: Props ) => {
                             {description}
                           </Typography>
                         </div>
+                      </Grid>
+
+                      <Grid item container alignItems="flex-start" justify="flex-end" xs={1}>
+                        <IconButton
+                          onClick={() => doDelete(server.url)}
+                          color="primary"
+                          aria-label={Help.deleteTip}
+                          component="span"
+                          size="small">
+                          <img
+                            data-for='delete'
+                            data-tip
+                            src={deleteIcon}
+                            className={classes.deleteIcon}
+                          />
+                        </IconButton>
+                        <ReactTooltip
+                          id='delete'
+                          place="top"
+                          effect="solid"
+                        >
+                          {Help.deleteTip}
+                        </ReactTooltip>
                       </Grid>
 
                     </Grid>
@@ -242,6 +277,10 @@ const desktop = ( props: Props ) => {
   const doSort = (sortType: ServerSortTypes) => {
     props.sortStores(sortType)
     setAnchorEl(null)
+  }
+
+  const doDelete = (serverURL: string) => {
+    props.deleteStore(serverURL)
   }
 
   return (
@@ -334,7 +373,7 @@ const desktop = ( props: Props ) => {
                         </div>
                       </Grid>
 
-                      <Grid item xs={11}>
+                      <Grid item xs={10}>
                         <div onClick={() => history.push(`${pathShowStore}`)}>
                           <Typography variant="h3">
                             {title}
@@ -343,6 +382,29 @@ const desktop = ( props: Props ) => {
                             {description}
                           </Typography>
                         </div>
+                      </Grid>
+
+                      <Grid item container alignItems="flex-start" justify="flex-end" xs={1}>
+                        <IconButton
+                          onClick={() => doDelete(server.url)}
+                          color="primary"
+                          aria-label={Help.deleteTip}
+                          component="span"
+                          size="small">
+                          <img
+                            data-for='delete'
+                            data-tip
+                            src={deleteIcon}
+                            className={classes.deleteIcon}
+                          />
+                        </IconButton>
+                        <ReactTooltip
+                          id='delete'
+                          place="top"
+                          effect="solid"
+                        >
+                          {Help.deleteTip}
+                        </ReactTooltip>
                       </Grid>
 
                     </Grid>
@@ -389,7 +451,8 @@ const mapStateToProps = (state: ApplicationState): StorefrontsStateProps => {
 const mapDispatchToProps = (dispatch: AppDispatch): StorefrontsDispatchProps => {
  return {
    setActivePage: () => dispatch(setActivePage(Local.showStoreDapps)),
-   sortStores: (sortType: ServerSortTypes) => dispatch(sortServers(sortType))
+   sortStores: (sortType: ServerSortTypes) => dispatch(sortServers(sortType)),
+   deleteStore: (serverURL: string) => dispatch(deleteServer(serverURL))
  }
 }
 
