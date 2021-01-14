@@ -215,6 +215,21 @@ const themeStylesMobile = makeStyles({
    top: "50%",
    bottom: "50%"
   },
+  deleteModal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteModalSub: {
+    backgroundColor: themeMobile.palette.background.default,
+    boxShadow: themeMobile.shadows[3],
+    padding: themeMobile.spacing(1),
+    outline: "none",
+    width: "40%"
+  },
+  deleteModalSubIcons: {
+    textAlign: "center"
+  },
   appIcon: {
     height: "35px",
     width: "35px"

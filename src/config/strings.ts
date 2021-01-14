@@ -83,6 +83,8 @@ class Help {
   static readonly fileTip = "Load Storefronts"
   static readonly sortTip = "Sort"
   static readonly deleteTip = "Delete"
+
+  static readonly deleteSure = "Are you sure you want to delete"
 }
 
 class Faq {

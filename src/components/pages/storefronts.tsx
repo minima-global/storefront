@@ -8,6 +8,10 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+
 import Spinner from 'react-spinner-material'
 
 import IconButton from '@material-ui/core/IconButton'
@@ -21,6 +25,7 @@ import hrThird from '../../images/hrThird.svg'
 import background from '../../images/square100x100.png'
 import sortIcon from '../../images/menuIcon.svg'
 import deleteIcon from '../../images/crossIcon.svg'
+import yesIcon from '../../images/tickIcon.svg'
 
 import {
   initMiniDapps,
@@ -41,7 +46,12 @@ import {
   Sort
 } from '../../config'
 
-import { themeStyles, themeStylesMobile, SortMenu, SortMenuItem } from '../../styles'
+import {
+  themeStyles,
+  themeStylesMobile,
+  SortMenu,
+  SortMenuItem
+} from '../../styles'
 
 import {
   ApplicationState,
@@ -69,6 +79,9 @@ type Props = StorefrontsStateProps & StorefrontsDispatchProps
 const mobile = ( props: Props ) => {
 
   const [isLoading, setLoading] = useState(true)
+  const [isDelete, setDelete] = useState(false)
+  const [deleteTitle, setDeleteTitle] = useState("")
+  const [deleteURL, setDeleteURL] = useState("")
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
@@ -100,7 +113,18 @@ const mobile = ( props: Props ) => {
     setAnchorEl(null)
   }
 
+  const deleteOpen = (title: string, url: string) => {
+    setDeleteTitle(title)
+    setDeleteURL(url)
+    setDelete(true)
+  }
+
+  const deleteClose = () => {
+    setDelete(false)
+  }
+
   const doDelete = (serverURL: string) => {
+    setDelete(false)
     props.deleteStore(serverURL)
   }
 
@@ -207,7 +231,7 @@ const mobile = ( props: Props ) => {
 
                       <Grid item container alignItems="flex-start" justify="flex-end" xs={1}>
                         <IconButton
-                          onClick={() => doDelete(server.url)}
+                          onClick={() => deleteOpen(title, server.url)}
                           color="primary"
                           aria-label={Help.deleteTip}
                           component="span"
@@ -238,6 +262,58 @@ const mobile = ( props: Props ) => {
                 )
               })
             }
+
+            <Modal
+              aria-labelledby={Help.deleteSure}
+              aria-describedby={Help.deleteSure}
+              className={classes.deleteModal}
+              open={isDelete}
+              onClose={deleteClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <Fade in={isDelete}>
+                <div className={classes.deleteModalSub}>
+                  <Typography variant="h3">
+                    {Help.deleteSure} {deleteTitle}?
+                  </Typography>
+                  <br/>
+                  <div className={classes.deleteModalSubIcons}>
+                    <IconButton
+                      onClick={deleteClose}
+                      color="primary"
+                      aria-label={Help.deleteTip}
+                      component="span"
+                      size="small">
+                      <img
+                        data-for='delete'
+                        data-tip
+                        src={deleteIcon}
+                        className={classes.deleteIcon}
+                      />
+                    </IconButton>
+                    &nbsp;
+                    <IconButton
+                      onClick={() => doDelete(deleteURL)}
+                      color="primary"
+                      aria-label={Help.deleteTip}
+                      component="span"
+                      size="small">
+                      <img
+                        data-for='delete'
+                        data-tip
+                        src={yesIcon}
+                        className={classes.deleteIcon}
+                      />
+                    </IconButton>
+                  </div>
+                </div>
+              </Fade>
+            </Modal>
+
           </Grid>
         )
       }
@@ -248,6 +324,9 @@ const mobile = ( props: Props ) => {
 const desktop = ( props: Props ) => {
 
   const [isLoading, setLoading] = useState(true)
+  const [isDelete, setDelete] = useState(false)
+  const [deleteTitle, setDeleteTitle] = useState("")
+  const [deleteURL, setDeleteURL] = useState("")
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
@@ -277,6 +356,16 @@ const desktop = ( props: Props ) => {
   const doSort = (sortType: ServerSortTypes) => {
     props.sortStores(sortType)
     setAnchorEl(null)
+  }
+
+  const deleteOpen = (title: string, url: string) => {
+    setDeleteTitle(title)
+    setDeleteURL(url)
+    setDelete(true)
+  }
+
+  const deleteClose = () => {
+    setDelete(false)
   }
 
   const doDelete = (serverURL: string) => {
@@ -386,7 +475,7 @@ const desktop = ( props: Props ) => {
 
                       <Grid item container alignItems="flex-start" justify="flex-end" xs={1}>
                         <IconButton
-                          onClick={() => doDelete(server.url)}
+                          onClick={() => deleteOpen(title, server.url)}
                           color="primary"
                           aria-label={Help.deleteTip}
                           component="span"
@@ -417,6 +506,59 @@ const desktop = ( props: Props ) => {
                 )
               })
             }
+
+            <Modal
+              aria-labelledby={Help.deleteSure}
+              aria-describedby={Help.deleteSure}
+              className={classes.deleteModal}
+              open={isDelete}
+              onClose={deleteClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <Fade in={isDelete}>
+                <div className={classes.deleteModalSub}>
+                  <Typography variant="h3">
+                    {Help.deleteSure} {deleteTitle}?
+                  </Typography>
+
+                  <br/>
+                  <div className={classes.deleteModalSubIcons}>
+                    <IconButton
+                      onClick={deleteClose}
+                      color="primary"
+                      aria-label={Help.deleteTip}
+                      component="span"
+                      size="small">
+                      <img
+                        data-for='delete'
+                        data-tip
+                        src={deleteIcon}
+                        className={classes.deleteIcon}
+                      />
+                    </IconButton>                    
+                    &nbsp;
+                    <IconButton
+                      onClick={() => doDelete(deleteURL)}
+                      color="primary"
+                      aria-label={Help.deleteTip}
+                      component="span"
+                      size="small">
+                      <img
+                        data-for='delete'
+                        data-tip
+                        src={yesIcon}
+                        className={classes.deleteIcon}
+                      />
+                    </IconButton>
+                  </div>
+                </div>
+              </Fade>
+            </Modal>
+
           </Grid>
         )
       }

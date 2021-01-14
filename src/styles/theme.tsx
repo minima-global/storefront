@@ -217,6 +217,21 @@ const themeStyles = makeStyles({
      top: "50%",
      bottom: "50%"
   },
+  deleteModal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteModalSub: {
+    backgroundColor: theme.palette.background.default,
+    boxShadow: theme.shadows[3],
+    padding: theme.spacing(1),
+    outline: "none",
+    width: "10%"
+  },
+  deleteModalSubIcons: {
+    textAlign: "center"
+  },
   appIcon: {
     height: "50px",
     width: '50px'
