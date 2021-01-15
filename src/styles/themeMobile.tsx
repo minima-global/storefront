@@ -137,6 +137,13 @@ themeMobile = responsiveFontSizes(themeMobile)
 "0"
 
 const themeStylesMobile = makeStyles({
+  landing: {
+    margin: "0",
+    padding: "0",
+    height: "100%",
+    width: "100%",
+    background: 'linear-gradient(#FFFFFF, #FFFFFF)'
+  },
   root: {
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
     height: "100vh",

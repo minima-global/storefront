@@ -18,7 +18,7 @@ export const setActivePage = (page: string) => {
       activePage: page
     }
 
-    if ( ( page === Local.home ) ||
+    if ( ( page === Local.allDapps ) ||
          ( page === Local.about ) ||
          ( page === Local.help ) ||
          ( page === Local.contact ) ||

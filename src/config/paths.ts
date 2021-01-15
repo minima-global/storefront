@@ -7,6 +7,7 @@ class Config {
 class Local {
 
   static readonly home = '/'
+  static readonly allDapps = '/all-dapps'
   static readonly about = '/about'
   static readonly help = '/help'
   static readonly contact = '/contact'

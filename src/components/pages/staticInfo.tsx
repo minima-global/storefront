@@ -13,7 +13,7 @@ import hrFirst from '../../images/hrFirst.svg'
 import { themeStyles, themeStylesMobile } from '../../styles'
 
 import { Local } from '../../config'
-import { Home, About, Help, Contact } from '../../config/strings'
+import { About, Help, Contact } from '../../config/strings'
 
 import { setActivePage } from '../../store/app/appData/actions'
 
@@ -29,8 +29,8 @@ type Props = StaticInfoProps & DispatchProps
 
 const appInfo = (props: Props) => {
 
-    const [pageData, setPageData] = useState({title: Home.heading,
-    data: Home.info})
+    const [pageData, setPageData] = useState({title: About.heading,
+    data: About.info})
 
     const classes = isMobile ? themeStylesMobile() : themeStyles()
 

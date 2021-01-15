@@ -12,8 +12,8 @@ class App {
 
 class Paths {
 
-  // AppBar
   static readonly home = 'Home'
+  static readonly allDapps = 'All MiniDapps'
   static readonly about = 'About'
   static readonly help = 'Help'
   static readonly contact = 'Contact'
@@ -40,6 +40,11 @@ class Transaction {
 }
 
 class Home {
+
+  static readonly heading = 'Home'
+}
+
+class AllDapps {
 
   static readonly heading = 'All MiniDapps'
 
@@ -74,7 +79,7 @@ class Help {
   static readonly info = `Use ${App.appName} to access the fantastic ${App.title} MiniDapps`
 
   static readonly downloadTip = 'Download'
-  static readonly homeTip = 'All MiniDapps'
+  static readonly allDappsTip = 'All MiniDapps'
   static readonly storeTip = 'Storefronts'
   static readonly helpTip = 'Help'
   static readonly contactTip = 'Contact'
@@ -131,6 +136,7 @@ export {
   GeneralError,
   Transaction,
   Home,
+  AllDapps,
   AddDapp,
   Storefronts,
   About,

@@ -136,6 +136,13 @@ theme = responsiveFontSizes(theme)
 "0"
 
 const themeStyles = makeStyles({
+  landing: {
+    margin: "0",
+    padding: "0",
+    height: "100%",
+    width: "100%",
+    background: 'linear-gradient(#000000, #000000)'
+  },
   root: {
     marginTop: "5vh",
     marginBottom: "5vh",
