@@ -63,21 +63,21 @@ let theme = createMuiTheme ({
       color: '#001C32'
     },
     h6: {
-      lineHeight: "1.2",
+      lineHeight: "2",
       fontSize: "1em",
       fontWeight: 700,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#001C32'
     },
     subtitle1: {
-      lineHeight: "1.2",
+      lineHeight: "2.5",
       fontSize: "1em",
       fontWeight: 600,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
       color: '#FFFFFF'
     },
     subtitle2: {
-      lineHeight: "1.2",
+      lineHeight: "1",
       fontSize: "1em",
       fontWeight: 600,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
@@ -250,8 +250,8 @@ const themeStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: "50px",
-    width: '50px'
+    height: "60px",
+    width: '60px'
   },
   deleteModal: {
     display: 'flex',

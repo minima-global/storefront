@@ -45,7 +45,7 @@ export const poll = () => {
     await dispatch(initMiniDapps())
     //dispatch(getMiniDapps())
 
-    setTimeout( async () => {
+    let dappsTimout = setTimeout( () => {
 
       let state = getState()
       const serverData = state.fileServers.data as Servers
@@ -61,10 +61,12 @@ export const poll = () => {
           dispatch(getMiniDapps())
         }
       } else {
+
         //console.log("In here?")
         dispatch(poll())
       }
 
     }, Misc.pollInterval)
+
   }
 }

@@ -39,18 +39,24 @@ const landing = (props: Props) => {
 
   useEffect(() => {
 
-    setTimeout(() => {
+    let appTimeout = setTimeout(() => {
       setLoadAppName(true)
     }, 1000)
 
-    setTimeout(() => {
+    let logoTimeout = setTimeout(() => {
       setLoadMinimaLogo(true)
     }, 2000)
 
-    setTimeout(() => {
+    let pageTimeout = setTimeout(() => {
       props.setActivePage(Local.allDapps)
       history.push(Local.allDapps)
     }, 5000)
+
+    return () => {
+      clearTimeout(appTimeout)
+      clearTimeout(logoTimeout)
+      clearTimeout(pageTimeout)
+    }
 
   }, [])
 
