@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 
@@ -6,6 +6,7 @@ import { isMobile } from "react-device-detect"
 
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import Fade from '@material-ui/core/Fade'
 
 import { ApplicationState, AppDispatch } from '../../store/types'
 
@@ -14,7 +15,9 @@ import { themeStyles, themeStylesMobile } from '../../styles'
 import { Local } from '../../config'
 import { Home as HomeConfig, App } from '../../config/strings'
 
-import hrFirst from '../../images/hrFirst.svg'
+import logoIcon from '../../images/storefrontLogo.svg'
+import appNameIcon from '../../images/storefront.svg'
+import minimaIcon from '../../images/minimaIcon.svg'
 
 import { setActivePage } from '../../store/app/appData/actions'
 
@@ -26,36 +29,72 @@ type Props = HomeDispatchProps
 
 const landing = (props: Props) => {
 
-    let history = useHistory()
+  const [loadLogo, setLoadLogo] = useState(true)
+  const [loadAppName, setLoadAppName] = useState(false)
+  const [loadMinimaLogo, setLoadMinimaLogo] = useState(false)
 
-    const classes = isMobile ? themeStylesMobile() : themeStyles()
+  let history = useHistory()
 
-    useEffect(() => {
+  const classes = isMobile ? themeStylesMobile() : themeStyles()
 
-      setTimeout(() => {
-        props.setActivePage(Local.allDapps)
-        history.push(Local.allDapps)
-      }, 2000)
+  useEffect(() => {
 
-    }, [])
+    setTimeout(() => {
+      setLoadAppName(true)
+    }, 1000)
 
-    return (
-      <Grid container alignItems="flex-start">
-        <Grid item container justify="flex-start" xs={12}>
-          <Typography variant="h2">
-            blah
-          </Typography>
-        </Grid>
-        <Grid item container xs={12} alignItems="flex-start">
-          <img src={hrFirst} className={classes.hr}/>
-        </Grid>
-        <Grid item container justify="flex-start" xs={12}>
-          <Typography variant="h5">
-            blah blah blah
-          </Typography>
-        </Grid>
+    setTimeout(() => {
+      setLoadMinimaLogo(true)
+    }, 2000)
+
+    setTimeout(() => {
+      props.setActivePage(Local.allDapps)
+      history.push(Local.allDapps)
+    }, 5000)
+
+  }, [])
+
+  return (
+    <Grid container className={classes.landing}>
+
+      <Grid item container className={classes.landingLogo}>
+          <Fade in={loadLogo} timeout={1000}>
+            <div>
+              <Grid item container justify="center" xs={12}>
+                <img className={classes.landingLogoIcon} src={logoIcon}/>
+              </Grid>
+              <br/>
+              <Fade in={loadAppName} timeout={1000}>
+                <Grid item container justify="center" xs={12}>
+                  <img className={classes.landingAppNameIcon} src={appNameIcon}/>
+                </Grid>
+              </Fade>
+            </div>
+          </Fade>
       </Grid>
-    )
+
+      <Grid container className={classes.landingMinimaLogo}>
+        <Fade in={loadMinimaLogo} timeout={1000}>
+          <div>
+            <Grid item container justify="center" xs={12}>
+              <img className={classes.landingMinimaIcon} src={minimaIcon}/>
+            </Grid>
+            <Grid item container justify="center" xs={12}>
+              <Typography variant="subtitle1">
+                {App.catchLine}
+              </Typography>
+            </Grid>
+            <Grid item container justify="center" xs={12}>
+              <Typography variant="subtitle2">
+                {App.release}
+              </Typography>
+            </Grid>
+          </div>
+        </Fade>
+      </Grid>
+
+    </Grid>
+  )
 }
 
 const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {

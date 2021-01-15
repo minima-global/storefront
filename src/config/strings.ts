@@ -8,6 +8,7 @@ class App {
   static readonly author = 'Steve Huckle'
   static readonly email = 'steve dot huckle at minima dot global'
   static readonly version = '0.1.0'
+  static readonly release = 'Testnet'
 }
 
 class Paths {

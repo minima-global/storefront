@@ -80,8 +80,7 @@ const mobile = (props: Props) => {
 
   useEffect(() => {
 
-    console.log("main with: ", props.appData.activePage)
-
+    //console.log("main with: ", props.appData.activePage)
     if ( props.appData.activePage === Local.allDapps ) {
 
       setLoading(false)
@@ -113,9 +112,10 @@ const mobile = (props: Props) => {
   return (
     <>
       {isLoading ?
-        <Grid className={classes.landing}>
+        <div>
+          <AppInit />
           <Home />
-        </Grid> : (
+        </div> : (
 
           <Grid className={classes.root}>
 
@@ -359,12 +359,9 @@ const desktop = (props: Props) => {
 
   useEffect(() => {
 
-    console.log("main with: ", props.appData.activePage)
-
     //console.log("main with: ", props.appData.activePage)
     if ( props.appData.activePage === Local.allDapps ) {
 
-      console.log("I'm here!!!!")
       setLoading(false)
       setIcons([allDappsActiveIcon, storesIcon, helpIcon, infoIcon, contactIcon])
 
@@ -394,10 +391,10 @@ const desktop = (props: Props) => {
   return (
     <>
       {isLoading ?
-        <Grid className={classes.landing}>
+        <div>
           <AppInit />
           <Home />
-        </Grid> : (
+        </div> : (
 
           <Grid className={classes.root}>
 

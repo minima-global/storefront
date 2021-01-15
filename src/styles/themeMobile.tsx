@@ -70,18 +70,18 @@ let themeMobile = createMuiTheme ({
       color: '#001C32'
     },
     subtitle1: {
-      lineHeight: "1",
+      lineHeight: "1.2",
       fontSize: "1em",
       fontWeight: 600,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
-      color: '#001C32'
+      color: '#FFFFFF'
     },
     subtitle2: {
-      lineHeight: "1",
+      lineHeight: "1.2",
       fontSize: "1em",
       fontWeight: 500,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
-      color: '#001C32'
+      color: '#FF512F'
     },
     body1: {
       lineHeight: '1',
@@ -140,9 +140,9 @@ const themeStylesMobile = makeStyles({
   landing: {
     margin: "0",
     padding: "0",
-    height: "100%",
-    width: "100%",
-    background: 'linear-gradient(#FFFFFF, #FFFFFF)'
+    height: "100vh",
+    width: "100vw",
+    background: 'linear-gradient(#001C32, #001C32)'
   },
   root: {
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
@@ -221,6 +221,35 @@ const themeStylesMobile = makeStyles({
    position: 'relative',
    top: "50%",
    bottom: "50%"
+  },
+  landingLogo: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  landingMinimaLogo: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    bottom: '50px'
+  },
+  landingLogoIcon: {
+    height: "100px",
+    width: '100px'
+  },
+  landingAppNameIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: "25px",
+    width: '168px'
+  },
+  landingMinimaIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: "50px",
+    width: '50px'
   },
   deleteModal: {
     display: 'flex',
