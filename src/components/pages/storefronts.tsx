@@ -29,6 +29,7 @@ import background from '../../images/square100x100.png'
 import sortIcon from '../../images/menuIcon.svg'
 import deleteIcon from '../../images/crossIcon.svg'
 import yesIcon from '../../images/tickIcon.svg'
+import missingStoreIcon from '../../images/missingStoreIcon.svg'
 
 import {
   initMiniDapps,
@@ -210,21 +211,15 @@ const mobile = ( props: Props ) => {
                     <Grid container className={classes.details}>
 
                       <Grid item container justify="flex-start" xs={2}>
-                        <div className={classes.storesIconParent}>
-                          <img
-                            className={classes.storesIconContainer}
-                            src={background}
-                          />
-                          <input
-                            type="image"
-                            src={iconURL}
-                            onClick={() => history.push(`${pathShowStore}`)}
-                            alt="store icon"
-                            aria-label="store icon"
-                            role="button"
-                            className={classes.storesIcon}
-                          />
-                        </div>
+                        <input
+                          type="image"
+                          src={iconURL}
+                          onClick={() => history.push(`${pathShowStore}`)}
+                          alt="store icon"
+                          aria-label="store icon"
+                          role="button"
+                          className={classes.storesIcon}
+                        />
                       </Grid>
 
                       <Grid item xs={9}>
@@ -304,7 +299,7 @@ const mobile = ( props: Props ) => {
                         className={classes.deleteIcon}
                       />
                     </IconButton>
-                    &nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <IconButton
                       onClick={() => doDelete(deleteURL)}
                       color="primary"
@@ -460,21 +455,15 @@ const desktop = ( props: Props ) => {
                     <Grid container className={classes.details}>
 
                       <Grid item container justify="flex-start" xs={1}>
-                        <div className={classes.storesIconParent}>
-                          <img
-                            className={classes.storesIconContainer}
-                            src={background}
-                          />
-                          <input
-                            type="image"
-                            src={iconURL}
-                            onClick={() => history.push(`${pathShowStore}`)}
-                            alt="store icon"
-                            aria-label="store icon"
-                            role="button"
-                            className={classes.storesIcon}
-                          />
-                        </div>
+                        <input
+                          type="image"
+                          src={iconURL}
+                          onClick={() => history.push(`${pathShowStore}`)}
+                          alt="store icon"
+                          aria-label="store icon"
+                          role="button"
+                          className={classes.storesIcon}
+                        />
                       </Grid>
 
                       <Grid item xs={10}>
@@ -555,7 +544,7 @@ const desktop = ( props: Props ) => {
                         className={classes.deleteIcon}
                       />
                     </IconButton>
-                    &nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <IconButton
                       onClick={() => doDelete(deleteURL)}
                       color="primary"

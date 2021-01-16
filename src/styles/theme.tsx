@@ -84,7 +84,7 @@ let theme = createMuiTheme ({
       color: '#FF512F'
     },
     body1: {
-      lineHeight: '1',
+      lineHeight: '1.1',
       fontSize: "1",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
@@ -339,12 +339,10 @@ const themeStyles = makeStyles({
     height: "40px"
   },
   storeIcon: {
-    position: "absolute",
-    top: "0",
-    left: "0",
-    margin: '10px',
-    width: "20px",
-    height: "20px",
+    marginTop: theme.spacing(1),
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
   },
   storesIconParent: {
     position: "relative",
@@ -360,12 +358,9 @@ const themeStyles = makeStyles({
     height: "40px"
   },
   storesIcon: {
-    position: "absolute",
-    top: "0",
-    left: "0",
-    margin: '10px',
-    width: "20px",
-    height: "20px",
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
   },
   link: {
     textDecoration: 'none'

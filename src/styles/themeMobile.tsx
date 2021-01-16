@@ -84,7 +84,7 @@ let themeMobile = createMuiTheme ({
       color: '#FF512F'
     },
     body1: {
-      lineHeight: '1',
+      lineHeight: '1.1',
       fontSize: "1",
       fontWeight: 400,
       fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
@@ -337,12 +337,10 @@ const themeStylesMobile = makeStyles({
     height: "30px"
   },
   storeIcon: {
-    position: "absolute",
-    top: "0",
-    left: "0",
-    margin: '5px',
-    width: "20px",
-    height: "20px",
+    marginTop: themeMobile.spacing(1),
+    width: "30px",
+    height: "30px",
+    borderRadius: "50%",
   },
   storesIconParent: {
     position: "relative",
@@ -358,12 +356,9 @@ const themeStylesMobile = makeStyles({
     height: "35px"
   },
   storesIcon: {
-    position: "absolute",
-    top: "0",
-    left: "0",
-    margin: '5px',
-    width: "25px",
-    height: "25px",
+    borderRadius: "50%",
+    width: "35px",
+    height: "35px",
   },
   link: {
     textDecoration: 'none'

@@ -85,12 +85,12 @@ const appInfo = (props: Props) => {
           return (
 
             <Grid item container className={classes.details} xs={12}>
-              <Typography variant="h5">
+              <Typography variant="body1">
                 {data}
               </Typography>
             </Grid>
           )
-          
+
         })}
       </Grid>
     )

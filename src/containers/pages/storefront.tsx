@@ -129,16 +129,10 @@ const mobile = ( props: Props ) => {
                         <>
 
                           <Grid item xs={2}>
-                            <div className={classes.storeIconParent}>
-                              <img
-                                className={classes.storeIconContainer}
-                                src={background}
-                              />
-                              <img
-                                className={classes.storeIcon}
-                                src={storeIconURL}
-                              />
-                            </div>
+                            <img
+                              className={classes.storeIcon}
+                              src={storeIconURL}
+                            />
                           </Grid>
 
                           <Grid className={classes.storeTitle} item xs={9}>
@@ -371,16 +365,10 @@ const desktop = ( props: Props ) => {
                       storeHeading = (
                         <>
                           <Grid item xs={1}>
-                            <div className={classes.storeIconParent}>
-                              <img
-                                className={classes.storeIconContainer}
-                                src={background}
-                              />
-                              <img
-                                className={classes.storeIcon}
-                                src={storeIconURL}
-                              />
-                            </div>
+                            <img
+                              className={classes.storeIcon}
+                              src={storeIconURL}
+                            />
                           </Grid>
 
                           <Grid className={classes.storeTitle} item xs={10}>
