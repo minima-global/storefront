@@ -22,6 +22,9 @@ import ReactTooltip from 'react-tooltip'
 import hrFirst from '../../images/hrFirst.svg'
 import hrSecond from '../../images/hrSecond.svg'
 import hrThird from '../../images/hrThird.svg'
+import hrFirstMobile from '../../images/hrFirstMobile.svg'
+import hrSecondMobile from '../../images/hrSecondMobile.svg'
+import hrThirdMobile from '../../images/hrThirdMobile.svg'
 import background from '../../images/square100x100.png'
 import sortIcon from '../../images/menuIcon.svg'
 import deleteIcon from '../../images/crossIcon.svg'
@@ -189,7 +192,7 @@ const mobile = ( props: Props ) => {
             </Grid>
 
             <Grid item container xs={12} alignItems="flex-start">
-              <img src={hrFirst} className={classes.hr}/>
+              <img src={hrFirstMobile} className={classes.hr}/>
             </Grid>
             {
               props.serverData.servers.map( ( server: Server, i: number ) => {
@@ -261,7 +264,7 @@ const mobile = ( props: Props ) => {
                     </Grid>
 
                     <Grid item container xs={12} alignItems="flex-start">
-                      <img src={hrThird} className={classes.hr}/>
+                      <img src={hrThirdMobile} className={classes.hr}/>
                     </Grid>
 
                   </React.Fragment>

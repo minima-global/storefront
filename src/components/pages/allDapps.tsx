@@ -17,6 +17,9 @@ import ReactTooltip from 'react-tooltip'
 import hrFirst from '../../images/hrFirst.svg'
 import hrSecond from '../../images/hrSecond.svg'
 import hrThird from '../../images/hrThird.svg'
+import hrFirstMobile from '../../images/hrFirstMobile.svg'
+import hrSecondMobile from '../../images/hrSecondMobile.svg'
+import hrThirdMobile from '../../images/hrThirdMobile.svg'
 import downloadIcon from '../../images/download.svg'
 import sortIcon from '../../images/menuIcon.svg'
 
@@ -169,7 +172,7 @@ const mobile = ( props: Props ) => {
             </Grid>
 
             <Grid item container xs={12} alignItems="flex-start">
-              <img src={hrFirst} className={classes.hr}/>
+              <img src={hrFirstMobile} className={classes.hr}/>
             </Grid>
             {
               props.miniDappData.miniDapps.map( ( miniDapp: MiniData ) => {
@@ -238,7 +241,7 @@ const mobile = ( props: Props ) => {
                       </Grid>
 
                       <Grid item container xs={10} alignItems="center">
-                        <img src={hrSecond} className={classes.hr}/>
+                        <img src={hrSecondMobile} className={classes.hr}/>
                       </Grid>
 
                       <Grid item xs={2}>
@@ -260,7 +263,7 @@ const mobile = ( props: Props ) => {
                     </Grid>
 
                     <Grid item container xs={12} alignItems="center">
-                      <img src={hrThird} className={classes.hr}/>
+                      <img src={hrThirdMobile} className={classes.hr}/>
                     </Grid>
 
                   </React.Fragment>
