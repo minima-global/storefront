@@ -79,11 +79,19 @@ const appInfo = (props: Props) => {
         <Grid item container xs={12} alignItems="flex-start">
           <img src={hr} className={classes.hr}/>
         </Grid>
-        <Grid item container className={classes.details} xs={12}>
-          <Typography variant="h5">
-            {pageData.data}
-          </Typography>
-        </Grid>
+
+        { pageData.data.map( (data: string ) => {
+
+          return (
+
+            <Grid item container className={classes.details} xs={12}>
+              <Typography variant="h5">
+                {data}
+              </Typography>
+            </Grid>
+          )
+          
+        })}
       </Grid>
     )
 }

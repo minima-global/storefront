@@ -40,7 +40,7 @@ export const enum InfoTypes {
 
 export interface InfoProps {
   title: string
-  data: string
+  data: string[]
 }
 
 // Servers
