@@ -32,6 +32,7 @@ const landing = (props: Props) => {
   const [loadLogo, setLoadLogo] = useState(true)
   const [loadAppName, setLoadAppName] = useState(false)
   const [loadMinimaLogo, setLoadMinimaLogo] = useState(false)
+  const [exit, setExit] = useState(false)
 
   let history = useHistory()
 
@@ -47,6 +48,10 @@ const landing = (props: Props) => {
       setLoadMinimaLogo(true)
     }, 2000)
 
+    let exitTimeout = setTimeout(() => {
+      setExit(true)
+    }, 4500)
+
     let pageTimeout = setTimeout(() => {
       props.setActivePage(Local.allDapps)
       history.push(Local.allDapps)
@@ -55,51 +60,92 @@ const landing = (props: Props) => {
     return () => {
       clearTimeout(appTimeout)
       clearTimeout(logoTimeout)
+      clearTimeout(exitTimeout)
       clearTimeout(pageTimeout)
     }
 
   }, [])
 
   return (
-    <Grid container className={classes.landing}>
+    <>
+      {exit ?
 
-      <Grid item container className={classes.landingLogo}>
-          <Fade in={loadLogo} timeout={1000}>
-            <div>
-              <Grid item container justify="center" xs={12}>
-                <img className={classes.landingLogoIcon} src={logoIcon}/>
-              </Grid>
-              <br/>
-              <Fade in={loadAppName} timeout={1000}>
+          <Grid container className={classes.landingExit}>
+
+            <Grid item container className={classes.landingLogo}>
+              <div>
+                <Grid item container justify="center" xs={12}>
+                  <img className={classes.landingLogoIcon} src={logoIcon}/>
+                </Grid>
+                <br/>
                 <Grid item container justify="center" xs={12}>
                   <img className={classes.landingAppNameIcon} src={appNameIcon}/>
                 </Grid>
+              </div>
+            </Grid>
+
+            <Grid container className={classes.landingMinimaLogo}>
+              <div>
+                <Grid item container justify="center" xs={12}>
+                  <img className={classes.landingMinimaIcon} src={minimaIcon}/>
+                </Grid>
+                <Grid item container justify="center" xs={12}>
+                  <Typography variant="subtitle1">
+                    {App.catchLine}
+                  </Typography>
+                </Grid>
+                <Grid item container justify="center" xs={12}>
+                  <Typography variant="subtitle2">
+                    {App.release}
+                  </Typography>
+                </Grid>
+              </div>
+            </Grid>
+
+          </Grid> : (
+
+          <Grid container className={classes.landing}>
+
+            <Grid item container className={classes.landingLogo}>
+              <Fade in={loadLogo} timeout={1000}>
+                <div>
+                  <Grid item container justify="center" xs={12}>
+                    <img className={classes.landingLogoIcon} src={logoIcon}/>
+                  </Grid>
+                  <br/>
+                  <Fade in={loadAppName} timeout={1000}>
+                    <Grid item container justify="center" xs={12}>
+                      <img className={classes.landingAppNameIcon} src={appNameIcon}/>
+                    </Grid>
+                  </Fade>
+                </div>
               </Fade>
-            </div>
-          </Fade>
-      </Grid>
+            </Grid>
 
-      <Grid container className={classes.landingMinimaLogo}>
-        <Fade in={loadMinimaLogo} timeout={1000}>
-          <div>
-            <Grid item container justify="center" xs={12}>
-              <img className={classes.landingMinimaIcon} src={minimaIcon}/>
+            <Grid container className={classes.landingMinimaLogo}>
+              <Fade in={loadMinimaLogo} timeout={1000}>
+                <div>
+                  <Grid item container justify="center" xs={12}>
+                    <img className={classes.landingMinimaIcon} src={minimaIcon}/>
+                  </Grid>
+                  <Grid item container justify="center" xs={12}>
+                    <Typography variant="subtitle1">
+                      {App.catchLine}
+                    </Typography>
+                  </Grid>
+                  <Grid item container justify="center" xs={12}>
+                    <Typography variant="subtitle2">
+                      {App.release}
+                    </Typography>
+                  </Grid>
+                </div>
+              </Fade>
             </Grid>
-            <Grid item container justify="center" xs={12}>
-              <Typography variant="subtitle1">
-                {App.catchLine}
-              </Typography>
-            </Grid>
-            <Grid item container justify="center" xs={12}>
-              <Typography variant="subtitle2">
-                {App.release}
-              </Typography>
-            </Grid>
-          </div>
-        </Fade>
-      </Grid>
 
-    </Grid>
+          </Grid>
+        )
+      }
+    </>
   )
 }
 

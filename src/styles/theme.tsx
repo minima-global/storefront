@@ -143,6 +143,16 @@ const themeStyles = makeStyles({
     width: "100vw",
     background: 'linear-gradient(#001C32, #001C32)'
   },
+  landingExit: {
+    margin: "0",
+    padding: "0",
+    height: "100vh",
+    width: "100vw",
+    background: 'linear-gradient(#001C32, #001C32)',
+    visibility: "hidden",
+    opacity: "0",
+    transition: "visibility 0s 0.5s, opacity 0.5s linear"
+  },
   root: {
     marginTop: "5vh",
     marginBottom: "5vh",

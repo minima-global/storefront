@@ -118,7 +118,7 @@ const mobile = (props: Props) => {
           <Home />
         </div> : (
 
-          <Fade in={!isLoading} timeout={1000}>
+          <Fade in={!isLoading} timeout={500}>
 
             <Grid className={classes.root}>
 
@@ -400,7 +400,7 @@ const desktop = (props: Props) => {
           <Home />
         </div> : (
 
-          <Fade in={!isLoading} timeout={1000}>
+          <Fade in={!isLoading} timeout={500}>
 
             <Grid className={classes.root}>
 
@@ -619,7 +619,7 @@ const desktop = (props: Props) => {
               </Grid>
 
             </Grid>
-            
+
           </Fade>
         )
       }

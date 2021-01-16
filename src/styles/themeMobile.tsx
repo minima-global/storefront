@@ -144,6 +144,16 @@ const themeStylesMobile = makeStyles({
     width: "100vw",
     background: 'linear-gradient(#001C32, #001C32)'
   },
+  landingExit: {
+    margin: "0",
+    padding: "0",
+    height: "100vh",
+    width: "100vw",
+    background: 'linear-gradient(#001C32, #001C32)',
+    visibility: "hidden",
+    opacity: "0",
+    transition: "visibility 0s 0.5s, opacity 0.5s linear"
+  },
   root: {
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
     height: "100vh",
