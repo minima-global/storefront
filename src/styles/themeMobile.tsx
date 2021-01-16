@@ -288,6 +288,10 @@ const themeStylesMobile = makeStyles({
     height: "15px",
     width: '15px'
   },
+  tickIcon: {
+    height: "15px",
+    width: '19px'
+  },
   subHeaderIcon: {
     height: "32px",
     width: '32px'

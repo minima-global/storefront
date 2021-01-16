@@ -312,7 +312,7 @@ const mobile = ( props: Props ) => {
                         data-for='delete'
                         data-tip
                         src={yesIcon}
-                        className={classes.deleteIcon}
+                        className={classes.tickIcon}
                       />
                     </IconButton>
                   </div>
@@ -563,7 +563,7 @@ const desktop = ( props: Props ) => {
                         data-for='delete'
                         data-tip
                         src={yesIcon}
-                        className={classes.deleteIcon}
+                        className={classes.tickIcon}
                       />
                     </IconButton>
                   </div>

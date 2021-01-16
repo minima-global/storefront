@@ -290,6 +290,10 @@ const themeStyles = makeStyles({
     height: "25px",
     width: '25px'
   },
+  tickIcon: {
+    height: "25px",
+    width: '31px'
+  },
   subHeaderIcon: {
     height: "40px",
     width: '40px'
