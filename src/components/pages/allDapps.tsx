@@ -515,7 +515,7 @@ const mapStateToProps = (state: ApplicationState): AllDappsStateProps => {
 
 const mapDispatchToProps = (dispatch: AppDispatch): AllDappsDispatchProps => {
  return {
-   setActivePage: () => dispatch(setActivePage(Local.home)),
+   setActivePage: () => dispatch(setActivePage(Local.allDapps)),
    sortDapps: (sortType: MiniDappSortTypes) => dispatch(sortDapps(sortType))
  }
 }
