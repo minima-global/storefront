@@ -11,7 +11,8 @@ This is a MiniDapp Storefront for [Minima](https://github.com/minima-global).
 - [Install](#install)
   - [Dependencies](#dependencies)
 - [Creating a Minima Storefront](#creating-a-minima-storefront)
-  - [Web-based Hosting](#web-based-hosting)
+  - [Store Location](#store-location)
+  - [Store Configuration](#store-configuration)
 - [Using the Storefront](#using-the-minima-storefront)
 - [Maintainer](#maintainer)
 - [Contributing](#contributing)
@@ -33,7 +34,7 @@ The instructions below will install the Storefront as a [Minima MiniDapp](https:
  and type `npm install`. That will install everything listed in [package.json](/package.json), which are the components of the [React](https://reactjs.org/) frontend to this application
 2. Build the app' by typing `npm run prod`. That will create the MiniDapp inside the [miniDapp/dist](./miniDapp/dist) directory.
 
-Now run the [Minima blockchain](https://github.com/minima-global/Minima). That creates a MiniDapp Server, which is accessible via [http://localhost:9004](http://localhost:9004). So start a browser, and load [http://localhost:9004](http://localhost:9004). You should see the MiniDapp homepage.
+Now run the [Minima blockchain](https://github.com/minima-global/Minima). That creates a MiniDapp Server, which is accessible via [http://localhost:9004](http://localhost:9004). So start a browser, and load [http://localhost:9004](http://localhost:9004). You should see the MiniDapps homepage.
 
 Click on `Install`, then go find the `storefront.minidapp` in the [miniDapp/dist](./miniDapp/dist) directory, which was created in Step 2, above.
 
@@ -50,9 +51,13 @@ You should now be able to open the MiniDapp and use it to access MiniDapp stores
 
 The Minima Storefront supports any platform that hosts content which is web-addressable. Hence, it will be able to retrieve MiniDapps from websites or any distributed filesystems that support  [URL](https://en.wikipedia.org/wiki/URL)-based schemas.
 
-A [JSON](https://en.wikipedia.org/wiki/JSON) configuration file controls which stores the Storefront displays, and on each store, another JSON file, called `dapps.json`, which is effectively a directory listing that controls which MiniDapps are available.   
+A [JSON](https://en.wikipedia.org/wiki/JSON) configuration file specifies the URL, icon and description of each storefront. The [store location](#store-location) section, below, describes that in greater detail.
 
-### Web-based Hosting
+The configuration of each store is described via another JSON file, called `dapps.json`. That specifies which MiniDapps are available - effectively, it is a directory listing; the [store configuration](#store-configuration) section, below, describes that files.
+
+The final piece in the jigsaw are the MiniDapps themselves - the [Minima MiniDapps repo'](https://github.com/minima-global/MiniDAPP) contains simple demos and examples that can get you started.
+
+### Store Location
 
 The instructions below demonstrate how to host MiniDapps on a website.
 
@@ -70,6 +75,8 @@ The instructions below demonstrate how to host MiniDapps on a website.
 }
 ```
 
+### Store Configuration
+
 Below is an example of a `dapps.json`:
 
 ```
@@ -83,26 +90,21 @@ Below is an example of a `dapps.json`:
     "miniDapp": "provenator0.1.0.minidapp",
     "icon": "images/provenatorIcon.png",
     "conf": "minidapp.conf"
-  },
-  "storefront": {
-    "miniDapp": "storefront0.2.0.minidapp",
-    "icon": "images/storefrontIcon.png",
-    "conf": "minidapp.conf"
   }
 }
 ```
 
-There is a script, [storeBuilder.sh](./bin/storeBuilder.sh), which can build the correct MiniDapp directory structure and create `dapps.json`. It will also take the version string in the `minidapp.conf` file and name the `.minidapp` file accordingly. To use it, simply copy the script and all your MiniDapps to a directory, then run:
+There is a script, [storeBuilder.sh](./bin/storeBuilder.sh), which can build the correct MiniDapp directory structure and create `dapps.json` for you. To use it, simply copy the script and all your MiniDapps to a directory, then run:
 
 ```
 storeBuilder.sh > dapps.json
 ```
 
-Now you could send `awesome.json` to someone, who could then load it via the _plus_ icon in the Storefront app' and have access to all your MiniDapps.
+Now you could send `awesome.json` to someone, who would then load it via the _plus_ icon in the Storefront app', giving them access to all your MiniDapps.
 
 ## Using the Minima Storefront
 
-Having [installed](#install) the Storefront MiniDapp, open the [MiniDapp homepage](http://localhost:9004), and load the Storefront. The available MiniDapps should be displayed on the homepage - you can click on their icons, download them, then use the [MiniDapp homepage](http://localhost:9004) to install them.
+Open the [MiniDapp homepage](http://localhost:9004), and load the Storefront. The available MiniDapps should be displayed on the homepage - you can download them from there and then use the [MiniDapp homepage](http://localhost:9004) to install them.
 
 ## Maintainer
 
