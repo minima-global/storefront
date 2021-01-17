@@ -94,18 +94,12 @@ const mobile = ( props: Props ) => {
 
   useEffect(() => {
 
-    let spinnerTimeout: any
-
     if ( props.serverData.servers.length
     && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
 
-      spinnerTimeout = setTimeout(async () => {
-        setLoading(false)
-      }, Misc.spinnerDelay)
-    }
-
-    return () => {
-      clearTimeout(spinnerTimeout)
+      setLoading(false)
+    } else {
+      setLoading(true)
     }
 
   }, [props.serverData])
@@ -339,18 +333,12 @@ const desktop = ( props: Props ) => {
 
   useEffect(() => {
 
-    let spinnerTimeout: any
-
     if ( props.serverData.servers.length
     && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
 
-      spinnerTimeout = setTimeout( () => {
-        setLoading(false)
-      }, Misc.spinnerDelay)
-    }
-
-    return () => {
-      clearTimeout(spinnerTimeout)
+      setLoading(false)
+    } else {
+      setLoading(true)
     }
 
   }, [props.serverData])
