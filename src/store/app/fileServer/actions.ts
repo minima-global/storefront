@@ -2,6 +2,8 @@ import { Minima } from 'minima'
 
 import shortid from 'shortid'
 
+import missingStoreIcon from '../../../images/missingStoreIcon.svg'
+
 import {
   AppDispatch,
   Servers,
@@ -46,6 +48,16 @@ export const serverInfo = (url: string, servers: Servers): Server => {
   }
 
   return server
+}
+
+const setStoreImageURL = async ( imageSrc: string ): Promise<string> => {
+
+    let url: string = imageSrc
+    const response = await fetch(imageSrc)
+    if ( !response.ok ) {
+      url = missingStoreIcon
+    }
+    return url
 }
 
 const compareDappsByName = (a: MiniData, b: MiniData) => {
@@ -271,7 +283,10 @@ const serverEntries = async (): Promise<Server[]> => {
           thisConfig.url += thisConfig.url.endsWith("/") ? "" : "/"
           //console.log(thisURL)
           thisConfig.description = thisConfig.hasOwnProperty('description') ? thisConfig.description : ""
-          thisConfig.icon = thisConfig.hasOwnProperty('icon') ? thisConfig.icon : ""
+          thisConfig.icon = thisConfig.hasOwnProperty('icon') ? thisConfig.url + thisConfig.icon : missingStoreIcon
+          if ( thisConfig.icon != missingStoreIcon ) {
+            thisConfig.icon = await setStoreImageURL(thisConfig.icon)
+          }
           servers.push(thisConfig)
         } else {
 

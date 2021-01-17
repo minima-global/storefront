@@ -117,7 +117,6 @@ const mobile = ( props: Props ) => {
                       const storeTitle = server.title
                       const storeDescription = server.description
                       const storeIcon = server.icon
-                      const storeIconURL = serverUrl + storeIcon
 
                       storeHeading = (
                         <>
@@ -125,7 +124,7 @@ const mobile = ( props: Props ) => {
                           <Grid item xs={2}>
                             <img
                               className={classes.storeIcon}
-                              src={storeIconURL}
+                              src={storeIcon}
                             />
                           </Grid>
 
@@ -347,14 +346,13 @@ const desktop = ( props: Props ) => {
                       const storeTitle = server.title
                       const storeDescription = server.description
                       const storeIcon = server.icon
-                      const storeIconURL = serverUrl + storeIcon
 
                       storeHeading = (
                         <>
                           <Grid item xs={1}>
                             <img
                               className={classes.storeIcon}
-                              src={storeIconURL}
+                              src={storeIcon}
                             />
                           </Grid>
 

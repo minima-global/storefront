@@ -29,7 +29,6 @@ import background from '../../images/square100x100.png'
 import sortIcon from '../../images/menuIcon.svg'
 import deleteIcon from '../../images/crossIcon.svg'
 import yesIcon from '../../images/tickIcon.svg'
-import missingStoreIcon from '../../images/missingStoreIcon.svg'
 
 import {
   initMiniDapps,
@@ -192,7 +191,7 @@ const mobile = ( props: Props ) => {
             {
               props.serverData.servers.map( ( server: Server, i: number ) => {
 
-                const iconURL = server.url + "/" + server.icon
+                const iconURL = server.icon
                 const title = server.title
                 const description = server.description
                 const isOnline = server.isOnline
@@ -367,6 +366,7 @@ const desktop = ( props: Props ) => {
   }
 
   const doDelete = (serverURL: string) => {
+    setDelete(false)
     props.deleteStore(serverURL)
   }
 
@@ -430,7 +430,7 @@ const desktop = ( props: Props ) => {
             {
               props.serverData.servers.map( ( server: Server, i: number ) => {
 
-                const iconURL = server.url + "/" + server.icon
+                const iconURL = server.icon
                 const title = server.title
                 const description = server.description
                 const isOnline = server.isOnline
@@ -580,7 +580,6 @@ const mapStateToProps = (state: ApplicationState): StorefrontsStateProps => {
     serverData: servers
   }
 }
-
 
 const mapDispatchToProps = (dispatch: AppDispatch): StorefrontsDispatchProps => {
  return {
