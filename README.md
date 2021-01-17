@@ -53,17 +53,16 @@ The Minima Storefront supports any platform that hosts content which is web-addr
 
 A [JSON](https://en.wikipedia.org/wiki/JSON) configuration file specifies the URL, icon and description of each storefront. The [store location](#store-location) section, below, describes that in greater detail.
 
-The configuration of each store is described via another JSON file, called `dapps.json`. That specifies which MiniDapps are available - effectively, it is a directory listing; the [store configuration](#store-configuration) section, below, describes that files.
+The configuration of each store is described via another JSON file, called `dapps.json`. That specifies which MiniDapps are available - effectively, it is a directory listing; the [store configuration](#store-configuration) section, below, describes that.
 
-The final piece in the jigsaw are the MiniDapps themselves - the [Minima MiniDapps repo'](https://github.com/minima-global/MiniDAPP) contains simple demos and examples that can get you started.
+The final piece in the jigsaw is the MiniDapps themselves - the [Minima MiniDapps repo'](https://github.com/minima-global/MiniDAPP) contains simple demos and examples of those.
 
 ### Store Location
 
 The instructions below demonstrate how to host MiniDapps on a website.
 
-1. Create a directory that hosts separate directories for each MiniDapp. Those directories should contain the MiniDapp itself (e.g `storefront0.2.0.minidapp`), its configuration file (e.g. `minidapp.conf`) and its icon (e.g `storefrontIcon.png`.
-2. The top-level directory should also contain a file called `dapps.json`, which describes all the MiniDapps that are available; `dapps.json` is effectively a directory listing of each of the MiniDapps.
-3. Create another `json` configuration file that points to a publicly available web address hosting the MiniDapps. For example, imagine that `dapps.json` is hosted at the web location _http://awesome.webserver.url/miniDapps/dapps.json_. The `json` configuration file, which we'll call `awesome.json`, would look like this:
+1. Create a directory to host the storefront. That should contain `dapps.json` (described in [store configuration](#store-configuration)) and the storefront icon.
+2. Now create a `json` file that points to the publicly available web address of the `dapps.json` above. For example, imagine the storefront is hosted at the web location _http://awesome.webserver.url/miniDapps/dapps.json_. The `json` configuration file, which we'll call `awesome.json`, would look like this:
 
 ```
 {
@@ -77,7 +76,7 @@ The instructions below demonstrate how to host MiniDapps on a website.
 
 ### Store Configuration
 
-Below is an example of a `dapps.json`:
+The storefront directory should contain separate directories for each MiniDapp it hosts. The `dapps.json` configuration file describes those MiniDapps; below is an example:
 
 ```
 {
