@@ -80,15 +80,18 @@ const appInfo = (props: Props) => {
           <img src={hr} className={classes.hr}/>
         </Grid>
 
-        { pageData.data.map( (data: string ) => {
+        { pageData.data.map( (data: string, i: number ) => {
 
           return (
 
-            <Grid item container className={classes.details} xs={12}>
-              <Typography variant="body1">
-                {data}
-              </Typography>
-            </Grid>
+            <React.Fragment key={i}>
+
+              <Grid item container className={classes.details} xs={12}>
+                <Typography variant="body1">
+                  {data}
+                </Typography>
+              </Grid>
+            </React.Fragment>
           )
 
         })}

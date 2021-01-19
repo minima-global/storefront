@@ -489,7 +489,7 @@ export const getMiniDapps = (isCountOnly: boolean = false) => {
 
                   if( !resp.result ) {
 
-                    console.error(resp.error)
+                    console.error("Couldn't fetch URL: ", dappConfURL)
 
                   } else {
 
@@ -502,9 +502,10 @@ export const getMiniDapps = (isCountOnly: boolean = false) => {
 
                         // loading up minidapp data
                         plainResponse = decodeURIComponent(resp.result)
+                        //console.log("plain: ", plainResponse)
                         plusLess = plainResponse.replace(/\+/g,' ')
+                        //console.log("plus: ", plusLess)
                         thisConfJSON = JSON.parse(plusLess)
-                        //const miniDapps = state.miniDapps.data
 
                         let newDappData: MiniData = {
                           serverURL: fileServers.servers[i].url,

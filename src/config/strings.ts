@@ -71,14 +71,14 @@ class About {
 
   static readonly heading = `About ${App.appName}`
 
-  static readonly info = [`${App.catchLine}.`,`${App.release}.`,`Version ${App.version}.`,`Created by ${App.author}.`,`${App.copyright}.`]
+  static readonly info = [`Version ${App.version}.`,`${App.catchLine}.`,`${App.release}.`,`Created by ${App.author}.`,`${App.copyright}.`]
 }
 
 class Help {
 
   static readonly heading = `${App.appName} Help`
 
-  static readonly info = [`Use ${App.appName} to download MiniDapps - once you find a MiniDapp you like, click on the download link then install it via the MiniHub. Once it's installed, open it via the MiniHub, and enjoy.`, `If you're a developer who wants to create some MiniDapps, you will find examples of how to do so at <a href="https://github.com/minima-global/MiniDAPP">Minima's minidapp repo'</a>.`, `Once you have developed one or more MiniDapps, you can host your very own Storefront via instructions at https://github.com/glowkeeper/Storefront-minima.`]
+  static readonly info = [`Use ${App.appName} to download MiniDapps - once you find a MiniDapp you like, click on the download link then install it via the MiniHub. Once it's installed, open it via the MiniHub, and enjoy.`, `If you're a developer who wants to create some MiniDapps, you will find examples of how to do so at https://github.com/minima-global/MiniDAPP.`, `Once you have developed one or more MiniDapps, you can host your very own Storefront via instructions at https://github.com/glowkeeper/Storefront-minima.`]
 
   static readonly downloadTip = 'Download'
   static readonly allDappsTip = 'All MiniDapps'
