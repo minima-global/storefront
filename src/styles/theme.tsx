@@ -153,6 +153,19 @@ const themeStyles = makeStyles({
     opacity: "0",
     transition: "visibility 0s 0.5s, opacity 0.5s linear"
   },
+  landingDisplay: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  landingLogoIcon: {
+    height: "100px",
+    width: '100px'
+  },
+  landingAppNameIcon: {
+    height: "25px",
+    width: '168px'
+  },
   root: {
     marginTop: "5vh",
     marginBottom: "5vh",
@@ -234,35 +247,6 @@ const themeStyles = makeStyles({
      top: "50%",
      bottom: "50%"
   },
-  landingLogo: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  landingMinimaLogo: {
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    bottom: '100px'
-  },
-  landingLogoIcon: {
-    height: "100px",
-    width: '100px'
-  },
-  landingAppNameIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: "25px",
-    width: '168px'
-  },
-  landingMinimaIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: "60px",
-    width: '60px'
-  },
   deleteModal: {
     display: 'flex',
     alignItems: 'center',
@@ -294,7 +278,25 @@ const themeStyles = makeStyles({
     height: "25px",
     width: '31px'
   },
-  subHeaderIcon: {
+  subHeaderIconParent: {
+    position: "relative",
+    height: "100%"
+  },
+  helpIcon: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    height: "40px",
+    width: '40px'
+  },
+  contactIcon: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: "40px",
+    width: '40px'
+  },
+  aboutIcon: {
+    display: 'flex',
+    justifyContent: 'flex-end',
     height: "40px",
     width: '40px'
   },
@@ -324,38 +326,11 @@ const themeStyles = makeStyles({
     height: "25px",
     width: '168px'
   },
-  storeIconParent: {
-    marginTop: theme.spacing(1),
-    position: "relative",
-    top: "0",
-    left: "0",
-  },
-  storeIconContainer: {
-    position: "relative",
-    top: "0",
-    left: "0",
-    borderRadius: "50%",
-    width: "40px",
-    height: "40px"
-  },
   storeIcon: {
     marginTop: theme.spacing(1),
     width: "40px",
     height: "40px",
     borderRadius: "50%",
-  },
-  storesIconParent: {
-    position: "relative",
-    top: "0",
-    left: "0",
-  },
-  storesIconContainer: {
-    position: "relative",
-    top: "0",
-    left: "0",
-    borderRadius: "50%",
-    width: "40px",
-    height: "40px"
   },
   storesIcon: {
     width: "40px",
@@ -364,9 +339,6 @@ const themeStyles = makeStyles({
   },
   link: {
     textDecoration: 'none'
-  },
-  activeLink: {
-    filter: "brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(87deg) brightness(119%) contrast(119%)"
   },
   linkIcon: {
     margin: 'auto',

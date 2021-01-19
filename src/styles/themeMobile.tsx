@@ -154,6 +154,23 @@ const themeStylesMobile = makeStyles({
     opacity: "0",
     transition: "visibility 0s 0.5s, opacity 0.5s linear"
   },
+  landingDisplay: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  landingLogoIcon: {
+    height: "100px",
+    width: '100px'
+  },
+  landingAppNameIcon: {
+    height: "25px",
+    width: '168px'
+  },
+  landingMinimaIcon: {
+    height: "60px",
+    width: '60px'
+  },
   root: {
     background: 'linear-gradient(#F0F0FA, #F0F0FA)',
     height: "100vh",
@@ -232,35 +249,6 @@ const themeStylesMobile = makeStyles({
    top: "50%",
    bottom: "50%"
   },
-  landingLogo: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  landingMinimaLogo: {
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    bottom: '50px'
-  },
-  landingLogoIcon: {
-    height: "100px",
-    width: '100px'
-  },
-  landingAppNameIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: "25px",
-    width: '168px'
-  },
-  landingMinimaIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: "60px",
-    width: '60px'
-  },
   deleteModal: {
     display: 'flex',
     alignItems: 'center',
@@ -292,7 +280,24 @@ const themeStylesMobile = makeStyles({
     height: "15px",
     width: '19px'
   },
-  subHeaderIcon: {
+  subHeaderIconParent: {
+    position: "relative",
+  },
+  helpIcon: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    height: "32px",
+    width: '32px'
+  },
+  contactIcon: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: "32px",
+    width: '32px'
+  },
+  aboutIcon: {
+    display: 'flex',
+    justifyContent: 'flex-end',
     height: "32px",
     width: '32px'
   },
@@ -362,9 +367,6 @@ const themeStylesMobile = makeStyles({
   },
   link: {
     textDecoration: 'none'
-  },
-  activeLink: {
-    color: '#FFF',
   },
   linkIcon: {
     margin: 'auto',
