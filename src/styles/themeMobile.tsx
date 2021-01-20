@@ -134,7 +134,6 @@ let themeMobile = createMuiTheme ({
 })
 
 themeMobile = responsiveFontSizes(themeMobile)
-"0"
 
 const themeStylesMobile = makeStyles({
   landing: {
