@@ -35,6 +35,10 @@ export const reducer = (state: MiniDappProps = initialState, action: ActionProps
         }
       }
     }
+    case MiniDappActionTypes.MINIDAPP_SORT: {
+      const miniDappData = (action.payload.data as MiniDapps)
+      return Object.assign({}, state, miniDappData)
+    }
     case MiniDappActionTypes.MINIDAPP_TOTAL: {
       const dappsData = (action.payload.data as MiniDapps)
       const total = dappsData.numAvailable

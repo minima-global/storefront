@@ -1,9 +1,11 @@
 import { Action } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 
+import { Sort } from '../config'
+
 // Store stuff
 export interface ApplicationState {
-  info: InfoPageProps
+  appData: AppDataProps
   fileServers: ServerProps
   miniDapps: MiniDappProps
   installedDapps: InstalledDappProps
@@ -20,35 +22,29 @@ export interface ActionProps extends Action {
 
 export type AppDispatch = ThunkDispatch<ApplicationState, any, ActionProps>
 
-// Info (about etc.) stuff
-export const enum InfoTypes {
-  HOME = "home",
-  ABOUT = "about",
-  HELP = "help",
-  FAQ = "faq",
-  CONTACT = "contact"
+// Stuff pertinent to make this app' work
+export interface AppData {
+  activePage: string
 }
 
-export interface InfoPageProps extends PayloadProps {
-  data: InfoData
+export interface AppDataProps extends PayloadProps {
+  data: AppData
+}
+
+// Info (about etc.) stuff
+export const enum InfoTypes {
+  ABOUT = "about",
+  HELP = "help",
+  CONTACT = "contact"
 }
 
 export interface InfoProps {
   title: string
-  data: string
-}
-
-export interface InfoData {
-  home: InfoProps
-  about: InfoProps
-  help: InfoProps
-  faq: InfoProps
-  contact: InfoProps
+  data: string[]
 }
 
 // Servers
 export interface Server {
-  index: number
   title: string
   url: string
   icon: string
@@ -82,7 +78,7 @@ export interface InstalledDappProps extends PayloadProps {
 
 // to be installed
 export interface MiniData {
-  serverIndex: number
+  serverURL: string
   dir: string
   miniDapp: string
   conf: {
@@ -106,10 +102,28 @@ export interface MiniDappProps extends PayloadProps {
   data: MiniDapps
 }
 
+// Sort Types
+export const enum MiniDappSortTypes {
+  ATOZ = 'aToZ',
+  CATEGORY = 'category',
+  STOREFRONT = 'storefront'
+}
+
+export const enum ServerSortTypes {
+  ATOZ = 'aToZ'
+}
+
 // Action types
+export const enum AppDataActionTypes {
+  APPDATA_INIT = '@@AppDataActionTypes/APPDATA_INIT',
+  APPDATA_SUCCESS = '@@AppDataActionTypes/APPDATA_SUCCESS',
+  APPDATA_FAILURE = '@@AppDataActionTypes/APPDATA_FAILURE'
+}
+
 export const enum ServerActionTypes {
   SERVER_INIT = '@@ServerActionTypes/SERVER_INIT',
   SERVER_SUCCESS = '@@ServerActionTypes/SERVER_SUCCESS',
+  SERVER_SORT = '@@ServerActionTypes/SERVER_SORT',
   SERVER_FAILURE = '@@ServerActionTypes/SERVER_FAILURE',
   SERVER_TOTAL = '@@ServerActionTypes/SERVER_TOTAL'
 }
@@ -117,6 +131,7 @@ export const enum ServerActionTypes {
 export const enum MiniDappActionTypes {
   MINIDAPP_INIT = '@@MiniDappActionTypes/MINIDAPP_INIT',
   MINIDAPP_SUCCESS = '@@MiniDappActionTypes/MINIDAPP_SUCCESS',
+  MINIDAPP_SORT = '@@MiniDappActionTypes/MINIDAPP_SORT',
   MINIDAPP_FAILURE = '@@MiniDappActionTypes/MINIDAPP_FAILURE',
   MINIDAPP_TOTAL = '@@MiniDappActionTypes/MINIDAPP_TOTAL',
   MINIDAPP_COUNT = '@@MiniDappActionTypes/MINIDAPP_COUNT'

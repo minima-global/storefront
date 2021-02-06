@@ -2,6 +2,8 @@ import { Minima } from 'minima'
 
 import shortid from 'shortid'
 
+import missingStoreIcon from '../../../images/missingStoreIcon.svg'
+
 import {
   AppDispatch,
   Servers,
@@ -9,12 +11,15 @@ import {
   ServerActionTypes,
   MiniDappActionTypes,
   MiniDapps,
-  MiniData
+  MiniData,
+  MiniDappSortTypes,
+  ServerSortTypes
 } from '../../types'
 
-import { Config, Remote, GeneralError } from '../../../config'
-
+import { poll } from '../actions'
 import { write } from '../../actions'
+
+import { Config, Remote, GeneralError } from '../../../config'
 
 export const initServers = () => {
   return async (dispatch: AppDispatch) => {
@@ -24,11 +29,204 @@ export const initServers = () => {
   }
 }
 
+export const serverInfo = (url: string, servers: Servers): Server => {
+
+  let server: Server = {
+    title: "",
+    url: "",
+    icon: "",
+    description: "",
+    isOnline: false
+  }
+
+  for (let i = 0; i < servers.servers.length; i++) {
+
+    if ( url === servers.servers[i].url ) {
+      server = servers.servers[i]
+      break
+    }
+  }
+
+  return server
+}
+
+const setStoreImageURL = async ( imageSrc: string ): Promise<string> => {
+
+    let url: string = imageSrc
+    const response = await fetch(imageSrc)
+    if ( !response.ok ) {
+      url = missingStoreIcon
+    }
+    return url
+}
+
+const compareDappsByName = (a: MiniData, b: MiniData) => {
+
+  if (a.conf.name < b.conf.name) {
+    return -1;
+  }
+  if (a.conf.name > b.conf.name) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+
+}
+
+const compareDappsByCategory = (a: MiniData, b: MiniData) => {
+
+  if (a.conf.category < b.conf.category) {
+    return -1
+  }
+  if (a.conf.category > b.conf.category) {
+    return 1
+  }
+  // a must be equal to b
+  return 0
+
+}
+
+const compareDappsByStorefront = (a: MiniData, b: MiniData) => {
+
+  if (a.serverURL < b.serverURL) {
+    return -1;
+  }
+  if (a.serverURL > b.serverURL) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+
+}
+
+export const sortDapps = ( sortType: MiniDappSortTypes ) => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    let state = getState()
+    let dappData = state.miniDapps.data
+
+    if ( sortType === MiniDappSortTypes.ATOZ ) {
+
+      dappData.miniDapps.sort(compareDappsByName)
+      dispatch(write({data: dappData})(MiniDappActionTypes.MINIDAPP_SORT))
+
+    } else if ( sortType === MiniDappSortTypes.CATEGORY ) {
+
+      dappData.miniDapps.sort(compareDappsByCategory)
+      dispatch(write({data: dappData})(MiniDappActionTypes.MINIDAPP_SORT))
+
+    } else if ( sortType === MiniDappSortTypes.STOREFRONT ) {
+
+      dappData.miniDapps.sort(compareDappsByStorefront)
+      dispatch(write({data: dappData})(MiniDappActionTypes.MINIDAPP_SORT))
+    }
+
+  }
+}
+
+const compareServersByTitle = (a: Server, b: Server) => {
+
+  if (a.title < b.title) {
+    return -1;
+  }
+  if (a.title > b.title) {
+    return 1;
+  }
+  // a must be equal to b
+  return 0;
+}
+
+export const sortServers = ( sortType: ServerSortTypes ) => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    let state = getState()
+    let serverData = state.fileServers.data
+
+    if ( sortType === ServerSortTypes.ATOZ ) {
+
+      serverData.servers.sort(compareServersByTitle)
+      dispatch(write({data: serverData})(ServerActionTypes.SERVER_SORT))
+
+    }
+  }
+}
+
+export const deleteServer = ( serverURL: string ) => {
+  return async (dispatch: AppDispatch, getState: Function) => {
+
+    //console.log("my server: ", serverURL)
+
+    try {
+
+      let serversJSON = {
+        files: [] as any
+      }
+
+      const response = await fetch(`${Config.serverConfig}`)
+      const serverFiles = await response.json()
+      let configFiles: any[] = serverFiles.files as any[]
+
+      //console.log("configfiles: ", configFiles)
+
+      for (let i = 0; i < configFiles.length; i++) {
+
+        const file = await fetch(configFiles[i])
+        const thisFile = await file.json()
+
+        //console.log("this file: ", thisFile)
+
+        for (let [title, config] of Object.entries(thisFile)) {
+
+          //console.log("title stuff: ", title, config)
+
+          let thisConfig: Server = config as Server
+
+          //console.log("this config: ", thisConfig)
+          if ( thisConfig.hasOwnProperty('url') ) {
+
+            if ( serverURL != thisConfig.url ) {
+
+              serversJSON.files.push(configFiles[i])
+
+            }
+          } else {
+
+            console.error(GeneralError.serverConfig)
+          }
+        }
+      }
+
+      //console.log("servers json: ", serversJSON)
+      const fileJSON = JSON.stringify(serversJSON)
+      Minima.file.save(`${fileJSON}`, Config.serverConfig, function(resp: any) {
+
+        //console.log("save success: ", resp)
+
+        if(!resp.success) {
+
+          console.error(resp.statusText)
+          dispatch(write({data: []})(ServerActionTypes.SERVER_FAILURE))
+
+        } else {
+
+          dispatch(initServers())
+          dispatch(getServers())
+          dispatch(poll())
+        }
+      })
+
+    } catch (error) {
+      console.error(error)
+    }
+
+  }
+}
+
 const uniqueServers = (elements: any[]): any[] => {
 
   //console.log("unique first: ", elements)
 
-  const uniqElements = elements.reduce((element: any[], current: any) => {
+  const uniqueElements = elements.reduce((element: Server[], current: Server) => {
 
     //console.log("unique: ", element, current)
 
@@ -54,7 +252,7 @@ const uniqueServers = (elements: any[]): any[] => {
     }
   }, [])
 
-  return uniqElements
+  return uniqueElements
 }
 
 const serverEntries = async (): Promise<Server[]> => {
@@ -85,7 +283,10 @@ const serverEntries = async (): Promise<Server[]> => {
           thisConfig.url += thisConfig.url.endsWith("/") ? "" : "/"
           //console.log(thisURL)
           thisConfig.description = thisConfig.hasOwnProperty('description') ? thisConfig.description : ""
-          thisConfig.icon = thisConfig.hasOwnProperty('icon') ? thisConfig.icon : ""
+          thisConfig.icon = thisConfig.hasOwnProperty('icon') ? thisConfig.url + thisConfig.icon : missingStoreIcon
+          if ( thisConfig.icon != missingStoreIcon ) {
+            thisConfig.icon = await setStoreImageURL(thisConfig.icon)
+          }
           servers.push(thisConfig)
         } else {
 
@@ -104,10 +305,11 @@ const serverEntries = async (): Promise<Server[]> => {
 export const getServers = () => {
   return async (dispatch: AppDispatch) => {
 
-    const serverList: any[] = await serverEntries()
+    const serverList: Server[] = await serverEntries()
     //console.log("server list: ", serverList)
 
-    const servers = uniqueServers(serverList)
+    let servers = uniqueServers(serverList)
+    servers.sort(compareServersByTitle)
 
     const serverData: Servers = {
       numAvailable: servers.length,
@@ -126,7 +328,6 @@ export const getServers = () => {
       Minima.net.GET(dappsListing, function(resp: any) {
 
         let thisServer: Server = {
-          index: i,
           title: thisServerData.title,
           url: thisServerData.url,
           description: thisServerData.description,
@@ -216,7 +417,7 @@ export const setServers = (file: any) => {
 }
 
 export const initMiniDapps = () => {
-  return async (dispatch: AppDispatch, getState: Function) => {
+  return async (dispatch: AppDispatch) => {
 
     //console.log("init dapps")
     dispatch(write({data: []})(MiniDappActionTypes.MINIDAPP_INIT))
@@ -288,7 +489,7 @@ export const getMiniDapps = (isCountOnly: boolean = false) => {
 
                   if( !resp.result ) {
 
-                    console.error(resp.error)
+                    console.error("Couldn't fetch URL: ", dappConfURL)
 
                   } else {
 
@@ -301,12 +502,13 @@ export const getMiniDapps = (isCountOnly: boolean = false) => {
 
                         // loading up minidapp data
                         plainResponse = decodeURIComponent(resp.result)
+                        //console.log("plain: ", plainResponse)
                         plusLess = plainResponse.replace(/\+/g,' ')
+                        //console.log("plus: ", plusLess)
                         thisConfJSON = JSON.parse(plusLess)
-                        //const miniDapps = state.miniDapps.data
 
                         let newDappData: MiniData = {
-                          serverIndex: fileServers.servers[i].index,
+                          serverURL: fileServers.servers[i].url,
                           dir: dir,
                           miniDapp: dappData.miniDapp,
                           conf: {

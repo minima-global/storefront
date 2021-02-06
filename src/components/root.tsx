@@ -5,18 +5,26 @@ import { Provider } from 'react-redux'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/styles'
 
-import { theme } from '../styles'
-import { Main } from './pages/main'
+import { isMobile } from "react-device-detect"
 
-const Root = ({ store }: any) => (
+import { theme, themeMobile } from '../styles'
+import { Main } from './pages'
+
+const Root = ({ store }: any) => {
+
+  const appTheme = isMobile ? themeMobile : theme
+
+  return (
+
     <Provider store={store}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={appTheme}>
           <CssBaseline />
           <HashRouter>
             <Main />
           </HashRouter>
         </ThemeProvider>
     </Provider>
-);
+  )
+}
 
 export default Root

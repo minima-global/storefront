@@ -1,7 +1,7 @@
 {
   "Minima Head Office": {
-    "url": "http://web.default.glowkeeper.uk0.bigv.io:8888/",
-    "description": "Minima sponsored MiniDapps",
+    "url": "https://raw.githubusercontent.com/minima-global/MiniDAPP/master/store/",
+    "description": "Minima Sponsored MiniDapps",
     "icon": "minimaLogo.png"
   }
 }

@@ -1,4 +1,5 @@
 export * from './main'
 export * from './home'
+export * from './allDapps'
 export * from './staticInfo'
 export * from './storefronts'

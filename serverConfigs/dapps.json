@@ -1,9 +1,4 @@
 {
-  "blockx": {
-    "miniDapp": "blockx.minidapp",
-    "icon": "blockx/search.png",
-    "conf": "blockx/minidapp.conf"
-  },
   "coinflip": {
     "miniDapp": "coinflip.minidapp",
     "icon": "coinflip/images/coinicon.png",
@@ -19,34 +14,9 @@
     "icon": "dexxed/images/stocks.png",
     "conf": "dexxed/minidapp.conf"
   },
-  "futurecash": {
-    "miniDapp": "futurecash.minidapp",
-    "icon": "futurecash/clock.png",
-    "conf": "futurecash/minidapp.conf"
-  },
-  "provenator": {
-    "miniDapp": "provenator.minidapp",
-    "icon": "build/images/provenatorIcon.png",
-    "conf": "build/minidapp.conf"
-  },
   "scriptide": {
     "miniDapp": "scriptide.minidapp",
     "icon": "scriptide/images/icon.png",
     "conf": "scriptide/minidapp.conf"
-  },
-  "terminal": {
-    "miniDapp": "terminal.minidapp",
-    "icon": "terminal/terminal_icon.png",
-    "conf": "terminal/minidapp.conf"
-  },
-  "tokenator": {
-    "miniDapp": "tokenator.minidapp",
-    "icon": "tokenator/images/coins.png",
-    "conf": "tokenator/minidapp.conf"
-  },
-  "wallet": {
-    "miniDapp": "wallet.minidapp",
-    "icon": "miniwallet/assets/logo.png",
-    "conf": "miniwallet/minidapp.conf"
   }
 }

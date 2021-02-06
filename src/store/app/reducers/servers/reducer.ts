@@ -25,6 +25,10 @@ export const reducer = (state: ServerProps = initialState, action: ActionProps):
           servers: [...state.data.servers, serverData]
         }
       }
+    }    
+    case ServerActionTypes.SERVER_SORT: {
+      const serverData = (action.payload.data as Servers)
+      return Object.assign({}, state, serverData)
     }
     case ServerActionTypes.SERVER_TOTAL: {
       const serverData = (action.payload.data as Servers)

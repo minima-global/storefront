@@ -1,13 +1,10 @@
 import React from 'react'
 
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
-import { makeStyles } from '@material-ui/styles'
-import { withStyles } from '@material-ui/core/styles'
+import { createMuiTheme, responsiveFontSizes, makeStyles } from '@material-ui/core/styles'
 
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import { Form } from 'formik'
 
 import red from '@material-ui/core/colors/red'
 import blue from '@material-ui/core/colors/blue'
@@ -16,123 +13,111 @@ import indigo from '@material-ui/core/colors/indigo'
 import orange from '@material-ui/core/colors/orange'
 import yellow from '@material-ui/core/colors/yellow'
 
-import GoogleFontLoader from 'react-google-font-loader'
-
-//load this first
-const fontLoader = () =>
-    <GoogleFontLoader
-      fonts={[
-        {
-          font: 'Barlow',
-          weights: [400, '400i'],
-        },
-        {
-          font: 'Lato',
-          weights: [400, 500],
-        },
-      ]}
-      subsets={['cyrillic-ext', 'greek']}
-    />
-
 let theme = createMuiTheme ({
   spacing: 8,
   typography: {
     fontFamily: [
-      'Barlow',
-      'Lato',
-      'sans-serif',
-      'Arial',
+      'Manrope',
       'Roboto',
+      'Arial',
+      'sans-serif',
       '-apple-system',
     ].join(','),
-    fontSize: 14,
+    fontSize: 1,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     h1: {
-      fontSize:  "30px",
+      lineHeight: "2.4",
+      fontSize:  "2.2em",
       fontWeight: 700,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000',
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
+      color: '#001C32',
     },
     h2: {
-      fontSize: "2.7vh",
-      fontWeight: 600,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      lineHeight: "2",
+      fontSize: "1.6em",
+      fontWeight: 700,
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
+      color: '#001C32'
     },
     h3: {
-      fontSize: "2.5vh",
-      fontWeight: 500,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      lineHeight: '1.2',
+      fontSize: "1em",
+      fontWeight: 700,
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
+      color: '#001C32'
     },
     h4: {
-      fontSize: "2.4vh",
+      lineHeight: '1.2',
+      fontSize: "1em",
       fontWeight: 400,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
+      color: '#317aff'
     },
     h5: {
-      fontSize: "2.3vh",
+      lineHeight: "1.2",
+      fontSize: "1em",
       fontWeight: 400,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
+      color: '#001C32'
     },
     h6: {
-      fontSize: "2.2vh",
-      fontWeight: 400,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      lineHeight: "2",
+      fontSize: "1em",
+      fontWeight: 700,
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
+      color: '#001C32'
     },
     subtitle1: {
-      fontSize: "2.1vh",
-      fontWeight: 400,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      lineHeight: "1",
-      color: '#000000'
+      lineHeight: "2.5",
+      fontSize: "1em",
+      fontWeight: 600,
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
+      color: '#FFFFFF'
     },
     subtitle2: {
-      fontSize: "2.1vh",
-      fontWeight: 400,
-      fontFamily: "\"Barlow\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      lineHeight: "1",
+      fontSize: "1em",
+      fontWeight: 600,
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
+      color: '#FF512F'
     },
     body1: {
-      fontSize: "2vh",
+      lineHeight: '1.1',
+      fontSize: "1",
       fontWeight: 400,
-      fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000',
-      lineHeight: 'normal'
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
+      color: '#001C32',
     },
     body2: {
-      fontSize: "2vh",
+      lineHeight: '1',
+      fontSize: "1",
       fontWeight: 400,
-      fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
+      color: '#001C32',
     },
     caption: {
-      fontSize: "1.9vh",
-      fontWeight: 400,
-      fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: orange[900]
+      fontSize: "0.9em",
+      fontWeight: 700,
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
     },
     button: {
-      fontSize: "2vh",
+      fontSize: "1.8em",
       textTransform: "uppercase",
       fontWeight: 500,
-      fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
-      color: '#000000'
+      fontFamily: "\"Manrope\", \"Roboto\", \"Arial\", \"sans-serif\"",
+      color: '#001C32'
     }
   },
   palette: {
     type: 'dark',
     background: {
-      default: '#FFFFFF',
+      default: '#edefef',
     },
     text: {
-      primary: "#000000",
-      secondary: "#000000"
+      primary: "#001C32",
+      secondary: "#001C32"
     },
     primary: {
       main: '#929396'
@@ -148,117 +133,222 @@ let theme = createMuiTheme ({
 })
 
 theme = responsiveFontSizes(theme)
-theme.spacing(4)
+"0"
 
 const themeStyles = makeStyles({
-  root: {
-    background: 'linear-gradient(#929396, #929396)',
-    color: theme.palette.text.primary,
+  landing: {
+    margin: "0",
+    padding: "0",
     height: "100vh",
     width: "100vw",
+    background: 'linear-gradient(#001C32, #001C32)'
+  },
+  landingExit: {
+    margin: "0",
+    padding: "0",
+    height: "100vh",
+    width: "100vw",
+    background: 'linear-gradient(#001C32, #001C32)',
+    visibility: "hidden",
+    opacity: "0",
+    transition: "visibility 0s 0.5s, opacity 0.5s linear"
+  },
+  landingDisplay: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  landingLogoIcon: {
+    height: "100px",
+    width: '100px'
+  },
+  landingAppNameIcon: {
+    height: "25px",
+    width: '168px'
+  },
+  root: {
+    marginTop: "5vh",
+    marginBottom: "5vh",
+    marginLeft: "auto",
+    marginRight: "auto",
+    height: "90vh",
+    width: "50%",
     position: 'relative'
   },
   header: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(0),
-    textAlign: 'left',
-    background: 'linear-gradient(#ff671d, #ff671d)',
-    height: "75px",
-    width: "100vw",
+    paddingRight: theme.spacing(5),
+    paddingLeft: theme.spacing(5),
+    paddingTop: "30px",
+    margin: "0",
+    background: 'linear-gradient(#001C32, #001C32)',
+    height: "90px",
+    width: "100%",
     position: 'absolute',
     top: '0'
   },
-  logo: {
-    padding: theme.spacing(0),
-    margin: theme.spacing(0),
-    background: 'linear-gradient(#00abc7, #00abc7)',
-  },
-  title: {
-    padding: theme.spacing(0),
-    margin: theme.spacing(0),
-    background: 'linear-gradient(#ff671d, #ff671d)',
-    position: 'relative'
-  },
-  subTitle: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(0),
+  subHeader: {
+    paddingRight: theme.spacing(5),
+    paddingLeft: theme.spacing(5),
+    paddingBottom: theme.spacing(1),
+    paddingTop: theme.spacing(1),
+    margin: "0",
     textAlign: 'center',
-    background: 'linear-gradient(#ff671d, #ff671d)',
-    fontStyle: 'italic'
+    background: 'linear-gradient(#F0F0FA, #F0F0FA)',
+    height: "60px",
+    width: "100%",
+    position: 'absolute',
+    top: '90px'
   },
   content: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(0),
-    color: theme.palette.text.primary,
-    background: 'linear-gradient(#929396, #929396)',
+    paddingRight: theme.spacing(5),
+    paddingLeft: theme.spacing(5),
+    margin: "0",
+    background: 'linear-gradient(#FAFAFF, #FAFAFF)',
     overflow: 'auto',
-    width: "100vw",
+    width: "100%",
     position: 'absolute',
-    bottom: '120px',
-    top: '75px'
-  },
-  home: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(0),
-    color: theme.palette.text.primary,
-    background: 'linear-gradient(#929396, #929396)'
-  },
-  caption: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(0),
-    textAlign: 'center',
-    background: 'linear-gradient(#ff671d, #ff671d)'
+    bottom: '100px',
+    top: '150px'
   },
   footer: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(0),
-    textAlign: 'center',
-    background: 'linear-gradient(#00abc7, #00abc7)',
-    height: "120px",
-    width: "100vw",
+    paddingRight: theme.spacing(5),
+    paddingLeft: theme.spacing(5),
+    paddingTop: "10px",
+    margin: "0",
+    background: 'linear-gradient(#001C32, #001C32)',
+    height: "100px",
+    width: "100%",
     position: 'absolute',
     bottom: '0'
   },
-  footerLinks: {
-    background: 'linear-gradient(#00abc7, #00abc7)',
-    textAlign: 'center',
-    fontSize: "2vh",
-    fontWeight: 400,
-    fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
+  storeTitle: {
+    padding: "0",
+    margin: "0"
   },
-  link: {
-    color: theme.palette.text.primary,
-    textDecoration: 'none',
-    fontSize: "2vh",
-    fontWeight: 400,
-    fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
+  storeDescription: {
+    padding: "0",
+    margin: "0"
   },
-  menu: {
+  caption: {
     padding: theme.spacing(1),
-    margin: theme.spacing(1),
-    background: 'linear-gradient(#ff671d, #ff671d)',
+    margin: "0"
+  },
+  details: {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    margin: "0",
+  },
+  footerLinks: {
+    fontWeight: 400,
+    fontFamily: "\"Lato\", \"Arial\", \"sans-serif\", \"Roboto\"",
   },
   spinner: {
-     position: 'absolute',
-     left: '50%',
-     top: '50%',
-     transform: 'translate(-50%, -50%)'
+     position: 'relative',
+     top: "50%",
+     bottom: "50%"
   },
-  appIconContainer: {
-    padding: theme.spacing(0),
-    margin: theme.spacing(1),
-    width: "96px",
-    height: "80px",
-    border: "2px",
-    borderRadius: "50%",
-    borderColor: "red",
-    overflow: "hidden"
+  deleteModal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteModalSub: {
+    backgroundColor: theme.palette.background.default,
+    boxShadow: theme.shadows[3],
+    padding: theme.spacing(1),
+    outline: "none",
+    width: "10%"
+  },
+  deleteModalSubIcons: {
+    textAlign: "center"
   },
   appIcon: {
+    height: "50px",
+    width: '50px'
+  },
+  downloadIcon: {
+    height: "25px",
+    width: '20px'
+  },
+  deleteIcon: {
+    height: "25px",
+    width: '25px'
+  },
+  tickIcon: {
+    height: "25px",
+    width: '31px'
+  },
+  subHeaderIconParent: {
+    position: "relative",
+    height: "100%"
+  },
+  helpIcon: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    height: "40px",
+    width: '40px'
+  },
+  contactIcon: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: "40px",
+    width: '40px'
+  },
+  aboutIcon: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    height: "40px",
+    width: '40px'
+  },
+  footerIcon: {
+    height: "35px",
+    width: '35px'
+  },
+  headerIcon: {
+    height: "50px",
+    width: '50px'
+  },
+  sortIcon: {
+    height: "25px",
+    width: '25px'
+  },
+  appNameIconContainer: {
+    position: "relative",
+    top: "0",
+    left: "0",
+    height: "50px",
+    width: '208px'
+  },
+  appNameIcon: {
+    position: "absolute",
+    bottom: "0",
+    left: "0",
+    height: "25px",
+    width: '168px'
+  },
+  storeIcon: {
+    marginTop: theme.spacing(1),
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+  },
+  storesIcon: {
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+  },
+  link: {
+    textDecoration: 'none'
+  },
+  linkIcon: {
     margin: 'auto',
-    height: "80px",
-    width: '100%'
+    height: "30px",
+    width: '30px'
+  },
+  hr: {
+    height: "1px",
+    width: "100%"
   }
 })
 
-export { fontLoader, theme, themeStyles }
+export { theme, themeStyles }

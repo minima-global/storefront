@@ -2,178 +2,127 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 
+import { isMobile } from "react-device-detect"
+
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import Fade from '@material-ui/core/Fade'
 
-import Spinner from 'react-spinner-material'
+import { ApplicationState, AppDispatch } from '../../store/types'
 
-//import { initMiniDapps, getMiniDapps } from '../../store/app/fileServer/actions'
+import { themeStyles, themeStylesMobile } from '../../styles'
 
-//import Markdown from 'react-markdown'
-//import { SimpleArrayRenderer } from '../simpleRenderer'
-import { Home as HomeConfig, Misc, Local, AddDapp } from '../../config'
+import { Local } from '../../config'
+import { Home as HomeConfig, App } from '../../config/strings'
 
-import { themeStyles } from '../../styles'
+import logoIcon from '../../images/storefrontLogo.svg'
+import appNameIcon from '../../images/storefront.svg'
+//import minimaIcon from '../../images/minimaIcon.svg'
 
-import {
-  ApplicationState,
-  AppDispatch,
-  Servers,
-  MiniDapps,
-  MiniData
-} from '../../store'
+import { setActivePage } from '../../store/app/appData/actions'
 
-// @ts-ignore
-import { Minima } from '../../store/app/blockchain/minima'
-
-interface HomeStateProps {
-  serverData: Servers
-  miniDappData: MiniDapps
+interface HomeDispatchProps {
+  setActivePage: (page: string) => void
 }
 
-/*interface HomeDispatchProps {
-  initMiniDapps: () => void
-  getMiniDapps: () => void
-}*/
+type Props = HomeDispatchProps
 
-//type Props = HomeStateProps & HomeDispatchProps
-type Props = HomeStateProps
+const landing = (props: Props) => {
 
-const get = ( props: Props ) => {
+  const [loadLogo, setLoadLogo] = useState(true)
+  const [loadAppName, setLoadAppName] = useState(false)
+  const [exit, setExit] = useState(false)
 
-  const [isLoading, setLoading] = useState(false)
-
-  const classes = themeStyles()
   let history = useHistory()
 
-  /*const compare = (a: MiniData, b: MiniData) => {
-
-    const thisA = a.server.url
-    const thisB = b.server.url
-    if (thisA < thisB) {
-      return -1;
-    }
-    if (thisA > thisB) {
-      return 1;
-    }
-    // a must be equal to b
-    return 0;
-  }
-
-  const unique = (elements: MiniData[]): MiniData[] => {
-
-    const uniqElements = elements.reduce((element: MiniData[], current: MiniData) => {
-
-      const x = element.find( (item: MiniData) => {
-        return ( item.dir === current.dir &&  item.conf.name === current.conf.name )
-      })
-
-      if (!x) {
-        return element.concat([current])
-      } else {
-        return element
-      }
-    }, [])
-
-    return uniqElements
-  }
+  const classes = isMobile ? themeStylesMobile() : themeStyles()
 
   useEffect(() => {
 
-    if ( props.serverData.servers.length
-    && ( props.serverData.servers.length == props.serverData.numAvailable ) ) {
+    let appTimeout = setTimeout(() => {
+      setLoadAppName(true)
+    }, 1000)
 
-      props.initMiniDapps()
-      setLoading(true)
-      setTimeout(function(){ setLoading(false) }, Misc.homeSpinnerDelay)
-      props.getMiniDapps()
+    let exitTimeout = setTimeout(() => {
+      setExit(true)
+    }, 3000)
+
+    let pageTimeout = setTimeout(() => {
+      props.setActivePage(Local.allDapps)
+      history.push(Local.allDapps)
+    }, 3500)
+
+    return () => {
+      clearTimeout(appTimeout)
+      clearTimeout(exitTimeout)
+      clearTimeout(pageTimeout)
     }
 
-  }, [props.serverData])*/
+  }, [])
 
   return (
     <>
-      <h2>{HomeConfig.heading}</h2>
-      <hr />
-      <p>
-          {isLoading ?
-            <div className={classes.spinner}>
-              <Spinner radius={40} color={"#ff671d"} stroke={5} visible={isLoading} />
-            </div> : (
-              <Paper className={classes.home} square={true}>
-                <Grid container>
-                  {
-                    props.miniDappData.miniDapps.map( ( miniDapp: MiniData, i: number ) => {
+      {exit ?
 
-                      const serverIndex = miniDapp.serverIndex
-                      const dappHome = props.serverData.servers[serverIndex].url
-                      const dir = miniDapp.dir
-                      const icon = miniDapp.icon
-                      const iconURL = dappHome + dir + "/" + icon
-                      const name = miniDapp.conf.name
-                      const headline = miniDapp.conf.headline
-                      const version = miniDapp.conf.version
-                      const description = miniDapp.conf.description
-                      const category = miniDapp.conf.category
-                      const miniDappURL = dappHome + dir + "/" + miniDapp.miniDapp
-                      //const pathAddDapp = `${Local.addDapp}/${i}`
+          <Grid container className={classes.landingExit}>
 
-                      return (
-                        <>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={2}>
-                            <Paper className={classes.appIconContainer}>
-                                <img
-                                  className={classes.appIcon}
-                                  src={iconURL}
-                                />
-                            </Paper>
-                          </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={8}>
-                           <b>{name}</b><br/>
-                           <i>{category}</i>
-                          </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12} sm={2}>
-                            <form method="get" action={miniDappURL}>
-                               <button type="submit">{AddDapp.download}</button>
-                            </form>
-                          </Grid>
-                          <Grid item justify="center" alignItems="center" xs={12}>
-                           <hr />
-                           <p>{headline}<br/>
-                           <b>{version}</b><br/>
-                           <b>{ props.serverData.servers[serverIndex].title}</b></p>
-                          </Grid>
-                        </>
-                      )
-                    })
-                  }
+            <Grid item container className={classes.landingDisplay}>
+
+              <div>
+
+                <Grid item container justify="center" xs={12}>
+                  <img className={classes.landingLogoIcon} src={logoIcon}/>
                 </Grid>
-              </Paper>
-            )
-          }
-      </p>
+                <br/>
+                <br/>
+                <Grid item container justify="center" xs={12}>
+                  <img className={classes.landingAppNameIcon} src={appNameIcon}/>
+                </Grid>
+
+              </div>
+
+            </Grid>
+
+          </Grid> : (
+
+          <Grid container className={classes.landing}>
+
+            <Grid item container className={classes.landingDisplay}>
+
+              <div>
+                <Fade in={loadLogo} timeout={1000}>
+                  <div>
+                    <Grid item container justify="center" xs={12}>
+                      <img className={classes.landingLogoIcon} src={logoIcon}/>
+                    </Grid>
+                    <br/>
+                    <br/>
+                    <Fade in={loadAppName} timeout={1000}>
+                      <Grid item container justify="center" xs={12}>
+                        <img className={classes.landingAppNameIcon} src={appNameIcon}/>
+                      </Grid>
+                    </Fade>
+                  </div>
+                </Fade>
+
+              </div>
+
+            </Grid>
+
+          </Grid>
+        )
+      }
     </>
   )
 }
 
-const mapStateToProps = (state: ApplicationState): HomeStateProps => {
-
-  const servers = state.fileServers.data as Servers
-  const miniDapps = state.miniDapps.data as MiniDapps
-  return {
-    serverData: servers,
-    miniDappData: miniDapps
-  }
-}
-
-/*
 const mapDispatchToProps = (dispatch: AppDispatch): HomeDispatchProps => {
  return {
-   initMiniDapps: () => dispatch(initMiniDapps()),
-   getMiniDapps: () => dispatch(getMiniDapps())
+   setActivePage: (page: string) => dispatch(setActivePage(page))
  }
-}*/
+}
 
-export const Home = connect<HomeStateProps, {}, {}, ApplicationState>(
-  mapStateToProps
-)(get)
+export const Home = connect<HomeDispatchProps, {}, {}, ApplicationState>(
+  null,
+  mapDispatchToProps
+)(landing)

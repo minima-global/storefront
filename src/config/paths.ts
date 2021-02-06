@@ -7,6 +7,7 @@ class Config {
 class Local {
 
   static readonly home = '/'
+  static readonly allDapps = '/all-dapps'
   static readonly about = '/about'
   static readonly help = '/help'
   static readonly contact = '/contact'
@@ -14,11 +15,8 @@ class Local {
 
   static readonly serverSettings = '/settings'
 
-  static readonly addDapp = '/add-dapp'
-  static readonly addDappIndex = `${Local.addDapp}/:index`
-
   static readonly showStoreDapps = '/show-store-dapps'
-  static readonly showStoreDappsIndex = `${Local.showStoreDapps}/:index`
+  static readonly showStoreDappsIndex = `${Local.showStoreDapps}/:url`
 }
 
 class Remote {
