@@ -48,8 +48,8 @@ const landing = (props: Props) => {
     }, 3000)
 
     let pageTimeout = setTimeout(() => {
-      props.setActivePage(Local.allDapps)
-      history.push(Local.allDapps)
+      props.setActivePage(Local.showStoreDapps)
+      history.push(Local.showStoreDapps)
     }, 3500)
 
     return () => {

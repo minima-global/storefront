@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import GoogleFontLoader from 'react-google-font-loader'
 
@@ -235,32 +235,6 @@ const mobile = (props: Props) => {
 
                 <Grid item container justify="flex-start" xs={4}>
 
-                 <NavLink to={Local.allDapps}>
-                    <IconButton
-                     color="primary"
-                     aria-label={Help.allDappsTip}
-                     component="span"
-                     size="small">
-                     <img
-                      data-for={allDappsIcon}
-                      data-tip
-                      src={icons[0]}
-                      className={classes.footerIcon}
-                    />
-                    </IconButton>
-                    <ReactTooltip
-                      id={allDappsIcon}
-                      place="top"
-                      effect="solid"
-                    >
-                      {Help.allDappsTip}
-                    </ReactTooltip>
-                 </NavLink>
-
-                </Grid>
-
-                <Grid item container justify="center" xs={4}>
-
                    <NavLink to={Local.showStoreDapps}>
                      <IconButton
                        color="primary"
@@ -282,6 +256,32 @@ const mobile = (props: Props) => {
                         {Help.storeTip}
                       </ReactTooltip>
                    </NavLink>
+
+                </Grid>
+
+                <Grid item container justify="center" xs={4}>
+
+                 <NavLink to={Local.allDapps}>
+                    <IconButton
+                     color="primary"
+                     aria-label={Help.allDappsTip}
+                     component="span"
+                     size="small">
+                     <img
+                      data-for={allDappsIcon}
+                      data-tip
+                      src={icons[0]}
+                      className={classes.footerIcon}
+                    />
+                    </IconButton>
+                    <ReactTooltip
+                      id={allDappsIcon}
+                      place="top"
+                      effect="solid"
+                    >
+                      {Help.allDappsTip}
+                    </ReactTooltip>
+                 </NavLink>
 
                 </Grid>
 
@@ -323,7 +323,6 @@ const mobile = (props: Props) => {
                     onChange={getFile}
                     style={{ visibility: 'hidden'}}
                   />
-                  <AppInit />
                 </div>
               </Grid>
 
@@ -505,100 +504,98 @@ const desktop = (props: Props) => {
 
             <Grid item container className={classes.footer} xs={12}>
 
-              <Grid item container justify="flex-start" xs={4}>
+               <Grid item container justify="flex-start" xs={4}>
 
-                 <NavLink to={Local.allDapps}>
-                    <IconButton
+                 <NavLink to={Local.showStoreDapps}>
+                   <IconButton
                      color="primary"
-                     aria-label={Help.allDappsTip}
+                     aria-label={Help.storeTip}
                      component="span"
                      size="small">
                      <img
-                      data-for={allDappsIcon}
+                      data-for={storesIcon}
                       data-tip
-                      src={icons[0]}
+                      src={icons[1]}
                       className={classes.footerIcon}
-                    />
+                     />
                     </IconButton>
                     <ReactTooltip
-                      id={allDappsIcon}
+                      id={storesIcon}
                       place="top"
                       effect="solid"
                     >
-                      {Help.allDappsTip}
+                      {Help.storeTip}
                     </ReactTooltip>
                  </NavLink>
 
-                </Grid>
+              </Grid>
 
-                <Grid item container justify="center" xs={4}>
+              <Grid item container justify="center" xs={4}>
 
-                   <NavLink to={Local.showStoreDapps}>
-                     <IconButton
-                       color="primary"
-                       aria-label={Help.storeTip}
-                       component="span"
-                       size="small">
-                       <img
-                        data-for={storesIcon}
-                        data-tip
-                        src={icons[1]}
-                        className={classes.footerIcon}
-                       />
-                      </IconButton>
-                      <ReactTooltip
-                        id={storesIcon}
-                        place="top"
-                        effect="solid"
-                      >
-                        {Help.storeTip}
-                      </ReactTooltip>
-                   </NavLink>
+                <NavLink to={Local.allDapps}>
+                   <IconButton
+                    color="primary"
+                    aria-label={Help.allDappsTip}
+                    component="span"
+                    size="small">
+                    <img
+                     data-for={allDappsIcon}
+                     data-tip
+                     src={icons[0]}
+                     className={classes.footerIcon}
+                   />
+                   </IconButton>
+                   <ReactTooltip
+                     id={allDappsIcon}
+                     place="top"
+                     effect="solid"
+                   >
+                     {Help.allDappsTip}
+                   </ReactTooltip>
+                </NavLink>
 
-                </Grid>
+             </Grid>
 
-                <Grid item container justify="flex-end" xs={4}>
+              <Grid item container justify="flex-end" xs={4}>
 
-                  <label htmlFor="getFile">
-                    <IconButton
-                      color="primary"
-                      aria-label={Help.fileTip}
-                      component="span"
-                      size="small">
-                      <img
-                        data-for={settingsIcon}
-                        data-tip
-                        src={settingsIcon}
-                        className={classes.footerIcon}
-                      />
-                    </IconButton>
-                    <ReactTooltip
-                      id={settingsIcon}
-                      place="top"
-                      effect="solid"
-                    >
-                      {Help.fileTip}
-                    </ReactTooltip>
-                  </label>
-
-                </Grid>
+                <label htmlFor="getFile">
+                  <IconButton
+                    color="primary"
+                    aria-label={Help.fileTip}
+                    component="span"
+                    size="small">
+                    <img
+                      data-for={settingsIcon}
+                      data-tip
+                      src={settingsIcon}
+                      className={classes.footerIcon}
+                    />
+                  </IconButton>
+                  <ReactTooltip
+                    id={settingsIcon}
+                    place="top"
+                    effect="solid"
+                  >
+                    {Help.fileTip}
+                  </ReactTooltip>
+                </label>
 
               </Grid>
 
-              //hide stuff we need but don't display here
-              <Grid>
-                <div>
-                  <input
-                    id="getFile"
-                    type="file"
-                    accept='.json'
-                    onChange={getFile}
-                    style={{ visibility: 'hidden'}}
-                  />
-                </div>
               </Grid>
+                <Grid>
+                  <div>
+                    <input
+                      id="getFile"
+                      type="file"
+                      accept='.json'
+                      onChange={getFile}
+                      style={{ visibility: 'hidden'}}
+                    />
+                  </div>
+                </Grid>
 
-            </Grid>
+              </Grid>
 
           </Fade>
         )
