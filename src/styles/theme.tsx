@@ -289,6 +289,8 @@ const themeStyles = makeStyles({
     width: '40px'
   },
   contactIcon: {
+    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(2),
     display: 'flex',
     justifyContent: 'center',
     height: "40px",

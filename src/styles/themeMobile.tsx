@@ -289,6 +289,8 @@ const themeStylesMobile = makeStyles({
     width: '32px'
   },
   contactIcon: {
+    marginRight: themeMobile.spacing(2),
+    marginLeft: themeMobile.spacing(2),
     display: 'flex',
     justifyContent: 'center',
     height: "32px",
