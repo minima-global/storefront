@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography'
 import { ApplicationState, AppDispatch, InfoProps, InfoTypes } from '../../store/types'
 
 import hrFirst from '../../images/hrFirst.svg'
-import hrFirstMobile from '../../images/hrFirstMobile.svg'
 
 import { themeStyles } from '../../styles'
 

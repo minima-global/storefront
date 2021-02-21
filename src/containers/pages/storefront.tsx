@@ -19,9 +19,6 @@ import background from '../../images/square100x100.png'
 import hrFirst from '../../images/hrFirst.svg'
 import hrSecond from '../../images/hrSecond.svg'
 import hrThird from '../../images/hrThird.svg'
-import hrFirstMobile from '../../images/hrFirstMobile.svg'
-import hrSecondMobile from '../../images/hrSecondMobile.svg'
-import hrThirdMobile from '../../images/hrThirdMobile.svg'
 import sortIcon from '../../images/menuIcon.svg'
 
 import { initMiniDapps, getMiniDapps, serverInfo, sortDapps } from '../../store/app/fileServer/actions'
@@ -178,7 +175,7 @@ const display = ( props: Props ) => {
                           </Grid>
 
                           <Grid item container xs={12} alignItems="flex-start">
-                            <img src={hrSecond} className={classes.hr}/>
+                            <img src={hrFirst} className={classes.hr}/>
                           </Grid>
                         </>
                       )
