@@ -556,13 +556,13 @@ const themeStyles = makeStyles({
   },
   storeIcon: {
     [breakpoints.up('xs')]: {
-      marginTop: theme.spacing(1),
-      width: "30px",
-      height: "30px",
+      marginTop: theme.spacing(2),
+      width: "20px",
+      height: "20px",
       borderRadius: "50%",
     },
     [breakpoints.up('md')]: {
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(1.5),
       width: "30px",
       height: "30px",
       borderRadius: "50%"
