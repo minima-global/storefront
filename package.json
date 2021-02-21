@@ -31,7 +31,6 @@
     "material-ui-chip-input": "^2.0.0-beta.2",
     "minima": "file:../../minima-0.96.11.tgz",
     "react": "^17.0.1",
-    "react-device-detect": "^1.15.0",
     "react-dom": "^17.0.1",
     "react-file-reader-input": "^2.0.0",
     "react-google-font-loader": "^1.1.0",

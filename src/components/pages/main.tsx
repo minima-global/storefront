@@ -4,8 +4,6 @@ import { NavLink } from 'react-router-dom'
 
 import GoogleFontLoader from 'react-google-font-loader'
 
-import { isMobile } from "react-device-detect"
-
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Input from '@material-ui/core/Input'
@@ -46,7 +44,7 @@ import logoIcon from '../../images/storefrontLogo.svg'
 import appNameIcon from '../../images/storefront.svg'
 import minimaIcon from '../../images/minimaIcon.svg'
 
-import { themeStyles, themeStylesMobile } from '../../styles'
+import { themeStyles } from '../../styles'
 
 import { Paths, Local, Help, Settings } from '../../config'
 
@@ -63,12 +61,12 @@ interface MainDispatchProps {
 
 type Props =  MainStateProps & MainDispatchProps
 
-const mobile = (props: Props) => {
+const display = (props: Props) => {
 
   const [isLoading, setLoading] = useState(true)
   const [icons, setIcons] = useState([allDappsActiveIcon, storesIcon, helpIcon, infoIcon, contactIcon])
 
-  const classes = themeStylesMobile()
+  const classes = themeStyles()
 
   const getFile = (e: any) => {
 
@@ -334,276 +332,6 @@ const mobile = (props: Props) => {
   )
 }
 
-const desktop = (props: Props) => {
-
-  const [isLoading, setLoading] = useState(true)
-  const [icons, setIcons] = useState([allDappsActiveIcon, storesIcon, helpIcon, infoIcon, contactIcon])
-
-  const classes = themeStyles()
-
-  const getFile = (e: any) => {
-
-    props.initMiniDapps()
-    props.initServers()
-    const files = e.target.files
-    props.setServers(files[0])
-    props.poll()
-  }
-
-  useEffect(() => {
-
-    //console.log("main with: ", props.appData.activePage)
-    if ( props.appData.activePage === Local.allDapps ) {
-
-      setLoading(false)
-      setIcons([allDappsActiveIcon, storesIcon, helpIcon, infoIcon, contactIcon])
-
-    } else if ( props.appData.activePage === Local.showStoreDapps ) {
-
-      setLoading(false)
-      setIcons([allDappsIcon, storesActiveIcon, helpIcon, infoIcon, contactIcon])
-
-    } else if ( props.appData.activePage === Local.help ) {
-
-      setLoading(false)
-      setIcons([allDappsIcon, storesIcon, helpActiveIcon, infoIcon, contactIcon])
-
-    } else if ( props.appData.activePage === Local.about ) {
-
-      setLoading(false)
-      setIcons([allDappsIcon, storesIcon, helpIcon, infoActiveIcon, contactIcon])
-
-    } else if ( props.appData.activePage === Local.contact ) {
-
-      setLoading(false)
-      setIcons([allDappsIcon, storesIcon, helpIcon, infoIcon, contactActiveIcon])
-
-    }
-  }, [props.appData])
-
-  return (
-    <>
-      {isLoading ?
-        <div>
-          <AppInit />
-          <Home />
-        </div> : (
-
-          <Fade in={!isLoading} timeout={500}>
-
-            <Grid className={classes.root}>
-
-              <GoogleFontLoader
-                fonts={[
-                  {
-                    font: 'Manrope',
-                    weights: [300, 400, 500, 600, 700],
-                  },
-                  {
-                    font: 'Roboto',
-                    weights: [300, 400, 500, 600, 700],
-                  }
-                ]}
-              />
-
-              <Grid item container className={classes.header} xs={12}>
-
-                <Grid item container justify="flex-start" xs={4}>
-                  <img className={classes.headerIcon} src={logoIcon}/>
-                </Grid>
-
-                <Grid item container justify="center" xs={4}>
-                  <div className={classes.appNameIconContainer}>
-                    <img className={classes.appNameIcon} src={appNameIcon}/>
-                  </div>
-                </Grid>
-
-                <Grid item container justify="flex-end" xs={4}>
-                  <img className={classes.headerIcon} src={minimaIcon}/>
-                </Grid>
-
-              </Grid>
-
-              <Grid item container justify="flex-end" className={classes.subHeader} xs={12}>
-
-                <div className={classes.subHeaderIconParent}>
-
-                  <NavLink to={Local.help} className={classes.link}>
-                      <IconButton
-                        color="primary"
-                        aria-label="Help"
-                        component="span"
-                        size="small">
-                        <img
-                          data-for={helpIcon}
-                          data-tip
-                          src={icons[2]}
-                          className={classes.helpIcon}
-                        />
-                      </IconButton>
-                      <ReactTooltip
-                        id={helpIcon}
-                        place="bottom"
-                        effect="solid"
-                      >
-                        {Help.helpTip}
-                      </ReactTooltip>
-                  </NavLink>
-
-                  <NavLink to={Local.contact} className={classes.link}>
-                    <IconButton
-                      color="primary"
-                      aria-label="Contact"
-                      component="span"
-                      size="small">
-                      <img
-                        data-for={contactIcon}
-                        data-tip
-                        src={icons[4]}
-                        className={classes.contactIcon}
-                      />
-                    </IconButton>
-                    <ReactTooltip
-                      id={contactIcon}
-                      place="bottom"
-                      effect="solid"
-                    >
-                      {Help.contactTip}
-                    </ReactTooltip>
-                  </NavLink>
-
-                  <NavLink to={Local.about} className={classes.link}>
-                    <IconButton
-                      color="primary"
-                      aria-label="Info"
-                      component="span"
-                      size="small">
-                      <img
-                        data-for={infoIcon}
-                        data-tip
-                        src={icons[3]}
-                        className={classes.aboutIcon}
-                      />
-                    </IconButton>
-                    <ReactTooltip
-                      id={infoIcon}
-                      place="bottom"
-                      effect="solid"
-                    >
-                      {Help.aboutTip}
-                    </ReactTooltip>
-                  </NavLink>
-
-                </div>
-
-              </Grid>
-
-            <Grid className={classes.content} item container alignItems="flex-start" xs={12}>
-              <Content />
-            </Grid>
-
-            <Grid item container className={classes.footer} xs={12}>
-
-               <Grid item container justify="flex-start" xs={4}>
-
-                 <NavLink to={Local.showStoreDapps}>
-                   <IconButton
-                     color="primary"
-                     aria-label={Help.storeTip}
-                     component="span"
-                     size="small">
-                     <img
-                      data-for={storesIcon}
-                      data-tip
-                      src={icons[1]}
-                      className={classes.footerIcon}
-                     />
-                    </IconButton>
-                    <ReactTooltip
-                      id={storesIcon}
-                      place="top"
-                      effect="solid"
-                    >
-                      {Help.storeTip}
-                    </ReactTooltip>
-                 </NavLink>
-
-              </Grid>
-
-              <Grid item container justify="center" xs={4}>
-
-                <NavLink to={Local.allDapps}>
-                   <IconButton
-                    color="primary"
-                    aria-label={Help.allDappsTip}
-                    component="span"
-                    size="small">
-                    <img
-                     data-for={allDappsIcon}
-                     data-tip
-                     src={icons[0]}
-                     className={classes.footerIcon}
-                   />
-                   </IconButton>
-                   <ReactTooltip
-                     id={allDappsIcon}
-                     place="top"
-                     effect="solid"
-                   >
-                     {Help.allDappsTip}
-                   </ReactTooltip>
-                </NavLink>
-
-             </Grid>
-
-              <Grid item container justify="flex-end" xs={4}>
-
-                <label htmlFor="getFile">
-                  <IconButton
-                    color="primary"
-                    aria-label={Help.fileTip}
-                    component="span"
-                    size="small">
-                    <img
-                      data-for={settingsIcon}
-                      data-tip
-                      src={settingsIcon}
-                      className={classes.footerIcon}
-                    />
-                  </IconButton>
-                  <ReactTooltip
-                    id={settingsIcon}
-                    place="top"
-                    effect="solid"
-                  >
-                    {Help.fileTip}
-                  </ReactTooltip>
-                </label>
-
-              </Grid>
-
-              </Grid>
-                <Grid>
-                  <div>
-                    <input
-                      id="getFile"
-                      type="file"
-                      accept='.json'
-                      onChange={getFile}
-                      style={{ visibility: 'hidden'}}
-                    />
-                  </div>
-                </Grid>
-
-              </Grid>
-
-          </Fade>
-        )
-      }
-    </>
-  )
-}
-
 const mainNav = (props: Props) => {
 
   let path = window.location.href
@@ -613,11 +341,7 @@ const mainNav = (props: Props) => {
       window.location.href = redirect
   }
 
-  if (isMobile) {
-    return mobile(props)
-  } else {
-    return desktop(props)
-  }
+  return display(props)
 }
 
 const mapStateToProps = (state: ApplicationState): MainStateProps => {

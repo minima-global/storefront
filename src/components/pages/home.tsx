@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import { connect } from 'react-redux'
 
-import { isMobile } from "react-device-detect"
-
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Fade from '@material-ui/core/Fade'
 
 import { ApplicationState, AppDispatch } from '../../store/types'
 
-import { themeStyles, themeStylesMobile } from '../../styles'
+import { themeStyles } from '../../styles'
 
 import { Local } from '../../config'
 import { Home as HomeConfig, App } from '../../config/strings'
@@ -35,7 +33,7 @@ const landing = (props: Props) => {
 
   let history = useHistory()
 
-  const classes = isMobile ? themeStylesMobile() : themeStyles()
+  const classes = themeStyles()
 
   useEffect(() => {
 

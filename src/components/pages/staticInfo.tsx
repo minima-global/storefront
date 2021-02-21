@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
-import { isMobile } from "react-device-detect"
-
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
@@ -11,7 +9,7 @@ import { ApplicationState, AppDispatch, InfoProps, InfoTypes } from '../../store
 import hrFirst from '../../images/hrFirst.svg'
 import hrFirstMobile from '../../images/hrFirstMobile.svg'
 
-import { themeStyles, themeStylesMobile } from '../../styles'
+import { themeStyles } from '../../styles'
 
 import { Local } from '../../config'
 import { About, Help, Contact } from '../../config/strings'
@@ -35,11 +33,6 @@ const appInfo = (props: Props) => {
 
     let classes = themeStyles()
     let hr = hrFirst
-    if ( isMobile ) {
-
-      classes = themeStylesMobile()
-      hr = hrFirstMobile
-    }
 
     useEffect(() => {
 
