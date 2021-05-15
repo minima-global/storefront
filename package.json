@@ -1,11 +1,11 @@
 {
   "name": "storefront",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Storefront Minima",
-  "main": "index.tsx",
+  "main": "index.html",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/glowkeeper/Storefront-minima"
+    "url": "git+https://github.com/minima-global/storefront"
   },
   "scripts": {
     "compile": "./node_modules/.bin/webpack --config ./webpack.dev.js --mode development && rm ./build/app.js && rm ./build/app.js.map && mkdir ./build/images && cp ./miniDapp/images/* ./build/images && cp ./miniDapp/config/minidapp.conf ./build",
@@ -29,7 +29,7 @@
     "decimal.js": "^10.2.1",
     "flat": "^5.0.2",
     "material-ui-chip-input": "^2.0.0-beta.2",
-    "minima": "file:../../minima-0.96.11.tgz",
+    "minima": "file:/../minima.js/minima-0.96.20.tgz",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-file-reader-input": "^2.0.0",
@@ -90,7 +90,6 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-import": "1.13.3",
     "clean-webpack-plugin": "^3.0.0",
-    "cypress": "^6.2.1",
     "html-webpack-inline-source-plugin": "0.0.10",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.12.3",
@@ -113,7 +112,7 @@
     "fsevents": "*"
   },
   "bugs": {
-    "url": "https://github.com/glowkeeper/Storefront-minima/issues"
+    "url": "https://github.com/minima-global/storefront/issues"
   },
-  "homepage": "https://github.com/glowkeeper/Storefront-minima#readme"
+  "homepage": "https://github.com/minima-global/storefront#readme"
 }
